@@ -6,7 +6,7 @@ An overview of the proposed technology
 
 A typical application can be broken up in to four layers -
 
-### Clients
+### Clients Tier
 
 A client is the application that has a visual interface for the user to interact with.
 
@@ -18,13 +18,12 @@ A simple component library with basic styling will be provided to the end-user t
 
 Where the business logic resides.  This is part of the middle tier and is what the "Client" talks to to get information from the "Data Tier" via Adapters.
 
-### Adapters
+### Adapters Tier
 
 Adapters provide an interface or contract for connecting to nodes.  It is assumed that all functionality that is provided from the nodes will be available in a unified contract via the adapters, with a clear error for if a node cannot support a given method.
 
-An example would be that an LND node can support creating channels but that functionality is not available in Litecoin or Bitcoin core. 
+An example would be that an LND node can support creating channels but that functionality is not available in Litecoin or Bitcoin core.
 
 ### Data Tier
 
 This is where the data is sourced from the nodes.  The node could be lnd, litecoind, bitcoind, btcd, or ltcd.
-
