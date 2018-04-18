@@ -1,0 +1,25 @@
+<template>
+  <form>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input id="description" value.bind="invoice.description"
+        class="form-control"
+        placeholder="Enter Description">
+    </div>
+    <div class="form-group">
+      <label for="include_address">Include Address</label>
+      <input id="include_address" checked.bind="invoice.include_address" type="checkbox"
+        class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input id="amount" value.bind="invoice.tokens"
+        type="number"
+        class="form-control"
+        placeholder="Enter Amount">
+    </div>
+    <button class="btn btn-primary" click.delegate="createInvoice()">
+      Create Invoice
+    </button>
+  </form>
+</template>

@@ -1,0 +1,48 @@
+<template>
+  <require from="components/card-item"></require>
+  <require from="components/display-item"></require>
+  <h2>Invoices</h2>
+  <div class="card-deck">
+    <card-item repeat.for="invoice of invoices">
+      <span slot="header">${invoice.id}</span>
+      <div slot="body">
+        <display-item
+          label="chain_address"
+          value.bind="invoice.chain_address"></display-item>
+        <display-item
+          label="confirmed_at"
+          value.bind="invoice.confirmed_at"></display-item>
+        <display-item
+          label="created_at"
+          value.bind="invoice.created_at"></display-item>
+        <display-item
+          label="description"
+          value.bind="invoice.description"></display-item>
+        <display-item
+          label="description_hash"
+          value.bind="invoice.description_hash"></display-item>
+        <display-item
+          label="expires_at"
+          value.bind="invoice.expires_at"></display-item>
+        <display-item
+          label="id"
+          value.bind="invoice.id"></display-item>
+        <display-item
+          label="invoice"
+          value.bind="invoice.invoice"></display-item>
+        <display-item
+          label="is_confirmed"
+          value.bind="invoice.is_confirmed"></display-item>
+        <display-item
+          label="is_outgoing"
+          value.bind="invoice.is_outgoing"></display-item>
+        <display-item
+          label="tokens"
+          value.bind="invoice.tokens"></display-item>
+        <display-item
+          label="type"
+          value.bind="invoice.type"></display-item>
+      </div>
+    </card-item>
+  </div>
+</template>

@@ -1,7 +1,18 @@
+## Now
+
+Moved build tooling for the client app over to a separate repository
+Need to find the best way to use that tooling from within the app (and using the apps config if necessary)
+Test the change to remove build tooling from the client app
+Test the build tools have all needed packages
+Try to prune unused libraries if possible
+
+## Plan
+
 1. Write admin console
   a. Check status of running services
   b. Check status of nodes
-  c. Check and update configuration files
+  c. Check and update configuration files - started
+    - Reading and writing config files is enabled for litecoind and lnd
   d. Help with set up process (possibly)
 
 1. Write adapters

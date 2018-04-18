@@ -1,0 +1,16 @@
+<template>
+  <require from="components/card-item"></require>
+  <require from="components/display-item"></require>
+  <h2>Receive addresses</h2>
+
+  <div class="card-deck">
+    <card-item repeat.for="address of addresses">
+      <span slot="header">${address.address}</span>
+      <div slot="body">
+        <p>Copy the address below</p>
+        <input id="address" value.bind="address.address"
+          class="form-control" readonly="readonly">
+      </div>
+    </card-item>
+  </div>
+</template>

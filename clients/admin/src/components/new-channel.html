@@ -1,0 +1,19 @@
+<template>
+  <form>
+    <div class="form-group">
+      <label for="local_amt">Amount to Fund (in Satoshis)</label>
+      <input id="local_amt" value.bind="value.local_amt"
+        class="form-control"
+        placeholder="Enter Amount">
+    </div>
+    <div class="form-group">
+      <label for="partner_public_key">Public Key</label>
+      <input id="partner_public_key" value.bind="value.partner_public_key"
+       class="form-control"
+       placeholder="Public Key">
+    </div>
+    <button class="btn btn-primary" click.delegate="connectChannel()">
+      Connect Channel
+    </button>
+  </form>
+</template>

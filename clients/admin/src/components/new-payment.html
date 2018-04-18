@@ -1,0 +1,13 @@
+<template>
+  <form>
+    <div class="form-group">
+      <label for="invoice_id">Invoice Id</label>
+      <input id="invoice_id" value.bind="invoice.id"
+        class="form-control"
+        placeholder="Enter Invoice Id">
+    </div>
+    <button class="btn btn-primary" click.delegate="payInvoice()">
+      Pay Invoice
+    </button>
+  </form>
+</template>

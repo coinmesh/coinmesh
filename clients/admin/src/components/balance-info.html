@@ -1,0 +1,16 @@
+<template>
+  <require from="components/display-item"></require>
+  <h2>Balance Info</h2>
+  <display-item
+    label="chain_balance"
+    value.bind="balance.chain_balance"></display-item>
+  <display-item
+    label="channel_balance"
+    value.bind="balance.channel_balance"></display-item>
+  <display-item
+    label="pending_chain_balance"
+    value.bind="balance.pending_chain_balance"></display-item>
+  <display-item
+    label="pending_channel_balance"
+    value.bind="balance.pending_channel_balance"></display-item>
+</template>

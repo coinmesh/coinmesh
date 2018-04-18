@@ -1,0 +1,16 @@
+<template>
+  <require from="components/card-item"></require>
+  <require from="components/display-item"></require>
+  <h2>Messages</h2>
+
+  <div class="card-deck">
+    <card-item repeat.for="message of messages">
+      <span slot="header">${message.message}</span>
+      <div slot="body">
+        <display-item
+          label="capacity"
+          value.bind="message.signature"></display-item>
+      </div>
+    </card-item>
+  </div>
+</template>
