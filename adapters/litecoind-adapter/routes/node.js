@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { JsonRpcRequest, jsonRpcClient } = require('../services/json-rpc');
 
 /* GET node information */
 router.get('/getnetworkinfo', (req, res, next) => {

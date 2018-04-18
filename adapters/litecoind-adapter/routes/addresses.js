@@ -9,7 +9,7 @@ router.get('/listreceivedbyaddress', (req, res, next) => {
 });
 
 router.get('/getnewaddress', (req, res, next) => {
-  addressesService.listReceivedByAddress().then(result => {
+  addressesService.getNewAddress().then(result => {
     return res.json(result);
   });
 });

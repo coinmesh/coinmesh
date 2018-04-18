@@ -1,24 +1,20 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const transactionsService = require('../services/transactions');
 
-/* GET transactions */
-router.get('/', function(req, res, next) {
-  res.json([{ id: 1 }, { id: 2 }]);
+router.get('/', (req, res, next) => {
+  transactionsService.getTransactions().then(result => {
+    res.json(result);
+  });
 });
 
-/* GET transactions that this wallet received */
-router.get('/received', function(req, res, next) {
-  res.json([{ id: 1 }, { id: 2 }]);
-});
+router.post('/', (req, res, next) => {
+  let targetAddress = req.body.address;
+  let tokens = req.body.tokens;
 
-/* GET transactions that this wallet sent */
-router.get('/sent', function(req, res, next) {
-  res.json([{ id: 1 }, { id: 2 }]);
-});
-
-/* GET estimated fees for sending */
-router.get('/fees', function(req, res, next) {
-  res.json({ estimatedFees: 0.001 });
+  transactionsService.sendToAddress(targetAddress, tokens).then(result => {
+    res.json(result);
+  });
 });
 
 module.exports = router;
