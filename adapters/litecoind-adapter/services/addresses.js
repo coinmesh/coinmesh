@@ -2,11 +2,11 @@ const { JsonRpcRequest, jsonRpcClient } = require('../services/json-rpc');
 
 let addressesService = {};
 
-addressesService.listReceivedByAddress = () => {
+addressesService.listReceivedByAddress = (minConfirmations = 0, includeEmpty = true, includeWatchOnly = false) => {
   let request = {
     method: 'listreceivedbyaddress',
     params: [
-      0, true
+      minConfirmations, includeEmpty, includeWatchOnly
     ],
     id: 'listreceivedbyaddress'
   };
@@ -14,10 +14,10 @@ addressesService.listReceivedByAddress = () => {
   return jsonRpcClient.post(request);
 });
 
-addressesService.getNewAddress = () => {
+addressesService.getNewAddress = (accountName = '') => {
   let request = {
     method: 'getnewaddress',
-    params: [],
+    params: [accountName],
     id: 'getnewaddress'
   };
 
