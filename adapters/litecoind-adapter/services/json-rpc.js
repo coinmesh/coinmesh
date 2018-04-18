@@ -1,10 +1,17 @@
 const rp = require('request-promise');
+const config = require('./config');
 
 class JsonRpc {
   post(requestBody) {
-    let username = `${process.env.RPC_USERNAME}`;
-    let password = `${process.env.RPC_PASSWORD}`;
-    let url = `http://${username}:${password}@localhost:19332/`;
+    const {
+      protocol,
+      username,
+      password,
+      host,
+      port
+    } = config;
+
+    let url = `${protocol}://${username}:${password}@${host}:${port}/`;
 
     let options = {
       method: 'POST',
