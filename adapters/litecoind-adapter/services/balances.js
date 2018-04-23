@@ -12,6 +12,6 @@ balancesService.getBalance = (account = '*', confirmations, watchOnly) => {
   };
 
   return jsonRpcClient.post(request);
-});
+};
 
 module.exports = balancesService;

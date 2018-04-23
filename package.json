@@ -1,0 +1,27 @@
+{
+  "name": "fabric",
+  "version": "1.0.0",
+  "description": "An ecosystem for building Litecoin and Bitcoin applications.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "concurrent \"npm run client\" \"npm run adapter\"",
+    "client": "cd ./clients/admin && gulp watch",
+    "adapter": " cd ./adapters/litecoind-adapter && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blockfuse/fabric.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blockfuse/fabric/issues"
+  },
+  "homepage": "https://github.com/blockfuse/fabric#readme",
+  "dependencies": {
+    "concurrently": "^3.5.1"
+  }
+}

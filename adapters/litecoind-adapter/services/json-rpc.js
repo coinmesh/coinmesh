@@ -11,7 +11,7 @@ class JsonRpc {
       port
     } = config;
 
-    let url = `${protocol}://${username}:${password}@${host}:${port}/`;
+    let url = `${protocol}${username}:${password}@${host}:${port}/`;
 
     let options = {
       method: 'POST',

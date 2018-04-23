@@ -12,7 +12,7 @@ addressesService.listReceivedByAddress = (minConfirmations = 0, includeEmpty = t
   };
 
   return jsonRpcClient.post(request);
-});
+};
 
 addressesService.getNewAddress = (accountName = '') => {
   let request = {
@@ -22,7 +22,7 @@ addressesService.getNewAddress = (accountName = '') => {
   };
 
   return jsonRpcClient.post(request);
-});
+};
 
 addressesService.sendToAddress = (targetAddress, amount) => {
   let request = {
@@ -32,6 +32,6 @@ addressesService.sendToAddress = (targetAddress, amount) => {
   };
 
   return jsonRpcClient.post(request);
-});
+};
 
 module.exports = addressesService;

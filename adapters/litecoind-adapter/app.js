@@ -1,20 +1,24 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-const index = require('./routes/index');
 const addresses = require('./routes/addresses');
+const balances = require('./routes/balances');
 const blocks = require('./routes/blocks');
 const exchangeRates = require('./routes/exchange-rates');
-const messages = require('./routes/messages');
+const crypto = require('./routes/crypto');
+const networkInfo = require('./routes/network-info');
 const node = require('./routes/node');
+const peers = require('./routes/peers');
 const transactions = require('./routes/transactions');
-const wallet = require('./routes/wallet');
+const walletInfo = require('./routes/wallet-info');
 const app = express();
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -26,14 +30,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', index);
-app.use('/addresses', addresses);
-app.use('/blocks', blocks);
-app.use('/exchange-rates', exchangeRates);
-app.use('/messages', messages);
-app.use('/node', node);
-app.use('/transactions', transactions);
-app.use('/wallet', wallet);
+app.use('/v0/addresses', addresses);
+app.use('/v0/balances', balances);
+app.use('/v0/blocks', blocks);
+app.use('/v0/exchange-rates', exchangeRates);
+app.use('/v0/crypto', crypto);
+app.use('/v0/network-info', networkInfo);
+app.use('/v0/node', node);
+app.use('/v0/peers', peers);
+app.use('/v0/transactions', transactions);
+app.use('/v0/wallet-info', walletInfo);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -8,12 +8,12 @@ export class NetworkInfosService {
   }
 
   getInfo() {
-    return this.http.get('/network_info').then(result => {
+    return this.http.get('/network-info').then(result => {
       return new NetworkInfo(result);
     });
   }
   getGraph() {
-    return this.http.get('/network_info/graph').then(result => {
+    return this.http.get('/network-info/graph').then(result => {
       return new NetworkInfo(result);
     });
   }
