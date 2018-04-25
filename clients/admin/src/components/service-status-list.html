@@ -1,0 +1,16 @@
+<template>
+  <require from="components/card-item"></require>
+  <require from="components/display-item"></require>
+  <h2>Services running -</h2>
+
+  <div class="card-columns">
+    <card-item repeat.for="serviceStatus of serviceStatuses" is-open.bind="true">
+      <span slot="header">${serviceStatus.name} (${serviceStatus.type})</span>
+      <div slot="body">
+        <display-item
+          label="description"
+          value.bind="serviceStatus.description"></display-item>
+      </div>
+    </card-item>
+  </div>
+</template>

@@ -1,10 +1,8 @@
 <template>
-  <div class="card ${classes}">
-    <div class="card-header ${isSuccess ? 'text-white bg-success' : ''}" click.delegate="toggle()">
-      <h5>
-        <slot name="header"></slot>
-      </h5>
-    </div>
+  <div class="card text-white bg-dark">
+    <h5 class="card-header" click.delegate="toggle()">
+      <slot name="header"></slot>
+    </h5>
     <div class="card-body" show.bind="isOpen">
       <h5 class="card-title">
         <slot name="title"></slot>

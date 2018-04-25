@@ -1,0 +1,26 @@
+<template>
+  <div class="row">
+    <div class="col">
+      <h2>New Project Wizard</h2>
+    </div>
+  </div>
+
+  <compose view-model.bind="currentStep.viewModel" model.bind="project"></compose>
+
+  <div class="row">
+    <div class="col">
+      <a
+        click.delegate="back()"
+        class="btn btn-primary pull-right"
+        href="#"
+        if.bind="currentStep.number > 1">Back</a>
+    </div>
+    <div class="col">
+      <a
+        click.delegate="next()"
+        class="btn btn-primary"
+        href="#"
+        if.bind="currentStep.number < 5">Next</a>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,26 @@
+<template>
+  <h2>${nodeStatus.name}</h2>
+  <div class="row">
+    <div class="col-sm-12">
+      <p>
+        <strong>Status</strong>
+        <span>${nodeStatus.status}</span>
+      </p>
+      <p>
+        <strong>Description</strong>
+        <span>${nodeStatus.description}</span>
+      </p>
+      <p>
+        <strong>Version</strong>
+        <span>${nodeStatus.version}</span>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <button class="btn btn-warning">Restart ${nodeStatus.name}</button>
+      <button class="btn btn-primary">Generate 100 blocks (regtest only)</button>
+      <button class="btn btn-primary">View / Edit configuration file</button>
+    </div>
+  </div>
+</template>

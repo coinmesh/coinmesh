@@ -1,0 +1,20 @@
+<template>
+  <require from="components/card-item"></require>
+  <require from="components/display-item"></require>
+  <h2>Nodes running -</h2>
+
+  <div class="card-columns">
+    <card-item repeat.for="nodeStatus of nodeStatuses" is-open.bind="true">
+      <span slot="header">${nodeStatus.name} (${nodeStatus.type})</span>
+      <div slot="body">
+        <a class="btn btn-center btn-primary" href="#/node-status/${nodeStatus.id}">View Details</a>
+        <display-item
+          label="description"
+          value.bind="nodeStatus.description"></display-item>
+        <display-item
+          label="version"
+          value.bind="nodeStatus.version"></display-item>
+      </div>
+    </card-item>
+  </div>
+</template>

@@ -1,0 +1,25 @@
+<template>
+  <require from="components/display-item"></require>
+  <h2>Network Info</h2>
+  <display-item
+    label="average_channel_size"
+    value.bind="value.average_channel_size"></display-item>
+  <display-item
+    label="channel_count"
+    value.bind="value.channel_count"></display-item>
+  <display-item
+    label="maximum_channel_size"
+    value.bind="value.maximum_channel_size"></display-item>
+  <display-item
+    label="minimum_channel_size"
+    value.bind="value.minimum_channel_size"></display-item>
+  <display-item
+    label="node_count"
+    value.bind="value.node_count"></display-item>
+  <display-item
+    label="total_capacity"
+    value.bind="value.total_capacity"></display-item>
+  <display-item
+    label="type"
+    value.bind="value.type"></display-item>
+</template>
