@@ -24,6 +24,16 @@ class FileSystemService {
       });
     });
   }
+  createDirectory(directoryPath) {
+    return new Promise((resolve, reject) => {
+      fs.ensureDir(directoryPath, err => {
+        if (err) {
+          reject(err);
+        }
+        resolve(true);
+      });
+    });
+  }
   readAllDirectoriesInDirectory(path) {
     return [];
   }

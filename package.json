@@ -1,6 +1,6 @@
 {
-  "name": "fabric",
-  "version": "1.0.0",
+  "name": "coinmesh",
+  "version": "0.0.1",
   "description": "An ecosystem for building Litecoin and Bitcoin applications.",
   "main": "index.js",
   "directories": {

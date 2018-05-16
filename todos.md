@@ -38,4 +38,10 @@
 1. Get docker compose working for CLAD (Client, Logic, Adapter, Data)
   a. Each layer should have docker images and various compose scripts should bring them together
 
-1. Start thinking of a name for the platform
+
+
+1. Make lightning a checkbox 
+1. Keep a running progress of the stack on the right 
+1. Make one of the site sections gray so they don't flow together
+1. Values move the bottom to the left
+

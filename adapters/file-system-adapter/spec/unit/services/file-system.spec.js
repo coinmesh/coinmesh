@@ -60,6 +60,18 @@ describe('FileSystemService', () => {
     });
   });
 
+  describe('createDirectory()', () => {
+    it('create a new directory if it does not exist', (done) => {
+      let tempPath = 'spec/config-examples/tmp/new-dir';
+      let fakeContent = 'fake-content';
+
+      fileSystemService.createDirectory(tempPath, fakeContent).then(result => {
+        expect(result).toBe(true);
+        done();
+      });
+    });
+  });
+
   describe('copyAllFilesAndDirectoriesInDirectory()', () => {
     it('copies all files and directories', (done) => {
       let tempPath = 'spec/config-examples/nested-conf';

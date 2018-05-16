@@ -1,5 +1,9 @@
-const readService = new (require('./services/read'));
+const confFileService = new (require('./services/conf-file'));
+const fileSystemService = new (require('./services/file-system'));
+const validate = new (require('./services/validate'));
 
 module.exports = {
-  readService
+  confFileService,
+  fileSystemService,
+  validate
 };
