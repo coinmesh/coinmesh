@@ -19,5 +19,8 @@
   "devDependencies": {
     "nodemon": "^1.17.2"
   },
-  "main": "index.js"
+  "main": "index.js",
+  "coinmesh": {
+    "type": "adapter"
+  }
 }

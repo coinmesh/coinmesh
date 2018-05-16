@@ -1,5 +1,9 @@
-const addressesService = require('./services/addresses');
+const readService = new (require('./services/read'));
+const writeService = new (require('./services/write'));
+const validateService = new (require('./services/validate'));
 
 module.exports = {
-  addressesService
+  readService,
+  writeService,
+  validateService
 };
