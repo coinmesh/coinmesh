@@ -37,6 +37,32 @@ describe('WriteService', () => {
             done();
           });
       });
+
+      describe('when calling with allowCreate=true', () => {
+        it('it sets the property when 1 level deep', (done) => {
+          const fakePath = 'coinmesh.notType';
+          const fakeValue = 'testing';
+          const allowCreate = true;
+          const expectedObject = { coinmesh: { type: '', notType: fakeValue }};
+
+          writeService.setValue(fakePackageJson, fakePath, fakeValue, allowCreate).then(result => {
+            expect(result).toEqual(expectedObject);
+            done();
+          });
+        });
+
+        it('it sets the property when 2 levels deep', (done) => {
+          const fakePath = 'coinmesh.not.type';
+          const fakeValue = 'testing';
+          const allowCreate = true;
+          const expectedObject = { coinmesh: { type: '', not: { type: fakeValue }}};
+
+          writeService.setValue(fakePackageJson, fakePath, fakeValue, allowCreate).then(result => {
+            expect(result).toEqual(expectedObject);
+            done();
+          });
+        });
+      });
     });
   });
 

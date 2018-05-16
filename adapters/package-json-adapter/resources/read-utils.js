@@ -4,7 +4,12 @@ class ReadUtils {
     let currentObject = packageJson;
 
     keys.forEach(key => {
-      currentObject = currentObject[key];
+      if (!currentObject || !currentObject[key]) {
+        currentObject = null;
+        return null;
+      } else {
+        currentObject = currentObject[key];
+      }
     });
 
     return currentObject;

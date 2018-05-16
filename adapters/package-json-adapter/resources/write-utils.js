@@ -6,7 +6,12 @@ class WriteUtils {
 
     keys.forEach((key, index) => {
       if (index !== keys.length -1) {
-        currentObject = currentObject[key];
+        if (currentObject[key]) {
+          currentObject = currentObject[key];
+        } else {
+          currentObject[key] = {};
+          currentObject = currentObject[key];
+        }
       } else {
         currentObject[key] = value;
       }

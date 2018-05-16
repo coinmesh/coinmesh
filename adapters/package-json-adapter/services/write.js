@@ -7,7 +7,7 @@ class WriteService {
     return new Promise((resolve, reject) => {
       const result = readUtils.getValueAtPath(tempPackageJson, configItemPath);
 
-      if (!allowCreate && result === undefined || result === null) {
+      if (!allowCreate && (result === undefined || result === null)) {
         reject(`Cannot set value as method called with allowCreate = false.`);
       }
 
