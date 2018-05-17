@@ -28,4 +28,11 @@ export class AdminService {
       return new Project(result);
     });
   }
+  loadProject(projectJsonPath) {
+    let url = `http://localhost:3002/v0/project/${projectJsonPath}`;
+
+    return this.http.get(url).then(result => {
+      return new Project(result);
+    });
+  }
 }

@@ -1,19 +1,42 @@
 import {bindable} from 'aurelia-templating';
+import {AdminService} from 'services/admin';
+import {PathUtils} from 'resources/path-utils';
 
 export class DirectoryList {
-  @bindable directoryItems = [];
-  @bindable getDirectoryContents = () => {};
-  @bindable goUpOneDirectory = () => {};
+  adminService;
+  @bindable currentPath = '~/';
+  @bindable items = [];
   @bindable newDirectoryName = '';
-  @bindable createDirectory = () => {};
-  @bindable selectedDirectory = '';
-  @bindable selectDirectory = () => {};
+  @bindable selectedItem = '';
+  @bindable selectItem = () => {};
+  @bindable canCreateDirectory = true;
+  @bindable selectItemText = 'Select item';
 
-  chooseDir(dir) {
-    return this.getDirectoryContents({ dir });
+  static inject = [AdminService];
+  constructor(adminService) {
+    this.adminService = adminService;
   }
-  createNewDirectory() {
-    return this.createDirectory({ name: this.newDirectoryName }).then(result => {
+  attached() {
+    this.getDirectoryContents();
+  }
+  goUpOneDirectory() {
+    this.currentPath = this.currentPath.split('/').slice(0, -1).join('/');
+    this.getDirectoryContents();
+  }
+  getDirectoryContents(childDir) {
+    if (childDir) {
+      this.currentPath = PathUtils.getPathToChildDir(this.currentPath, childDir);
+    }
+    return this.adminService.getDirectoryContents(this.currentPath).then(result => {
+      this.currentDirectory = result;
+    });
+  }
+  createDirectory() {
+    let name = this.newDirectoryName;
+    let path = `${this.currentPath || ''}/${name}`;
+
+    return this.adminService.createDirectory(path).then(result => {
+      this.currentDirectory.items.push(name);
       this.newDirectoryName = '';
     });
   }

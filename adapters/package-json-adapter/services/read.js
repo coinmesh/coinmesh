@@ -4,9 +4,10 @@ const readUtils = new (require('../resources/read-utils'));
 class ReadService {
   getConfiguration(projectPath, encoding = 'utf8') {
     const cleanPath = this.cleanPath(projectPath);
+    let finalPath = `${cleanPath}${cleanPath.indexOf('package.json') > -1 ? '' : '/package.json'}`;
 
     return new Promise((resolve, reject) => {
-      fs.readFile(`${cleanPath}/package.json`, encoding, (err, data) => {
+      fs.readFile(finalPath, encoding, (err, data) => {
         if (err) {
           reject(err);
         }

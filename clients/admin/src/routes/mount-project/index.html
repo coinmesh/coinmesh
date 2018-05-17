@@ -2,16 +2,17 @@
   <require from="components/directory-list"></require>
   <div class="row">
     <div class="col">
-      <h3>Step One</h3>
+      <h2>Mount / Open a CoinMesh Project</h2>
     </div>
   </div>
   <div class="row">
     <div class="col">
       <directory-list
         current-path.two-way="currentPath"
-        select-item.call="selectDirectory()"
-        selected-item.two-way="selectedDirectoryName"
-        select-item-text="Select directory">
+        can-create-directory.bind="false"
+        select-item.call="selectFile()"
+        selected-item.two-way="selectedFilename"
+        select-item-text="Select file">
       </directory-list>
     </div>
   </div>

@@ -2,19 +2,19 @@
   <h2>Directory List</h2>
   <button class="btn btn-primary" click.delegate="goUpOneDirectory()">Up directory</button>
   <button class="btn btn-success"
-    click.delegate="selectDirectory()"
-    disabled.bind="!selectedDirectory">Select directory</button>
+    click.delegate="selectItem()"
+    disabled.bind="!selectedItem">${selectItemText}</button>
   <ul>
-    <li repeat.for="item of directoryItems">
+    <li repeat.for="item of currentDirectory.items">
       <input type="radio" name="directory"
-        value.bind="item" checked.bind="selectedDirectory" />
-      <button class="btn btn-sm btn-dark" click.delegate="chooseDir(item)">${item}</button>
+        value.bind="item" checked.bind="selectedItem" />
+      <button class="btn btn-sm btn-dark" click.delegate="getDirectoryContents(item)">${item}</button>
     </li>
-    <li>
+    <li if.bind="canCreateDirectory">
       <input value.bind="newDirectoryName" />
       <button
         class="btn btn-primary"
-        click.delegate="createNewDirectory()"
+        click.delegate="createDirectory()"
         disabled.bind="!newDirectoryName">
           Create new Directory
       </button>

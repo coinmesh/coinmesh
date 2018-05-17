@@ -45,6 +45,11 @@ class ProjectService {
 
     return this.editProjectProperty(projectPath, propertyPath, newValue);
   }
+  getProject(projectPath) {
+    let path = homedirUtils.getPathFromHomeDir(projectPath);
+
+    return pjReadService.getConfiguration(path);
+  }
   setValue(packageJson, path, value) {
     return pjWriteService.setValue(packageJson, path, value, true);
   }
