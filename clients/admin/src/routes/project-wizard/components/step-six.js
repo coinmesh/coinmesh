@@ -10,11 +10,10 @@ export class StepFour {
   }
 
   activate(project) {
-    this.routeIndex.showNext = false;
     this.project = project;
+    this.routeIndex.showCreateProject = true;
   }
-  reviewDetails() {
-    this.routeIndex.showNext = true;
-    this.routeIndex.next();
+  deactivate() {
+    this.routeIndex.showCreateProject = false;
   }
 }

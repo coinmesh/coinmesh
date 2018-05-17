@@ -6,29 +6,21 @@
   </div>
   <div class="row">
     <div class="col">
-      <div class="card">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            ${project.name}
-          </li>
-          <li class="list-group-item bg-light"
-              repeat.for="clientApplication of project.clientApplications">
-            ${clientApplication.name}
-          </li>
-          <li class="list-group-item text-white bg-info"
-              repeat.for="logicService of project.logicServices">
-            ${logicService.name}
-          </li>
-          <li class="list-group-item text-white bg-secondary"
-              repeat.for="adapter of project.adapters">
-            ${adapter.name}
-          </li>
-          <li class="list-group-item text-white bg-primary"
-              repeat.for="dataSource of project.dataSources">
-            ${dataSource.name}
-          </li>
-        </ul>
-      </div>
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input value.bind="project.name"
+            class="form-control" id="name" placeholder="Project name">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input value.bind="project.description"
+            class="form-control" id="description" placeholder="Project description">
+        </div>
+        <button type="submit" class="btn btn-primary"
+          click.delegate="reviewDetails()"
+          disabled.bind="!project.name || !project.description">Review details</button>
+      </form>
     </div>
   </div>
 </template>

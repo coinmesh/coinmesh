@@ -33,7 +33,7 @@ describe('Project', () => {
     });
   });
 
-  fdescribe('PATCH /v0/project', () => {
+  describe('PATCH /v0/project', () => {
     it('updates the indicated property in the package.json', (done) => {
       let url = `/v0/project/`;
 

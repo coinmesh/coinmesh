@@ -34,12 +34,6 @@ class FileSystemService {
       });
     });
   }
-  readAllDirectoriesInDirectory(path) {
-    return [];
-  }
-  readAllFilesInDirectory(path) {
-    return [];
-  }
   copyFile(filePath, newPath) {
     return new Promise((resolve, reject) => {
       this.readFile(filePath).then(result => {

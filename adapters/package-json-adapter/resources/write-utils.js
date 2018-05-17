@@ -1,8 +1,8 @@
 class WriteUtils {
   setValueAtPath(packageJson, path, value) {
     let keys = path.split('.');
-    let currentObject = packageJson;
     let newPackageJson = Object.assign({}, packageJson);
+    let currentObject = newPackageJson;
 
     keys.forEach((key, index) => {
       if (index !== keys.length -1) {
@@ -16,7 +16,6 @@ class WriteUtils {
         currentObject[key] = value;
       }
     });
-
     return newPackageJson;
   }
 }

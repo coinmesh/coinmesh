@@ -20,7 +20,13 @@
         click.delegate="next()"
         class="btn btn-primary"
         href="#"
-        if.bind="currentStep.number < 5">Next</a>
+        if.bind="showNext && currentStep.number < 6">Next</a>
+    </div>
+    <div class="col">
+      <button
+        click.delegate="createProject()"
+        class="btn btn-primary"
+        if.bind="showCreateProject">Create</button>
     </div>
   </div>
 </template>

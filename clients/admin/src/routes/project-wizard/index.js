@@ -1,8 +1,16 @@
 import {Project} from 'models/project';
+import {AdminService} from 'services/admin';
 
 export class Index {
   project = new Project();
   currentStep;
+  showNext = true;
+  showCreateProject = false;
+
+  static inject = [AdminService];
+  constructor(adminService) {
+    this.adminService = adminService;
+  }
 
   steps = [
     new Step({
@@ -29,6 +37,11 @@ export class Index {
       number: 5,
       name: 'Step Five',
       viewModel: './components/step-five'
+    }),
+    new Step({
+      number: 6,
+      name: 'Step Six',
+      viewModel: './components/step-six'
     })
   ];
 
@@ -40,6 +53,11 @@ export class Index {
   }
   back() {
     this.currentStep = this.steps[this.currentStep.number - 2];
+  }
+  createProject() {
+    return this.adminService.createNewProject(this.project).then(result => {
+      console.log(result);
+    });
   }
 }
 

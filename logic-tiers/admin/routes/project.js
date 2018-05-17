@@ -19,10 +19,6 @@ router.patch('/', function(req, res, next) {
   let propertyPath = req.body.propertyPath;
   let newValue = req.body.value;
 
-console.log(projectPath)
-console.log(propertyPath)
-console.log(newValue)
-
   projectService.editProjectProperty(projectPath, propertyPath, newValue)
     .then(result => {
       return res.json(result);

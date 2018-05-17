@@ -1,4 +1,5 @@
 <template>
+  <require from="components/directory-list"></require>
   <div class="row">
     <div class="col">
       <h3>Step One</h3>
@@ -6,10 +7,14 @@
   </div>
   <div class="row">
     <div class="col">
-      <label>
-        <strong>Name of your new CoinMesh project</strong>
-        <input value.bind="project.name" />
-      </label>
+      <directory-list
+        directory-items.bind="currentDirectory.items"
+        go-up-one-directory.call="goUpOneDirectory()"
+        get-directory-contents.call="getDirectoryContents(dir)"
+        create-directory.call="createDirectory(name)"
+        select-directory.call="selectDirectory()"
+        selected-directory.two-way="selectedDirectoryName">
+      </directory-list>
     </div>
   </div>
 </template>

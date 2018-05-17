@@ -2,6 +2,7 @@ export class Project {
   id;
   name = '';
   description = '';
+  path = '';
   type = 'project';
 
   dataSources = [];
