@@ -1,0 +1,10 @@
+<template>
+  <require from="components/person-details"></require>
+  <h1>Example</h1>
+  <section>
+    <input value.bind="person.firstName" placeholder="enter your first name" />
+    <input value.bind="person.lastName" placeholder="enter your last name" />
+    <br />
+    <person-details person.bind="person"></person-details>
+  </section>
+</template>

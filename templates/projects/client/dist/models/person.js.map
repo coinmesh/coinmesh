@@ -1,0 +1,1 @@
+{"version":3,"sources":["models/person.js"],"names":["Person","data","firstName","lastName","type","Object","assign"],"mappings":";;;;;;;;;;;;;;wBAAaA,M,GAMX,gBAAYC,IAAZ,EAAkB;AAAA;;AAAA,aAJlBC,SAIkB,GAJN,EAIM;AAAA,aAHlBC,QAGkB,GAHP,EAGO;AAAA,aAFlBC,IAEkB,GAFX,QAEW;;AAChBC,eAAOC,MAAP,CAAc,IAAd,EAAoBL,IAApB;AACD,O","file":"person.js","sourceRoot":"/src"}
