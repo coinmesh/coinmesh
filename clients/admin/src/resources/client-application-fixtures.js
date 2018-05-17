@@ -4,9 +4,10 @@ export class ClientApplicationFixtures {
   static fixtures = [
     new ClientApplication({
       enabled: true,
-      id: 'empty-aurelia',
+      id: 'client',
       name: 'Empty Aurelia Skeleton',
-      description: 'An empty Aurelia browser application.'
+      description: 'An empty Aurelia browser application.',
+      path: '../../templates/projects/client'
     }),
     new ClientApplication({
       id: 'lnd-gui',

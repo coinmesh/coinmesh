@@ -21,7 +21,13 @@ export class Index {
 
     this.router = router;
   }
-  canActivate() {
-    return !!this.projectStore.currentProject;
+  activate() {
+    if (!this.projectStore.currentProject) {
+      this.projectStore.getProjectFromLocalStorage();
+    }
+
+    if (!this.projectStore.currentProject) {
+      this.router.parent.navigateToRoute('home');
+    }
   }
 }

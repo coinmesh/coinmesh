@@ -24,9 +24,7 @@ export class AdminService {
   }
   createNewProject(project) {
     let url = `http://localhost:3002/v0/project`;
-    return this.http.post(url, project).then(result => {
-      return new Project(result);
-    });
+    return this.http.post(url, project);
   }
   loadProject(projectJsonPath) {
     let url = `http://localhost:3002/v0/project/${projectJsonPath}`;

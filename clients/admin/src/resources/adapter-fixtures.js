@@ -6,29 +6,34 @@ export class AdapterFixtures {
       enabled: true,
       id: 'litecoind-adapter',
       name: 'Litecoind Adapter',
-      description: 'Litecoin core adapter.'
+      description: 'Litecoin core adapter.',
+      path: '../../adapters/litecoind-adapter'
     }),
     new Adapter({
       enabled: true,
       id: 'bitcoind-adapter',
       name: 'Bitcoind Adapter',
-      description: 'Bitcoin core adapter.'
+      description: 'Bitcoin core adapter.',
+      path: '../../adapters/bitcoind-adapter'
     }),
     new Adapter({
       enabled: true,
       id: 'ln-service',
       name: 'LND Service',
-      description: 'Lightning Network Daemon service.'
+      description: 'Lightning Network Daemon service.',
+      path: '../../adapters/lnd-adapter'
     }),
     new Adapter({
       id: 'ltcd-adapter',
       name: 'LTCD Adapter',
-      description: 'LTCD adapter.'
+      description: 'LTCD adapter.',
+      path: '../../adapters/ltcd-adapter'
     }),
     new Adapter({
       id: 'btcd-adapter',
       name: 'BTCD Adapter',
-      description: 'BTCD adapter.'
+      description: 'BTCD adapter.',
+      path: '../../adapters/btcd-adapter'
     }),
   ];
 }

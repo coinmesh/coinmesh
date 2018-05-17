@@ -11,7 +11,4 @@ export class LeftNav {
   toggle(propName) {
     this[propName] = !this[propName];
   }
-  attached() {
-    console.log(this.projectStore.currentProject)
-  }
 }

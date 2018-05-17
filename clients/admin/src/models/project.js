@@ -27,22 +27,22 @@ export class Project {
 
     data.adapters = Object.keys(props.adapters).map(key => {
       let value = props.adapters[key];
-      return new Adapter({ name: value.name, path: value.path });
+      return new Adapter({ name: key, path: value });
     });
 
-    data.logicServices = Object.keys(props.logicTiers).map(key => {
-      let value = props.logicTiers[key];
-      return new LogicService({ name: value.name, path: value.path });
+    data.logicServices = Object.keys(props.logicServices).map(key => {
+      let value = props.logicServices[key];
+      return new LogicService({ name: key, path: value });
     });
 
-    data.dataSources = Object.keys(props.nodes).map(key => {
-      let value = props.nodes[key];
-      return new DataSource({ name: value.name, path: value.path });
+    data.dataSources = Object.keys(props.dataSources).map(key => {
+      let value = props.dataSources[key];
+      return new DataSource({ name: key, path: value });
     });
 
-    data.clientApplications = Object.keys(props.clients).map(key => {
-      let value = props.clients[key];
-      return new ClientApplication({ name: value.name, path: value.path });
+    data.clientApplications = Object.keys(props.clientApplications).map(key => {
+      let value = props.clientApplications[key];
+      return new ClientApplication({ name: key, path: value });
     });
 
     delete data.coinmesh;
