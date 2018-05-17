@@ -1,5 +1,5 @@
 const DirectoryService = require('../../../services/directory');
-const fileSystemService = require('file-system-adapter').fileSystemService;
+const fileSystemService = require('@coinmesh/file-system-adapter').fileSystemService;
 
 describe('DirectoryService', () => {
   let directoryService;

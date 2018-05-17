@@ -1,5 +1,5 @@
 {
-  "name": "coinmesh",
+  "name": "@coinmesh/coinmesh",
   "version": "0.0.1",
   "description": "An ecosystem for building Litecoin and Bitcoin applications.",
   "main": "index.js",
@@ -7,20 +7,21 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "concurrent \"npm run client\" \"npm run adapter\"",
+    "start": "concurrently \"npm run client\" \"npm run litecoind-adapter\" \"npm run admin-bll\"",
     "client": "cd ./clients/admin && gulp watch",
-    "adapter": " cd ./adapters/litecoind-adapter && npm start"
+    "litecoind-adapter": "cd ./adapters/litecoind-adapter && npm start",
+    "admin-bll": " cd ./logic-tiers/admin && npm start"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blockfuse/fabric.git"
+    "url": "git+https://github.com/blockfuse/coinmesh.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/blockfuse/fabric/issues"
+    "url": "https://github.com/blockfuse/coinmesh/issues"
   },
-  "homepage": "https://github.com/blockfuse/fabric#readme",
+  "homepage": "https://github.com/blockfuse/coinmesh#readme",
   "dependencies": {
     "concurrently": "^3.5.1"
   }

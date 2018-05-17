@@ -1,4 +1,4 @@
-const fileSystemService = require('file-system-adapter').fileSystemService;
+const fileSystemService = require('@coinmesh/file-system-adapter').fileSystemService;
 const homedirUtils = new (require('../resources/homedir-utils'));
 
 class DirectoryService {

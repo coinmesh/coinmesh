@@ -27,4 +27,31 @@ router.patch('/', function(req, res, next) {
     });
 });
 
+router.post('/scripts/', function(req, res, next) {
+  let projectPath = req.body.projectPath;
+  let packageName = req.body.packageName;
+  let type = req.body.type;
+
+  projectService.addScript(projectPath, packageName, type)
+    .then(result => {
+      return res.json(result);
+    }).catch(error => {
+      return res.status(500).send({ error: error });
+    });
+});
+
+router.post('/config/:type', function(req, res, next) {
+  let projectPath = req.body.projectPath;
+  let packageName = req.body.packageName;
+  let type = req.params.type;
+  let packagePath = req.params.packagePath;
+
+  projectService.addConfigType(projectPath, packageName, type, packagePath)
+    .then(result => {
+      return res.json(result);
+    }).catch(error => {
+      return res.status(500).send({ error: error });
+    });
+});
+
 module.exports = router;

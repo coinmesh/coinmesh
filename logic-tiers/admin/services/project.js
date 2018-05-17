@@ -1,6 +1,6 @@
-const fileSystemService = require('file-system-adapter').fileSystemService;
-const pjReadService = require('package-json-adapter').readService;
-const pjWriteService = require('package-json-adapter').writeService;
+const fileSystemService = require('@coinmesh/file-system-adapter').fileSystemService;
+const pjReadService = require('@coinmesh/package-json-adapter').readService;
+const pjWriteService = require('@coinmesh/package-json-adapter').writeService;
 const homedirUtils = new (require('../resources/homedir-utils'));
 
 class ProjectService {
@@ -31,6 +31,18 @@ class ProjectService {
     }).then(newPackageJson => {
       return pjWriteService.save(`${projectPath}/package.json`, newPackageJson);
     });
+  }
+  addScript(projectPath, packageName, type) {
+    let propertyPath = `scripts.${packageName}`;
+    let command = `cd ./${type}/${packageName} && npm start`;
+
+    return this.editProjectProperty(projectPath, propertyPath, command);
+  }
+  addConfigType(projectPath, packageName, type, packagePath) {
+    let propertyPath = `coinmesh.${type}s.${packageName}`;
+    let newValue = { path: packagePath };
+
+    return this.editProjectProperty(projectPath, propertyPath, newValue);
   }
   setValue(packageJson, path, value) {
     return pjWriteService.setValue(packageJson, path, value, true);

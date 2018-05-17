@@ -1,7 +1,7 @@
 const app = require('../../../app');
 const request = require('supertest');
 const Project = require('../../../models/project');
-const pjReadService = require('package-json-adapter').readService;
+const pjReadService = require('@coinmesh/package-json-adapter').readService;
 const fs = require('fs-extra');
 
 describe('Project', () => {

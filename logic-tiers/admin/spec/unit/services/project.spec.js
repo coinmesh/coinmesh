@@ -2,7 +2,7 @@ const ProjectService = require('../../../services/project');
 const Project = require('../../../models/project');
 const fs = require('fs-extra');
 
-const pjReadService = require('package-json-adapter').readService;
+const pjReadService = require('@coinmesh/package-json-adapter').readService;
 
 describe('ProjectService', () => {
   let projectService;

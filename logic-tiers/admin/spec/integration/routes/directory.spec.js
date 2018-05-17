@@ -1,6 +1,6 @@
 const app = require('../../../app');
 const request = require('supertest');
-const fileSystemService = require('file-system-adapter').fileSystemService;
+const fileSystemService = require('@coinmesh/file-system-adapter').fileSystemService;
 
 describe('Directory', () => {
   let currencyCode;
