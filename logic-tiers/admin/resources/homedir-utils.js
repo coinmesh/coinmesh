@@ -7,6 +7,8 @@ class HomedirUtils {
 
     if (path[0] === '~') {
       newPath = `${homeDir}${path.slice(1)}`;
+    } else {
+      newPath = path;
     }
 
     return newPath;

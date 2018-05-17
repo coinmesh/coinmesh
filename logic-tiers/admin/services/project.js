@@ -6,6 +6,7 @@ const homedirUtils = new (require('../resources/homedir-utils'));
 class ProjectService {
   createProject(project) {
     let path = homedirUtils.getPathFromHomeDir(project.path);
+
     return fileSystemService.createDirectory(path).then(result => {
       return this.createProjectJson(project);
     });
@@ -34,7 +35,7 @@ class ProjectService {
   }
   addScript(projectPath, packageName, type) {
     let propertyPath = `scripts.${packageName}`;
-    let command = `cd ./${type}/${packageName} && npm start`;
+    let command = `cd ./${type}s/${packageName} && npm start`;
 
     return this.editProjectProperty(projectPath, propertyPath, command);
   }

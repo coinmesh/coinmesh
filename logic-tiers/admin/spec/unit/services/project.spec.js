@@ -22,7 +22,7 @@ describe('ProjectService', () => {
 
   describe('createProject()', () => {
     it('creates a project from scratch', (done) => {
-       projectService.createProject(project).then(result => {
+      projectService.createProject(project).then(result => {
         pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
           expect(result).toBe('project');
           done();
@@ -55,6 +55,49 @@ describe('ProjectService', () => {
     it('creates a project.json with the correct description', (done) => {
       createProjectAndReturnValue(project, 'description').then(result => {
         expect(result).toBe(fakeDescription);
+        done();
+      });
+    });
+  });
+
+  describe('addConfigType()', () => {
+    it('adds a new configuration type to the package.json', (done) => {
+      let projectPath = '/testing';
+      let packageName = 'testing';
+      let type = 'adapter';
+      let packagePath = '/testing/node/testing';
+
+      let expectedPropertyPath = 'coinmesh.adapters.testing';
+      let expectedNewValue = { path: '/testing/node/testing' };
+
+      spyOn(projectService, 'editProjectProperty').and.returnValue(Promise.resolve());
+
+      projectService.addConfigType(projectPath, packageName, type, packagePath).then(result => {
+
+        expect(projectService.editProjectProperty)
+          .toHaveBeenCalledWith(projectPath, expectedPropertyPath, expectedNewValue);
+
+        done();
+      });
+    });
+  });
+
+  describe('addScript()', () => {
+    it('adds a new script to the package.json', (done) => {
+      let projectPath = '/testing';
+      let packageName = 'testing';
+      let type = 'adapter';
+
+      let expectedPropertyPath = 'scripts.testing';
+      let expectedCommand = 'cd ./adapters/testing && npm start';
+
+      spyOn(projectService, 'editProjectProperty').and.returnValue(Promise.resolve());
+
+      projectService.addScript(projectPath, packageName, type).then(result => {
+
+        expect(projectService.editProjectProperty)
+          .toHaveBeenCalledWith(projectPath, expectedPropertyPath, expectedCommand);
+
         done();
       });
     });
