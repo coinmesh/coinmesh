@@ -24,6 +24,10 @@ class ReadService {
     });
   }
   cleanPath(path) {
+    // TODO: REMOVE LATER - Handle stripped user paths
+    if (path.slice(0, 5) === 'Users') {
+      path = `/${path}`;
+    }
     const lastChar = path.slice(-1);
     return lastChar === '/' ? path.slice(0, -1) : path;
   }

@@ -1,12 +1,15 @@
 import {ProjectStore} from 'services/project-store';
+import {AdminService} from 'services/admin';
 
 export class AdapterDetails {
   projectStore;
+  adminService;
   adapter;
 
-  static inject = [ProjectStore];
-  constructor(projectStore) {
+  static inject = [ProjectStore, AdminService];
+  constructor(projectStore, adminService) {
     this.projectStore = projectStore;
+    this.adminService = adminService;
   }
 
   activate(params) {
@@ -17,6 +20,14 @@ export class AdapterDetails {
         return adapter.name === adapterName;
       });
       this.adapter = match;
+      let path = this.adapter.path;
+
+      let packageJsonPath = `${path}/package.json`;
+
+      return this.adminService.loadProject(packageJsonPath).then(result => {
+        this.adapter = result;
+        this.adapter.path = path;
+      });
     }
   }
 }

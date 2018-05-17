@@ -1,0 +1,10 @@
+{
+  "name": "litecoind",
+  "description": "testing litecoind",
+  "coinmesh": {
+    "type": "data-source",
+    "adapters": {
+      "litecoind-adapter": "/Users/pwkad/code/testing/this-two/adapters/litecoind-adapter"
+    }
+  }
+}

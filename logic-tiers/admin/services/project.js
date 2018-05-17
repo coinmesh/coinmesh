@@ -132,7 +132,6 @@ class ProjectService {
   }
   getProject(projectPath) {
     let path = homedirUtils.getPathFromHomeDir(projectPath);
-
     return pjReadService.getConfiguration(path);
   }
   setValue(packageJson, path, value) {
