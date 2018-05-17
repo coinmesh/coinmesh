@@ -8,9 +8,9 @@
   },
   "scripts": {
     "start": "concurrently \"npm run client\" \"npm run litecoind-adapter\" \"npm run admin-bll\"",
-    "client": "cd ./clients/admin && gulp watch",
+    "client": "cd ./client-applications/admin && gulp watch",
     "litecoind-adapter": "cd ./adapters/litecoind-adapter && npm start",
-    "admin-bll": " cd ./logic-tiers/admin && npm start"
+    "admin-bll": " cd ./logic-services/admin && npm start"
   },
   "repository": {
     "type": "git",
