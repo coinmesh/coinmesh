@@ -47,7 +47,7 @@
     "devDependencies": {}
   },
   "dependencies": {
-    "bf-build-tools": "0.0.2",
+    "@coinmesh/client-build-tools": "0.0.2",
     "gulp": "^3.9.1",
     "jspm": "^0.16.53"
   },

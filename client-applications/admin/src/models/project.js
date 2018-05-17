@@ -25,28 +25,28 @@ export class Project {
   convertPackageJsonProps(data) {
     let props = data.coinmesh;
 
-    if (data.adapters) {
+    if (props.adapters) {
       data.adapters = Object.keys(props.adapters).map(key => {
         let value = props.adapters[key];
         return new Adapter({ name: key, path: value });
       });
     }
 
-    if (data.logicServices) {
+    if (props.logicServices) {
       data.logicServices = Object.keys(props.logicServices).map(key => {
         let value = props.logicServices[key];
         return new LogicService({ name: key, path: value });
       });
     }
 
-    if (data.dataSources) {
+    if (props.dataSources) {
       data.dataSources = Object.keys(props.dataSources).map(key => {
         let value = props.dataSources[key];
         return new DataSource({ name: key, path: value });
       });
     }
 
-    if (data.clientApplications) {
+    if (props.clientApplications) {
       data.clientApplications = Object.keys(props.clientApplications).map(key => {
         let value = props.clientApplications[key];
         return new ClientApplication({ name: key, path: value });

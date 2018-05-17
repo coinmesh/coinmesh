@@ -1,12 +1,12 @@
 {
-  "name": "bf-build-tools",
+  "name": "@coinmesh/client-build-tools",
   "version": "0.0.2",
-  "description": "Build tooling for BlockFuse client-side Aurelia applications",
+  "description": "Build tooling for CoinMesh client-side Aurelia applications",
   "main": "index.js",
   "scripts": {
     "test": "test"
   },
-  "author": "",
+  "author": "Patrick Walters <patrick.walters@blockfuse.io> (http://blockfuse.io/)",
   "license": "ISC",
   "dependencies": {
     "aurelia-bundler": "^0.7.0",

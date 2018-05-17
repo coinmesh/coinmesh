@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/blockfuse/coinmesh.git"
   },
-  "author": "",
+  "author": "Patrick Walters <patrick.walters@blockfuse.io> (http://blockfuse.io/)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/blockfuse/coinmesh/issues"

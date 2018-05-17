@@ -7,6 +7,7 @@ class ProjectService {
   createProject(project) {
     let path = homedirUtils.getPathFromHomeDir(project.path);
 
+    // create the directory and project json file
     return fileSystemService.createDirectory(path).then(result => {
       return this.createProjectJson(project);
     }).then(result => {
