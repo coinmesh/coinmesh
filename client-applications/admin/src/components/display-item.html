@@ -4,7 +4,8 @@
       ${label}:
     </div>
     <div class="col ellipsis">
-      ${value}
+      <template if.bind="!isLink">${value}</template>
+      <template if.bind="isLink"><a href.bind="value">${value}</a></template>
     </div>
   </div>
 </template>

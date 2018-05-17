@@ -1,5 +1,9 @@
 <template>
+  <require from="../components/repository-information"></require>
+  <require from="../components/basic-info"></require>
   <h2>${dataSource.name}</h2>
-  <h3>${dataSource.path}</h3>
-  <h4>${dataSource.description}</h4>
+  <h3>${dataSource.description}</h3>
+  <h4>${dataSource.path}</h4>
+  <repository-information repository.bind="dataSource.repository"></repository-information>
+  <basic-info project.bind="dataSource"></basic-info>
 </template>

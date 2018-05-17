@@ -7,9 +7,18 @@
       <button class="btn btn-danger pull-right" click.delegate="unmount()">Unmount the Project</button>
     </div>
   </div>
+
   <h1>
     <small>${projectStore.currentProject.description}</small>
   </h1>
 
-  <p>Choose one of the installed packages for this project on the left to view the details.</p>
+  <div class="row">
+    <div class="col">
+      <textarea value.bind="consoleOutput"></textarea>
+      <input value.bind="command" />
+      <button type="submit" click.delegate="issueCommand()">
+        Issue command
+      </button>
+    </div>
+  </div>
 </template>

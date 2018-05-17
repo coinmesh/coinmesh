@@ -1,0 +1,22 @@
+<template>
+  <require from="components/card-item"></require>
+  <require from="components/display-item"></require>
+  <card-item is-open.bind="true">
+    <span slot="header">Basic Information</span>
+    <div slot="body">
+      <display-item if.bind="project.license"
+        label="License"
+        value.bind="project.license"></display-item>
+      <display-item if.bind="project.author"
+        label="Author"
+        value.bind="project.author"></display-item>
+      <display-item if.bind="project.homepage"
+        label="Homepage"
+        value.bind="project.homepage"
+        is-link.bind="true"></display-item>
+      <display-item if.bind="project.keywords"
+        label="Keywords"
+        value.bind="project.keywords"></display-item>
+    </div>
+  </card-item>
+</template>

@@ -1,4 +1,9 @@
 <template>
+  <require from="../components/repository-information"></require>
+  <require from="../components/basic-info"></require>
   <h2>${adapter.name}</h2>
-  <h3>${adapter.path}</h3>
+  <h3>${adapter.description}</h3>
+  <h4>${adapter.path}</h4>
+  <repository-information repository.bind="adapter.repository"></repository-information>
+  <basic-info project.bind="adapter"></basic-info>
 </template>
