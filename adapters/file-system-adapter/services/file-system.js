@@ -34,6 +34,15 @@ class FileSystemService {
       });
     });
   }
+  createDirectories(directoryPaths) {
+    let promises = [];
+
+    directoryPaths.forEach(path => {
+      promises.push(this.createDirectory(path));
+    });
+
+    return Promise.all(promises);
+  }
   copyFile(filePath, newPath) {
     return new Promise((resolve, reject) => {
       this.readFile(filePath).then(result => {

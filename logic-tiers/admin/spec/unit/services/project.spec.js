@@ -11,6 +11,11 @@ describe('ProjectService', () => {
   const fakeDescription = 'Fake description';
   const fakePath = 'spec/tmp';
 
+  beforeAll(() => {
+    let dirPath = 'spec/tmp';
+    fs.emptyDirSync(dirPath);
+  });
+
   beforeEach(() => {
     projectService = new ProjectService();
     project = new Project({
@@ -20,12 +25,72 @@ describe('ProjectService', () => {
     });
   });
 
-  describe('createProject()', () => {
+  fdescribe('createProject()', () => {
     it('creates a project from scratch', (done) => {
       projectService.createProject(project).then(result => {
         pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
           expect(result).toBe('project');
           done();
+        });
+      });
+    });
+
+    describe('when dataSources are selected', () => {
+      it('adds the data source to the new project', (done) => {
+        project.dataSources = [
+          { id: 'litecoind', path: '../../data-sources/litecoind' }
+        ];
+
+        projectService.createProject(project).then(result => {
+          pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
+            expect(result).toBe('project');
+            done();
+          });
+        });
+      });
+    });
+
+    describe('when adapters are selected', () => {
+      it('adds the adapter to the new project', (done) => {
+        project.adapters = [
+          { id: 'litecoind-adapter', path: '../../data-sources/litecoind' }
+        ];
+
+        projectService.createProject(project).then(result => {
+          pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
+            expect(result).toBe('project');
+            done();
+          });
+        });
+      });
+    });
+
+    describe('when logicServices are selected', () => {
+      it('adds the adapter to the new project', (done) => {
+        project.logicServices = [
+          { id: 'litecoind-adapter', path: '../../data-sources/litecoind' }
+        ];
+
+        projectService.createProject(project).then(result => {
+          pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
+            expect(result).toBe('project');
+            done();
+          });
+        });
+      });
+    });
+
+    describe('when clientApplications are selected', () => {
+      it('adds the client application to the new project', (done) => {
+        project.clientApplications = [
+          { id: 'client-application', path: '../../data-sources/litecoind' }
+        ];
+
+        projectService.createProject(project).then(result => {
+          pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
+            expect(result).toBe('project');
+            done();
+          });
         });
       });
     });

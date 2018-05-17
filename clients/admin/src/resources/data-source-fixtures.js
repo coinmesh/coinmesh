@@ -7,33 +7,38 @@ export class DataSourceFixtures {
       id: 'litecoind',
       name: 'Litecoind',
       description: 'Litecoin core software.',
-      adapter: 'litecoind-adapter'
+      adapter: 'litecoind-adapter',
+      path: '../../data-sources/litecoind'
     }),
     new DataSource({
       enabled: true,
       id: 'bitcoind',
       name: 'Bitcoind',
       description: 'Bitcoin core software.',
-      adapter: 'bitcoind-adapter'
+      adapter: 'bitcoind-adapter',
+      path: '../../data-sources/bitcoind'
     }),
     new DataSource({
       enabled: true,
       id: 'lnd',
       name: 'LND',
       description: 'Lightning Network Daemon.',
-      adapter: 'ln-service'
+      adapter: 'ln-service',
+      path: '../../data-sources/lnd'
     }),
     new DataSource({
       id: 'ltcd',
       name: 'LTCD',
       description: 'Alternative Litecoin implementation in node.js.',
-      adapter: 'ltcd-adapter'
+      adapter: 'ltcd-adapter',
+      path: '../../data-sources/ltcd'
     }),
     new DataSource({
       id: 'btcd',
       name: 'BTCD',
       description: 'Alternative Bitcoin implementation in node.js.',
-      adapter: 'btcd-adapter'
+      adapter: 'btcd-adapter',
+      path: '../../data-sources/btcd-adapter'
     }),
   ];
 }

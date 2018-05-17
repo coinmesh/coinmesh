@@ -9,22 +9,107 @@ class ProjectService {
 
     return fileSystemService.createDirectory(path).then(result => {
       return this.createProjectJson(project);
+    }).then(result => {
+      // create the directories
+      return fileSystemService.createDirectories([
+        `${path}/adapters`,
+        `${path}/logic-services`,
+        `${path}/data-sources`,
+        `${path}/client-applications`
+      ]);
+    }).then(result => {
+      // copy over the dataSources
+      let promises = [];
+
+      if (project.dataSources) {
+        project.dataSources.forEach(dataSource => {
+          let dataSourcePath = `${process.cwd()}/${dataSource.path}`;
+          let newPath = `${path}/data-sources/${dataSource.id}`;
+
+          let promise = fileSystemService.copyAllFilesAndDirectoriesInDirectory(dataSourcePath, newPath);
+          promises.push(promise);
+
+          let propName = `coinmesh.dataSources.${dataSource.id}`;
+          let updatePackageJsonPromise = this.editProjectProperty(path, propName, newPath);
+          promises.push(updatePackageJsonPromise);
+        });
+      }
+
+      return Promise.all(promises);
+    }).then(result => {
+      // copy over the adapters
+      let promises = [];
+
+      if (project.adapters) {
+        project.adapters.forEach(adapter => {
+          let adapterPath = `${process.cwd()}/${adapter.path}`;
+          let newPath = `${path}/adapters/${adapter.id}`;
+
+          let promise = fileSystemService.copyAllFilesAndDirectoriesInDirectory(adapterPath, newPath);
+          promises.push(promise);
+
+          let propName = `coinmesh.adapters.${adapter.id}`;
+          let updatePackageJsonPromise = this.editProjectProperty(path, propName, newPath);
+          promises.push(updatePackageJsonPromise);
+        });
+      }
+
+      return Promise.all(promises);
+    }).then(result => {
+      // copy over the logicServices
+      let promises = [];
+
+      if (project.logicServices) {
+        project.logicServices.forEach(logicService => {
+          let logicServicePath = `${process.cwd()}/${logicService.path}`;
+          let newPath = `${path}/logic-services/${logicService.id}`;
+
+          let promise = fileSystemService.copyAllFilesAndDirectoriesInDirectory(logicServicePath, newPath);
+          promises.push(promise);
+
+          let propName = `coinmesh.logicServices.${logicService.id}`;
+          let updatePackageJsonPromise = this.editProjectProperty(path, propName, newPath);
+          promises.push(updatePackageJsonPromise);
+        });
+      }
+
+      return Promise.all(promises);
+    }).then(result => {
+      // copy over the clientApplications
+      let promises = [];
+
+      if (project.clientApplications) {
+        project.clientApplications.forEach(clientApplication => {
+          let clientApplicationPath = `${process.cwd()}/${clientApplication.path}`;
+          let newPath = `${path}/client-applications/${clientApplication.id}`;
+
+          let promise = fileSystemService.copyAllFilesAndDirectoriesInDirectory(clientApplicationPath, newPath);
+          promises.push(promise);
+
+          let propName = `coinmesh.clientApplications.${clientApplication.id}`;
+          let updatePackageJsonPromise = this.editProjectProperty(path, propName, newPath);
+          promises.push(updatePackageJsonPromise);
+        });
+      }
+
+      return Promise.all(promises);
     });
   }
   createProjectJson(project) {
-    let tmpPackageJson = {};
+    let packageJson = {
+      name: project.name,
+      description: project.description,
+      coinmesh: {
+        type: 'project',
+        adapters: {},
+        logicServices: {},
+        dataSources: {},
+        clientApplications: {}
+      }
+    };
 
-    return this.setValue(tmpPackageJson, 'name', project.name)
-      .then(result => {
-        return this.setValue(result, 'description', project.description);
-      })
-      .then(result => {
-        return this.setValue(result, 'coinmesh.type', 'project');
-      })
-      .then(newPackageJson => {
-        let path = homedirUtils.getPathFromHomeDir(project.path);
-        return pjWriteService.save(`${path}/package.json`, newPackageJson);
-      });
+    let path = homedirUtils.getPathFromHomeDir(project.path);
+    return pjWriteService.save(`${path}/package.json`, packageJson);
   }
   editProjectProperty(projectPath, prop, newValue) {
     return pjReadService.getConfiguration(projectPath).then(packageJson => {

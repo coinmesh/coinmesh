@@ -2,6 +2,8 @@ export class DataSource {
   id;
   name = '';
   description = '';
+  path = '';
+
   // TODO: Move to a view-model
   enabled = false;
   selected = false;
