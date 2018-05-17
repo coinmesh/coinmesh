@@ -1,4 +1,3 @@
-# Codename Fabric
+# CoinMesh
 
-An ecosystem for building Litecoin and Bitcoin applications. 
-
+An ecosystem for building Litecoin and Bitcoin applications.
