@@ -2,7 +2,8 @@ FROM debian:stable-slim
 
 LABEL maintainer.0="João Fonseca (@joaopaulofonseca)" \
   maintainer.1="Pedro Branco (@pedrobranco)" \
-  maintainer.2="Rui Marinho (@ruimarinho)"
+  maintainer.2="Rui Marinho (@ruimarinho)" \
+  maintainer.3="Patrick Walters (@pwkad)"
 
 RUN useradd -r litecoin \
   && apt-get update -y \
@@ -28,7 +29,7 @@ RUN curl -o /usr/local/bin/gosu -fSL https://github.com/tianon/gosu/releases/dow
   && rm /usr/local/bin/gosu.asc \
   && chmod +x /usr/local/bin/gosu
 
-ENV LITECOIN_VERSION=0.14.2
+ENV LITECOIN_VERSION=0.15.1
 ENV LITECOIN_DATA=/home/litecoin/.litecoin
 
 RUN curl -O https://download.litecoin.org/litecoin-${LITECOIN_VERSION}/linux/litecoin-${LITECOIN_VERSION}-x86_64-linux-gnu.tar.gz \

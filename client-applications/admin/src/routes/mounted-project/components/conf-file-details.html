@@ -1,0 +1,16 @@
+<template>
+  <div class="row">
+    <div class="col">
+      <template if.bind="!confFileExists">
+        <strong>
+          conf file does not exist.
+        </strong>
+        <button click.delegate="createConf()">Create one</button>
+      </template>
+
+      <template if.bind="confFileExists">
+        <button click.delegate="viewConf()">View conf file</button>
+      </template>
+    </div>
+  </div>
+</template>

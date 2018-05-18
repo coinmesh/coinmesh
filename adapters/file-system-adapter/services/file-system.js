@@ -24,6 +24,9 @@ class FileSystemService {
       });
     });
   }
+  checkFileExists(filePath) {
+    return fs.pathExists(filePath);
+  }
   createDirectory(directoryPath) {
     return new Promise((resolve, reject) => {
       fs.ensureDir(directoryPath, err => {

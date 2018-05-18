@@ -3,8 +3,23 @@
   "description": "testing litecoind",
   "coinmesh": {
     "type": "data-source",
+    "confFilePath": "litecoin.conf",
     "adapters": {
-      "litecoind-adapter": "/Users/pwkad/code/testing/this-two/adapters/litecoind-adapter"
+      "litecoind-adapter": "adapters/litecoind-adapter"
+    },
+    "network": "regtest",
+    "runHttp": true,
+    "conf": {
+      "litecoin": {
+        "regtest": "1",
+        "server": "1",
+        "rpcuser": "rpcuser",
+        "rpcpassword": "rpcpassword",
+        "txindex": "1",
+        "daemon": "1",
+        "zmqpubrawblock": "tcp://127.0.0.1:28332",
+        "zmqpubrawtx": "tcp://127.0.0.1:28332"
+      }
     }
   }
 }

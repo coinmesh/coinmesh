@@ -1,5 +1,5 @@
 <template>
-  <require from="xterm/dist/xterm.css"></require>
+  <require from="components/terminal-output"></require>
   <h1>
     ${projectStore.currentProject.name}
   </h1>
@@ -16,10 +16,7 @@
   <div class="row">
     <div class="col">
       <form>
-        <div class="form-group">
-          <label>Output</label>
-          <div ref="terminal"></div>
-        </div>
+        <terminal-output></terminal-output>
         <button class="btn btn-primary" type="submit" click.delegate="npmInstall()" disabled.bind="commandRunning">
           npm install
         </button>

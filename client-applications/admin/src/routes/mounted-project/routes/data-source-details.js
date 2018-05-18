@@ -1,5 +1,6 @@
 import {ProjectStore} from 'services/project-store';
 import {AdminService} from 'services/admin';
+import {DataSource} from 'models/data-source';
 
 export class DataSourceDetails {
   projectStore;
@@ -24,7 +25,7 @@ export class DataSourceDetails {
 
       let packageJsonPath = `${path}/package.json`;
 
-      return this.adminService.loadProject(packageJsonPath).then(result => {
+      return this.adminService.loadProject(packageJsonPath, DataSource).then(result => {
         this.dataSource = result;
         this.dataSource.path = path;
       });

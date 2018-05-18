@@ -1,9 +1,72 @@
 const fileSystemService = require('@coinmesh/file-system-adapter').fileSystemService;
+const confFileService = require('@coinmesh/file-system-adapter').confFileService;
 const pjReadService = require('@coinmesh/package-json-adapter').readService;
 const pjWriteService = require('@coinmesh/package-json-adapter').writeService;
+const directoryService = new (require('./directory'));
 const homedirUtils = new (require('../resources/homedir-utils'));
 
 class ProjectService {
+  createProjectJson(project) {
+    let packageJson = {
+      name: project.name,
+      description: project.description,
+      coinmesh: {
+        type: 'project',
+        adapters: {},
+        logicServices: {},
+        dataSources: {},
+        clientApplications: {}
+      }
+    };
+
+    let path = homedirUtils.getPathFromHomeDir(project.path);
+    return pjWriteService.save(`${path}/package.json`, packageJson);
+  }
+  editProjectProperty(projectPath, prop, newValue) {
+    return pjReadService.getConfiguration(projectPath).then(packageJson => {
+      return this.setValue(packageJson, prop, newValue);
+    }).then(newPackageJson => {
+      return pjWriteService.save(`${projectPath}/package.json`, newPackageJson);
+    });
+  }
+  addScript(projectPath, packageName, type) {
+    let propertyPath = `scripts.${packageName}`;
+    let command = `cd ./${type}s/${packageName} && npm start`;
+
+    return this.editProjectProperty(projectPath, propertyPath, command);
+  }
+  addConfigType(projectPath, packageName, type, packagePath) {
+    let propertyPath = `coinmesh.${type}s.${packageName}`;
+    let newValue = { path: packagePath };
+
+    return this.editProjectProperty(projectPath, propertyPath, newValue);
+  }
+  getProject(projectPath) {
+    let path = homedirUtils.getPathFromHomeDir(projectPath);
+    return pjReadService.getConfiguration(path);
+  }
+  setValue(packageJson, path, value) {
+    return pjWriteService.setValue(packageJson, path, value, true);
+  }
+  checkConfFileExists(packageJsonPath) {
+    return pjReadService.getConfigItemByPath(packageJsonPath, 'coinmesh.confFilePath').then(result => {
+      let confFilePath = `${packageJsonPath}/${result}`;
+      return directoryService.checkFileExists(confFilePath);
+    });
+  }
+  createConfFile(packageJsonPath) {
+    let confFilePath = '';
+    return pjReadService.getConfigItemByPath(packageJsonPath, 'coinmesh.confFilePath')
+      .then(result => {
+        confFilePath = `${packageJsonPath}/${result}`;
+
+        return pjReadService.getConfigItemByPath(packageJsonPath, 'coinmesh.conf.litecoin');
+      }).then(jsonResult => {
+        return confFileService.writeJsonAsConfFile(confFilePath, jsonResult);
+      });
+  }
+
+  // TODO: This is a beast, this needs to be broken down
   createProject(project) {
     let path = homedirUtils.getPathFromHomeDir(project.path);
 
@@ -95,48 +158,6 @@ class ProjectService {
 
       return Promise.all(promises);
     });
-  }
-  createProjectJson(project) {
-    let packageJson = {
-      name: project.name,
-      description: project.description,
-      coinmesh: {
-        type: 'project',
-        adapters: {},
-        logicServices: {},
-        dataSources: {},
-        clientApplications: {}
-      }
-    };
-
-    let path = homedirUtils.getPathFromHomeDir(project.path);
-    return pjWriteService.save(`${path}/package.json`, packageJson);
-  }
-  editProjectProperty(projectPath, prop, newValue) {
-    return pjReadService.getConfiguration(projectPath).then(packageJson => {
-      return this.setValue(packageJson, prop, newValue);
-    }).then(newPackageJson => {
-      return pjWriteService.save(`${projectPath}/package.json`, newPackageJson);
-    });
-  }
-  addScript(projectPath, packageName, type) {
-    let propertyPath = `scripts.${packageName}`;
-    let command = `cd ./${type}s/${packageName} && npm start`;
-
-    return this.editProjectProperty(projectPath, propertyPath, command);
-  }
-  addConfigType(projectPath, packageName, type, packagePath) {
-    let propertyPath = `coinmesh.${type}s.${packageName}`;
-    let newValue = { path: packagePath };
-
-    return this.editProjectProperty(projectPath, propertyPath, newValue);
-  }
-  getProject(projectPath) {
-    let path = homedirUtils.getPathFromHomeDir(projectPath);
-    return pjReadService.getConfiguration(path);
-  }
-  setValue(packageJson, path, value) {
-    return pjWriteService.setValue(packageJson, path, value, true);
   }
 }
 

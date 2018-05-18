@@ -1,9 +1,7 @@
 import {ProjectStore} from 'services/project-store';
 import {Router} from 'aurelia-router';
 import {bindable} from 'aurelia-templating';
-import {WebSocketService} from 'services/web-socket-service';
 import {AdminService} from 'services/admin';
-import { Terminal } from 'xterm';
 
 export class ProjectDetails {
   @bindable command = '';
@@ -11,17 +9,11 @@ export class ProjectDetails {
   @bindable commandRunning = false;
   @bindable uuid;
 
-  static inject = [ProjectStore, Router, AdminService, WebSocketService];
-  constructor(projectStore, router, adminService, webSocketService) {
+  static inject = [ProjectStore, Router, AdminService];
+  constructor(projectStore, router, adminService) {
     this.projectStore = projectStore;
     this.router = router;
     this.adminService = adminService;
-    this.webSocketService = webSocketService;
-    this.webSocketService.connect();
-    this.webSocketService.subscribe(data => {
-      this.consoleOutput += data;
-      this.term.writeln(data);
-    });
   }
   unmount() {
     this.projectStore.unmountProject();
@@ -60,14 +52,5 @@ export class ProjectDetails {
       this.commandRunning = false;
       this.processUuid = null;
     });
-  }
-  deactivate() {
-    this.webSocketService.disconnect();
-  }
-  attached() {
-    this.term = new Terminal({
-      cursorBlink: true
-    });
-    this.term.open(this.terminal);
   }
 }

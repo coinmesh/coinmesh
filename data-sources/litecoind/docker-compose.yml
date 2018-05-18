@@ -1,7 +1,0 @@
-version: "3"
-services:
-  litecoin-core:
-    image: uphold/litecoin-core:latest
-    command:
-      -printtoconsole
-      -regtest=1

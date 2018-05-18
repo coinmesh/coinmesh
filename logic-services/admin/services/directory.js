@@ -12,6 +12,11 @@ class DirectoryService {
 
     return fileSystemService.readAllFilesAndDirectoriesInDirectory(path);
   }
+  checkFileExists(path) {
+    path = homedirUtils.getPathFromHomeDir(path);
+
+    return fileSystemService.checkFileExists(path);
+  }
 }
 
 module.exports = DirectoryService;

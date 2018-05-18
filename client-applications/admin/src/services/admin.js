@@ -22,15 +22,36 @@ export class AdminService {
     let url = `http://localhost:3002/v0/directory`;
     return this.http.post(url, { path });
   }
+  checkConfFileExists(path) {
+    let url = `http://localhost:3002/v0/project/check-conf-file-exists`;
+    return this.http.post(url, { path }).then(response => {
+      return response.content;
+    });
+  }
+  createConfFile(path) {
+    let url = `http://localhost:3002/v0/project/create-conf-file`;
+    return this.http.post(url, { path }).then(response => {
+      return response.content;
+    });
+  }
   createNewProject(project) {
     let url = `http://localhost:3002/v0/project`;
     return this.http.post(url, project);
   }
-  loadProject(projectJsonPath) {
+  updatePackageJson(project, propName, newValue) {
+    let url = `http://localhost:3002/v0/project/`;
+    let body = {
+      projectPath: project.path,
+      propertyPath: propName,
+      value: newValue
+    }
+    return this.http.patch(url, body);
+  }
+  loadProject(projectJsonPath, className = Project) {
     let url = `http://localhost:3002/v0/project/${projectJsonPath}`;
 
     return this.http.get(url).then(result => {
-      return new Project(result);
+      return new className(result);
     });
   }
   npmInstall(projectJsonPath) {

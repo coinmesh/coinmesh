@@ -60,6 +60,30 @@ describe('FileSystemService', () => {
     });
   });
 
+  describe('checkFileExists()', () => {
+    describe('when a file exists', () => {
+      it('returns true', (done) => {
+        let tempPath = 'spec/config-examples/testing.conf';
+
+        fileSystemService.checkFileExists(tempPath).then(result => {
+          expect(result).toBe(true);
+          done();
+        });
+      });
+    });
+
+    describe('when a file does not exist', () => {
+      it('returns false', (done) => {
+        let tempPath = 'spec/config-examples/not-testing.conf';
+
+        fileSystemService.checkFileExists(tempPath).then(result => {
+          expect(result).toBe(false);
+          done();
+        });
+      });
+    });
+  });
+
   describe('createDirectory()', () => {
     it('create a new directory if it does not exist', (done) => {
       let tempPath = 'spec/config-examples/tmp/new-dir';

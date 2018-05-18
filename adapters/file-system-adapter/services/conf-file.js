@@ -12,6 +12,8 @@ class ConfFileService {
     });
   }
   writeJsonAsConfFile(filePath, json, encoding = 'utf8') {
+    console.log(filePath)
+    console.log(json)
     return new Promise((resolve, reject) => {
       let confFile = confFileUtils.convertJsonToConfFile(json);
 

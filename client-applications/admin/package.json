@@ -16,7 +16,7 @@
   "main": "dist/main.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/aurelia/skeleton-navigation"
+    "url": "http://github.com/coinmesh/coinmesh"
   },
   "scripts": {
     "test": "gulp test",
