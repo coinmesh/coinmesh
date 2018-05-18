@@ -7,10 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "concurrently \"npm run client\" \"npm run litecoind-adapter\" \"npm run admin-bll\"",
+    "start": "concurrently \"npm run client\" \"npm run litecoind-adapter\" \"npm run admin-logic-service\"",
     "client": "cd ./client-applications/admin && gulp watch",
     "litecoind-adapter": "cd ./adapters/litecoind-adapter && npm start",
-    "admin-bll": " cd ./logic-services/admin && npm start"
+    "admin-logic-service": " cd ./logic-services/admin && npm start"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,5 @@
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
-const EventEmitter = require('events');
 
 class CommandsService {
   issueCommand(command, path) {
@@ -16,8 +15,6 @@ class CommandsService {
     });
   }
   issueStreamedCommand(command, flags = [], path) {
-    const eventEmitter = new EventEmitter();
-
     return new Promise((resolve, reject) => {
       const child = spawn(command,
         flags,
@@ -25,11 +22,7 @@ class CommandsService {
           cwd: path
         });
 
-      child.stdout.on('data', data => {
-        eventEmitter.emit('data', data);
-      });
-
-      resolve(eventEmitter);
+      resolve(child);
     });
   }
 }

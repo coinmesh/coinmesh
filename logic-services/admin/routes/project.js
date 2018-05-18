@@ -10,7 +10,7 @@ router.post('/', function(req, res, next) {
     .then(result => {
       return res.json(result);
     }).catch(error => {
-      return res.error(error);
+      return res.status(500).send({ error: error });
     });
 });
 

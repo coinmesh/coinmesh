@@ -25,7 +25,7 @@ describe('ProjectService', () => {
     });
   });
 
-  fdescribe('createProject()', () => {
+  describe('createProject()', () => {
     it('creates a project from scratch', (done) => {
       projectService.createProject(project).then(result => {
         pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {

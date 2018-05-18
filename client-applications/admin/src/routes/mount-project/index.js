@@ -19,6 +19,8 @@ export class Index {
     let projectJsonPath = PathUtils.getPathToChildDir(this.currentPath, this.selectedFilename);
 
     return this.adminService.loadProject(projectJsonPath).then(result => {
+      result.path = projectJsonPath;
+
       this.projectStore.setCurrentProject(result);
       return this.router.navigateToRoute('mounted-project');
     });

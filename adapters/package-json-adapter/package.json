@@ -1,6 +1,6 @@
 {
   "name": "@coinmesh/package-json-adapter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "start": "nodemon ./bin/www",
     "test": "nodemon --exec 'jasmine'"

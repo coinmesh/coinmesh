@@ -33,4 +33,35 @@ export class AdminService {
       return new Project(result);
     });
   }
+  npmInstall(projectJsonPath) {
+    return this.npmCommand('npm-install', projectJsonPath).then(response => {
+      return response.content;
+    });
+  }
+  npmLinkLocal(projectJsonPath) {
+    return this.npmCommand('npm-link-local', projectJsonPath).then(response => {
+      return response.content;
+    });
+  }
+  npmStart(projectJsonPath) {
+    return this.npmCommand('npm-start', projectJsonPath).then(response => {
+      return response.content;
+    });
+  }
+  npmTest(projectJsonPath) {
+    return this.npmCommand('npm-test', projectJsonPath).then(response => {
+      return response.content;
+    });
+  }
+  killProcess(uuid) {
+    let url = `http://localhost:3002/v0/terminal/kill-process/${uuid}`;
+
+    return this.http.delete(url);
+  }
+  npmCommand(command, projectJsonPath) {
+    let url = `http://localhost:3002/v0/terminal/${command}`;
+    let body = { path: projectJsonPath };
+
+    return this.http.post(url, body);
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "litecoind",
+  "name": "@coinmesh/litecoind",
   "description": "testing litecoind",
   "coinmesh": {
     "type": "data-source",

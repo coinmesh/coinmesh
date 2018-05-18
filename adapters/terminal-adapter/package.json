@@ -1,5 +1,5 @@
 {
-  "name": "@coinmesh/package-json-adapter",
+  "name": "@coinmesh/terminal-adapter",
   "version": "0.0.1",
   "scripts": {
     "start": "nodemon ./bin/www",

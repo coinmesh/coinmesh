@@ -13,6 +13,18 @@ class HomedirUtils {
 
     return newPath;
   }
+  stripPackageJson(path) {
+    let endsInSlash = (path.slice(-1) === '/');
+    let containsPackageJson = path.indexOf('package.json') > -1;
+
+    if (containsPackageJson) {
+      if (endsInSlash) {
+        path = path.slice(0, -1);
+      }
+      path = path.slice(0, -12);
+    }
+    return path;
+  }
 }
 
 module.exports = HomedirUtils;

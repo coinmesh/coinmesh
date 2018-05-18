@@ -10,7 +10,7 @@ router.get('/:pair/current_rate', function(req, res, next) {
     .then(result => {
       return res.json(result.data);
     }).catch(error => {
-      return res.error(error);
+      return res.status(500).send({ error: error });
     });
 });
 
