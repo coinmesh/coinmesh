@@ -1,6 +1,7 @@
 import {HttpWrapper} from './http-wrapper';
 import {Directory} from '../models/directory';
 import {Project} from '../models/project';
+import {ConfFile} from '../models/conf-file';
 
 export class AdminService {
   static inject = [HttpWrapper];
@@ -26,6 +27,16 @@ export class AdminService {
     let url = `http://localhost:3002/v0/project/check-conf-file-exists`;
     return this.http.post(url, { path }).then(response => {
       return response.content;
+    });
+  }
+  readConfFile(path) {
+    let url = `http://localhost:3002/v0/project/read-conf-file`;
+    return this.http.post(url, { path }).then(response => {
+      let confFileData = {
+        pathToProject: path,
+        props: response.content
+      };
+      return new ConfFile(confFileData);
     });
   }
   createConfFile(path) {

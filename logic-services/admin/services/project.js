@@ -54,6 +54,15 @@ class ProjectService {
       return directoryService.checkFileExists(confFilePath);
     });
   }
+  readConfFile(packageJsonPath) {
+    let confFilePath = '';
+    return pjReadService.getConfigItemByPath(packageJsonPath, 'coinmesh.confFilePath')
+      .then(result => {
+        confFilePath = `${packageJsonPath}/${result}`;
+
+        return confFileService.readConfFile(confFilePath);
+      });
+  }
   createConfFile(packageJsonPath) {
     let confFilePath = '';
     return pjReadService.getConfigItemByPath(packageJsonPath, 'coinmesh.confFilePath')

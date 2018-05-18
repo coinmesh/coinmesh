@@ -79,6 +79,17 @@ router.post('/check-conf-file-exists', (req, res, next) => {
     });
 });
 
+router.post('/read-conf-file', (req, res, next) => {
+  let path = req.body.path;
+
+  projectService.readConfFile(path)
+    .then(result => {
+      return res.json(result);
+    }).catch(error => {
+      return res.status(error.status || 500).send(error);
+    });
+});
+
 router.post('/create-conf-file', (req, res, next) => {
   let path = req.body.path;
 
