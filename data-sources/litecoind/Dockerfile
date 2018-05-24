@@ -7,7 +7,7 @@ LABEL maintainer.0="João Fonseca (@joaopaulofonseca)" \
 
 RUN useradd -r litecoin \
   && apt-get update -y \
-  && apt-get install -y curl gnupg \
+  && apt-get install -y curl gnupg vim \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && set -ex \

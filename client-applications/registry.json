@@ -1,0 +1,9 @@
+{
+  "clientApplications": [
+    {
+      "name": "admin",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/client-applications/admin"
+    }
+  ]
+}

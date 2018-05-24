@@ -1,0 +1,25 @@
+{
+  "adapters": [
+    {
+      "name": "litecoind-adapter",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/adapters/litecoind-adapter"
+    }, {
+      "name": "lnd-adapter",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/adapters/lnd-adapter"
+    }, {
+      "name": "file-system-adapter",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/adapters/file-system-adapter"
+    }, {
+      "name": "package-json-adapter",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/adapters/package-json-adapter"
+    }, {
+      "name": "terminal-adapter",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/adapters/terminal-adapter"
+    }
+  ]
+}

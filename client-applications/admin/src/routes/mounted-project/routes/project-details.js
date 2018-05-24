@@ -7,7 +7,7 @@ export class ProjectDetails {
   @bindable command = '';
   @bindable consoleOutput = '';
   @bindable commandRunning = false;
-  @bindable uuid;
+  @bindable processUuid;
 
   static inject = [ProjectStore, Router, AdminService];
   constructor(projectStore, router, adminService) {

@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const directory = require('./routes/directory');
 const project = require('./routes/project');
 const terminal = require('./routes/terminal');
+const docker = require('./routes/docker');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 app.use('/v0/directory', directory);
 app.use('/v0/project', project);
 app.use('/v0/terminal', terminal);
+app.use('/v0/docker', docker);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

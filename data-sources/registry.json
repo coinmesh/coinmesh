@@ -1,0 +1,13 @@
+{
+  "dataSources": [
+    {
+      "name": "litecoind",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/data-sources/litecoind"
+    }, {
+      "name": "lnd",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/adapters/lnd"
+    }
+  ]
+}

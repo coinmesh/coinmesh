@@ -1,0 +1,17 @@
+{
+  "templates": [
+    {
+      "name": "adapter",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/templates/projects/adapter"
+    }, {
+      "name": "client",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/templates/projects/client"
+    }, {
+      "name": "http-api",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/templates/projects/http-api"
+    }
+  ]
+}

@@ -66,22 +66,22 @@ export class AdminService {
     });
   }
   npmInstall(projectJsonPath) {
-    return this.npmCommand('npm-install', projectJsonPath).then(response => {
-      return response.content;
-    });
+    return this.npmCommand('npm-install', projectJsonPath);
   }
   npmLinkLocal(projectJsonPath) {
-    return this.npmCommand('npm-link-local', projectJsonPath).then(response => {
-      return response.content;
-    });
+    return this.npmCommand('npm-link-local', projectJsonPath);
   }
   npmStart(projectJsonPath) {
-    return this.npmCommand('npm-start', projectJsonPath).then(response => {
-      return response.content;
-    });
+    return this.npmCommand('npm-start', projectJsonPath);
   }
   npmTest(projectJsonPath) {
-    return this.npmCommand('npm-test', projectJsonPath).then(response => {
+    return this.npmCommand('npm-test', projectJsonPath);
+  }
+  npmCommand(command, projectJsonPath) {
+    let url = `http://localhost:3002/v0/terminal/${command}`;
+    let body = { path: projectJsonPath };
+
+    return this.http.post(url, body).then(response => {
       return response.content;
     });
   }
@@ -90,10 +90,18 @@ export class AdminService {
 
     return this.http.delete(url);
   }
-  npmCommand(command, projectJsonPath) {
-    let url = `http://localhost:3002/v0/terminal/${command}`;
+  dockerRun(projectJsonPath) {
+    return this.dockerCommand('run', projectJsonPath);
+  }
+  dockerBuild(projectJsonPath) {
+    return this.dockerCommand('build', projectJsonPath);
+  }
+  dockerCommand(command, projectJsonPath) {
+    let url = `http://localhost:3002/v0/docker/${command}`;
     let body = { path: projectJsonPath };
 
-    return this.http.post(url, body);
+    return this.http.post(url, body).then(response => {
+      return response.content;
+    });
   }
 }

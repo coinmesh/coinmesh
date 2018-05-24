@@ -1,0 +1,9 @@
+{
+  "logicServices": [
+    {
+      "name": "admin",
+      "endpoint": "github",
+      "location": "coinmesh/coinmesh/logic-services/admin"
+    }
+  ]
+}

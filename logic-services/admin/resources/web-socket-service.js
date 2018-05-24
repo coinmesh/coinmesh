@@ -15,6 +15,28 @@ class WebSocketService {
     let process = this.processes[uuid];
     process.kill();
   }
+  subscribe(child) {
+    child.stdout.on('data', data => {
+      this.wss.clients.forEach(client => {
+        client.send(data.toString());
+      });
+    });
+
+    child.stderr.on('data', data => {
+      this.wss.clients.forEach(client => {
+        client.send(data.toString());
+      });
+    });
+
+    child.on('exit', code => {
+      this.wss.clients.forEach(client => {
+        client.send(code);
+      });;
+    });
+
+    let uuid = this.addProcess(child);
+    return uuid;
+  }
 }
 
 module.exports = new WebSocketService();

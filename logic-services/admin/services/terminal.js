@@ -10,7 +10,7 @@ class TerminalService {
     path = homedirUtils.stripPackageJson(path);
 
     return commandsService.issueStreamedCommand(command, flags, path).then(child => {
-      let uuid = this.subscribe(child);
+      let uuid = webSocketService.subscribe(child);
       return uuid;
     });
   }
@@ -21,7 +21,7 @@ class TerminalService {
     path = homedirUtils.stripPackageJson(path);
 
     return commandsService.issueStreamedCommand(command, flags, path).then(child => {
-      let uuid = this.subscribe(child);
+      let uuid = webSocketService.subscribe(child);
       return uuid;
     });
   }
@@ -32,7 +32,7 @@ class TerminalService {
     path = homedirUtils.stripPackageJson(path);
 
     return commandsService.issueStreamedCommand(command, flags, path).then(child => {
-      let uuid = this.subscribe(child);
+      let uuid = webSocketService.subscribe(child);
       return uuid;
     });
   }
@@ -43,34 +43,12 @@ class TerminalService {
     path = homedirUtils.stripPackageJson(path);
 
     return commandsService.issueStreamedCommand(command, flags, path).then(child => {
-      let uuid = this.subscribe(child);
+      let uuid = webSocketService.subscribe(child);
       return uuid;
     });
   }
   killProcess(uuid) {
     return Promise.resolve(webSocketService.killProcess(uuid));
-  }
-  subscribe(child) {
-    child.stdout.on('data', data => {
-      webSocketService.wss.clients.forEach(client => {
-        client.send(data.toString());
-      });
-    });
-
-    child.stderr.on('data', data => {
-      webSocketService.wss.clients.forEach(client => {
-        client.send(data.toString());
-      });
-    });
-
-    child.on('exit', code => {
-      webSocketService.wss.clients.forEach(client => {
-        client.send(code);
-      });;
-    });
-
-    let uuid = webSocketService.addProcess(child);
-    return uuid;
   }
 }
 
