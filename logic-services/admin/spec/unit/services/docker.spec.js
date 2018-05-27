@@ -1,4 +1,5 @@
 const DockerService = require('../../../services/docker');
+const commandsService = require('@coinmesh/terminal-adapter').commandsService;
 
 describe('DockerService', () => {
   let dockerService;

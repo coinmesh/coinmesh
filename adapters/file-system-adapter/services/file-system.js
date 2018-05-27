@@ -1,4 +1,5 @@
 const fs = require('fs-extra');
+const dirTree = require('directory-tree');
 
 class FileSystemService {
   readFile(filePath, encoding = 'utf8') {
@@ -60,11 +61,31 @@ class FileSystemService {
   }
   readAllFilesAndDirectoriesInDirectory(directoryPath) {
     return new Promise((resolve, reject) => {
-      fs.readdir(directoryPath, (err, data) => {
+      fs.readdir(directoryPath, (err, files) => {
         if (err) {
           reject(err);
         }
-        resolve(data);
+        let results = [];
+
+        files.forEach(file => {
+          let stats;
+          try { stats = fs.statSync(`${directoryPath}/${file}`); }
+          catch (e) { return null; }
+
+          if (stats.isFile()) {
+            results.push({
+              name: file,
+              size: stats.size,
+              type: 'file'
+            });
+          } else if (stats.isDirectory()) {
+            results.push({
+              name: file,
+              type: 'directory'
+            });
+          }
+        });
+        resolve(results);
       });
     });
   }

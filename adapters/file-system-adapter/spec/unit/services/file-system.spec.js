@@ -121,7 +121,7 @@ describe('FileSystemService', () => {
 
       fileSystemService.readAllFilesAndDirectoriesInDirectory(tempPath).then(result => {
         result.forEach(resultItem => {
-          let match = expectedItems.find(item => item.name === resultItem);
+          let match = expectedItems.find(item => item.name === resultItem.name);
           if (match) {
             match.found = true;
           }

@@ -10,11 +10,12 @@ export class AdminService {
   }
 
   getDirectoryContents(path) {
-    let url = `http://localhost:3002/v0/directory/${path ? path : ''}`;
+    let url = `http://localhost:3002/v0/directory/contents`;
+    let body = { path };
 
-    return this.http.get(url).then(result => {
+    return this.http.post(url, body).then(result => {
       let directory = new Directory({
-        items: result
+        items: result.content
       });
       return directory;
     });

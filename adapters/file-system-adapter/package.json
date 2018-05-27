@@ -11,6 +11,7 @@
   },
   "main": "index.js",
   "dependencies": {
+    "directory-tree": "^2.1.0",
     "fs-extra": "^6.0.1"
   }
 }

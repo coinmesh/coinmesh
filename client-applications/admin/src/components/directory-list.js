@@ -36,7 +36,10 @@ export class DirectoryList {
     let path = `${this.currentPath || ''}/${name}`;
 
     return this.adminService.createDirectory(path).then(result => {
-      this.currentDirectory.items.push(name);
+      this.currentDirectory.items.push({
+        name: name,
+        type: 'directory'
+      });
       this.newDirectoryName = '';
     });
   }

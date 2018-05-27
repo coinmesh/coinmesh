@@ -4,20 +4,39 @@
   <button class="btn btn-success"
     click.delegate="selectItem()"
     disabled.bind="!selectedItem">${selectItemText}</button>
-  <ul>
-    <li repeat.for="item of currentDirectory.items">
-      <input type="radio" name="directory"
-        value.bind="item" checked.bind="selectedItem" />
-      <button class="btn btn-sm btn-dark" click.delegate="getDirectoryContents(item)">${item}</button>
-    </li>
-    <li if.bind="canCreateDirectory">
-      <input value.bind="newDirectoryName" />
-      <button
-        class="btn btn-primary"
-        click.delegate="createDirectory()"
-        disabled.bind="!newDirectoryName">
-          Create new Directory
-      </button>
-    </li>
-  </ul>
+  <table class="table table-sm table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Size</th>
+        <th scope="col">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="item of currentDirectory.items">
+        <td>
+          <input type="radio" name="directory"
+            value.bind="item.name" checked.bind="selectedItem" />
+        </td>
+        <td>
+          <a href="#"
+            click.delegate="getDirectoryContents(item.name)">
+              ${item.name}
+          </button>
+        </td>
+        <td>${item.size ? item.size + ' kb' : ''}</td>
+        <td>${item.type}</td>
+      </tr>
+    </tbody>
+  </table>
+  <li if.bind="canCreateDirectory">
+    <input value.bind="newDirectoryName" />
+    <button
+      class="btn btn-primary"
+      click.delegate="createDirectory()"
+      disabled.bind="!newDirectoryName">
+        Create new Directory
+    </button>
+  </li>
 </template>

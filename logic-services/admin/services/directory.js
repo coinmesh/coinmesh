@@ -10,7 +10,9 @@ class DirectoryService {
   getDirectoryContents(path) {
     path = homedirUtils.getPathFromHomeDir(path);
 
-    return fileSystemService.readAllFilesAndDirectoriesInDirectory(path);
+    return fileSystemService.readAllFilesAndDirectoriesInDirectory(path).then(results => {
+      return results;
+    });
   }
   checkFileExists(path) {
     path = homedirUtils.getPathFromHomeDir(path);

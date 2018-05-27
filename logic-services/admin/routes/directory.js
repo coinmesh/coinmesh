@@ -13,11 +13,8 @@ router.post('/', (req, res, next) => {
     });
 });
 
-router.get('/:path*?', (req, res, next) => {
-  let path = req.params.path || '';
-  let extendedPath = req.params[0] || '';
-
-  path = `${path}${ extendedPath ? '/' + extendedPath : '' }`;
+router.post('/contents', (req, res, next) => {
+  let path = req.body.path || '';
 
   directoryService.getDirectoryContents(path)
     .then(result => {
