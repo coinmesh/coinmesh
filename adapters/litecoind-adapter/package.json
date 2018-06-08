@@ -1,6 +1,18 @@
 {
   "name": "@coinmesh/litecoind-adapter",
   "version": "0.0.1",
+  "keywords": [
+    "coinmesh",
+    "litecoind",
+    "admin"
+  ],
+  "homepage": "http://coinmesh.com",
+  "license": "CC0-1.0",
+  "author": "Patrick Walters <patrick.walters@blockfuse.io> (http://blockfuse.io/)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/coinmesh"
+  },
   "scripts": {
     "start": "nodemon ./bin/www"
   },

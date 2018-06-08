@@ -1,0 +1,23 @@
+<template>
+  <require from="../components/repository-information"></require>
+  <require from="../components/basic-info"></require>
+
+  <div class="row">
+    <div class="col">
+      <h1>
+        ${project.name}
+      </h1>
+    </div>
+
+    <div class="col">
+      <button class="btn btn-danger pull-right" click.delegate="unmount()">Unmount the Project</button>
+    </div>
+  </div>
+
+  <h1>
+    <small>${project.description}</small>
+  </h1>
+
+  <repository-information repository.bind="project.repository"></repository-information>
+  <basic-info project.bind="project"></basic-info>
+</template>

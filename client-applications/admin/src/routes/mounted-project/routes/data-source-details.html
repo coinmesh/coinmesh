@@ -1,44 +1,23 @@
 <template>
-  <require from="../components/repository-information"></require>
-  <require from="../components/basic-info"></require>
   <require from="../components/data-source-options"></require>
   <require from="../components/conf-file-details"></require>
+  <require from="../components/project-info"></require>
   <require from="components/terminal-output"></require>
 
-  <h2>${dataSource.name}</h2>
-  <h3>${dataSource.description}</h3>
-  <h4>${dataSource.path}</h4>
+  <project-info project.bind="dataSource"></project-info>
 
   <conf-file-details project.bind="dataSource">
   </conf-file-details>
 
-  <repository-information repository.bind="dataSource.repository"></repository-information>
-  <basic-info project.bind="dataSource"></basic-info>
+  <terminal-output
+    can-docker-run.bind="true"
+    can-docker-build.bind="true"
+    can-npm-test.bind="true"
+    project-root.bind="dataSource.path">
+  </terminal-output>
 
   <data-source-options data-source.bind="dataSource"
     selected-network.bind="dataSource.network"
     run-http.bind="dataSource.runHttp">
   </data-source-options>
-
-  <div class="row">
-    <div class="col">
-      <terminal-output></terminal-output>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <button class="btn btn-primary" type="submit" disabled.bind="commandRunning"
-        click.delegate="dockerBuild()">
-          docker build
-      </button>
-      <button class="btn btn-primary" type="submit" disabled.bind="commandRunning"
-        click.delegate="dockerRun()" >
-          docker run
-      </button>
-      <button class="btn btn-primary" type="submit" disabled.bind="!commandRunning"
-        click.delegate="killProcess()">
-          end current process
-      </button>
-    </div>
-  </div>
 </template>

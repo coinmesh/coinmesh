@@ -20,7 +20,6 @@ export class Index {
 
     return this.adminService.loadProject(projectJsonPath).then(result => {
       result.path = projectJsonPath;
-
       this.projectStore.setCurrentProject(result);
       return this.router.navigateToRoute('mounted-project');
     });

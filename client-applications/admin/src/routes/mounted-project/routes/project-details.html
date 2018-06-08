@@ -1,38 +1,14 @@
 <template>
   <require from="components/terminal-output"></require>
-  <h1>
-    ${projectStore.currentProject.name}
-  </h1>
-  <div class="row">
-    <div class="col">
-      <button class="btn btn-danger pull-right" click.delegate="unmount()">Unmount the Project</button>
-    </div>
-  </div>
+  <require from="../components/project-info"></require>
 
-  <h1>
-    <small>${projectStore.currentProject.description}</small>
-  </h1>
+  <project-info project.bind="projectStore.currentProject"></project-info>
 
-  <div class="row">
-    <div class="col">
-      <form>
-        <terminal-output></terminal-output>
-        <button class="btn btn-primary" type="submit" click.delegate="npmInstall()" disabled.bind="commandRunning">
-          npm install
-        </button>
-        <button class="btn btn-primary" type="submit" click.delegate="npmLinkLocal()" disabled.bind="commandRunning">
-          npm link local
-        </button>
-        <button class="btn btn-primary" type="submit" click.delegate="npmStart()" disabled.bind="commandRunning">
-          npm start
-        </button>
-        <button class="btn btn-primary" type="submit" click.delegate="npmTest()" disabled.bind="commandRunning">
-          npm test
-        </button>
-        <button class="btn btn-primary" type="submit" click.delegate="killProcess()" disabled.bind="!commandRunning">
-          end current process
-        </button>
-      </form>
-    </div>
-  </div>
+  <terminal-output
+    can-npm-start.bind="true"
+    can-npm-install.bind="true"
+    can-npm-link-local.bind="true"
+    can-npm-test.bind="true"
+    project-root.bind="projectStore.currentProject.path">
+  </terminal-output>
 </template>

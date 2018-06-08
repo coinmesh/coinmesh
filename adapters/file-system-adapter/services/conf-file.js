@@ -1,4 +1,3 @@
-const fs = require('fs-extra');
 const fileSystemService = new (require('./file-system'));
 const confFileUtils = new (require('../resources/conf-file-utils'));
 

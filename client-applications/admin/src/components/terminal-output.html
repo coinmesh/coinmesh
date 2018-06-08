@@ -1,11 +1,43 @@
 <template>
   <require from="xterm/dist/xterm.css"></require>
+
   <div class="row">
     <div class="col">
       <form>
-        <div class="form-group">
-          <label>Output</label>
-          <div ref="terminal"></div>
+        <div class="row">
+          <div class="col">
+            <form>
+              <div class="form-group">
+                <label>Output</label>
+                <div ref="terminal"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-primary" type="submit" click.delegate="npmInstall()" disabled.bind="commandRunning" if.bind="canNpmInstall">
+              npm install
+            </button>
+            <button class="btn btn-primary" type="submit" click.delegate="npmLinkLocal()" disabled.bind="commandRunning" if.bind="canNpmLinkLocal">
+              npm link local
+            </button>
+            <button class="btn btn-primary" type="submit" click.delegate="npmStart()" disabled.bind="commandRunning" if.bind="canNpmStart">
+              npm start
+            </button>
+            <button class="btn btn-primary" type="submit" click.delegate="npmTest()" disabled.bind="commandRunning" if.bind="canNpmTest">
+              npm test
+            </button>
+            <button class="btn btn-primary" type="submit" click.delegate="dockerRun()" disabled.bind="commandRunning" if.bind="canDockerRun">
+              docker run
+            </button>
+            <button class="btn btn-primary" type="submit" click.delegate="dockerBuild()" disabled.bind="commandRunning" if.bind="canDockerBuild">
+              docker build
+            </button>
+            <button class="btn btn-primary" type="submit" click.delegate="killProcess()" disabled.bind="!commandRunning">
+              end current process
+            </button>
+          </div>
         </div>
       </form>
     </div>

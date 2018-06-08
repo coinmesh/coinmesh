@@ -1,9 +1,5 @@
 <template>
-  <require from="../components/repository-information"></require>
-  <require from="../components/basic-info"></require>
-  <h2>${clientApplication.name}</h2>
-  <h3>${clientApplication.description}</h3>
-  <h4>${clientApplication.path}</h4>
-  <repository-information repository.bind="clientApplication.repository"></repository-information>
-  <basic-info project.bind="clientApplication"></basic-info>
+  <require from="../components/project-info"></require>
+
+  <project-info project.bind="clientApplication"></project-info>
 </template>

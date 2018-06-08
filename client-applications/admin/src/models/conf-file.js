@@ -6,7 +6,6 @@ export class ConfFile {
   props = [];
 
   constructor(data = {}) {
-    console.log(data.props)
     if (data && data.props) {
       let tmpProps = [];
       Object.keys(data.props).forEach(key => {

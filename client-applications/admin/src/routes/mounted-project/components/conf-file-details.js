@@ -24,7 +24,8 @@ export class ConfFileDetails {
   createConf() {
     if (this.project) {
       return this.adminService.createConfFile(this.project.path).then(result => {
-        this.confFileExists = result;
+        this.confFileExists = true;
+        this.checkConfFileExists();
       });
     }
   }

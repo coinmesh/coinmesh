@@ -17,7 +17,7 @@ class DockerService {
   }
   dockerBuild(path, addlFlags = []) {
     let command = 'docker';
-    let flags = ['build'];
+    let flags = ['build', '.'];
     if (addlFlags && Array.isArray(addlFlags)) {
       flags.push(...addlFlags)
     }

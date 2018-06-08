@@ -33,24 +33,4 @@ export class DataSourceDetails {
       });
     }
   }
-  dockerRun() {
-    let path = this.projectStore.currentProject.path;
-    return this.adminService.dockerRun(path).then(uuid => {
-      this.processUuid = uuid;
-      this.commandRunning = true;
-    });
-  }
-  dockerBuild() {
-    let path = this.projectStore.currentProject.path;
-    return this.adminService.dockerBuild(path).then(uuid => {
-      this.processUuid = uuid;
-      this.commandRunning = true;
-    });
-  }
-  killProcess() {
-    return this.adminService.killProcess(this.processUuid).then(result => {
-      this.commandRunning = false;
-      this.processUuid = null;
-    });
-  }
 }

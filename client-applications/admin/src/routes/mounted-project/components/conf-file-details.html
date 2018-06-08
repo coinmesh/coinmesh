@@ -15,10 +15,14 @@
   </div>
   <div class="row">
     <div class="col">
-      <template repeat.for="prop of confFile.props">
-        <label>${prop.key}</label>
-        <strong>${prop.value}</strong>
-      </template>
+      <pre>
+      	<code>
+       	  <template repeat.for="prop of confFile.props">
+            <label>${prop.key}</label>
+            <strong>${prop.value}</strong>
+          </template>
+        </code>
+      </pre>
     </div>
   </div>
 </template>

@@ -1,9 +1,14 @@
 <template>
-  <require from="../components/repository-information"></require>
-  <require from="../components/basic-info"></require>
-  <h2>${logicService.name}</h2>
-  <h3>${logicService.description}</h3>
-  <h4>${logicService.path}</h4>
-  <repository-information repository.bind="logicService.repository"></repository-information>
-  <basic-info project.bind="logicService"></basic-info>
+  <require from="../components/project-info"></require>
+  <require from="components/terminal-output"></require>
+
+  <project-info project.bind="logicService"></project-info>
+
+  <terminal-output
+    can-npm-start.bind="true"
+    can-npm-install.bind="true"
+    can-npm-link-local.bind="true"
+    can-npm-test.bind="true"
+    project-root.bind="logicService.path">
+  </terminal-output>
 </template>

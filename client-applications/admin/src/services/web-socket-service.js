@@ -15,6 +15,7 @@ export class WebSocketService {
   }
   disconnect() {
     this.socket.close();
+    this.subscribers = [];
   }
 }
 

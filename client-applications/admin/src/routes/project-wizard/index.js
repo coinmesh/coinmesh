@@ -60,8 +60,10 @@ export class Index {
   }
   createProject() {
     return this.adminService.createNewProject(this.project).then(result => {
-      this.projectStore.setCurrentProject(this.project);
-      this.router.navigateToRoute('mounted-project');
+      return this.adminService.loadProject(this.project.path).then(result => {
+        this.projectStore.setCurrentProject(result);
+        return this.router.navigateToRoute('mounted-project');
+      });
     });
   }
 }
