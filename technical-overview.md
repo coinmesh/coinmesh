@@ -1,29 +1,26 @@
-# Technical Overview
+![51669f](https://user-images.githubusercontent.com/32662508/41332850-55daa196-6e94-11e8-8cfe-438561243d8a.png)
 
-An overview of the proposed technology
+CoinMesh is a n-tier application platform that provides an architecture needed for developers to create flexible and reusable applications.  For now, we've conceptualized an application stack into four layers.
 
-## Layers
+## The Four Layers of an Application Stack
 
-A typical application can be broken up in to four layers -
+A typical application can be broken up in to four layers:
 
-### Clients Tier
++ Client Application
++ Logic Service
++ Adapter
++ Data Source
 
-A client is the application that has a visual interface for the user to interact with.
+Let's start with the bottom layer and work our way up.
 
-For now this will be 100% browser-based.  There are options to easily make this a native application and suggestions for doing so will be added.
+### Data Source
+Let's start with the bottom layer.  The Data Source refers to the blockchain node your project needs to reference if you want to build on top of Litecoin or Bitcoin.  This node could be lnd, litecoind, bitcoind, btcd, or ltcd.
 
-A simple component library with basic styling will be provided to the end-user to see how to interact with the Logic tier
+### Adapter
+Next is the Adapter.  This layer provides an interfact for connecting with your Data Source.  It is assumed that all functionality that is provided from the nodes will be available in a unified contract via the adapters, with a clear error for if a node cannot support a given method.
 
-### Logic Tier
+### Logic Service
+The Logic Service is the middle part of the application stack and where developers start laying out the foundations for their projects.  This is the layer the Client Application interacts with in order to get information from the Data Source via Adapters.
 
-Where the business logic resides.  This is part of the middle tier and is what the "Client" talks to to get information from the "Data Tier" via Adapters.
-
-### Adapters Tier
-
-Adapters provide an interface or contract for connecting to nodes.  It is assumed that all functionality that is provided from the nodes will be available in a unified contract via the adapters, with a clear error for if a node cannot support a given method.
-
-An example would be that an LND node can support creating channels but that functionality is not available in Litecoin or Bitcoin core.
-
-### Data Tier
-
-This is where the data is sourced from the nodes.  The node could be lnd, litecoind, bitcoind, btcd, or ltcd.
+### Client Application
+Finally, the Client Application is the visual interfact for the user to interact with.  For now this will be 100% browser-based.  However, there are options to easily make this a native application and suggestions for doing so will be added.  A simple component library with basic styling will be provided to the end-user to see how to interact with the Logic tier
