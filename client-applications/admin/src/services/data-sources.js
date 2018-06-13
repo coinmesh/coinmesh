@@ -9,8 +9,9 @@ export class DataSourcesService {
   }
 
   getDataSources() {
-    const fixtures = DataSourceFixtures.fixtures;
-    return Promise.resolve(fixtures);
+    return this.http.get('http://localhost:3002/v0/registry/data-sources').then(result => {
+      return result.dataSources;
+    });
   }
   getDataSourceById(id) {
     const fixture = DataSourceFixtures.fixtures.find(item => item.id.toString() === id.toString());

@@ -9,8 +9,9 @@ export class LogicServicesService {
   }
 
   getLogicServices() {
-    const fixtures = LogicServiceFixtures.fixtures;
-    return Promise.resolve(fixtures);
+    return this.http.get('http://localhost:3002/v0/registry/logic-services').then(result => {
+      return result.logicServices;
+    });
   }
   getLogicServiceById(id) {
     const fixture = LogicServiceFixtures.fixtures.find(item => item.id.toString() === id.toString());

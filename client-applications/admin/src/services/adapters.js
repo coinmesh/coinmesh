@@ -9,8 +9,9 @@ export class AdaptersService {
   }
 
   getAdapters() {
-    const fixtures = AdapterFixtures.fixtures;
-    return Promise.resolve(fixtures);
+    return this.http.get('http://localhost:3002/v0/registry/adapters').then(result => {
+      return result.adapters;
+    });
   }
   getAdapterById(id) {
     const fixture = AdapterFixtures.fixtures.find(item => item.id.toString() === id.toString());
