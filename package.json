@@ -13,7 +13,7 @@
     "admin-logic-service": " cd ./logic-services/admin && npm start",
     "generate-docs": "cd ./docs && bundle exec middleman build --clean",
     "docs": "bundle exec middleman server",
-    "copy-docs": "cp -R docs/build/* ../coinmesh.com-site/docs/"
+    "copy-docs": "cp -R docs/* ../coinmesh.com-site/docs/"
   },
   "repository": {
     "type": "git",
