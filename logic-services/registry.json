@@ -1,9 +1,11 @@
 {
   "logicServices": [
     {
-      "name": "admin",
-      "endpoint": "github",
-      "location": "coinmesh/coinmesh/logic-services/admin"
+      "id": "http-service",
+      "endpoint": "local",
+      "name": "HTTP Service",
+      "description": "A skeleton service that implements a RESTful API.",
+      "path": "../../templates/projects/http-api"
     }
   ]
 }

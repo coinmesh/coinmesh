@@ -2,8 +2,9 @@ export class LogicService {
   id;
   name = '';
   description = '';
+
   // TODO: Move to a view-model
-  enabled = false;
+  enabled = true;
   selected = false;
   type = 'logic-service';
 

@@ -7,7 +7,6 @@ export class Directory {
   }
   cleanItems(items) {
     return items.filter(item => {
-      console.log(item.name)
       return !!item.name && item.name[0] !== '.';
     });
   }

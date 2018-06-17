@@ -10,7 +10,9 @@ export class AdaptersService {
 
   getAdapters() {
     return this.http.get('http://localhost:3002/v0/registry/adapters').then(result => {
-      return result.adapters;
+      return result.adapters.map(adapter => {
+        return new Adapter(adapter);
+      });
     });
   }
   getAdapterById(id) {

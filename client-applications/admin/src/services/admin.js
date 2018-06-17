@@ -14,7 +14,6 @@ export class AdminService {
     let body = { path };
 
     return this.http.post(url, body).then(result => {
-      console.log(result.content)
       let directory = new Directory({
         items: result.content
       });

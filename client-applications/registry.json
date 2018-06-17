@@ -1,9 +1,11 @@
 {
   "clientApplications": [
     {
-      "name": "admin",
-      "endpoint": "github",
-      "location": "coinmesh/coinmesh/client-applications/admin"
+      "id": "client",
+      "endpoint": "local",
+      "name": "Empty Aurelia Skeleton",
+      "description": "An empty Aurelia browser application.",
+      "path": "../../templates/projects/client"
     }
   ]
 }

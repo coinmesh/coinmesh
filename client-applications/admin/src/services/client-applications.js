@@ -10,7 +10,9 @@ export class ClientApplicationsService {
 
   getClientApplications() {
     return this.http.get('http://localhost:3002/v0/registry/client-applications').then(result => {
-      return result.clientApplications;
+      return result.clientApplications.map(clientApplication => {
+        return new ClientApplication(clientApplication);
+      });
     });
   }
   getClientApplicationById(id) {

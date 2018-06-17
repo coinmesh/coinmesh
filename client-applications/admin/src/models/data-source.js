@@ -9,8 +9,7 @@ export class DataSource {
   confFilePath = '';
   adapter;
 
-  // TODO: Move to a view-model
-  enabled = false;
+  enabled = true;
   selected = false;
 
   constructor(data = {}) {

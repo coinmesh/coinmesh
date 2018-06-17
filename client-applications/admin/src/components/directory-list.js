@@ -27,7 +27,6 @@ export class DirectoryList {
     if (childDir) {
       this.currentPath = PathUtils.getPathToChildDir(this.currentPath, childDir);
     }
-    console.log('here I go')
     return this.adminService.getDirectoryContents(this.currentPath).then(result => {
       this.currentDirectory = result;
     });

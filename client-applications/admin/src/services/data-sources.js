@@ -10,7 +10,9 @@ export class DataSourcesService {
 
   getDataSources() {
     return this.http.get('http://localhost:3002/v0/registry/data-sources').then(result => {
-      return result.dataSources;
+      return result.dataSources.map(dataSource => {
+        return new DataSource(dataSource);
+      });
     });
   }
   getDataSourceById(id) {

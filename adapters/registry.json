@@ -1,25 +1,35 @@
 {
   "adapters": [
     {
-      "name": "litecoind-adapter",
-      "endpoint": "github",
-      "location": "coinmesh/coinmesh/adapters/litecoind-adapter"
+      "id": "litecoind-adapter",
+      "endpoint": "local",
+      "name": "Litecoind Adapter",
+      "description": "Litecoind Adapter.",
+      "path": "../../adapters/litecoind-adapter"
     }, {
-      "name": "lnd-adapter",
-      "endpoint": "github",
-      "location": "coinmesh/coinmesh/adapters/lnd-adapter"
+      "id": "bitcoind-adapter",
+      "endpoint": "local",
+      "name": "Bitcoind Adapter",
+      "description": "Bitcoin core adapter.",
+      "path": "../../adapters/bitcoind-adapter"
     }, {
-      "name": "file-system-adapter",
-      "endpoint": "github",
-      "location": "coinmesh/coinmesh/adapters/file-system-adapter"
+      "id": "ln-service",
+      "endpoint": "local",
+      "name": "LND Service",
+      "description": "Lightning Network Daemon service.",
+      "path": "../../adapters/lnd-adapter"
     }, {
-      "name": "package-json-adapter",
-      "endpoint": "github",
-      "location": "coinmesh/coinmesh/adapters/package-json-adapter"
+      "id": "ltcd-adapter",
+      "endpoint": "local",
+      "name": "LTCD Adapter",
+      "description": "LTCD adapter.",
+      "path": "../../adapters/ltcd-adapter"
     }, {
-      "name": "terminal-adapter",
-      "endpoint": "github",
-      "location": "coinmesh/coinmesh/adapters/terminal-adapter"
+      "id": "btcd-adapter",
+      "endpoint": "local",
+      "name": "BTCD Adapter",
+      "description": "BTCD adapter.",
+      "path": "../../adapters/btcd-adapter"
     }
   ]
 }

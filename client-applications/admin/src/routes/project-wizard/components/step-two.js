@@ -34,6 +34,7 @@ export class StepTwo {
       }
       return isSelected;
     });
+    console.log(matchingAdapters)
     this.project.adapters = this.adapters.filter(adapter => {
       return matchingAdapters[adapter.id];
     });

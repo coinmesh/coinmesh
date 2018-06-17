@@ -1,13 +1,20 @@
 {
   "dataSources": [
     {
-      "name": "litecoind",
-      "endpoint": "github",
-      "location": "coinmesh/coinmesh/data-sources/litecoind"
+      "id": "litecoind",
+      "endpoint": "local",
+      "name": "Litecoind",
+      "description": "Litecoin core software.",
+      "adapter": "litecoind-adapter",
+      "path": "../../data-sources/litecoind"
     }, {
-      "name": "lnd",
-      "endpoint": "github",
-      "location": "coinmesh/coinmesh/adapters/lnd"
+
+      "id": "lnd",
+      "endpoint": "local",
+      "name": "LND",
+      "description": "Lightning Network Daemon.",
+      "adapter": "lnd-adapter",
+      "path": "../../data-sources/lnd"
     }
   ]
 }

@@ -3,7 +3,7 @@ export class ClientApplication {
   name = '';
   description = '';
   // TODO: Move to a view-model
-  enabled = false;
+  enabled = true;
   selected = false;
   type = 'client-application';
 

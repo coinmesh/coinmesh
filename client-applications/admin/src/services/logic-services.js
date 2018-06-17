@@ -10,7 +10,9 @@ export class LogicServicesService {
 
   getLogicServices() {
     return this.http.get('http://localhost:3002/v0/registry/logic-services').then(result => {
-      return result.logicServices;
+      return result.logicServices.map(logicService => {
+        return new LogicService(logicService);
+      });
     });
   }
   getLogicServiceById(id) {

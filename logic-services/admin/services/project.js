@@ -95,6 +95,8 @@ class ProjectService {
       let promises = [];
 
       if (project.dataSources) {
+        let lastPromise;
+
         project.dataSources.forEach(dataSource => {
           let dataSourcePath = `${process.cwd()}/${dataSource.path}`;
           let newPath = `${path}/data-sources/${dataSource.id}`;
@@ -103,7 +105,18 @@ class ProjectService {
           promises.push(promise);
 
           let propName = `coinmesh.dataSources.${dataSource.id}`;
-          let updatePackageJsonPromise = this.editProjectProperty(path, propName, newPath);
+
+          let updatePackageJsonPromise;
+
+          if (lastPromise) {
+            lastPromise.then(result => {
+              updatePackageJsonPromise = this.editProjectProperty(path, propName, newPath);
+            });
+          } else {
+            updatePackageJsonPromise = this.editProjectProperty(path, propName, newPath);
+          }
+          lastPromise = updatePackageJsonPromise;
+
           promises.push(updatePackageJsonPromise);
         });
       }

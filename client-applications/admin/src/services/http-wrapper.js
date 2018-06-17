@@ -17,7 +17,7 @@ export class HttpWrapper {
 
   get(path) {
     return this.http.get(path).then(result => {
-      return JSON.parse(result.content);
+      return (typeof result.content === 'string') ? JSON.parse(result.content) : result.content;
     });
   }
   post(path, body) {
