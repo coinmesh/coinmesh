@@ -17,7 +17,7 @@ export class DirectoryList {
     this.adminService = adminService;
   }
   attached() {
-    this.getDirectoryContents();
+    return this.getDirectoryContents();
   }
   goUpOneDirectory() {
     this.currentPath = this.currentPath.split('/').slice(0, -1).join('/');
@@ -27,6 +27,7 @@ export class DirectoryList {
     if (childDir) {
       this.currentPath = PathUtils.getPathToChildDir(this.currentPath, childDir);
     }
+    console.log('here I go')
     return this.adminService.getDirectoryContents(this.currentPath).then(result => {
       this.currentDirectory = result;
     });

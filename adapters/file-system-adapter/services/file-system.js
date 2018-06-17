@@ -66,7 +66,6 @@ class FileSystemService {
           reject(err);
         }
         let results = [];
-
         files.forEach(file => {
           let stats;
           try { stats = fs.statSync(`${directoryPath}/${file}`); }
