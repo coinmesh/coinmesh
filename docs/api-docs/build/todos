@@ -1,0 +1,22 @@
+<ol>
+<li><p>Write docs</p>
+
+<ul>
+<li>Introduction</li>
+<li>Getting started</li>
+<li>Overview of CoinMesh technology</li>
+<li>Overview of a Data Source</li>
+<li>Overview of an Adapter</li>
+<li>Overview of a Logic Service</li>
+<li>Overview of a Client Application</li>
+<li>Contributing</li>
+<li>How to create an Adapter</li>
+<li>How to create a Logic Service</li>
+<li>How to create a client application plugin</li>
+</ul></li>
+<li><p>Publish docs on site</p>
+
+<ul>
+<li>docs.coinmesh.com</li>
+</ul></li>
+</ol>
