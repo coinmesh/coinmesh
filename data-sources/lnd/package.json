@@ -1,0 +1,23 @@
+{
+  "name": "@coinmesh/lnd",
+  "version": "1.0.0",
+  "description": "A data-source for LND for CoinMesh",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coinmesh/coinmesh.git"
+  },
+  "keywords": [
+    "coinmesh",
+    "lnd"
+  ],
+  "author": "Patrick Walters",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coinmesh/coinmesh/issues"
+  },
+  "homepage": "https://github.com/coinmesh/coinmesh#readme"
+}

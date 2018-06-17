@@ -1,5 +1,6 @@
 {
   "name": "@coinmesh/litecoind",
+  "version": "0.0.1",
   "description": "testing litecoind",
   "coinmesh": {
     "type": "data-source",
@@ -21,5 +22,23 @@
         "zmqpubrawtx": "tcp://127.0.0.1:28332"
       }
     }
-  }
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coinmesh/coinmesh.git"
+  },
+  "keywords": [
+    "coinmesh",
+    "litecoind"
+  ],
+  "author": "Patrick Walters",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coinmesh/coinmesh/issues"
+  },
+  "homepage": "https://github.com/coinmesh/coinmesh#readme"
 }
