@@ -1,0 +1,1 @@
+module.exports = require("github:HubSpot/tether@1.4.3/js/tether");

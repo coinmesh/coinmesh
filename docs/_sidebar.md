@@ -11,8 +11,4 @@
   * [How to create a Logic Service](creating-logic-service.md)
   * [How to create a client application plugin](creating-client-application.md)
 
-* Customization
-
-  * [Configuration](configuration.md)
-
-* [Changelog](changelog.md)
+* [API Docs](https://coinmesh.com/docs/api-docs)

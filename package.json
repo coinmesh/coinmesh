@@ -13,7 +13,8 @@
     "admin-logic-service": " cd ./logic-services/admin && npm start",
     "generate-docs": "cd ./docs/api-docs && bundle exec middleman build --clean",
     "docs": "cd ./docs/api-docs && bundle exec middleman server",
-    "copy-docs": "cp -R docs/*.md ../coinmesh.com-site/docs/ && cp -R docs/api-docs/build/* ../coinmesh.com-site/docs/api-docs/"
+    "copy-docs": "cp -R docs/*.md ../coinmesh.com-site/docs/ && cp -R docs/api-docs/build/* ../coinmesh.com-site/docs/api-docs/",
+    "recursive-install": "node_modules/.bin/npm-recursive-install"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/blockfuse/coinmesh#readme",
   "dependencies": {
-    "concurrently": "^3.5.1"
+    "concurrently": "^3.5.1",
+    "recursive-install": "^1.3.0"
   }
 }
