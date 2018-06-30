@@ -38,7 +38,10 @@ export class TerminalOutput {
     this.webSocketService.connect();
     this.webSocketService.subscribe(data => {
       if (data && (data.toString() === '0' || data.toString() === '1')) {
-        return this.killProcess();
+        if (!!this.processUuid) {
+          return this.killProcess();
+        }
+        return;
       }
       this.consoleOutput += data;
       this.term.writeln(data);
