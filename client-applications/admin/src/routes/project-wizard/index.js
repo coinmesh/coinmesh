@@ -48,7 +48,6 @@ export class Index {
       viewModel: './components/step-six'
     })
   ];
-
   attached() {
     this.currentStep = this.steps[0];
   }

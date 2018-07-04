@@ -17,6 +17,10 @@ router.post('/npm-link-local', function(req, res, next) {
 router.post('/npm-install', function(req, res, next) {
   let packageJsonPath = req.body.path;
 
+  if (!packageJsonPath) {
+    return res.status(500).send({ error: 'No path specified.' });
+  }
+
   terminalService.npmInstall(packageJsonPath)
     .then(result => {
       return res.json(result);

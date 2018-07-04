@@ -39,6 +39,7 @@ export class TerminalOutput {
     this.webSocketService.subscribe(data => {
       if (data && (data.toString() === '0' || data.toString() === '1')) {
         if (!!this.processUuid) {
+          this.term.writeln('(Process ended)');
           return this.killProcess();
         }
         return;

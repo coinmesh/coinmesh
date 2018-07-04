@@ -19,6 +19,7 @@
     "url": "http://github.com/coinmesh/coinmesh"
   },
   "scripts": {
+    "start": "gulp watch",
     "test": "gulp test",
     "e2e": "gulp serve webdriver-standalone e2e",
     "postinstall": "jspm install && gulp bundle"

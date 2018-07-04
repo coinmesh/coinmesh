@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "concurrently \"npm run client\" \"npm run litecoind-adapter\" \"npm run admin-logic-service\"",
-    "client": "cd ./client-applications/admin && gulp watch",
+    "client": "cd ./client-applications/admin && npm start",
     "litecoind-adapter": "cd ./adapters/litecoind-adapter && npm start",
     "admin-logic-service": " cd ./logic-services/admin && npm start",
     "generate-docs": "cd ./docs/api-docs && bundle exec middleman build --clean",
