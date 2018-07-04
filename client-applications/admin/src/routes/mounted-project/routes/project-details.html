@@ -11,4 +11,12 @@
     can-npm-test.bind="true"
     project-root.bind="projectStore.currentProject.path">
   </terminal-output>
+
+  <button class="btn btn-success" click.delegate="buildProject()">
+    Build project containers
+  </button>
+
+  <button class="btn btn-success" click.delegate="startProject()">
+    Start project containers
+  </button>
 </template>

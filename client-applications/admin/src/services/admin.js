@@ -2,11 +2,13 @@ import {HttpWrapper} from './http-wrapper';
 import {Directory} from '../models/directory';
 import {Project} from '../models/project';
 import {ConfFile} from '../models/conf-file';
+import {ProjectStore} from 'services/project-store';
 
 export class AdminService {
-  static inject = [HttpWrapper];
-  constructor(http) {
+  static inject = [HttpWrapper, ProjectStore];
+  constructor(http, projectStore) {
     this.http = http;
+    this.projectStore = projectStore;
   }
 
   getDirectoryContents(path) {
@@ -91,18 +93,38 @@ export class AdminService {
 
     return this.http.delete(url);
   }
-  dockerRun(projectJsonPath) {
-    return this.dockerCommand('run', projectJsonPath);
+  dockerRun(projectJsonPath, flags) {
+    return this.dockerCommand('run', flags, projectJsonPath);
   }
-  dockerBuild(projectJsonPath) {
-    return this.dockerCommand('build', projectJsonPath);
+  dockerBuild(projectJsonPath, flags) {
+    return this.dockerCommand('build', flags, projectJsonPath);
   }
-  dockerCommand(command, projectJsonPath) {
+  dockerCommand(command, flags = [], projectJsonPath) {
     let url = `http://localhost:3002/v0/docker/${command}`;
-    let body = { path: projectJsonPath };
+    let body = {
+      path: projectJsonPath,
+      flags
+    };
 
     return this.http.post(url, body).then(response => {
       return response.content;
     });
+  }
+
+  loadProjectByNameAndType(name, type) {
+    let loadedProject;
+    if (name && this.projectStore.currentProject) {
+      let match = this.projectStore.currentProject[type].find(project => {
+        return project.name === name;
+      });
+      let path = match.path;
+
+      let packageJsonPath = `${path}/package.json`;
+      return this.loadProject(packageJsonPath).then(result => {
+        loadedProject = result;
+        loadedProject.path = path;
+        return loadedProject;
+      });
+    }
   }
 }

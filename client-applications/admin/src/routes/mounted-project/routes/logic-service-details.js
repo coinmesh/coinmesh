@@ -16,17 +16,8 @@ export class LogicServiceDetails {
     let logicServiceName = params.name;
 
     if (logicServiceName && this.projectStore.currentProject) {
-      let match = this.projectStore.currentProject.logicServices.find(logicService => {
-        return logicService.name === logicServiceName;
-      });
-      this.logicService = match;
-      let path = this.logicService.path;
-
-      let packageJsonPath = `${path}/package.json`;
-
-      return this.adminService.loadProject(packageJsonPath).then(result => {
+      return this.adminService.loadProjectByNameAndType(logicServiceName, 'logicServices').then(result => {
         this.logicService = result;
-        this.logicService.path = path;
       });
     }
   }

@@ -94,7 +94,6 @@ export class TerminalOutput {
       this.commandRunning = true;
     });
   }
-
   killProcess() {
     return this.adminService.killProcess(this.processUuid).then(result => {
       this.commandRunning = false;

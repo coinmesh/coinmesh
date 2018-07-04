@@ -18,6 +18,7 @@ router.post('/run', function(req, res, next) {
 router.post('/build', function(req, res, next) {
   let packageJsonPath = req.body.path;
   let flags = req.body.flags;
+
   dockerService.dockerBuild(packageJsonPath, flags)
     .then(result => {
       return res.json(result);

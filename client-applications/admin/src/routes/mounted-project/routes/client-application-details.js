@@ -16,17 +16,8 @@ export class ClientApplicationDetails {
     let clientApplicationName = params.name;
 
     if (clientApplicationName && this.projectStore.currentProject) {
-      let match = this.projectStore.currentProject.clientApplications.find(clientApplication => {
-        return clientApplication.name === clientApplicationName;
-      });
-      this.clientApplication = match;
-      let path = this.clientApplication.path;
-
-      let packageJsonPath = `${path}/package.json`;
-
-      return this.adminService.loadProject(packageJsonPath).then(result => {
+      return this.adminService.loadProjectByNameAndType(clientApplicationName, 'clientApplications').then(result => {
         this.clientApplication = result;
-        this.clientApplication.path = path;
       });
     }
   }

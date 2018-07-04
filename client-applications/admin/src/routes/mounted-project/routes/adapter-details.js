@@ -16,17 +16,8 @@ export class AdapterDetails {
     let adapterName = params.name;
 
     if (adapterName && this.projectStore.currentProject) {
-      let match = this.projectStore.currentProject.adapters.find(adapter => {
-        return adapter.name === adapterName;
-      });
-      this.adapter = match;
-      let path = this.adapter.path;
-
-      let packageJsonPath = `${path}/package.json`;
-
-      return this.adminService.loadProject(packageJsonPath).then(result => {
+      return this.adminService.loadProjectByNameAndType(adapterName, 'adapters').then(result => {
         this.adapter = result;
-        this.adapter.path = path;
       });
     }
   }
