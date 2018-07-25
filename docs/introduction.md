@@ -24,6 +24,6 @@ The necessary infrastructure to support a vibrant and robust Litecoin and Bitcoi
 + Payment processors make business logic and fiat sweeps (most of the times) readily available for merchants to accept cryptopayments.
 + Custodial solutions offer security to institutional investors for securely storing large amounts of cryptocurrency. The payoff of this is the removal of the social stigma surrounding cryptocurrency and making it available to different types of investors.
 
-All of these initiatives have been paramount to the success of Litecoin and Bitcoin and will become the architecture that will support the wave of coming applications for these two networks.  If these three services are like the trunk of a tree, then the applications are its branches.
+All of these initiatives have been paramount to the success of Litecoin and Bitcoin and will become the architecture that will support the wave of coming applications.  If these three services are like the trunk of a tree, then the applications are its branches.
 
 Therefore, the time to empower application developers with the necessary tools is now. BlockFuse will be at the forefront of this. Let’s work together to build, increase, and sustain an ecosystem that brings utility on top of a censorship resistant future.
