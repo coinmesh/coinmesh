@@ -5,7 +5,7 @@ Hi.  Welcome to BlockFuse.  We make Litecoin and Bitcoin app development easy.
 
 Application development on top of Litecoin and Bitcoin is notoriously difficult. The amount of protocol level knowledge needed in order to effectively leverage a blockchain client is daunting. Even the documentation for building a blockchain client can be sparse and confusing. This unfortunately becomes a point of frustration for developers which then discourages many from continuing in this industry.
 
-It’s time that we focused on making this process easier. This is the heart behind BlockFuse, a blockchain focused software service startup, and why we created CoinMesh. By providing a platform that automates blockchain nodes and makes it accessible for developers to build their projects on, we hope to open the floodgates of app development to match the exponential growth that LTC and BTC have experienced over this past year.
+It’s time that we focused on making this process easier. This is the heart behind BlockFuse, a blockchain focused software service startup, and why we created CoinMesh. By providing a platform that automates blockchain nodes and makes it accessible for developers to build their projects on, we hope to open the floodgates of app development to match the exponential growth that LTC and BTC have experienced over these past few years.
 
 ## CoinMesh: The Startup Kit for Litecoin and Bitcoin App Development
 
