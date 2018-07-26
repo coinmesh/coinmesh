@@ -1,19 +1,15 @@
-const AddressesService = require('../../../services/address');
-const fileSystemService = require('@coinmesh/file-system-adapter').fileSystemService;
+const AddressesService = require('../../../services/addresses');
 
 describe('AddressesService', () => {
-  let addressService;
+  let addressesService;
 
   beforeEach(() => {
-    addressService = new AddressesService();
+    addressesService = new AddressesService();
   });
 
-  describe('createDirectory()', () => {
+  describe('listReceivedByAddress()', () => {
     it('calls the fileSystemService to create a new address', (done) => {
-      spyOn(fileSystemService, 'createDirectory').and.returnValue(Promise.resolve());
-
-      addressService.createDirectory('/testing/path').then(result => {
-        expect(fileSystemService.createDirectory).toHaveBeenCalled();
+      addressesService.listReceivedByAddress().then(result => {
         done();
       });
     });
@@ -21,26 +17,10 @@ describe('AddressesService', () => {
 
   describe('getDirectoryContents()', () => {
     it('returns an object which resembles a file or address', (done) => {
-      const testDirPath = 'spec/tmp/test-dir';
-      const testFileName = 'test.txt';
-      const testDirName = 'test';
-
-      fileSystemService.createDirectory(testDirPath);
-      fileSystemService.createEmptyFile(`${testDirPath}/${testFileName}`);
-      fileSystemService.createDirectory(`${testDirPath}/${testDirName}`);
-
-      addressService.getDirectoryContents(testDirPath).then(result => {
+      addressesService.getDirectoryContents(testDirPath).then(result => {
         expect(result);
         done();
       });
-    });
-  });
-
-  describe('checkFileExists()', () => {
-    it('calls through to the file system service', () => {
-      spyOn(fileSystemService, 'checkFileExists');
-      addressService.checkFileExists('/test/');
-      expect(fileSystemService.checkFileExists).toHaveBeenCalled();
     });
   });
 });

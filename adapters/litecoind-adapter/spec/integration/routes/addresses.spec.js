@@ -1,6 +1,6 @@
 const app = require('../../../app');
 const request = require('supertest');
-const fileSystemService = require('@coinmesh/file-system-adapter').fileSystemService;
+const addressesService = require('../../../index');
 
 describe('Addresses', () => {
   let currencyCode;
@@ -9,17 +9,19 @@ describe('Addresses', () => {
     currencyCode = 'ltcusd'
   });
 
-  describe('/v0/listaddresses', () => {
+  describe('/v0/addresses/listaddresses', () => {
     it('responds', (done) => {
-      let url = `/v0/directory/`;
-      spyOn(fileSystemService, 'createDirectory').and.returnValue(Promise.resolve(true));
+      let url = `/v0/addresses/listaddresses/`;
+      console.log('-'.repeat(100))
+      console.log(new addressesService())
+      spyOn(addressesService, 'listReceivedByAddress').and.returnValue(Promise.resolve(true));
 
       request(app)
         .post(url)
           .send({ path: '/testing' })
           .expect(200)
           .end(function(err, res) {
-            expect(fileSystemService.createDirectory).toHaveBeenCalled();
+            expect(addressesService.listReceivedByAddress).toHaveBeenCalled();
             if (err) throw err;
             done();
           });

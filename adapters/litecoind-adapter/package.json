@@ -14,7 +14,8 @@
     "url": "http://github.com/coinmesh"
   },
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "nodemon --exec 'jasmine'"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -23,9 +24,11 @@
     "cors": "^2.8.4",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "jasmine": "^3.1.0",
     "morgan": "~1.9.0",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "supertest": "^3.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.17.2"

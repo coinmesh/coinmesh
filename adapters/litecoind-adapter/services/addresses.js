@@ -1,37 +1,37 @@
 const { JsonRpcRequest, jsonRpcClient } = require('../services/json-rpc');
 
-let addressesService = {};
+class AddressesService {
+  listReceivedByAddress(minConfirmations = 0, includeEmpty = true, includeWatchOnly = false) {
+    let request = {
+      method: 'listreceivedbyaddress',
+      params: [
+        minConfirmations, includeEmpty, includeWatchOnly
+      ],
+      id: 'listreceivedbyaddress'
+    };
 
-addressesService.listReceivedByAddress = (minConfirmations = 0, includeEmpty = true, includeWatchOnly = false) => {
-  let request = {
-    method: 'listreceivedbyaddress',
-    params: [
-      minConfirmations, includeEmpty, includeWatchOnly
-    ],
-    id: 'listreceivedbyaddress'
-  };
+    return jsonRpcClient.post(request);
+  }
 
-  return jsonRpcClient.post(request);
-};
+  getNewAddress(accountName = '') {
+    let request = {
+      method: 'getnewaddress',
+      params: [accountName],
+      id: 'getnewaddress'
+    };
 
-addressesService.getNewAddress = (accountName = '') => {
-  let request = {
-    method: 'getnewaddress',
-    params: [accountName],
-    id: 'getnewaddress'
-  };
+    return jsonRpcClient.post(request);
+  }
 
-  return jsonRpcClient.post(request);
-};
+  sendToAddress(targetAddress, amount) {
+    let request = {
+      method: 'sendtoaddress',
+      params: [targetAddress, amount],
+      id: 'sendtoaddress'
+    };
 
-addressesService.sendToAddress = (targetAddress, amount) => {
-  let request = {
-    method: 'sendtoaddress',
-    params: [targetAddress, amount],
-    id: 'sendtoaddress'
-  };
+    return jsonRpcClient.post(request);
+  }
+}
 
-  return jsonRpcClient.post(request);
-};
-
-module.exports = addressesService;
+module.exports = AddressesService;
