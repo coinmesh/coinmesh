@@ -9,6 +9,10 @@ $ npm install jspm -g
 
 This is for the build tooling in the client application currently.  We plan  to simplify that process.
 
-Pull down this repository.  Run `npm run recursive-install` in the main directory to install all of the npm packages in all child directories.
+Pull down this repository.
 
-Next, you can run the app locally with `npm start` in the root directory.
+```
+$ git clone https://github.com/blockfuse/coinmesh.git
+```
+
+Next, you can run the app locally with `npm start` in the root directory.  This installs all of the required npm packages in all child directories.
