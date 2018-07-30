@@ -1,6 +1,6 @@
 {
   "name": "@coinmesh/file-system-adapter",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "start": "nodemon ./bin/www",
     "test": "nodemon --exec 'jasmine'"
