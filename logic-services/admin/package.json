@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "npm install && nodemon ./bin/www",
     "test": "nodemon --exec 'jasmine'",
     "link-local": "npm link @coinmesh/file-system-adapter; npm link @coinmesh/package-json-adapter; npm link @coinmesh/terminal-adapter"
   },
