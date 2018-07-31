@@ -22,7 +22,7 @@
     "start": "npm install && gulp watch",
     "test": "gulp test",
     "e2e": "gulp serve webdriver-standalone e2e",
-    "postinstall": "jspm install && gulp bundle"
+    "postinstall": "jspm install"
   },
   "jspm": {
     "dependencies": {
