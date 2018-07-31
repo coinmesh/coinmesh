@@ -12,8 +12,6 @@ describe('Addresses', () => {
   describe('/v0/addresses/listaddresses', () => {
     it('responds', (done) => {
       let url = `/v0/addresses/listaddresses/`;
-      console.log('-'.repeat(100))
-      console.log(new addressesService())
       spyOn(addressesService, 'listReceivedByAddress').and.returnValue(Promise.resolve(true));
 
       request(app)

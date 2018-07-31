@@ -21,7 +21,6 @@ class TerminalService {
     path = homedirUtils.stripPackageJson(path);
 
     return commandsService.issueStreamedCommand(command, flags, path).then(child => {
-      console.log('-')
       let uuid = webSocketService.subscribe(child);
       return uuid;
     });
