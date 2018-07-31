@@ -1,0 +1,29 @@
+{
+  "name": "@coinmesh/lnd-adapter",
+  "version": "0.0.1",
+  "description": "An adaper for LND using ln-service",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coinmesh/coinmesh.git"
+  },
+  "keywords": [
+    "coinmesh",
+    "lnd",
+    "ln-service",
+    "litecoin",
+    "bitcoin"
+  ],
+  "author": "Patrick Walters <patrick.walters@blockfuse.io> (http://blockfuse.io/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coinmesh/coinmesh/issues"
+  },
+  "homepage": "https://github.com/coinmesh/coinmesh#readme",
+  "dependencies": {
+    "ln-service": "^8.1.0"
+  }
+}
