@@ -16,6 +16,8 @@ class WebSocketService {
     process.kill();
   }
   subscribe(child) {
+    console.log('-'.repeat(100))
+    console.log(child)
     child.stdout.on('data', data => {
       this.wss.clients.forEach(client => {
         client.send(data.toString());

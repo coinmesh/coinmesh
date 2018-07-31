@@ -7,9 +7,9 @@
     "link-local": "npm link @coinmesh/file-system-adapter; npm link @coinmesh/package-json-adapter; npm link @coinmesh/terminal-adapter"
   },
   "dependencies": {
-    "@coinmesh/file-system-adapter": "^0.0.4",
-    "@coinmesh/package-json-adapter": "^0.0.4",
-    "@coinmesh/terminal-adapter": "^0.0.1",
+    "@coinmesh/file-system-adapter": "^0.1.0",
+    "@coinmesh/package-json-adapter": "^0.1.0",
+    "@coinmesh/terminal-adapter": "^0.1.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
