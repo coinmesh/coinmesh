@@ -7,8 +7,8 @@
     "link-local": "npm link @coinmesh/file-system-adapter; npm link @coinmesh/package-json-adapter; npm link @coinmesh/terminal-adapter"
   },
   "dependencies": {
-    "@coinmesh/file-system-adapter": "0.0.1",
-    "@coinmesh/package-json-adapter": "^0.0.1",
+    "@coinmesh/file-system-adapter": "^0.0.4",
+    "@coinmesh/package-json-adapter": "^0.0.4",
     "@coinmesh/terminal-adapter": "^0.0.1",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
@@ -17,15 +17,15 @@
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "morgan": "~1.9.0",
-    "request": "^2.86.0",
+    "request": "^2.87.0",
     "request-promise": "^4.2.2",
-    "uuid": "^3.2.1",
-    "ws": "^5.1.1"
+    "uuid": "^3.3.2",
+    "ws": "^5.2.2"
   },
   "devDependencies": {
     "fs-extra": "^6.0.1",
     "jasmine": "^3.1.0",
-    "nodemon": "^1.17.4",
+    "nodemon": "^1.18.3",
     "supertest": "^3.1.0"
   },
   "main": "index.js",
