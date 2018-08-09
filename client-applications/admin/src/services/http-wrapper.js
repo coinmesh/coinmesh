@@ -10,7 +10,7 @@ export class HttpWrapper {
 
     this.http = new HttpClient()
       .configure(x => {
-        x.withBaseUrl(`http://localhost:3000/v0/`);
+        x.withBaseUrl(`http://localhost:3005/v0/`);
         x.withHeader('Authorization', `Basic ${token}`);
       });
   }
