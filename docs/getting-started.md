@@ -12,7 +12,7 @@ This is for the build tooling in the client application currently.  We plan  to 
 Pull down this repository.
 
 ```
-$ git clone https://github.com/blockfuse/coinmesh.git
+$ git clone https://github.com/coinmesh/coinmesh.git
 ```
 
 Next, you can run the app locally with `npm start` in the root directory.  This installs all of the required npm packages in all child directories.
