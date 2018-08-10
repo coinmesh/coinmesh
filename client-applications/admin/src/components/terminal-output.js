@@ -11,6 +11,7 @@ export class TerminalOutput {
   @bindable canNpmTest = false;
   @bindable canDockerRun = false;
   @bindable canDockerBuild = false;
+  @bindable canDockerCompose = false;
 
   @bindable projectRoot = '';
   @bindable processUuid;
@@ -31,7 +32,8 @@ export class TerminalOutput {
       return;
     }
     this.term = new Terminal({
-      cursorBlink: true
+      cursorBlink: true,
+      cols: 400
     });
     this.term.open(this.terminal);
 
@@ -90,6 +92,13 @@ export class TerminalOutput {
   dockerBuild() {
     let path = this.projectRoot;
     return this.adminService.dockerBuild(path).then(uuid => {
+      this.processUuid = uuid;
+      this.commandRunning = true;
+    });
+  }
+  dockerCompose() {
+    let path = this.projectRoot;
+    return this.adminService.dockerCompose(path).then(uuid => {
       this.processUuid = uuid;
       this.commandRunning = true;
     });

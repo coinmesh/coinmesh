@@ -17,7 +17,7 @@ class DockerService {
   }
   dockerCompose(path, flags = []) {
     let command = 'docker-compose';
-    let allFlags = ['run', ...flags];
+    let allFlags = ['up', ...flags];
 
     path = homedirUtils.getPathFromHomeDir(path);
     path = homedirUtils.stripPackageJson(path);

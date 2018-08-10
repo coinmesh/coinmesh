@@ -6,17 +6,7 @@
 
   <terminal-output
     can-npm-start.bind="true"
-    can-npm-install.bind="true"
-    can-npm-link-local.bind="true"
-    can-npm-test.bind="true"
+    can-docker-compose.bind="true"
     project-root.bind="projectStore.currentProject.path">
   </terminal-output>
-
-  <button class="btn btn-success" click.delegate="buildProject()">
-    Build project containers
-  </button>
-
-  <button class="btn btn-success" click.delegate="startProject()">
-    Start project containers
-  </button>
 </template>

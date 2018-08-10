@@ -99,6 +99,9 @@ export class AdminService {
   dockerBuild(projectJsonPath, flags) {
     return this.dockerCommand('build', flags, projectJsonPath);
   }
+  dockerCompose(projectJsonPath, flags) {
+    return this.dockerCommand('compose', flags, projectJsonPath);
+  }
   dockerCommand(command, flags = [], projectJsonPath) {
     let url = `http://localhost:3002/v0/docker/${command}`;
     let body = {

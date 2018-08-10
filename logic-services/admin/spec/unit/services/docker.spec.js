@@ -40,7 +40,7 @@ describe('DockerService', () => {
 
   describe('dockerCompose()', () => {
     it('calls the commandsService to docker compose with the given flags', (done) => {
-      const expectedFlags = ['run'];
+      const expectedFlags = ['up'];
 
       spyOn(commandsService, 'issueStreamedCommand')
         .and.returnValue(Promise.resolve(mockSpawn));

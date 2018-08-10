@@ -34,6 +34,9 @@
             <button class="btn btn-primary" type="submit" click.delegate="dockerBuild()" disabled.bind="commandRunning" if.bind="canDockerBuild">
               docker build
             </button>
+            <button class="btn btn-primary" type="submit" click.delegate="dockerCompose()" disabled.bind="commandRunning" if.bind="canDockerCompose">
+              docker compose
+            </button>
             <button class="btn btn-primary" type="submit" click.delegate="killProcess()" disabled.bind="!commandRunning">
               end current process
             </button>
