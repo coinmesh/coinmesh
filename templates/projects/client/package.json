@@ -1,7 +1,7 @@
 {
-  "name": "blockfuse-admin",
+  "name": "coinmesh-aurelia-starter",
   "version": "0.0.1",
-  "description": "An admin panel for managing a BlockFuse stack",
+  "description": "A starter application for building a CoinMesh application in Aurelia.",
   "keywords": [
     "blockfuse",
     "aurelia",

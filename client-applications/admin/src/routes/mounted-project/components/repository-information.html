@@ -4,7 +4,9 @@
   <card-item is-open.bind="true">
     <span slot="header">Repository Information</span>
     <div slot="body" if.bind="repository.url">
-      <a class="btn btn-center btn-primary" href.bind="repository.url">${repository.url}</a>
+      <a class="btn btn-center btn-primary"
+        href.bind="repository.url"
+        target="_blank">${repository.url}</a>
     </div>
   </card-item>
 </template>

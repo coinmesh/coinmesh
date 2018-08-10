@@ -9,7 +9,10 @@
     <div class="col">
       <strong>Choose Data sources</strong>
       <div class="card-columns">
-        <card-item repeat.for="dataSource of dataSources" is-open.bind="true" is-success.bind="dataSource.selected">
+        <card-item repeat.for="dataSource of dataSources"
+            is-open.bind="true"
+            is-success.bind="dataSource.selected"
+            can-toggle.bind="false">
           <span slot="header">${dataSource.name}</span>
           <label>
             <input type="checkbox" checked.bind="dataSource.selected" disabled.bind="!dataSource.enabled" />
