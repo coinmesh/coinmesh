@@ -15,6 +15,18 @@ class DockerService {
       return uuid;
     });
   }
+  dockerCompose(path, flags = []) {
+    let command = 'docker-compose';
+    let allFlags = ['run', ...flags];
+
+    path = homedirUtils.getPathFromHomeDir(path);
+    path = homedirUtils.stripPackageJson(path);
+
+    return commandsService.issueStreamedCommand(command, allFlags, path).then(child => {
+      let uuid = webSocketService.subscribe(child);
+      return uuid;
+    });
+  }
   dockerBuild(path, addlFlags = []) {
     let command = 'docker';
     let flags = ['build', '.'];
