@@ -27,7 +27,7 @@ Once Docker is installed you can run the generated or mounted application by cli
 
 ## How to Generate a New Project
 1. Select "Create a new project".
-1. Select a directory for your projects or create a new one by scrolling to the bottom.
+1. Select a directory for your project by clicking on the circle to the left. You can also create a new one by scrolling to the bottom.
 1. Select the data source for your project.
 1. Select the logic service for your project.  Currently, only HTTP is available.
 1. Next, choose the client application for the end user.  Currently, only an empty Aurelia skeleton is available.
