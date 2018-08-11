@@ -32,8 +32,7 @@ export class TerminalOutput {
       return;
     }
     this.term = new Terminal({
-      cursorBlink: true,
-      cols: 400
+      cursorBlink: true
     });
     this.term.open(this.terminal);
 
