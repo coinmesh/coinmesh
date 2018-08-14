@@ -4,7 +4,7 @@
       "id": "litecoind",
       "endpoint": "local",
       "name": "Litecoind",
-      "description": "Litecoin core software.",
+      "description": "Litecoin is the silver to Bitcoin's gold. It has 2.5 minute blocktimes, it uses the Scrypt mining algorithm, and a limited supply limit of 84 million coins. Transaction fees are also cheaper due to faster block times. you should allow for at least 1 confirmation",
       "adapter": "litecoind-adapter",
       "path": "../../data-sources/litecoind"
     }, {
@@ -12,7 +12,7 @@
       "id": "lnd",
       "endpoint": "local",
       "name": "LND",
-      "description": "Lightning Network Daemon.",
+      "description": "",
       "adapter": "lnd-adapter",
       "path": "../../data-sources/lnd"
     }
