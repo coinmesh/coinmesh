@@ -1,7 +1,7 @@
 # Getting Started
 
-1. [Dependency](https://github.com/coinmesh/coinmesh/blob/master/docs/getting-started.md#Dependency)
-1. [Download and Run CoinMesh](https://github.com/coinmesh/coinmesh/blob/master/docs/getting-started.md#Download-and-run-coinmesh)
+1. [Dependency](https://github.com/coinmesh/coinmesh/blob/master/docs/getting-started.md#dependency)
+1. [Download and Run CoinMesh](https://github.com/coinmesh/coinmesh/blob/master/docs/getting-started.md#download-and-run-coinmesh)
 1. [Create a New Project](https://github.com/coinmesh/coinmesh/blob/master/docs/getting-started.md#create-new-project)
 1. [Mount a Project](https://github.com/coinmesh/coinmesh/blob/master/docs/getting-started.md#mount-a-project)
 
