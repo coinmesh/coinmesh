@@ -18,7 +18,7 @@ This is for the build tooling in the client application currently.  We plan  to 
 
 ## Download and Run Coinmesh
 
-First, clone the coinmesh repo:
+Clone the CoinMesh repo.
 ```
 $ git clone https://github.com/coinmesh/coinmesh.git
 ```
