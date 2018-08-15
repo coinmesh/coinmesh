@@ -7,8 +7,7 @@
 
 ## Dependency
 
-
-+ Install NPM.  You may need to do so with root privileges.
+Install NPM.  You may need to do so with root privileges.
 
 ```
 $ npm install gulp -g
