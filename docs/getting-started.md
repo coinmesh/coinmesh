@@ -76,5 +76,5 @@ The browser will refresh and you should see a the project successfully mounted o
 Open up localhost:9001 on your browser and the Litecoin wallet UI will appear.
 <img width="997" alt="screen shot 2018-08-14 at 9 20 07 am" src="https://user-images.githubusercontent.com/32662508/44132722-3f438a58-a010-11e8-8ac0-22d08884dbc6.png">
 
-From here, you can use text editor or sublime to see how the skeleton of the wallet was built with CoinMesh and even build out the rest of the wallet yourself!
+From here, you can use text editor or sublime to see how the skeleton of the wallet was built with CoinMesh and even fill out the rest of the wallet yourself!
 
