@@ -65,11 +65,11 @@ Open localhost:9000 on a browser to see the following UI.
 
 Next, click on “Mount an existing Project.”  
 
-In the following screen, scroll down to “sample-generated-projects”, click on the circle to the left, scroll back up and click “select file.”
+In the following screen, scroll down to “sample-generated-projects”, click on the circle to the left, scroll back up and choose “select file.”
 
 <img width="999" alt="screen shot 2018-08-14 at 10 15 13 pm" src="https://user-images.githubusercontent.com/32662508/44132599-957facd6-a00f-11e8-90ed-ea924a21b3a8.png">
 
-The browser will refresh and you should see the project successfully mounted on CoinMesh.  Now scroll down and click on “Docker Compose” to compile and run the app.  This will take a few minutes.  You will be able to see activity in the "Output" section of CoinMesh's UI.
+The browser will refresh and you should see the project successfully mounted on CoinMesh.  Now scroll down and click on `Docker Compose` to compile and run the app.  This will take a few minutes.  You will be able to see activity in the "Output" section of CoinMesh's UI.
 <img width="1018" alt="screen shot 2018-08-14 at 10 17 55 pm" src="https://user-images.githubusercontent.com/32662508/44132693-157542de-a010-11e8-8195-e0d03db3831e.png">
 
 
