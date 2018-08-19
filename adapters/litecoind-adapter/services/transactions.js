@@ -1,25 +1,25 @@
 const { JsonRpcRequest, jsonRpcClient } = require('../services/json-rpc');
 
-let transactionsService = {};
+class TransactionsService {
+  getTransactions() {
+    let request = {
+      method: 'listtransactions',
+      params: [],
+      id: 'listtransactions'
+    };
 
-transactionsService.getTransactions = () => {
-  let request = {
-    method: 'gettransactions',
-    params: [],
-    id: 'gettransactions'
-  };
+    return jsonRpcClient.post(request);
+  }
 
-  return jsonRpcClient.post(request);
-};
+  sendToAddress(targetAddress, tokens) {
+    let request = {
+      method: 'sendtoaddress',
+      params: [targetAddress, tokens],
+      id: 'sendtoaddress'
+    };
 
-transactionsService.sendToAddress = (targetAddress, tokens) => {
-  let request = {
-    method: 'sendtoaddress',
-    params: [targetAddress, tokens],
-    id: 'sendtoaddress'
-  };
+    return jsonRpcClient.post(request);
+  }
+}
 
-  return jsonRpcClient.post(request);
-};
-
-module.exports = transactionsService;
+module.exports = TransactionsService;

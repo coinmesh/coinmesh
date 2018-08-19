@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const cryptoService = require('../services/crypto');
+const cryptoService = require('../index').cryptoService;
 
 router.post('/sign', function(req, res, next) {
   let address = req.body.address;
@@ -16,7 +16,7 @@ router.post('/verify', function(req, res, next) {
   let signature = req.body.signature;
   let message = req.body.message;
 
-  cryptoService.verifyMessage(addresss, signature, message).then(result => {
+  cryptoService.verifyMessage(address, signature, message).then(result => {
     res.json(result);
   });
 });

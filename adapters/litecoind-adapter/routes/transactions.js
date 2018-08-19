@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const transactionsService = require('../services/transactions');
+const transactionsService = require('../index').transactionsService;
 
 router.get('/', (req, res, next) => {
   transactionsService.getTransactions().then(result => {

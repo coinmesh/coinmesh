@@ -1,15 +1,21 @@
-const addressesService = require('./services/addresses');
-const blocksService = require('./services/blocks');
-const exchangeRatesService = require('./services/exchange-rates');
-const nodeService = require('./services/node');
-const transactionsService = require('./services/transactions');
-const walletService = require('./services/wallet-info');
+const addressesService = new (require('./services/addresses'));
+const balancesService = new (require('./services/balances'));
+const blocksService = new (require('./services/blocks'));
+const cryptoService = new (require('./services/crypto'));
+const exchangeRatesService = new (require('./services/exchange-rates'));
+const networkInfoService = new (require('./services/network-info'));
+const peersService = new (require('./services/peers'));
+const transactionsService = new (require('./services/transactions'));
+const walletInfoService = new (require('./services/wallet-info'));
 
 module.exports = {
   addressesService,
+  balancesService,
   blocksService,
+  cryptoService,
   exchangeRatesService,
-  nodeService,
+  networkInfoService,
+  peersService,
   transactionsService,
-  walletService
+  walletInfoService
 };

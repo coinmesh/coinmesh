@@ -1,17 +1,15 @@
 const { JsonRpcRequest, jsonRpcClient } = require('../services/json-rpc');
 
-let balancesService = {};
+class BalancesService {
+  getBalance() {
+    let request = {
+      method: 'getbalance',
+      params: [],
+      id: 'getbalance'
+    };
 
-balancesService.getBalance = (account = '*', confirmations, watchOnly) => {
-  let request = {
-    method: 'getbalance',
-    params: [
-      account, confirmations, watchOnly
-    ],
-    id: 'getbalance'
-  };
+    return jsonRpcClient.post(request);
+  }
+}
 
-  return jsonRpcClient.post(request);
-};
-
-module.exports = balancesService;
+module.exports = BalancesService;

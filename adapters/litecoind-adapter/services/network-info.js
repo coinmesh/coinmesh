@@ -1,15 +1,15 @@
 const { JsonRpcRequest, jsonRpcClient } = require('../services/json-rpc');
 
-let networkInfoService = {};
+class NetworkInfoService {
+  getNetworkInfo() {
+    let request = {
+      method: 'getnetworkinfo',
+      params: [],
+      id: 'getnetworkinfo'
+    };
 
-networkInfoService.getNetworkInfo = () => {
-  let request = {
-    method: 'getnetworkinfo',
-    params: [],
-    id: 'getnetworkinfo'
-  };
+    return jsonRpcClient.post(request);
+  }
+}
 
-  return jsonRpcClient.post(request);
-};
-
-module.exports = networkInfoService;
+module.exports = NetworkInfoService;

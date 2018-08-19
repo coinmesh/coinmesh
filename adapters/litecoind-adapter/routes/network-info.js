@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const networkInfoService = require('../services/network-info');
+const networkInfoService = require('../index').networkInfoService;
 
 router.get('/', (req, res, next) => {
   networkInfoService.getNetworkInfo().then(result => {

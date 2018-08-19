@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const walletInfoService = require('../services/wallet-info');
+const walletInfoService = require('../index').walletInfoService;
 
 router.get('/', (req, res, next) => {
   walletInfoService.getWalletInfo().then(result => {

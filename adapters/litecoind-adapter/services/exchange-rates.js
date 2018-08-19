@@ -1,9 +1,9 @@
 const axios = require('axios');
 
-let exchangeRatesService = {};
+class ExchangeRatesService {
+  getExchangeRate(currencyPair) {
+    return axios.get(`https://www.bitstamp.net/api/v2/ticker/${currencyPair}/`);
+  }
+}
 
-exchangeRatesService.getExchangeRate = (currencyPair) => {
-  return axios.get('https://www.bitstamp.net/api/v2/ticker/ltcusd/');
-};
-
-module.exports = exchangeRatesService;
+module.exports = ExchangeRatesService;

@@ -1,15 +1,15 @@
 const { JsonRpcRequest, jsonRpcClient } = require('../services/json-rpc');
 
-let walletInfoService = {};
+class WalletInfoService {
+  getWalletInfo() {
+    let request = {
+      method: 'getwalletinfo',
+      params: [],
+      id: 'getwalletinfo'
+    };
 
-walletInfoService.getWalletInfo = () => {
-  let request = {
-    method: 'getwalletinfo',
-    params: [],
-    id: 'getwalletinfo'
-  };
+    return jsonRpcClient.post(request);
+  }
+}
 
-  return jsonRpcClient.post(request);
-};
-
-module.exports = walletInfoService;
+module.exports = WalletInfoService;

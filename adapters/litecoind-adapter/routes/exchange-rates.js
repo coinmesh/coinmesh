@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const exchangeRatesService = require('../services/exchange-rates');
+const exchangeRatesService = require('../index').exchangeRatesService;
 
 router.get('/:pair/current_rate', function(req, res, next) {
-  let targetAddress = req.params.address;
+  let currencyPair = req.params.pair;
 
   exchangeRatesService.getExchangeRate(currencyPair).then(result => {
     return res.json(result.data);
