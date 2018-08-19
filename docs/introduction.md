@@ -10,7 +10,9 @@ It’s time that we focused on making this process easier. This is the heart beh
 
 ## CoinMesh: The Startup Kit for Litecoin and Bitcoin App Development
 
-CoinMesh is a n-tier platform that provides the architecture for developers to create flexible and reusable applications. By automating the blockchain node, we also make it accessible through an adapter layer.  As a developer, you can go straight to building out the foundations of your project in a mere matter of minutes. No more hours of trouble-shooting in the dark.  No more scouring community dicussion boards for answers.  CoinMesh will set an industry standard while simultaneously alleviating the "Talent Crunch" we currently face in this emerging field of technology.  However, it is currently in alpha and isn't production ready. 
+CoinMesh is a n-tier platform that provides the architecture for developers to create flexible and reusable applications. By automating the blockchain node, we also make it accessible through an adapter layer.  As a developer, you can go straight to building out the foundations of your project in a mere matter of minutes. No more hours of trouble-shooting in the dark.  No more scouring community dicussion boards for answers.  CoinMesh will set an industry standard while simultaneously alleviating the "Talent Crunch" we currently face in this emerging field of technology.
+
+Currently CoinMesh is at an Alpha release and is not intended to use in Production.
 
 ## Additional Key Features of CoinMesh
 
