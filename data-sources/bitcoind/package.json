@@ -1,17 +1,17 @@
 {
-  "name": "@coinmesh/litecoind",
+  "name": "@coinmesh/bitcoind",
   "version": "0.0.1",
-  "description": "Litecoind data source for CoinMesh.",
+  "description": "Bitcoind Data Source for CoinMesh.",
   "coinmesh": {
     "type": "data-source",
-    "confFilePath": "litecoin.conf",
+    "confFilePath": "bitcoin.conf",
     "adapters": {
-      "litecoind-adapter": "adapters/litecoind-adapter"
+      "bitcoind-adapter": "adapters/bitcoind-adapter"
     },
     "network": "regtest",
     "runHttp": true,
     "conf": {
-      "litecoin": {
+      "bitcoin": {
         "regtest": "1",
         "server": "1",
         "rpcuser": "rpcuser",
@@ -32,7 +32,7 @@
   },
   "keywords": [
     "coinmesh",
-    "litecoind"
+    "bitcoind"
   ],
   "author": "Patrick Walters",
   "license": "ISC",

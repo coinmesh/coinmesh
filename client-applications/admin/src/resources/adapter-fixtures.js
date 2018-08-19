@@ -17,7 +17,7 @@ export class AdapterFixtures {
       path: '../../adapters/bitcoind-adapter'
     }),
     new Adapter({
-      enabled: true,
+      enabled: false,
       id: 'ln-service',
       name: 'LND Service',
       description: 'Lightning Network Daemon service.',

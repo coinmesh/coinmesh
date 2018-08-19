@@ -1,0 +1,37 @@
+{
+  "name": "@coinmesh/bitcoind-adapter",
+  "version": "0.0.2",
+  "keywords": [
+    "coinmesh",
+    "bitcoind",
+    "admin"
+  ],
+  "homepage": "http://coinmesh.com",
+  "license": "CC0-1.0",
+  "author": "Patrick Walters <patrick.walters@blockfuse.io> (http://blockfuse.io/)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/coinmesh"
+  },
+  "scripts": {
+    "start": "npm install && nodemon ./bin/www",
+    "test": "nodemon --exec 'jasmine'"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "jasmine": "^3.1.0",
+    "morgan": "~1.9.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "supertest": "^3.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  },
+  "main": "index.js"
+}
