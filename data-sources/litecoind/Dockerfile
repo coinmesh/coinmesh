@@ -37,12 +37,15 @@ RUN curl -O https://download.litecoin.org/litecoin-${LITECOIN_VERSION}/linux/lit
   && tar --strip=2 -xzf *.tar.gz -C /usr/local/bin \
   && rm *.tar.gz
 
-COPY docker-entrypoint.sh /entrypoint.sh
+RUN mkdir -p /home/litecoin/.litecoin
+
+RUN chown -R litecoin /home/litecoin/.litecoin
 
 VOLUME ["/home/litecoin/.litecoin"]
 
-EXPOSE 9332 9333 19332 19333 19444
+USER "litecoin"
 
-ENTRYPOINT ["/entrypoint.sh"]
+EXPOSE 9332 9333 19332 19333 19444 19443
 
 CMD ["litecoind"]
+
