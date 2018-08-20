@@ -23,10 +23,12 @@ class ProjectService {
     return pjWriteService.save(`${path}/package.json`, packageJson);
   }
   editProjectProperty(projectPath, prop, newValue) {
-    return pjReadService.getConfiguration(projectPath).then(packageJson => {
+    let path = homedirUtils.getPathFromHomeDir(projectPath);
+
+    return pjReadService.getConfiguration(path).then(packageJson => {
       return this.setValue(packageJson, prop, newValue);
     }).then(newPackageJson => {
-      return pjWriteService.save(`${projectPath}/package.json`, newPackageJson);
+      return pjWriteService.save(`${path}/package.json`, newPackageJson);
     });
   }
   addScript(projectPath, packageName, type) {
@@ -43,6 +45,7 @@ class ProjectService {
   }
   getProject(projectPath) {
     let path = homedirUtils.getPathFromHomeDir(projectPath);
+
     return pjReadService.getConfiguration(path);
   }
   setValue(packageJson, path, value) {
@@ -50,6 +53,7 @@ class ProjectService {
   }
   checkConfFileExists(packageJsonPath) {
     let path = homedirUtils.getPathFromHomeDir(packageJsonPath);
+
     return pjReadService.getConfigItemByPath(path, 'coinmesh.confFilePath').then(result => {
       let confFilePath = `${path}/${result}`;
       return directoryService.checkFileExists(confFilePath);
@@ -57,20 +61,24 @@ class ProjectService {
   }
   readConfFile(packageJsonPath) {
     let confFilePath = '';
-    return pjReadService.getConfigItemByPath(packageJsonPath, 'coinmesh.confFilePath')
+    let path = homedirUtils.getPathFromHomeDir(packageJsonPath);
+
+    return pjReadService.getConfigItemByPath(path, 'coinmesh.confFilePath')
       .then(result => {
-        confFilePath = `${packageJsonPath}/${result}`;
+        confFilePath = `${path}/${result}`;
 
         return confFileService.readConfFile(confFilePath);
       });
   }
   createConfFile(packageJsonPath) {
     let confFilePath = '';
-    return pjReadService.getConfigItemByPath(packageJsonPath, 'coinmesh.confFilePath')
-      .then(result => {
-        confFilePath = `${packageJsonPath}/${result}`;
+    let path = homedirUtils.getPathFromHomeDir(packageJsonPath);
 
-        return pjReadService.getConfigItemByPath(packageJsonPath, 'coinmesh.conf.litecoin');
+    return pjReadService.getConfigItemByPath(path, 'coinmesh.confFilePath')
+      .then(result => {
+        confFilePath = `${path}/${result}`;
+
+        return pjReadService.getConfigItemByPath(path, 'coinmesh.conf.litecoin');
       }).then(jsonResult => {
         return confFileService.writeJsonAsConfFile(confFilePath, jsonResult);
       });

@@ -13,6 +13,8 @@ export class AdminService {
 
   getDirectoryContents(path) {
     let url = `http://localhost:3002/v0/directory/contents`;
+    path = this.fixRelativePath(path);
+
     let body = { path };
 
     return this.http.post(url, body).then(result => {
@@ -24,6 +26,8 @@ export class AdminService {
   }
   createDirectory(path) {
     let url = `http://localhost:3002/v0/directory`;
+    path = this.fixRelativePath(path);
+
     return this.http.post(url, { path });
   }
   checkConfFileExists(path) {
@@ -36,6 +40,8 @@ export class AdminService {
   }
   readConfFile(path) {
     let url = `http://localhost:3002/v0/project/read-conf-file`;
+    path = this.fixRelativePath(path);
+
     return this.http.post(url, { path }).then(response => {
       let confFileData = {
         pathToProject: path,
@@ -46,6 +52,8 @@ export class AdminService {
   }
   createConfFile(path) {
     let url = `http://localhost:3002/v0/project/create-conf-file`;
+    path = this.fixRelativePath(path);
+
     return this.http.post(url, { path }).then(response => {
       return response.content;
     });
@@ -56,38 +64,50 @@ export class AdminService {
   }
   updatePackageJson(project, propName, newValue) {
     let url = `http://localhost:3002/v0/project/`;
+    let path = this.fixRelativePath(project.path);
+
     let body = {
-      projectPath: project.path,
+      projectPath: path,
       propertyPath: propName,
       value: newValue
     }
     return this.http.patch(url, body);
   }
-  loadProject(projectJsonPath, className = Project) {
+  loadProject(path, className = Project) {
     let url = `http://localhost:3002/v0/project/load`;
-    projectJsonPath = this.fixRelativePath(projectJsonPath);
+    path = this.fixRelativePath(path);
 
-    let body = { path: projectJsonPath };
+    let body = { path: path };
 
     return this.http.post(url, body).then(result => {
       return new className(result.content);
     });
   }
   npmInstall(projectJsonPath) {
-    return this.npmCommand('npm-install', projectJsonPath);
+    let path = this.fixRelativePath(projectJsonPath);
+
+    return this.npmCommand('npm-install', path);
   }
   npmLinkLocal(projectJsonPath) {
-    return this.npmCommand('npm-link-local', projectJsonPath);
+    let path = this.fixRelativePath(projectJsonPath);
+
+    return this.npmCommand('npm-link-local', path);
   }
   npmStart(projectJsonPath) {
-    return this.npmCommand('npm-start', projectJsonPath);
+    let path = this.fixRelativePath(projectJsonPath);
+
+    return this.npmCommand('npm-start', path);
   }
   npmTest(projectJsonPath) {
-    return this.npmCommand('npm-test', projectJsonPath);
+    let path = this.fixRelativePath(projectJsonPath);
+
+    return this.npmCommand('npm-test', path);
   }
   npmCommand(command, projectJsonPath) {
     let url = `http://localhost:3002/v0/terminal/${command}`;
-    let body = { path: projectJsonPath };
+    let path = this.fixRelativePath(projectJsonPath);
+
+    let body = { path };
 
     return this.http.post(url, body).then(response => {
       return response.content;
@@ -99,6 +119,7 @@ export class AdminService {
     return this.http.delete(url);
   }
   dockerRun(projectJsonPath, flags) {
+
     return this.dockerCommand('run', flags, projectJsonPath);
   }
   dockerBuild(projectJsonPath, flags) {
@@ -108,9 +129,10 @@ export class AdminService {
     return this.dockerCommand('compose', flags, projectJsonPath);
   }
   dockerCommand(command, flags = [], projectJsonPath) {
+    let path = this.fixRelativePath(projectJsonPath);
     let url = `http://localhost:3002/v0/docker/${command}`;
     let body = {
-      path: projectJsonPath,
+      path,
       flags
     };
 
