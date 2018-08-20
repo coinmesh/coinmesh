@@ -4,17 +4,16 @@
       "id": "litecoind",
       "endpoint": "local",
       "name": "Litecoind",
-      "description": "Litecoin is the silver to Bitcoin's gold. It has 2.5 minute blocktimes, uses Scrypt as its mining algorithm, and has a supply limit of 84 million coins. Transaction fees are typically cheaper than BTC's due to faster blocktimes. You should allow for at least 1 confirmation",
+      "description": "Litecoin is the silver to Bitcoin's gold. It has 2.5 minute blocktimes, uses Scrypt as it's mining algorithm, and has a supply limit of 84 million coins. Transaction fees are typically cheaper than BTC's due to faster blocktimes. You should allow for at least 1 confirmation",
       "adapter": "litecoind-adapter",
       "path": "../../data-sources/litecoind"
     }, {
-
-      "id": "lnd",
+      "id": "bitcoind",
       "endpoint": "local",
-      "name": "LND",
-      "description": "",
-      "adapter": "lnd-adapter",
-      "path": "../../data-sources/lnd"
+      "name": "Bitcoind",
+      "description": "The golden standard of cryptocurrency. It has 10 minute blocktimes, uses SHA-256 as it's mining algorithm, and a supply limit of 21 million. When accepting payments, allow for at least 1 confirmation.",
+      "adapter": "bitcoind-adapter",
+      "path": "../../data-sources/bitcoind"
     }
   ]
 }
