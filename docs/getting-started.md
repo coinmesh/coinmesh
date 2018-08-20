@@ -62,7 +62,7 @@ From here, you can use text editor or sublime to start building out your project
 
 One of the great things about CoinMesh is that developers can easily share apps with one another to use by mounting it on CoinMesh.  Most of the libraries BlockFuse will provide will use docker.
 
-Let's use our "sample-generated-project" as an example of how to mount an app with CoinMesh.  It is a wallet skeleton for Litecoin.  Make sure Docker is running before you continue.
+Let's use our "sample-generated-project" as an example of how to mount an app with CoinMesh.  It is a wallet skeleton for both Litecoin and Bitcoin.  Make sure Docker is running before you continue.
 
 ```
 $ git clone https://github.com/coinmesh/coinmesh
@@ -77,15 +77,19 @@ Open localhost:9000 on a browser to see the following UI.
 
 Next, click on “Mount an existing Project.”
 
-In the following screen, scroll down to “sample-generated-projects”, click on the circle to the left, scroll back up and choose “select file.”
+In the following screen, scroll down to "sample-generated-projects" and click on the name of the directory.
 
-<img width="999" alt="screen shot 2018-08-14 at 10 15 13 pm" src="https://user-images.githubusercontent.com/32662508/44132599-957facd6-a00f-11e8-90ed-ea924a21b3a8.png">
+<img width="1219" alt="coinmesh directory" src="https://user-images.githubusercontent.com/32662508/44315311-c4cf0d80-a3d7-11e8-9d37-2fd1c0f48fd9.png">
+
+From here you can select either the "litcoin-app" or "bitcoin-app" wallet skeleton by clicking on the circle on the left. Then scroll up to the top of the page and choose "Select File."
+
+<img width="1119" alt="ltc or btc app" src="https://user-images.githubusercontent.com/32662508/44315323-e03a1880-a3d7-11e8-9aae-2ee46ab4e691.png">
 
 The browser will refresh and you should see the project successfully mounted on CoinMesh.  Now scroll down and click on `Docker Compose` to compile and run the app.  This will take a few minutes.  You will be able to see activity in the "Output" section of CoinMesh's UI.
 
 <img width="1018" alt="screen shot 2018-08-14 at 10 17 55 pm" src="https://user-images.githubusercontent.com/32662508/44132693-157542de-a010-11e8-8195-e0d03db3831e.png">
 
-Open up localhost:9001 on your browser and the Litecoin wallet UI will appear.
+Open up localhost:9001 on your browser and the Bitcoin or Litecoin wallet UI will appear.
 
 <img width="997" alt="screenshot of wallet app running" src="https://user-images.githubusercontent.com/4238393/44287103-25701600-a231-11e8-91c5-6544a7bf45c5.png">
 
