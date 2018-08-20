@@ -4,13 +4,13 @@
       "id": "litecoind-adapter",
       "endpoint": "local",
       "name": "Litecoind Adapter",
-      "description": "Litecoind Adapter.",
+      "description": "Litecoin Core adapter.",
       "path": "../../adapters/litecoind-adapter"
     }, {
       "id": "bitcoind-adapter",
       "endpoint": "local",
       "name": "Bitcoind Adapter",
-      "description": "Bitcoin core adapter.",
+      "description": "Bitcoin Core adapter.",
       "path": "../../adapters/bitcoind-adapter"
     }, {
       "id": "ln-service",
