@@ -83,7 +83,7 @@ In the following screen, scroll down to "sample-generated-projects" and click on
 
 From here you can select either the "litcoin-app" or "bitcoin-app" wallet skeleton by clicking on the circle on the left. Then scroll up to the top of the page and choose "Select File."
 
-<img width="1119" alt="ltc or btc app" src="https://user-images.githubusercontent.com/32662508/44315323-e03a1880-a3d7-11e8-9aae-2ee46ab4e691.png">
+<img width="1112" alt="screen shot 2018-08-19 at 9 44 05 pm" src="https://user-images.githubusercontent.com/32662508/44320866-77fc2e80-a3f9-11e8-89f5-ea85aecfaf80.png">
 
 The browser will refresh and you should see the project successfully mounted on CoinMesh.  Now scroll down and click on `Docker Compose` to compile and run the app.  This will take a few minutes.  You will be able to see activity in the "Output" section of CoinMesh's UI.
 
