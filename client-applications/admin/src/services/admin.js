@@ -28,6 +28,8 @@ export class AdminService {
   }
   checkConfFileExists(path) {
     let url = `http://localhost:3002/v0/project/check-conf-file-exists`;
+    path = this.fixRelativePath(path);
+
     return this.http.post(url, { path }).then(response => {
       return response.content;
     });
@@ -62,10 +64,13 @@ export class AdminService {
     return this.http.patch(url, body);
   }
   loadProject(projectJsonPath, className = Project) {
-    let url = `http://localhost:3002/v0/project/${projectJsonPath}`;
+    let url = `http://localhost:3002/v0/project/load`;
+    projectJsonPath = this.fixRelativePath(projectJsonPath);
 
-    return this.http.get(url).then(result => {
-      return new className(result);
+    let body = { path: projectJsonPath };
+
+    return this.http.post(url, body).then(result => {
+      return new className(result.content);
     });
   }
   npmInstall(projectJsonPath) {
@@ -129,5 +134,13 @@ export class AdminService {
         return loadedProject;
       });
     }
+  }
+
+  fixRelativePath(path) {
+    if (path.substring(0, 2) === './') {
+      let rootPath = this.projectStore.currentProject.path;
+      path = `${rootPath}${path.substr(1)}`;
+    }
+    return path;
   }
 }

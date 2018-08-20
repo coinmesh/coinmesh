@@ -54,11 +54,8 @@ router.post('/config/:type', function(req, res, next) {
     });
 });
 
-router.get('/:path*?', (req, res, next) => {
-  let path = req.params.path || '';
-  let extendedPath = req.params[0] || '';
-
-  path = `${path}${ extendedPath ? '/' + extendedPath : '' }`;
+router.post('/load', (req, res, next) => {
+  let path = req.body.path;
 
   projectService.getProject(path)
     .then(result => {

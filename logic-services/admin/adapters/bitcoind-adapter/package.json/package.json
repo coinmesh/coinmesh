@@ -1,0 +1,9 @@
+{
+  "coinmesh": {
+    "type": "project",
+    "adapters": {},
+    "logicServices": {},
+    "dataSources": {},
+    "clientApplications": {}
+  }
+}

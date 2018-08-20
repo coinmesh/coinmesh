@@ -49,8 +49,9 @@ class ProjectService {
     return pjWriteService.setValue(packageJson, path, value, true);
   }
   checkConfFileExists(packageJsonPath) {
-    return pjReadService.getConfigItemByPath(packageJsonPath, 'coinmesh.confFilePath').then(result => {
-      let confFilePath = `${packageJsonPath}/${result}`;
+    let path = homedirUtils.getPathFromHomeDir(packageJsonPath);
+    return pjReadService.getConfigItemByPath(path, 'coinmesh.confFilePath').then(result => {
+      let confFilePath = `${path}/${result}`;
       return directoryService.checkFileExists(confFilePath);
     });
   }
