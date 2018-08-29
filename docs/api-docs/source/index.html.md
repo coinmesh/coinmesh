@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - litecoind_adapter
+  - bitcoind_adapter
   - errors
 
 search: true
