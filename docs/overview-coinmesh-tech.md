@@ -44,4 +44,4 @@ All packages are written in JavaScript and managed using a few simple concepts -
 
 The UI for CoinMesh is meant to make on-boarding new developers easy.  It automates tasks for the developer so that learning the underlying technology is not step one.  It is not required for running any of the libraries.
 
-If you do not wish to run the CoinMesh IDE and simply build using the libraries you can absolutely do this as well.
+If you do not wish to run the CoinMesh IDE and simply build using the libraries you can absolutely do this as well simply by running the app using docker-compose or even `npm start` on your local.  If you choose to use npm you will need to make sure your node is stood up.

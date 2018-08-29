@@ -16,7 +16,7 @@ router.post('/listaddresses', (req, res, next) => {
   });
 });
 
-router.get('/getnewaddress/?:account_name', (req, res, next) => {
+router.get('/getnewaddress/:account_name?', (req, res, next) => {
   const accountName = req.params.account_name;
 
   addressesService.getNewAddress(accountName).then(result => {
