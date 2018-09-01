@@ -11,15 +11,13 @@
     "network": "regtest",
     "runHttp": true,
     "conf": {
-      "bitcoin": {
-        "regtest": "1",
-        "server": "1",
-        "rpcuser": "rpcuser",
-        "rpcpassword": "rpcpassword",
-        "txindex": "1",
-        "zmqpubrawblock": "tcp://127.0.0.1:28332",
-        "zmqpubrawtx": "tcp://127.0.0.1:28332"
-      }
+      "regtest": "1",
+      "server": "1",
+      "rpcuser": "rpcuser",
+      "rpcpassword": "rpcpassword",
+      "txindex": "1",
+      "zmqpubrawblock": "tcp://127.0.0.1:28332",
+      "zmqpubrawtx": "tcp://127.0.0.1:28332"
     }
   },
   "main": "index.js",
