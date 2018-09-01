@@ -78,7 +78,7 @@ class ProjectService {
       .then(result => {
         confFilePath = `${path}/${result}`;
 
-        return pjReadService.getConfigItemByPath(path, 'coinmesh.conf.litecoin');
+        return pjReadService.getConfigItemByPath(path, 'coinmesh.conf');
       }).then(jsonResult => {
         return confFileService.writeJsonAsConfFile(confFilePath, jsonResult);
       });
