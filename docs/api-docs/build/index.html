@@ -270,6 +270,53 @@
               </ul>
           </li>
           <li>
+            <a href="#bitcoind-adapter" class="toc-h1 toc-link" data-title="bitcoind-adapter">Bitcoind-adapter</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-addresses" class="toc-h2 toc-link" data-title="list-addresses">List Addresses</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-new-receive-address" class="toc-h2 toc-link" data-title="get-a-new-receive-address">Get a new Receive Address</a>
+                  </li>
+                  <li>
+                    <a href="#send-to-an-address" class="toc-h2 toc-link" data-title="send-to-an-address">Send to an Address</a>
+                  </li>
+                  <li>
+                    <a href="#get-balance-info" class="toc-h2 toc-link" data-title="get-balance-info">Get Balance Info</a>
+                  </li>
+                  <li>
+                    <a href="#get-block-info" class="toc-h2 toc-link" data-title="get-block-info">Get Block Info</a>
+                  </li>
+                  <li>
+                    <a href="#get-current-block-height-of-chain" class="toc-h2 toc-link" data-title="get-current-block-height-of-chain">Get Current Block Height of Chain</a>
+                  </li>
+                  <li>
+                    <a href="#generate-blocks-regtest-mode-only" class="toc-h2 toc-link" data-title="generate-blocks-regtest-mode-only">Generate Blocks (regtest mode only)</a>
+                  </li>
+                  <li>
+                    <a href="#sign-message" class="toc-h2 toc-link" data-title="sign-message">Sign Message</a>
+                  </li>
+                  <li>
+                    <a href="#verify-message" class="toc-h2 toc-link" data-title="verify-message">Verify Message</a>
+                  </li>
+                  <li>
+                    <a href="#get-the-current-exchange-rate" class="toc-h2 toc-link" data-title="get-the-current-exchange-rate">Get the current exchange rate</a>
+                  </li>
+                  <li>
+                    <a href="#get-network-info" class="toc-h2 toc-link" data-title="get-network-info">Get Network Info</a>
+                  </li>
+                  <li>
+                    <a href="#get-peer-info" class="toc-h2 toc-link" data-title="get-peer-info">Get Peer Info</a>
+                  </li>
+                  <li>
+                    <a href="#get-recent-transactions" class="toc-h2 toc-link" data-title="get-recent-transactions">Get Recent Transactions</a>
+                  </li>
+                  <li>
+                    <a href="#get-wallet-info" class="toc-h2 toc-link" data-title="get-wallet-info">Get Wallet Info</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="errors">Errors</a>
           </li>
       </div>
@@ -840,6 +887,604 @@
 </tbody></table>
 <h2 id='get-wallet-info'>Get Wallet Info</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3009/v0/wallet-info"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">walletInfoService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/litecoind-adapter'</span><span class="p">).</span><span class="nx">walletInfoService</span><span class="p">;</span>
+
+<span class="nx">walletInfoService</span><span class="p">.</span><span class="nx">getTransactions</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getwalletinfo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mf">14947.23096741</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hdmasterkeyid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fef59a7b971dbc208322e56075a99b973b623443"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"immature_balance"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.04680321</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"keypoololdest"</span><span class="p">:</span><span class="w"> </span><span class="mi">1534784895</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"keypoolsize"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"keypoolsize_hd_internal"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"paytxfee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"txcount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2970</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unconfirmed_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"walletname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wallet.dat"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"walletversion"</span><span class="p">:</span><span class="w"> </span><span class="mi">139900</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the information about the wallet.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>http://localhost:3009/v0/wallet-info</code></p>
+<h3 id='url-parameters-8'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody></table>
+<h1 id='bitcoind-adapter'>Bitcoind-adapter</h1><h2 id='list-addresses'>List Addresses</h2><pre class="highlight shell tab-shell"><code>curl -X POST
+  -d <span class="s1">'{
+      "minConfirmations": 0,
+      "includeEmpty": true,
+      "includeWatchOnly": false
+    }'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  <span class="s2">"http://localhost:3009/v0/addresses/listaddresses"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">addressesService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoind-adapter'</span><span class="p">).</span><span class="nx">addressesService</span><span class="p">;</span>
+
+<span class="nx">addressesService</span><span class="p">.</span><span class="nx">listReceivedByAddress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"result"</span><span class="p">:</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mfh71i1bbXSoWsPeQ1Sqpy3ivy2zmtfng3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"txids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"f4ea8e9cbcf891bdafc2fc4e3c9b15c3edfb6b83d5a9ecf62b0dba592d3202fe"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"listreceivedbyaddress"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all addresses that have been the receiving address in a transaction in this wallet.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST http://localhost:3009/v0/addresses/listaddresses</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>minConfirmations</td>
+<td>0</td>
+<td>Minimum number of confirmations to include</td>
+</tr>
+<tr>
+<td>includeEmpty</td>
+<td>true</td>
+<td>Whether or not empty addresses should be returned (zero balance)</td>
+</tr>
+<tr>
+<td>includeWatchOnly</td>
+<td>false</td>
+<td>Include addresses which are only being watched</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-new-receive-address'>Get a new Receive Address</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3009/v0/addresses/getnewaddress/?:account_name"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">addressesService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoindd-adapter'</span><span class="p">).</span><span class="nx">addressesService</span><span class="p">;</span>
+
+<span class="nx">addressesService</span><span class="p">.</span><span class="nx">getNewAddress</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moM8EywChNZqcSJmnikNKaScMyw9thwDwi"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getnewaddress"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a new address that the wallet can receive coins on.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>http://localhost:3009/v0/addresses/getnewaddress/?:account_name</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account_name</td>
+<td>Optional account name to use</td>
+</tr>
+</tbody></table>
+<h2 id='send-to-an-address'>Send to an Address</h2><pre class="highlight shell tab-shell"><code>curl -X POST
+  -d <span class="s1">'{
+      "address": "moM8EywChNZqcSJmnikNKaScMyw9thwDwi",
+      "amount": 0.1
+    }'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  <span class="s2">"http://localhost:3009/v0/addresses/sendtoaddress"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">addressesService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoind-adapter'</span><span class="p">).</span><span class="nx">addressesService</span><span class="p">;</span>
+
+<span class="nx">addressesService</span><span class="p">.</span><span class="nx">sendToAddress</span><span class="p">(</span><span class="s2">"moM8EywChNZqcSJmnikNKaScMyw9thwDwi"</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fc6c5a8e81ea9cef9abb9c67e7d261ee827c34f4ce15cd86f112cbb33d058a75"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sendtoaddress"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint sends creates and broadcasts a transaction that sends the supplied address.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST http://localhost:3009/v0/addresses/sendtoaddress</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>null</td>
+<td>The address to the send the coins to.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>null</td>
+<td>The amount of coins to send</td>
+</tr>
+</tbody></table>
+<h2 id='get-balance-info'>Get Balance Info</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3009/v0/balances/"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">balancesService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoind-adapter'</span><span class="p">).</span><span class="nx">balancesService</span><span class="p">;</span>
+
+<span class="nx">balancesService</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="mf">12936.99252</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getbalance"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the balance of the wallet.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>http://localhost:3009/v0/balances</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody></table>
+<h2 id='get-block-info'>Get Block Info</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3009/v0/blocks/:hash/info"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">blocksService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoind-adapter'</span><span class="p">).</span><span class="nx">blocksService</span><span class="p">;</span>
+
+<span class="kd">let</span> <span class="nx">hash</span> <span class="o">=</span> <span class="s1">'f202e9cfb5d40328a4b471b4f1d752bc8b560e3c9f32382968fffb32c1d04a39'</span><span class="p">;</span>
+<span class="nx">blocksService</span><span class="p">.</span><span class="nx">getBlock</span><span class="p">(</span><span class="nx">hash</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e920f6a888352250bdfdc164fd10849e6d3ece079ec06849ac2e98d5339ddcc9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"strippedsize"</span><span class="p">:</span><span class="w"> </span><span class="mi">228</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">264</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">948</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">967</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">536870912</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"versionHex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"merkleroot"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1c6b256351f23d7c36c851b16a4b86ac18305ec3f100c500ebf8f4b34f089c74"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tx"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"1c6b256351f23d7c36c851b16a4b86ac18305ec3f100c500ebf8f4b34f089c74"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1534798346</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mediantime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1534798345</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bits"</span><span class="p">:</span><span class="w"> </span><span class="s2">"207fffff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"difficulty"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.656542373906925e-10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"chainwork"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000000000000000000000000000000000000000000000000000000000000790"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previousblockhash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1a8b43aaf7a318cba08109aa815afd538581b7bde41cbbf7a0cbd4088d47ddba"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getblock"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the information about a block.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>http://localhost:3009/v0/blocks/:hash/info</code></p>
+<h3 id='url-parameters-2'>Url Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>hash</td>
+<td>Hash of a block that is known by the node.</td>
+</tr>
+</tbody></table>
+<h2 id='get-current-block-height-of-chain'>Get Current Block Height of Chain</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3009/v0/blocks/height"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">blocksService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoind-adapter'</span><span class="p">).</span><span class="nx">blocksService</span><span class="p">;</span>
+
+<span class="nx">blocksService</span><span class="p">.</span><span class="nx">getChainHeight</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="mi">972</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getblockcount"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the information about a block.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>http://localhost:3009/v0/blocks/height</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody></table>
+<h2 id='generate-blocks-regtest-mode-only'>Generate Blocks (regtest mode only)</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3009/v0/blocks/generate/:num_of_blocks"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">blocksService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoind-adapter'</span><span class="p">).</span><span class="nx">blocksService</span><span class="p">;</span>
+
+<span class="nx">blocksService</span><span class="p">.</span><span class="nx">generate</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"9282eaa85b0c9591ade5a64d88b541971e604bb4902d231bf04441634c2d549b"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"49efce51c4a2c8c4b539ce490ffe2b672a5c9f13829d690a04e789711d002880"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"b4652422d5ea82365b1eebfdc13127a2a154ba1d79f224148346c3db057232e4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"eba31d82278f875ceecf010db5a81fda91c1b91be21f0a97ca3d3578f1e00492"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"5b8c3a82fa46e601bc7d4cce733809ee5d6c285aacdc1e2a37acfb9a74c415cb"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generate"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint generates additional blocks.  This only works in regtest mode!</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>http://localhost:3009/v0/blocks/generate/:num_of_blocks</code></p>
+<h3 id='url-parameters-3'>Url Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>num_of_blocks</td>
+<td>Number of new blocks to generate</td>
+</tr>
+</tbody></table>
+<h2 id='sign-message'>Sign Message</h2><pre class="highlight shell tab-shell"><code>curl -X POST
+  -d <span class="s1">'{
+      "address": "moM8EywChNZqcSJmnikNKaScMyw9thwDwi",
+      "message": "Hello word"
+    }'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  <span class="s2">"http://localhost:3009/v0/crypto/sign"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">cryptoService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoind-adapter'</span><span class="p">).</span><span class="nx">cryptoService</span><span class="p">;</span>
+
+<span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="s1">'moM8EywChNZqcSJmnikNKaScMyw9thwDwi'</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">message</span> <span class="o">=</span> <span class="s1">'Hello word'</span><span class="p">;</span>
+
+<span class="nx">cryptoService</span><span class="p">.</span><span class="nx">signMessage</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="nx">message</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMB0g6YJEawYtYefPV9rZcuK/EjrSexuYNQ0SqikbZTqaUr4W1b78+CKRMd1UHYQKoKmgGw1B3UdgYyx7wJ03QA="</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signmessage"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns a message signed by wallet for a specified address.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>POST http://localhost:3009/v0/crypto/sign</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>none</td>
+<td>The address whose private key will be used to sign the message</td>
+</tr>
+<tr>
+<td>message</td>
+<td>none</td>
+<td>The message to sign</td>
+</tr>
+</tbody></table>
+<h2 id='verify-message'>Verify Message</h2><pre class="highlight shell tab-shell"><code>curl -X POST
+  -d <span class="s1">'{
+      "address": "moM8EywChNZqcSJmnikNKaScMyw9thwDwi",
+      "signature": "IMB0g6YJEawYtYefPV9rZcuK",
+      "message": "Hello word"
+    }'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  <span class="s2">"http://localhost:3009/v0/crypto/sign"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">cryptoService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoind-adapter'</span><span class="p">).</span><span class="nx">cryptoService</span><span class="p">;</span>
+
+<span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="s1">'moM8EywChNZqcSJmnikNKaScMyw9thwDwi'</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">signature</span> <span class="o">=</span> <span class="s1">'IMB0g6YJEawYtYefPV9rZcuK'</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">message</span> <span class="o">=</span> <span class="s1">'Hello word'</span><span class="p">;</span>
+
+<span class="nx">cryptoService</span><span class="p">.</span><span class="nx">signMessage</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="nx">message</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verifymessage"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns a message signed by wallet for a specified address.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST http://localhost:3009/v0/crypto/verify</code></p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>none</td>
+<td>The address whose key will be used to validate the message</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>none</td>
+<td>The signature to verify</td>
+</tr>
+<tr>
+<td>message</td>
+<td>none</td>
+<td>The message to verify</td>
+</tr>
+</tbody></table>
+<h2 id='get-the-current-exchange-rate'>Get the current exchange rate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3009/v0/exchange-rates/:pair/current_rate"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">exchangeRatesService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoind-adapter'</span><span class="p">).</span><span class="nx">exchangeRatesService</span><span class="p">;</span>
+
+<span class="nx">exchangeRatesService</span><span class="p">.</span><span class="nx">getExchangeRate</span><span class="p">(</span><span class="s1">'btcusd'</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58.59"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.81"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1534800601"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.80"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"vwap"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56.32"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20266.31083135"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54.78"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55.92"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57.95"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the latest exchange rate from bitstamp.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>http://localhost:3009/v0/exchange-rates/:pair/current_rate</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pair</td>
+<td>A currency pair supported by bitstamp.</td>
+</tr>
+</tbody></table>
+<h2 id='get-network-info'>Get Network Info</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3009/v0/network-info"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">networkInfoService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoin-adapter'</span><span class="p">).</span><span class="nx">networkInfoService</span><span class="p">;</span>
+
+<span class="nx">networkInfoService</span><span class="p">.</span><span class="nx">getNetworkInfo</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">150100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subversion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/BitcoinCore:0.15.1/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"protocolversion"</span><span class="p">:</span><span class="w"> </span><span class="mi">70015</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"localservices"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000000000000d"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"localrelay"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timeoffset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"networkactive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"connections"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"networks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipv4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"limited"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reachable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"proxy"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"proxy_randomize_credentials"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"relayfee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00001</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"incrementalfee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00001</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"localaddresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getnetworkinfo"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the current network information for the node.</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>http://localhost:3009/v0/network-info</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody></table>
+<h2 id='get-peer-info'>Get Peer Info</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3009/v0/peers/getpeerinfo"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">peersService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/Bitcoind-adapter'</span><span class="p">).</span><span class="nx">peersService</span><span class="p">;</span>
+
+<span class="nx">peersService</span><span class="p">.</span><span class="nx">getPeerInfo</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getpeerinfo"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves information about the peers the node is currently connected to.</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>http://localhost:3009/v0/peers/getpeerinfo</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody></table>
+<h2 id='get-recent-transactions'>Get Recent Transactions</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3009/v0/transactions"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">transactionsService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoind-adapter'</span><span class="p">).</span><span class="nx">transactionsService</span><span class="p">;</span>
+
+<span class="nx">transactionsService</span><span class="p">.</span><span class="nx">getTransactions</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mx4vtMBLn2mMUq6HnZQDCmr7ZwXaW73ni1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"immature"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00076293</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vout"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"confirmations"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"generated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"blockhash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"665a25b74e321ea123f61b58db50b3ee018a77ad23bd36762a3ca1c0f34a5baf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"blockindex"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"blocktime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1534801960</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"txid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"26ecd89229badd6ad337337ff2c3ff11e55cbaa3e6960297267d62ad0c0e47e7"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"walletconflicts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1534801936</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"timereceived"</span><span class="p">:</span><span class="w"> </span><span class="mi">1534801936</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bip125-replaceable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"listtransactions"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the recent transactions that have been made to or from the node.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>http://localhost:3009/v0/transactions</code></p>
+<h3 id='url-parameters-7'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody></table>
+<h2 id='get-wallet-info'>Get Wallet Info</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://localhost:3009/v0/wallet-info"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">walletInfoService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/bitcoind-adapter'</span><span class="p">).</span><span class="nx">walletInfoService</span><span class="p">;</span>
 
 <span class="nx">walletInfoService</span><span class="p">.</span><span class="nx">getTransactions</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
