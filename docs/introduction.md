@@ -1,6 +1,6 @@
 # Introduction
 
-Hi.  Welcome to BlockFuse.  We make Litecoin and Bitcoin app development easy.
+Hi.  Welcome to BlockFuse.  Our mission is to enable use cases for Litecoin and Bitcoin.
 
 ## The Problem
 
