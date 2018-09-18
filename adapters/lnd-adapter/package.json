@@ -4,7 +4,7 @@
   "description": "An adaper for LND using ln-service",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/coinmesh/coinmesh#readme",
   "dependencies": {
-    "ln-service": "^8.1.0"
+    "ln-service": "^15.2.0"
   }
 }
