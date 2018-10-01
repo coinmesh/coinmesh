@@ -24,6 +24,13 @@ router.get('/getnewaddress/:account_name?', (req, res, next) => {
   });
 });
 
+router.post('/getreceivedbyaddress', (req, res, next) => {
+  const address = req.body.address;
+  const minConfirmations = req.body.minConfirmations;
+   addressesService.getReceivedByAddress(address, minConfirmations)
+    .then(result => res.json(result));
+});
+
 router.post('/sendtoaddress', (req, res, next) => {
   let targetAddress = req.body.address;
   let amount = req.body.amount;

@@ -19,6 +19,27 @@ describe('AddressesService', () => {
     });
   });
 
+  describe('getReceivedByAddress()', () => {
+    const fakeAddress = 'n26RP674gWywDuyii2o5fnUUswcmGGyMGG';
+    it('imports an address in to the wallet', (done) => {
+      addressesService.getReceivedByAddress(fakeAddress).then(result => {
+        expect(result.result).toBe(0);
+        done();
+      });
+    });
+  });
+
+  describe('importAddress()', () => {
+    const fakeAddress = 'n26RP674gWywDuyii2o5fnUUswcmGGyMGG';
+    it('imports an address in to the wallet', (done) => {
+      addressesService.importAddress(fakeAddress).then(result => {
+        // rpc result of null is the success indicator
+        expect(result.result).toBe(null);
+        done();
+      });
+    });
+  });
+
   describe('getNewAddress()', () => {
     it('gets a new address', (done) => {
       addressesService.getNewAddress().then(result => {
