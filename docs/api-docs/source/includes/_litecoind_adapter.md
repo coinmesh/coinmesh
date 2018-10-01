@@ -94,6 +94,50 @@ Parameter | Description
 account_name | Optional account name to use
 
 
+## Get Received By Address
+
+```shell
+curl -X POST
+  -d '{
+      "address": "moM8EywChNZqcSJmnikNKaScMyw9thwDwi",
+      "minConfirmations": 1
+    }'
+  -H "Content-Type: application/json"
+  "http://localhost:3009/v0/addresses/getreceivedbyaddress"
+```
+
+```javascript
+const addressesService = require('@coinmesh/litecoind-adapter').addressesService;
+
+addressesService.getReceivedByAddress("moM8EywChNZqcSJmnikNKaScMyw9thwDwi", 1).then(result => {
+  console.log(result);
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "result":0,
+  "error":null,
+  "id":"getreceivedbyaddress"
+}
+```
+
+This endpoint looks up addresses in the wallet (including watch-only) for the amount of received coins.
+
+### HTTP Request
+
+`POST http://localhost:3009/v0/addresses/getreceivedbyaddress`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+address | null | The address to look up received amount.
+minConfirmations | null | The minimum number of confirmations to assume the balance.
+
+
 ## Send to an Address
 
 ```shell
