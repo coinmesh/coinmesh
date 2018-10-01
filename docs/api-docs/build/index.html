@@ -232,6 +232,9 @@
                     <a href="#get-a-new-receive-address" class="toc-h2 toc-link" data-title="get-a-new-receive-address">Get a new Receive Address</a>
                   </li>
                   <li>
+                    <a href="#get-received-by-address" class="toc-h2 toc-link" data-title="get-received-by-address">Get Received By Address</a>
+                  </li>
+                  <li>
                     <a href="#send-to-an-address" class="toc-h2 toc-link" data-title="send-to-an-address">Send to an Address</a>
                   </li>
                   <li>
@@ -422,6 +425,50 @@
 <td>Optional account name to use</td>
 </tr>
 </tbody></table>
+<h2 id='get-received-by-address'>Get Received By Address</h2><pre class="highlight shell tab-shell"><code>curl -X POST
+  -d <span class="s1">'{
+      "address": "moM8EywChNZqcSJmnikNKaScMyw9thwDwi",
+      "minConfirmations": 1
+    }'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  <span class="s2">"http://localhost:3009/v0/addresses/getreceivedbyaddress"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">addressesService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/litecoind-adapter'</span><span class="p">).</span><span class="nx">addressesService</span><span class="p">;</span>
+
+<span class="nx">addressesService</span><span class="p">.</span><span class="nx">getReceivedByAddress</span><span class="p">(</span><span class="s2">"moM8EywChNZqcSJmnikNKaScMyw9thwDwi"</span><span class="p">,</span> <span class="mi">1</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"getreceivedbyaddress"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint looks up addresses in the wallet (including watch-only) for the amount of received coins.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST http://localhost:3009/v0/addresses/getreceivedbyaddress</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>null</td>
+<td>The address to look up received amount.</td>
+</tr>
+<tr>
+<td>minConfirmations</td>
+<td>null</td>
+<td>The minimum number of confirmations to assume the balance.</td>
+</tr>
+</tbody></table>
 <h2 id='send-to-an-address'>Send to an Address</h2><pre class="highlight shell tab-shell"><code>curl -X POST
   -d <span class="s1">'{
       "address": "moM8EywChNZqcSJmnikNKaScMyw9thwDwi",
@@ -445,9 +492,9 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint sends creates and broadcasts a transaction that sends the supplied address.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST http://localhost:3009/v0/addresses/sendtoaddress</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -483,7 +530,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves the balance of the wallet.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>http://localhost:3009/v0/balances</code></p>
 
 <table><thead>
@@ -533,7 +580,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves the information about a block.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>http://localhost:3009/v0/blocks/:hash/info</code></p>
 <h3 id='url-parameters-2'>Url Parameters</h3>
 <table><thead>
@@ -564,7 +611,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves the information about a block.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>http://localhost:3009/v0/blocks/height</code></p>
 
 <table><thead>
@@ -601,7 +648,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint generates additional blocks.  This only works in regtest mode!</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>http://localhost:3009/v0/blocks/generate/:num_of_blocks</code></p>
 <h3 id='url-parameters-3'>Url Parameters</h3>
 <table><thead>
@@ -641,9 +688,9 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint returns a message signed by wallet for a specified address.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST http://localhost:3009/v0/crypto/sign</code></p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -689,9 +736,9 @@
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verifymessage"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint returns a message signed by wallet for a specified address.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST http://localhost:3009/v0/crypto/verify</code></p>
-<h3 id='query-parameters-4'>Query Parameters</h3>
+<h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -738,7 +785,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves the latest exchange rate from bitstamp.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>http://localhost:3009/v0/exchange-rates/:pair/current_rate</code></p>
 <h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
@@ -791,7 +838,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves the current network information for the node.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>http://localhost:3009/v0/network-info</code></p>
 <h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
@@ -822,7 +869,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves information about the peers the node is currently connected to.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>http://localhost:3009/v0/peers/getpeerinfo</code></p>
 <h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
@@ -871,7 +918,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves the recent transactions that have been made to or from the node.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>http://localhost:3009/v0/transactions</code></p>
 <h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
@@ -914,7 +961,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves the information about the wallet.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>http://localhost:3009/v0/wallet-info</code></p>
 <h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
