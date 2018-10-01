@@ -2,7 +2,7 @@ const createAddress = require('ln-service/createAddress');
 const sendToChainAddress = require('ln-service/sendToChainAddress');
 const lnd = require('../helpers/setup').lnd;
 
-describe('Peers', () => {
+describe('Addresses', () => {
   describe('createAddress()', () => {
     it('creates a new address', (done) => {
       let passedInValue = {
