@@ -37,6 +37,7 @@ gulp.task('build-html', function() {
 // copies changed css files to the output directory
 gulp.task('build-css', function() {
   return gulp.src(paths.css)
+    .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
     .pipe(changed(paths.output, {extension: '.css'}))
     .pipe(gulp.dest(paths.output))
     .pipe(browserSync.stream());
