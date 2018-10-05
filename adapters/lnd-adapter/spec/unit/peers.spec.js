@@ -33,7 +33,7 @@ describe('Peers', () => {
         expect(result).not.toBe(null);
         done();
       }).catch(error => {
-        expect(error[1]).toBe('ErrorRemovingPeer');
+        expect(error[1]).toBe('UnexpectedErrorRemovingPeer');
         done();
       });
     });
@@ -45,7 +45,7 @@ describe('Peers', () => {
         expect(result).not.toBe(null);
         done();
       }).catch(error => {
-        expect(error[1]).toBe('ErrorRemovingPeer');
+        expect(error[1]).toBe('UnexpectedErrorRemovingPeer');
         done();
       });
     });

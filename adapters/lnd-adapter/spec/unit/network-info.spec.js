@@ -2,7 +2,7 @@ const getNetworkGraph = require('ln-service/getNetworkGraph');
 const getNetworkInfo = require('ln-service/getNetworkInfo');
 const lnd = require('../helpers/setup').lnd;
 
-describe('Network', () => {
+describe('NetworkInfo', () => {
   describe('getNetworkGraph()', () => {
     it('gets the network graph', (done) => {
       getNetworkGraph({lnd}).then(result => {

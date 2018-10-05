@@ -4,7 +4,8 @@
   "description": "An adaper for LND using ln-service",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "start": "npm install &&  LNSERVICE_NETWORK='regtest' LNSERVICE_CHAIN=bitcoin nodemon ./bin/www",
+    "test": "LNSERVICE_NETWORK='regtest' LNSERVICE_CHAIN=bitcoin nodemon --exec 'jasmine'"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,13 @@
   },
   "homepage": "https://github.com/coinmesh/coinmesh#readme",
   "dependencies": {
-    "ln-service": "^15.2.0"
+    "cookie-parser": "^1.4.3",
+    "express-basic-auth": "^1.1.5",
+    "jasmine": "^3.2.0",
+    "ln-service": "^17.9.0",
+    "nodemon": "^1.18.4",
+    "openport": "0.0.5",
+    "rimraf": "^2.6.2",
+    "supertest": "^3.1.0"
   }
 }

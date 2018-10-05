@@ -4,7 +4,7 @@ const getWalletInfo = require('ln-service/getWalletInfo');
 const lnd = require('../helpers/setup').lnd;
 const unlockerLnd = require('../helpers/setup').unlockerLnd;
 
-describe('Wallet', () => {
+describe('WalletInfo', () => {
   // TODO: Cannot currently create seed with a wallet already created
   //   Need to create a service to move the files for testing
   xdescribe('createSeed()', () => {

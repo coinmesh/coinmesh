@@ -2,7 +2,7 @@ const getChannel = require('ln-service/getChannel');
 const openChannel = require('ln-service/openChannel');
 const closeChannel = require('ln-service/closeChannel');
 const getChannels = require('ln-service/getChannels');
-const getInactiveChannels = require('ln-service/getInactiveChannels');
+const getClosedChannels = require('ln-service/getClosedChannels');
 const getPendingChannels = require('ln-service/getPendingChannels');
 const lnd = require('../helpers/setup').lnd;
 
@@ -48,13 +48,13 @@ describe('Channels', () => {
     });
   });
 
-  describe('getInactiveChannels()', () => {
+  describe('getClosedChannels()', () => {
     it('gets inactive channels', (done) => {
       let passedInValue = {
         lnd,
         inactive_since: new Date()
       };
-      getInactiveChannels(passedInValue).then(result => {
+      getClosedChannels(passedInValue).then(result => {
         expect(Array.isArray(result.channels)).toBe(true);
         done();
       });

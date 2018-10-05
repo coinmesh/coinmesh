@@ -1,15 +1,19 @@
-const createAddress = require('ln-service/createAddress');
+const createChainAddress = require('ln-service/createChainAddress');
 const sendToChainAddress = require('ln-service/sendToChainAddress');
 const lnd = require('../helpers/setup').lnd;
 
+const addressFormats = require('ln-service/lightning/conf/address_formats.json');
+const defaultFormat = Object.keys(addressFormats).find(key => addressFormats[key] === 1);
+
 describe('Addresses', () => {
-  describe('createAddress()', () => {
+  describe('createChainAddress()', () => {
     it('creates a new address', (done) => {
       let passedInValue = {
+        format: defaultFormat,
         lnd
       };
 
-      createAddress(passedInValue).then(result => {
+      createChainAddress(passedInValue).then(result => {
         expect(typeof result.address).toBe('string');
         done();
       });
@@ -22,7 +26,7 @@ describe('Addresses', () => {
     const tokens = 10000;
 
     beforeEach(() => {
-      return createAddress({lnd}).then(result => {
+      return createChainAddress({lnd}).then(result => {
         address = result.address;
       });
     });
