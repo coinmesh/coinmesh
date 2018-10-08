@@ -1,5 +1,4 @@
 const lnd = require('./lnd');
-const getChainBalance = require('ln-service/getChainBalance');
 const getChannel = require('ln-service/getChannel');
 const closeChannel = require('ln-service/closeChannel');
 const getChannels = require('ln-service/getChannels');
@@ -7,7 +6,7 @@ const getClosedChannels = require('ln-service/getClosedChannels');
 const getPendingChannels = require('ln-service/getPendingChannels');
 const openChannel = require('ln-service/openChannel');
 
-class BalancesService {
+class ChannelsService {
   getChannel(id) {
     return getChannel({lnd, id});
   }
@@ -29,9 +28,10 @@ class BalancesService {
       give_tokens: giftTokens,
       local_tokens: localTokens,
       partner_public_key: targetNodePublicKey,
+      lnd
     };
-    return openChannel({lnd});
+    return openChannel({params});
   }
 }
 
-module.exports = BalancesService;
+module.exports = ChannelsService;
