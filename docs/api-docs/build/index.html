@@ -347,6 +347,21 @@
                     <a href="#lnd-adapter-create-invoice" class="toc-h2 toc-link" data-title="create-invoice">Create Invoice</a>
                   </li>
                   <li>
+                    <a href="#lnd-adapter-get-invoice" class="toc-h2 toc-link" data-title="get-invoice">Get Invoice</a>
+                  </li>
+                  <li>
+                    <a href="#lnd-adapter-get-invoices" class="toc-h2 toc-link" data-title="get-invoices">Get Invoices</a>
+                  </li>
+                  <li>
+                    <a href="#lnd-adapter-get-network-info" class="toc-h2 toc-link" data-title="get-network-info">Get Network Info</a>
+                  </li>
+                  <li>
+                    <a href="#lnd-adapter-get-network-graph" class="toc-h2 toc-link" data-title="get-network-graph">Get Network Graph</a>
+                  </li>
+                  <li>
+                    <a href="#lnd-adapter-get-payments" class="toc-h2 toc-link" data-title="get-payments">Get Payments</a>
+                  </li>
+                  <li>
                     <a href="#lnd-adapter-pay-invoice" class="toc-h2 toc-link" data-title="pay-invoice">Pay Invoice</a>
                   </li>
                   <li>
@@ -2017,7 +2032,7 @@ let token = btoa(`${username}:${password}`);
 <td>Number of tokens in satoshis</td>
 </tr>
 </tbody></table>
-<h3 id='lnd-adapter-create-invoice-get-invoice'>Get Invoice</h3><pre class="highlight shell tab-shell"><code>curl -X GET
+<h2 id='lnd-adapter-get-invoice'>Get Invoice</h2><pre class="highlight shell tab-shell"><code>curl -X GET
   -H <span class="s2">"Content-Type: application/json"</span>
   -H <span class="s2">"Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="</span>
   <span class="s2">"http://localhost:3098/v0/invoices/{{request}}"</span>
@@ -2043,9 +2058,9 @@ let token = btoa(`${username}:${password}`);
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves details of a specific invoice.</p>
-<h3 id='lnd-adapter-create-invoice-http-request'>HTTP Request</h3>
+<h3 id='lnd-adapter-get-invoice-http-request'>HTTP Request</h3>
 <p><code>GET http://localhost:3098/v0/invoices/{{request}}</code></p>
-<h3 id='lnd-adapter-create-invoice-get-invoices'>Get Invoices</h3><pre class="highlight shell tab-shell"><code>curl -X GET
+<h2 id='lnd-adapter-get-invoices'>Get Invoices</h2><pre class="highlight shell tab-shell"><code>curl -X GET
   -H <span class="s2">"Content-Type: application/json"</span>
   -H <span class="s2">"Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="</span>
   <span class="s2">"http://localhost:3098/v0/invoices/"</span>
@@ -2071,9 +2086,9 @@ let token = btoa(`${username}:${password}`);
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all of the invoices open for this node.</p>
-<h3 id='lnd-adapter-create-invoice-http-request'>HTTP Request</h3>
+<h3 id='lnd-adapter-get-invoices-http-request'>HTTP Request</h3>
 <p><code>GET http://localhost:3098/v0/invoices/</code></p>
-<h3 id='lnd-adapter-create-invoice-get-network-info'>Get Network Info</h3><pre class="highlight shell tab-shell"><code>curl -X GET
+<h2 id='lnd-adapter-get-network-info'>Get Network Info</h2><pre class="highlight shell tab-shell"><code>curl -X GET
   -H <span class="s2">"Content-Type: application/json"</span>
   -H <span class="s2">"Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="</span>
   <span class="s2">"http://localhost:3098/v0/network-info/"</span>
@@ -2097,9 +2112,9 @@ let token = btoa(`${username}:${password}`);
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves network information about the node.</p>
-<h3 id='lnd-adapter-create-invoice-http-request'>HTTP Request</h3>
+<h3 id='lnd-adapter-get-network-info-http-request'>HTTP Request</h3>
 <p><code>GET http://localhost:3098/v0/network_info/</code></p>
-<h3 id='lnd-adapter-create-invoice-get-network-graph'>Get Network Graph</h3><pre class="highlight shell tab-shell"><code>curl -X GET
+<h2 id='lnd-adapter-get-network-graph'>Get Network Graph</h2><pre class="highlight shell tab-shell"><code>curl -X GET
   -H <span class="s2">"Content-Type: application/json"</span>
   -H <span class="s2">"Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="</span>
   <span class="s2">"http://localhost:3098/v0/network-info/graph"</span>
@@ -2147,9 +2162,9 @@ let token = btoa(`${username}:${password}`);
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a graph of information about the peers and edges node.</p>
-<h3 id='lnd-adapter-create-invoice-http-request'>HTTP Request</h3>
+<h3 id='lnd-adapter-get-network-graph-http-request'>HTTP Request</h3>
 <p><code>GET http://localhost:3098/v0/network_info/graph</code></p>
-<h3 id='lnd-adapter-create-invoice-get-payments'>Get Payments</h3><pre class="highlight shell tab-shell"><code>curl -X GET
+<h2 id='lnd-adapter-get-payments'>Get Payments</h2><pre class="highlight shell tab-shell"><code>curl -X GET
   -H <span class="s2">"Content-Type: application/json"</span>
   -H <span class="s2">"Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="</span>
   <span class="s2">"http://localhost:3098/v0/history/"</span>
@@ -2185,7 +2200,7 @@ let token = btoa(`${username}:${password}`);
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all of the payments made from this wallet.</p>
-<h3 id='lnd-adapter-create-invoice-http-request'>HTTP Request</h3>
+<h3 id='lnd-adapter-get-payments-http-request'>HTTP Request</h3>
 <p><code>GET http://localhost:3098/v0/history/</code></p>
 <h2 id='lnd-adapter-pay-invoice'>Pay Invoice</h2><pre class="highlight shell tab-shell"><code>curl -X POST
   -d <span class="s1">'{

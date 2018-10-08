@@ -365,7 +365,7 @@ secret | null | Secret
 tokens | null | Number of tokens in satoshis
 
 
-### Get Invoice
+## Get Invoice
 
 ```shell
 curl -X GET
@@ -406,7 +406,7 @@ This endpoint retrieves details of a specific invoice.
 
 
 
-### Get Invoices
+## Get Invoices
 
 ```shell
 curl -X GET
@@ -447,7 +447,7 @@ This endpoint retrieves all of the invoices open for this node.
 
 
 
-### Get Network Info
+## Get Network Info
 
 ```shell
 curl -X GET
@@ -486,7 +486,7 @@ This endpoint retrieves network information about the node.
 
 
 
-### Get Network Graph
+## Get Network Graph
 
 ```shell
 curl -X GET
@@ -549,7 +549,7 @@ This endpoint retrieves a graph of information about the peers and edges node.
 
 
 
-### Get Payments
+## Get Payments
 
 ```shell
 curl -X GET
