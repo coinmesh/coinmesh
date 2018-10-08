@@ -228,7 +228,7 @@
             <a href="#addresses" class="toc-h1 toc-link" data-title="addresses">Addresses</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#create-a-new-address" class="toc-h2 toc-link" data-title="create-a-new-address">Create a new Address</a>
+                    <a href="#addresses-create-a-new-address" class="toc-h2 toc-link" data-title="create-a-new-address">Create a new Address</a>
                   </li>
               </ul>
           </li>
@@ -251,7 +251,7 @@
 <h1 id='installation'>Installation</h1>
 <p>Install the <code>lnd-adapter</code> in any project.  With CoinMesh, we recommend using it through a logic service.</p>
 <pre class="highlight shell tab-shell"><code><span class="gp">$ </span>npm install @coinmesh/lnd-adapter
-</code></pre><h1 id='addresses'>Addresses</h1><h2 id='create-a-new-address'>Create a new Address</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'lnd-adapter'</span><span class="p">).</span><span class="nx">addresses</span><span class="p">;</span>
+</code></pre><h1 id='addresses'>Addresses</h1><h2 id='addresses-create-a-new-address'>Create a new Address</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">addresses</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'lnd-adapter'</span><span class="p">).</span><span class="nx">addresses</span><span class="p">;</span>
 
 <span class="nx">addresses</span><span class="p">.</span><span class="nx">createAddress</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">newAddress</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newAddress</span><span class="p">);</span>
