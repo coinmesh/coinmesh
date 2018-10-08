@@ -23,7 +23,13 @@ class BalancesService {
   getPendingChannels() {
     return getPendingChannels({lnd});
   }
-  openChannel() {
+  openChannel(targetNodePublicKey, localTokens, giveTokens = 0, fee = 1e3) {
+    const params = {
+      chain_fee_tokens_per_vbyte: fee,
+      give_tokens: giftTokens,
+      local_tokens: localTokens,
+      partner_public_key: targetNodePublicKey,
+    };
     return openChannel({lnd});
   }
 }

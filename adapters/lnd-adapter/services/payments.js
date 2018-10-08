@@ -6,8 +6,8 @@ class PaymentsService {
   getPayments() {
     return getPayments({lnd});
   }
-  pay(request) {
-    return pay({lnd, request});
+  pay(request, fee) {
+    return pay({lnd, request, fee});
   }
 }
 

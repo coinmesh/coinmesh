@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - litecoind_adapter
   - bitcoind_adapter
+  - lnd_adapter
   - errors
 
 search: true
