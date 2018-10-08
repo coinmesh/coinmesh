@@ -18,7 +18,7 @@ const {historyRouter} = require('ln-service/routers');
 const {invoicesRouter} = require('ln-service/routers');
 const {isWalletLocked} = require('ln-service/service');
 const {lightningDaemon} = require('ln-service/lightning');
-const {localLnd} = require('ln-service/service');
+const localLnd = require('./services/local-lnd');
 const {networkInfoRouter} = require('ln-service/routers');
 const {paymentsRouter} = require('ln-service/routers');
 const {peersRouter} = require('ln-service/routers');
@@ -48,7 +48,6 @@ app.use((req, res, next) => {
 
 const lnd = localLnd({});
 app.lnd = lnd;
-
 app.use('/v0/addresses', addressesRouter({lnd, log}));
 app.use('/v0/balance', balanceRouter({lnd, log}));
 app.use('/v0/channels', channelsRouter({lnd, log}));
