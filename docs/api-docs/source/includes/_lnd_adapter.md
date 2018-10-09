@@ -145,6 +145,68 @@ None
 
 
 
+## Get Connections
+
+```shell
+curl -X GET
+  -H "Content-Type: application/json"
+  -H "Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="
+  "http://localhost:3098/v0/connections/"
+```
+
+```javascript
+const balancesService = require('@coinmesh/lnd-adapter').balancesService;
+
+balancesService.getChainBalance().then(result => {
+  console.log(result);
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "connections": [{
+    "channels": [{
+      "id": "<Channel Id String>",
+      "is_active": "<Channel Active Bool>",
+      "is_closing": "<Channel Closing Bool>",
+      "is_opening": "<Channel Opening Bool>",
+      "local_balance": "<Local Balance Satoshis Number>",
+      "received": "<Received Satoshis Number>",
+      "remote_balance": "<Remote Balance Satoshis Number>",
+      "sent": "<Sent Satoshis Number>",
+      "transaction_id": "<Blockchain Transaction Id>",
+      "transaction_vout": "<Blockchain Transaction Vout Number>",
+      "transfers_count": "<Channel Transfers Total Number>",
+      "unsettled_balance": "<Unsettled Balance Satoshis Number>"
+    }],
+    "peers": [{
+      "bytes_received": "<Bytes Received Number>",
+      "bytes_sent": "<Bytes Sent Number>",
+      "network_address": "<Network Address String>",
+      "ping_time": "<Milliseconds Number>",
+      "tokens_received": "<Amount Received Satoshis Number>",
+      "tokens_sent": "<Amount Sent Satoshis Number>"
+    }],
+    "public_key": "<Public Key String>",
+    "type": "<Type String>"
+  }]
+}
+```
+
+This endpoint returns an aggregate of the connections (channels and nodes) to the node.
+
+### HTTP Request
+
+`GET http://localhost:3098/v0/connections/`
+
+### Body Parameters
+
+None
+
+
+
 ## Get Channels
 
 ```shell
@@ -292,6 +354,95 @@ chain_fee_tokens_per_vbyte | 1e3 | Chain Fee Tokens Per VByte Number
 give_tokens | 0 | Number of tokens to gift to peer
 local_tokens | null | Number of tokens to fund channel with
 partner_public_key | null | Public key of peer node
+
+
+
+## Sign Message
+
+```shell
+curl -X POST
+  -d '{
+      "message": "A message to sign."
+    }'
+  -H "Content-Type: application/json"
+  -H "Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="
+  "http://localhost:3098/v0/crypto/sign/"
+```
+
+```javascript
+const cryptoService = require('@coinmesh/lnd-adapter').cryptoService;
+
+const message = 'A message to sign.';
+
+cryptoService.signMessage(message).then(result => {
+  console.log(result);
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "signature": "{{signature}}"
+}
+```
+
+This endpoint opens a channel with a connected peer.
+
+### HTTP Request
+
+`POST http://localhost:3098/v0/crypto/sign/`
+
+### Body Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+message | null | Message to sign
+
+
+
+## Verify Message
+
+```shell
+curl -X POST
+  -d '{
+      "message": "A message to verify."
+    }'
+  -H "Content-Type: application/json"
+  -H "Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="
+  "http://localhost:3098/v0/crypto/verify/"
+```
+
+```javascript
+const cryptoService = require('@coinmesh/lnd-adapter').cryptoService;
+
+const message = 'A message to sign.';
+
+cryptoService.signMessage(message).then(result => {
+  console.log(result);
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "signed_by": "{{public key of signer}}"
+}
+```
+
+This endpoint opens a channel with a connected peer.
+
+### HTTP Request
+
+`POST http://localhost:3098/v0/crypto/sign/`
+
+### Body Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+message | null | Message to sign
+signature | null | Signature to check the message
 
 
 

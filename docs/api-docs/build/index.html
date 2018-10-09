@@ -335,6 +335,9 @@
                     <a href="#lnd-adapter-get-chain-balance" class="toc-h2 toc-link" data-title="get-chain-balance">Get Chain Balance</a>
                   </li>
                   <li>
+                    <a href="#lnd-adapter-get-connections" class="toc-h2 toc-link" data-title="get-connections">Get Connections</a>
+                  </li>
+                  <li>
                     <a href="#lnd-adapter-get-channels" class="toc-h2 toc-link" data-title="get-channels">Get Channels</a>
                   </li>
                   <li>
@@ -342,6 +345,12 @@
                   </li>
                   <li>
                     <a href="#lnd-adapter-open-channel" class="toc-h2 toc-link" data-title="open-channel">Open Channel</a>
+                  </li>
+                  <li>
+                    <a href="#lnd-adapter-sign-message" class="toc-h2 toc-link" data-title="sign-message">Sign Message</a>
+                  </li>
+                  <li>
+                    <a href="#lnd-adapter-verify-message" class="toc-h2 toc-link" data-title="verify-message">Verify Message</a>
                   </li>
                   <li>
                     <a href="#lnd-adapter-create-invoice" class="toc-h2 toc-link" data-title="create-invoice">Create Invoice</a>
@@ -1802,6 +1811,53 @@ let token = btoa(`${username}:${password}`);
 <p><code>GET http://localhost:3098/v0/balance/</code></p>
 <h3 id='lnd-adapter-get-chain-balance-body-parameters'>Body Parameters</h3>
 <p>None</p>
+<h2 id='lnd-adapter-get-connections'>Get Connections</h2><pre class="highlight shell tab-shell"><code>curl -X GET
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="</span>
+  <span class="s2">"http://localhost:3098/v0/connections/"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">balancesService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/lnd-adapter'</span><span class="p">).</span><span class="nx">balancesService</span><span class="p">;</span>
+
+<span class="nx">balancesService</span><span class="p">.</span><span class="nx">getChainBalance</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"connections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"channels"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Channel Id String&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Channel Active Bool&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_closing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Channel Closing Bool&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_opening"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Channel Opening Bool&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"local_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Local Balance Satoshis Number&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Received Satoshis Number&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"remote_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Remote Balance Satoshis Number&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Sent Satoshis Number&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transaction_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Blockchain Transaction Id&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transaction_vout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Blockchain Transaction Vout Number&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transfers_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Channel Transfers Total Number&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unsettled_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Unsettled Balance Satoshis Number&gt;"</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"peers"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"bytes_received"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Bytes Received Number&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bytes_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Bytes Sent Number&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"network_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Network Address String&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ping_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Milliseconds Number&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tokens_received"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Amount Received Satoshis Number&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tokens_sent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Amount Sent Satoshis Number&gt;"</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"public_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Public Key String&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Type String&gt;"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns an aggregate of the connections (channels and nodes) to the node.</p>
+<h3 id='lnd-adapter-get-connections-http-request'>HTTP Request</h3>
+<p><code>GET http://localhost:3098/v0/connections/</code></p>
+<h3 id='lnd-adapter-get-connections-body-parameters'>Body Parameters</h3>
+<p>None</p>
 <h2 id='lnd-adapter-get-channels'>Get Channels</h2><pre class="highlight shell tab-shell"><code>curl -X GET
   -H <span class="s2">"Content-Type: application/json"</span>
   -H <span class="s2">"Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="</span>
@@ -1940,6 +1996,89 @@ let token = btoa(`${username}:${password}`);
 <td>partner_public_key</td>
 <td>null</td>
 <td>Public key of peer node</td>
+</tr>
+</tbody></table>
+<h2 id='lnd-adapter-sign-message'>Sign Message</h2><pre class="highlight shell tab-shell"><code>curl -X POST
+  -d <span class="s1">'{
+      "message": "A message to sign."
+    }'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="</span>
+  <span class="s2">"http://localhost:3098/v0/crypto/sign/"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">cryptoService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/lnd-adapter'</span><span class="p">).</span><span class="nx">cryptoService</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="s1">'A message to sign.'</span><span class="p">;</span>
+
+<span class="nx">cryptoService</span><span class="p">.</span><span class="nx">signMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{signature}}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint opens a channel with a connected peer.</p>
+<h3 id='lnd-adapter-sign-message-http-request'>HTTP Request</h3>
+<p><code>POST http://localhost:3098/v0/crypto/sign/</code></p>
+<h3 id='lnd-adapter-sign-message-body-parameters'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td>null</td>
+<td>Message to sign</td>
+</tr>
+</tbody></table>
+<h2 id='lnd-adapter-verify-message'>Verify Message</h2><pre class="highlight shell tab-shell"><code>curl -X POST
+  -d <span class="s1">'{
+      "message": "A message to verify."
+    }'</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -H <span class="s2">"Authorization: Basic cnBjdXNlcjpycGNwYXNzd29yZA=="</span>
+  <span class="s2">"http://localhost:3098/v0/crypto/verify/"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">cryptoService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@coinmesh/lnd-adapter'</span><span class="p">).</span><span class="nx">cryptoService</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="s1">'A message to sign.'</span><span class="p">;</span>
+
+<span class="nx">cryptoService</span><span class="p">.</span><span class="nx">signMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"signed_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{public key of signer}}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint opens a channel with a connected peer.</p>
+<h3 id='lnd-adapter-verify-message-http-request'>HTTP Request</h3>
+<p><code>POST http://localhost:3098/v0/crypto/sign/</code></p>
+<h3 id='lnd-adapter-verify-message-body-parameters'>Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td>null</td>
+<td>Message to sign</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>null</td>
+<td>Signature to check the message</td>
 </tr>
 </tbody></table>
 <h2 id='lnd-adapter-create-invoice'>Create Invoice</h2><pre class="highlight shell tab-shell"><code>curl -X POST
