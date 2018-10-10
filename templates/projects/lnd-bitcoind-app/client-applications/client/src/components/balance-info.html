@@ -1,0 +1,63 @@
+<template>
+  <require from="components/display-item"></require>
+  <require from="resources/value-converters/satoshi-to-btc"></require>
+  <div class="balance-row">
+    <div class="row">
+      <div class="col-4">
+        <strong>Wallet</strong>
+      </div>
+      <div class="col-4">
+        <strong>฿ ${balance.chain_balance | satoshiToBtc}</strong>
+      </div>
+      <div class="col-4">
+        <label>$(${balance.chain_balance_dollars})</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label>Pending</label>
+      </div>
+      <div class="col-4">
+        <label>฿ ${balance.pending_chain_balance | satoshiToBtc}</label>
+      </div>
+      <div class="col-4">
+        <label>$(${balance.pending_chain_balance_dollars})</label>
+      </div>
+    </div>
+  </div>
+  <div class="balance-row">
+    <div class="row">
+      <div class="col-4">
+        <strong>Channels</strong>
+      </div>
+      <div class="col-4">
+        <strong>฿ ${balance.channel_balance | satoshiToBtc}</strong>
+      </div>
+      <div class="col-4">
+        <label>$(${balance.channel_balance_dollars})</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label>Pending</label>
+      </div>
+      <div class="col-4">
+        <label>฿ ${balance.pending_channel_balance | satoshiToBtc}</label>
+      </div>
+      <div class="col-4">
+        <label>$(${balance.pending_channel_balance_dollars})</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <strong>Total</strong>
+    </div>
+    <div class="col-4">
+      <strong>฿ ${balance.total_balance | satoshiToBtc}</strong>
+    </div>
+    <div class="col-4">
+      <label>$(${balance.total_balance_dollars})</label>
+    </div>
+  </div>
+</template>

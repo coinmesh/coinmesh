@@ -1,0 +1,14 @@
+<template>
+  <div class="card text-white bg-dark">
+    <h5 class="card-header" click.delegate="toggle()">
+      <slot name="header"></slot>
+    </h5>
+    <div class="card-body" show.bind="isOpen">
+      <h5 class="card-title">
+        <slot name="title"></slot>
+      </h5>
+      <slot name="body"></slot>
+      <slot></slot>
+    </div>
+  </div>
+</template>

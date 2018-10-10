@@ -1,0 +1,34 @@
+{
+  "name": "sample-generated-project",
+  "description": "Sample generated project",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "npm install && concurrently \"npm run client\" \"npm run logic-services\" \"npm run adapters\"",
+    "client": "cd ./client-applications/client && npm start",
+    "logic-services": "concurrently \"cd ./logic-services/wallet && npm start\"",
+    "adapters": "concurrently \"cd ./adapters/bitcoind-adapter && npm start\" \"cd ./adapters/lnd-adapter && npm start\"",
+    "test": "concurrently \"cd ./logic-services/wallet && npm test\""
+  },
+  "coinmesh": {
+    "type": "project",
+    "adapters": {
+      "bitcoind-adapter": "./adapters/bitcoind-adapter",
+      "lnd-adapter": "./adapters/lnd-adapter"
+    },
+    "logicServices": {
+      "wallet": "./logic-services/wallet"
+    },
+    "dataSources": {
+      "bitcoind": "./data-sources/bitcoind",
+      "lnd": "./data-sources/lnd"
+    },
+    "clientApplications": {
+      "client": "./client-applications/client"
+    }
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1"
+  }
+}
