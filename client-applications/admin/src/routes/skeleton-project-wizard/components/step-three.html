@@ -1,0 +1,22 @@
+<template>
+  <require from="components/card-item"></require>
+  <div class="row">
+    <div class="col">
+      <h3>Step Three</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <strong>Choose Logic services</strong>
+      <div class="card-columns">
+        <card-item repeat.for="logicService of logicServices" is-open.bind="true" is-success.bind="logicService.selected">
+          <span slot="header">${logicService.name}</span>
+          <label>
+            <input type="checkbox" checked.bind="logicService.selected" disabled.bind="!logicService.enabled" />
+            <span>${logicService.description}</span>
+          </label>
+        </card-item>
+      </div>
+    </div>
+  </div>
+</template>

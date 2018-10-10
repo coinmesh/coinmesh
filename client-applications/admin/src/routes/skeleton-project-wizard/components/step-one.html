@@ -1,0 +1,18 @@
+<template>
+  <require from="components/directory-list"></require>
+  <div class="row">
+    <div class="col">
+      <h3>Step One</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <directory-list
+        current-path.two-way="currentPath"
+        select-item.call="selectDirectory()"
+        selected-item.two-way="selectedDirectoryName"
+        select-item-text="Select directory">
+      </directory-list>
+    </div>
+  </div>
+</template>

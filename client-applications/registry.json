@@ -5,7 +5,7 @@
       "endpoint": "local",
       "name": "Empty Aurelia Skeleton",
       "description": "An empty Aurelia browser application.",
-      "path": "../../templates/projects/client"
+      "path": "../../templates/libraries/client"
     }
   ]
 }

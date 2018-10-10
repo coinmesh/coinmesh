@@ -6,7 +6,7 @@ Logic Service should typically provide some sort of business logic that can be r
 
 ## Creating (or enhancing) an Logic Service
 
-To get started we recommend using the [HTTP API template](https://github.com/coinmesh/coinmesh/templates/projects/http-api).  With this you can see that the tests are already set up with Jasmine for the unit tests and Supertest for the integration tests at the HTTP Layer.
+To get started we recommend using the [HTTP API template](https://github.com/coinmesh/coinmesh/templates/libraries/http-api).  With this you can see that the tests are already set up with Jasmine for the unit tests and Supertest for the integration tests at the HTTP Layer.
 
 The first thing you will want to do is modify the `package.json` file to reflect your logic service project and what it does, where it is located, etc...
 

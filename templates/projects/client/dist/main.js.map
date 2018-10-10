@@ -1,1 +1,0 @@
-{"version":3,"sources":["main.js"],"names":["configure","aurelia","use","standardConfiguration","developmentLogging","start","then","setRoot"],"mappings":";;;AAEO,WAASA,SAAT,CAAmBC,OAAnB,EAA4B;AACjCA,YAAQC,GAAR,CACGC,qBADH,GAEGC,kBAFH;;AAIAH,YAAQI,KAAR,GAAgBC,IAAhB,CAAqB;AAAA,aAAML,QAAQM,OAAR,EAAN;AAAA,KAArB;AACD;;uBANeP,S","file":"main.js","sourceRoot":"/src"}

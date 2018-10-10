@@ -7,7 +7,7 @@ export class ClientApplicationFixtures {
       id: 'client',
       name: 'Empty Aurelia Skeleton',
       description: 'An empty Aurelia browser application.',
-      path: '../../templates/projects/client'
+      path: '../../templates/libraries/client'
     }),
     new ClientApplication({
       id: 'lnd-gui',

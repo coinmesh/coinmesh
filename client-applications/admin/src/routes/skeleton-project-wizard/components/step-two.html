@@ -1,0 +1,25 @@
+<template>
+  <require from="components/card-item"></require>
+  <div class="row">
+    <div class="col">
+      <h3>Step Two</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <strong>Choose Data sources</strong>
+      <div class="card-columns">
+        <card-item repeat.for="dataSource of dataSources"
+            is-open.bind="true"
+            is-success.bind="dataSource.selected"
+            can-toggle.bind="false">
+          <span slot="header">${dataSource.name}</span>
+          <label>
+            <input type="checkbox" checked.bind="dataSource.selected" disabled.bind="!dataSource.enabled" />
+            <span>${dataSource.description}</span>
+          </label>
+        </card-item>
+      </div>
+    </div>
+  </div>
+</template>

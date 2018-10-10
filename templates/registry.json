@@ -3,15 +3,15 @@
     {
       "name": "adapter",
       "endpoint": "github",
-      "location": "coinmesh/coinmesh/templates/projects/adapter"
+      "location": "coinmesh/coinmesh/templates/libraries/adapter"
     }, {
       "name": "client",
       "endpoint": "github",
-      "location": "coinmesh/coinmesh/templates/projects/client"
+      "location": "coinmesh/coinmesh/templates/libraries/client"
     }, {
       "name": "http-api",
       "endpoint": "github",
-      "location": "coinmesh/coinmesh/templates/projects/http-api"
+      "location": "coinmesh/coinmesh/templates/libraries/http-api"
     }
   ]
 }
