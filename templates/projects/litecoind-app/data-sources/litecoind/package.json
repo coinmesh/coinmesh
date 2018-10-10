@@ -1,0 +1,44 @@
+{
+  "name": "@coinmesh/litecoind",
+  "version": "0.0.1",
+  "description": "Litecoind data source for CoinMesh.",
+  "coinmesh": {
+    "type": "data-source",
+    "confFilePath": "litecoin.conf",
+    "adapters": {
+      "litecoind-adapter": "adapters/litecoind-adapter"
+    },
+    "network": "testnet",
+    "runHttp": true,
+    "conf": {
+      "litecoin": {
+        "regtest": "1",
+        "server": "1",
+        "rpcuser": "rpcuser",
+        "rpcpassword": "rpcpassword",
+        "txindex": "1",
+        "daemon": "1",
+        "zmqpubrawblock": "tcp://127.0.0.1:28332",
+        "zmqpubrawtx": "tcp://127.0.0.1:28332"
+      }
+    }
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coinmesh/coinmesh.git"
+  },
+  "keywords": [
+    "coinmesh",
+    "litecoind"
+  ],
+  "author": "Patrick Walters",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coinmesh/coinmesh/issues"
+  },
+  "homepage": "https://github.com/coinmesh/coinmesh#readme"
+}

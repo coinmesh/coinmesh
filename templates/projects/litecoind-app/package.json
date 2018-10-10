@@ -1,0 +1,32 @@
+{
+  "name": "sample-generated-project",
+  "description": "Sample generated project",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "npm install && concurrently \"npm run client\" \"npm run logic-services\" \"npm run adapters\"",
+    "client": "cd ./client-applications/client && npm start",
+    "logic-services": "concurrently \"cd ./logic-services/wallet && npm start\"",
+    "adapters": "concurrently \"cd ./adapters/litecoind-adapter && npm start\"",
+    "test": "concurrently \"cd ./logic-services/wallet && npm test\""
+  },
+  "coinmesh": {
+    "type": "project",
+    "adapters": {
+      "litecoind-adapter": "./adapters/litecoind-adapter"
+    },
+    "logicServices": {
+      "wallet": "./logic-services/wallet"
+    },
+    "dataSources": {
+      "litecoind": "./data-sources/litecoind"
+    },
+    "clientApplications": {
+      "client": "./client-applications/client"
+    }
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1"
+  }
+}
