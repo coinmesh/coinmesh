@@ -1,6 +1,4 @@
 import {bindable} from 'aurelia-templating';
-import {DataSource} from 'models/data-source';
-import {Adapter} from 'models/adapter';
 import {DataSourcesService} from 'services/data-sources';
 import {AdaptersService} from 'services/adapters';
 

@@ -14,6 +14,17 @@ router.post('/', function(req, res, next) {
     });
 });
 
+router.post('/clone', function(req, res, next) {
+  let project = new Project(req.body);
+
+  projectService.cloneProject(project)
+    .then(result => {
+      return res.json(result);
+    }).catch(error => {
+      return res.status(500).send({ error: error });
+    });
+});
+
 router.patch('/', function(req, res, next) {
   let projectPath = req.body.projectPath;
   let propertyPath = req.body.propertyPath;

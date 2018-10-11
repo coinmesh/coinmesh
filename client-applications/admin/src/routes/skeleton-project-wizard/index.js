@@ -1,10 +1,11 @@
-import {Project} from 'models/project';
+import {SkeletonProject} from 'models/skeleton-project';
 import {AdminService} from 'services/admin';
 import {ProjectStore} from 'services/project-store';
 import {Router} from 'aurelia-router';
 
 export class Index {
-  project = new Project();
+  wizardState = new WizardState();
+  targetPath = '';
   currentStep;
   showNext = true;
   showCreateProject = false;
@@ -31,21 +32,6 @@ export class Index {
       number: 3,
       name: 'Step Three',
       viewModel: './components/step-three'
-    }),
-    new Step({
-      number: 4,
-      name: 'Step Four',
-      viewModel: './components/step-four'
-    }),
-    new Step({
-      number: 5,
-      name: 'Step Five',
-      viewModel: './components/step-five'
-    }),
-    new Step({
-      number: 6,
-      name: 'Step Six',
-      viewModel: './components/step-six'
     })
   ];
   attached() {
@@ -58,14 +44,30 @@ export class Index {
     this.currentStep = this.steps[this.currentStep.number - 2];
   }
   createProject() {
-    return this.adminService.createNewProject(this.project).then(result => {
+    let project = this.wizardState.skeletonProject;
+    project.sourcePath = project.path;
+    project.path = this.wizardState.targetPath;
+
+    return this.adminService.cloneProject(project).then(result => {
       this.showCreateProject = true;
-      return this.adminService.loadProject(this.project.path).then(result => {
+
+      return this.adminService.loadProject(project.path).then(result => {
+        result.path = project.path;
         this.showCreateProject = false;
         this.projectStore.setCurrentProject(result);
+
         return this.router.navigateToRoute('mounted-project');
       });
     });
+  }
+}
+
+class WizardState {
+  skeletonProject;
+  targetPath = '';
+
+  constructor(data) {
+    Object.assign(this, data);
   }
 }
 

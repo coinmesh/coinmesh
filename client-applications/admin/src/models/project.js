@@ -8,12 +8,13 @@ export class Project {
   name = '';
   description = '';
   path = '';
-  type = 'project';
 
   dataSources = [];
   adapters = [];
   logicServices = [];
   clientApplications = [];
+
+  type = 'project';
 
   constructor(data = {}) {
     if (data.coinmesh) {

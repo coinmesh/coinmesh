@@ -1,25 +1,20 @@
 import {bindable} from 'aurelia-templating';
-import {LogicService} from 'models/logic-service';
-import {LogicServicesService} from 'services/logic-services';
+import {Project} from 'models/project';
+import {Index} from '../index';
 
 export class StepThree {
-  @bindable project;
-  logicServices = [];
+  @bindable wizardState;
 
-  static inject = [LogicServicesService];
-  constructor(logicServicesService) {
-    this.logicServicesService = logicServicesService;
+  static inject = [Index];
+  constructor(index) {
+    this.routeIndex = index;
   }
 
-  activate(project) {
-    this.project = project;
-    return this.logicServicesService.getLogicServices().then(result => {
-      this.logicServices = result;
-    });
+  activate(wizardState) {
+    this.wizardState = wizardState;
+    this.routeIndex.showCreateProject = true;
   }
-  detached() {
-    this.project.logicServices = this.logicServices.filter(logicService => {
-      return logicService.selected;
-    });
+  deactivate() {
+    this.routeIndex.showCreateProject = false;
   }
 }

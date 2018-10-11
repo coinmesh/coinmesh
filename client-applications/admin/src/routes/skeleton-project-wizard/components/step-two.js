@@ -1,41 +1,33 @@
 import {bindable} from 'aurelia-templating';
-import {DataSource} from 'models/data-source';
-import {Adapter} from 'models/adapter';
-import {DataSourcesService} from 'services/data-sources';
-import {AdaptersService} from 'services/adapters';
+import {Index} from '../index';
+import {SkeletonProjectsService} from 'services/skeleton-projects';
 
 export class StepTwo {
-  @bindable project;
-  @bindable dataSources = [];
-  @bindable adapters = [];
+  name = '';
+  description = '';
+  @bindable wizardState;
+  @bindable skeletonProjects = [];
 
-  static inject = [DataSourcesService, AdaptersService];
-  constructor(dataSourcesService, adaptersService) {
-    this.dataSourcesService = dataSourcesService;
-    this.adaptersService = adaptersService;
+  static inject = [Index, SkeletonProjectsService];
+  constructor(index, skeletonProjectsService) {
+    this.routeIndex = index;
+    this.skeletonProjectsService = skeletonProjectsService;
   }
 
-  activate(project) {
-    this.project = project;
-    let dsPromise = this.dataSourcesService.getDataSources().then(result => {
-      this.dataSources = result;
+  activate(wizardState) {
+    this.routeIndex.showNext = false;
+    this.wizardState = wizardState;
+    return this.skeletonProjectsService.getSkeletonProjects().then(result => {
+      this.skeletonProjects = result;
     });
-    let adapterPromise = this.adaptersService.getAdapters().then(result => {
-      this.adapters = result;
-    });
-    return Promise.all([dsPromise, adapterPromise]);
   }
-  detached() {
-    let matchingAdapters = {};
-    this.project.dataSources = this.dataSources.filter(dataSource => {
-      let isSelected = !!dataSource.selected;
-      if (isSelected) {
-        matchingAdapters[dataSource.adapter] = true;
-      }
-      return isSelected;
-    });
-    this.project.adapters = this.adapters.filter(adapter => {
-      return matchingAdapters[adapter.id];
-    });
+  selectProject(skeletonProject) {
+    this.wizardState.skeletonProject = skeletonProject;
+  }
+  reviewDetails() {
+    this.routeIndex.showNext = true;
+    this.routeIndex.next();
+    this.wizardState.skeletonProject.name = this.name;
+    this.wizardState.skeletonProject.description = this.description;
   }
 }

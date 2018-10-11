@@ -62,6 +62,10 @@ export class AdminService {
     let url = `http://localhost:3002/v0/project`;
     return this.http.post(url, project);
   }
+  cloneProject(project) {
+    let url = `http://localhost:3002/v0/project/clone`;
+    return this.http.post(url, project);
+  }
   updatePackageJson(project, propName, newValue) {
     let url = `http://localhost:3002/v0/project/`;
     let path = this.fixRelativePath(project.path);

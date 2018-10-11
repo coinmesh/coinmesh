@@ -10,17 +10,24 @@ class ProjectService {
     let packageJson = {
       name: project.name,
       description: project.description,
-      coinmesh: {
-        type: 'project',
-        adapters: {},
-        logicServices: {},
-        dataSources: {},
-        clientApplications: {}
-      }
     };
 
     let path = homedirUtils.getPathFromHomeDir(project.path);
-    return pjWriteService.save(`${path}/package.json`, packageJson);
+    return pjWriteService.save(`${path}/package.json`, packageJson).then(result => {
+      return this.addCoinMeshStanza(project);
+    });
+  }
+  addCoinMeshStanza(project) {
+    let path = homedirUtils.getPathFromHomeDir(project.path);
+
+    let coinmeshStanza = {
+      type: 'project',
+      adapters: {},
+      logicServices: {},
+      dataSources: {},
+      clientApplications: {}
+    };
+    return this.editProjectProperty(path, 'coinmesh', coinmeshStanza);
   }
   editProjectProperty(projectPath, prop, newValue) {
     let path = homedirUtils.getPathFromHomeDir(projectPath);
@@ -82,6 +89,23 @@ class ProjectService {
       }).then(jsonResult => {
         return confFileService.writeJsonAsConfFile(confFilePath, jsonResult);
       });
+  }
+  cloneProject(project) {
+    let sourcePath = `${process.cwd()}/${project.sourcePath}`;
+    let newPath = homedirUtils.getPathFromHomeDir(project.path);
+
+    return fileSystemService.copyAllFilesAndDirectoriesInDirectory(sourcePath, newPath).then(result => {
+      if (project.coinmesh) {
+        return this.addCoinMeshStanza(project);
+      }
+      return Promise.resolve();
+    }).then(result => {
+      let propName = `name`;
+      return this.editProjectProperty(newPath, propName, project.name);
+    }).then(result => {
+      let propName = `description`;
+      return this.editProjectProperty(newPath, propName, project.description);
+    });
   }
 
   // TODO: This is a beast, this needs to be broken down

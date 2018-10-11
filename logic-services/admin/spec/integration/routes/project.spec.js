@@ -33,6 +33,26 @@ describe('Project', () => {
     });
   });
 
+  describe('POST /v0/project/clone', () => {
+    it('clones a project', (done) => {
+      let url = '/v0/project/clone';
+      project.sourcePath = 'spec/support/fake-project';
+
+      request(app)
+        .post(url)
+          .send(project)
+          .expect(200)
+          .end(function(err, res) {
+            pjReadService.getConfigItemByPath(project.path, 'name').then(result => {
+              expect(result).toBe(fakeName);
+              done();
+            });
+            if (err) throw err;
+            done();
+          });
+    });
+  });
+
   describe('PATCH /v0/project', () => {
     it('updates the indicated property in the package.json', (done) => {
       let url = `/v0/project/`;

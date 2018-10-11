@@ -1,25 +1,58 @@
 <template>
   <require from="components/card-item"></require>
+  <require from="./stack-details"></require>
   <div class="row">
     <div class="col">
-      <h3>Step Two</h3>
+      <h3>Choose a Name and Stack for your project...</h3>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <strong>Choose Data sources</strong>
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input value.bind="name"
+            class="form-control" id="name" placeholder="Project name">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input value.bind="description"
+            class="form-control" id="description" placeholder="Project description">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <strong>Project "stack"</strong>
       <div class="card-columns">
-        <card-item repeat.for="dataSource of dataSources"
+        <card-item repeat.for="project of skeletonProjects"
             is-open.bind="true"
-            is-success.bind="dataSource.selected"
-            can-toggle.bind="false">
-          <span slot="header">${dataSource.name}</span>
+            is-success.bind="project === wizardState.skeletonProject"
+            can-toggle.bind="false"
+            click.delegate="selectProject(project)">
+          <span slot="header">${project.name}</span>
           <label>
-            <input type="checkbox" checked.bind="dataSource.selected" disabled.bind="!dataSource.enabled" />
-            <span>${dataSource.description}</span>
+            <span>${project.description}</span>
           </label>
+          <stack-details
+            project.bind="project"
+            show-name.bind="false"
+            show-description.bind="false"
+            show-path.bind="false">
+          </stack-details>
         </card-item>
       </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <form>
+        <button type="submit" class="btn btn-primary"
+          click.delegate="reviewDetails()"
+          disabled.bind="!name || !description || !wizardState.skeletonProject">Review details</button>
+      </form>
     </div>
   </div>
 </template>

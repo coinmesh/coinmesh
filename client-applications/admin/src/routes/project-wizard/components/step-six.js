@@ -1,7 +1,7 @@
 import {bindable} from 'aurelia-templating';
 import {Index} from '../index';
 
-export class StepFour {
+export class StepSix {
   @bindable project;
 
   static inject = [Index];

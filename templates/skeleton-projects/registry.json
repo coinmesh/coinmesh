@@ -1,0 +1,64 @@
+{
+  "skeletonProjects": [
+    {
+      "id": "bitcoind-app",
+      "endpoint": "local",
+      "name": "Bitcoind App",
+      "description": "A skeleton CoinMesh project that runs bitcoin-core software.  Includes an adapter for Bitcoind with a RESTful API as well as a sample Wallet logic service for extending bitcoind-adapter functionality.",
+      "path": "../../templates/skeleton-projects/bitcoind-app",
+      "enabled": true,
+      "adapters": {
+        "bitcoind-adapter": true
+      },
+      "logicServices": {
+        "wallet": true
+      },
+      "dataSources": {
+        "bitcoind": true
+      },
+      "clientApplications": {
+        "client": true
+      }
+    }, {
+      "id": "litecoind-app",
+      "endpoint": "local",
+      "name": "Litecoind App",
+      "description": "A skeleton CoinMesh project that runs litecoin-core software.  Includes an adapter for Bitcoind with a RESTful API as well as a sample Wallet logic service for extending litecoind-adapter functionality.",
+      "path": "../../templates/skeleton-projects/litecoind-app",
+      "enabled": true,
+      "adapters": {
+        "litecoind-adapter": true
+      },
+      "logicServices": {
+        "wallet": true
+      },
+      "dataSources": {
+        "litecoind": true
+      },
+      "clientApplications": {
+        "client": true
+      }
+    }, {
+      "id": "lnd-bitcoind-app",
+      "endpoint": "local",
+      "name": "Bitcoind w/ Lightning Network App",
+      "description": "A skeleton CoinMesh project that runs lnd on top of bitcoin-core software.  Includes an adapter for Bitcoind with a RESTful API as well as a sample Wallet logic service for extending lnd-adapter functionality.",
+      "path": "../../templates/skeleton-projects/lnd-bitcoind-app",
+      "enabled": true,
+      "adapters": {
+        "bitcoind-adapter": true,
+        "lnd-adapter": true
+      },
+      "logicServices": {
+        "wallet": true
+      },
+      "dataSources": {
+        "bitcoind": true,
+        "lnd": true
+      },
+      "clientApplications": {
+        "client": true
+      }
+    }
+  ]
+}

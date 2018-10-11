@@ -25,6 +25,30 @@ describe('ProjectService', () => {
     });
   });
 
+  describe('cloneProject()', () => {
+    it('clones a project from another and updates name', (done) => {
+      project.sourcePath = 'spec/support/fake-project';
+
+      projectService.cloneProject(project).then(result => {
+        pjReadService.getConfigItemByPath(project.path, 'name').then(result => {
+          expect(result).toBe('FakeName');
+          done();
+        });
+      });
+    });
+
+    it('sets up the coinmesh properties', (done) => {
+      project.sourcePath = 'spec/support/fake-project';
+
+      projectService.cloneProject(project).then(result => {
+        pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
+          expect(result).toBe('project');
+          done();
+        });
+      });
+    });
+  });
+
   describe('createProject()', () => {
     it('creates a project from scratch', (done) => {
       projectService.createProject(project).then(result => {

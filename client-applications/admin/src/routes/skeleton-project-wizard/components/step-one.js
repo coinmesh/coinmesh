@@ -5,20 +5,20 @@ import {PathUtils} from 'resources/path-utils';
 export class StepOne {
   routeIndex;
   @bindable currentPath = '~/';
-  @bindable project;
+  @bindable wizardState;
   @bindable selectedDirectoryName = '';
 
   static inject = [Index];
   constructor(index) {
     this.routeIndex = index;
   }
-  activate(project) {
-    this.project = project;
+  activate(wizardState) {
+    this.wizardState = wizardState;
     this.routeIndex.showNext = false;
   }
   selectDirectory() {
     let path = PathUtils.getPathToChildDir(this.currentPath, this.selectedDirectoryName);
-    this.project.path = path;
+    this.wizardState.targetPath = path;
     this.routeIndex.showNext = true;
     this.routeIndex.next();
   }
