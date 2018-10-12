@@ -13,6 +13,6 @@ export class Index {
     if (this.projectStore.currentProject) {
       return this.router.navigateToRoute('mounted-project');
     }
-    this.projectStore.statusMessage = 'Please create or mount a project to get started';
+    this.projectStore.statusMessage = 'Please create a new project or mount an existing one to get started';
   }
 }
