@@ -51,7 +51,7 @@ describe('AddressesService', () => {
 
   describe('sendToAddress()', () => {
     beforeEach(() => {
-      return blocksService.generate(101);
+      return blocksService.generate(100);
     });
 
     it('sends coins to the address', (done) => {

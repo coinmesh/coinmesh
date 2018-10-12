@@ -23,6 +23,32 @@ class AddressesService {
     return jsonRpcClient.post(request);
   }
 
+  importAddress(address, label = 'Watched Addresses', reScan = false) {
+    let request = {
+      method: 'importaddress',
+      params: [
+        address, label, reScan
+      ],
+      id: 'importaddress'
+    };
+
+    return jsonRpcClient.post(request);
+  }
+
+  async getReceivedByAddress(address, minConfirmations = 0) {
+    await this.importAddress(address);
+
+    let request = {
+      method: 'getreceivedbyaddress',
+      params: [
+        address, minConfirmations
+      ],
+      id: 'getreceivedbyaddress'
+    };
+
+    return jsonRpcClient.post(request);
+  }
+
   sendToAddress(targetAddress, amount) {
     let request = {
       method: 'sendtoaddress',

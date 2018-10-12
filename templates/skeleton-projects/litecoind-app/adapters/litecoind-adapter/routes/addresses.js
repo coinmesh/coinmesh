@@ -27,7 +27,8 @@ router.get('/getnewaddress/:account_name?', (req, res, next) => {
 router.post('/getreceivedbyaddress', (req, res, next) => {
   const address = req.body.address;
   const minConfirmations = req.body.minConfirmations;
-   addressesService.getReceivedByAddress(address, minConfirmations)
+
+  addressesService.getReceivedByAddress(address, minConfirmations)
     .then(result => res.json(result));
 });
 

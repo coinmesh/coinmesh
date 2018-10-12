@@ -14,7 +14,6 @@ class InvoicesService {
       isFallbackNested,
       secret
     } = invoiceRequest;
-
     return createInvoice({
       lnd,
       description,

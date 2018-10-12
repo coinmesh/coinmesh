@@ -16,12 +16,20 @@ router.post('/listaddresses', (req, res, next) => {
   });
 });
 
-router.get('/getnewaddress/?:account_name', (req, res, next) => {
+router.get('/getnewaddress/:account_name?', (req, res, next) => {
   const accountName = req.params.account_name;
 
   addressesService.getNewAddress(accountName).then(result => {
     return res.json(result);
   });
+});
+
+router.post('/getreceivedbyaddress', (req, res, next) => {
+  const address = req.body.address;
+  const minConfirmations = req.body.minConfirmations;
+
+  addressesService.getReceivedByAddress(address, minConfirmations)
+    .then(result => res.json(result));
 });
 
 router.post('/sendtoaddress', (req, res, next) => {
