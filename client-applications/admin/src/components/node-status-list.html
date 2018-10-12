@@ -7,7 +7,7 @@
     <card-item repeat.for="nodeStatus of nodeStatuses" is-open.bind="true">
       <span slot="header">${nodeStatus.name} (${nodeStatus.type})</span>
       <div slot="body">
-        <a class="btn btn-center btn-primary" href="#/node-status/${nodeStatus.id}">View Details</a>
+        <a class="btn btn-center btn-outline-primary" href="#/node-status/${nodeStatus.id}">View Details</a>
         <display-item
           label="description"
           value.bind="nodeStatus.description"></display-item>

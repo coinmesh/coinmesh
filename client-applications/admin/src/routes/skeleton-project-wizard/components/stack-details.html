@@ -1,31 +1,29 @@
 <template>
-  <div class="card">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item" if.bind="project.name && showName">
-        <strong>${project.name}</strong>
-      </li>
-      <li class="list-group-item" if.bind="project.description && showDescription">
-        ${project.description}
-      </li>
-      <li class="list-group-item" if.bind="project.path && showPath">
-        ${project.path}
-      </li>
-      <li class="list-group-item bg-light"
-          repeat.for="clientApplication of project.clientApplications">
-        ${clientApplication.name}
-      </li>
-      <li class="list-group-item text-white bg-info"
-          repeat.for="logicService of project.logicServices">
-        ${logicService.name}
-      </li>
-      <li class="list-group-item text-white bg-secondary"
-          repeat.for="adapter of project.adapters">
-        ${adapter.name}
-      </li>
-      <li class="list-group-item text-white bg-primary"
-          repeat.for="dataSource of project.dataSources">
-        ${dataSource.name}
-      </li>
-    </ul>
-  </div>
+  <ul class="list-group list-group-flush text-center">
+    <li class="list-group-item" if.bind="project.name && showName">
+      <strong>${project.name}</strong>
+    </li>
+    <li class="list-group-item" if.bind="project.description && showDescription">
+      ${project.description}
+    </li>
+    <li class="list-group-item" if.bind="project.path && showPath">
+      ${project.path}
+    </li>
+    <li class="list-group-item bg-light"
+        repeat.for="clientApplication of project.clientApplications">
+      ${clientApplication.name}
+    </li>
+    <li class="list-group-item text-white bg-info"
+        repeat.for="logicService of project.logicServices">
+      ${logicService.name}
+    </li>
+    <li class="list-group-item text-white bg-secondary"
+        repeat.for="adapter of project.adapters">
+      ${adapter.name}
+    </li>
+    <li class="list-group-item text-white bg-primary"
+        repeat.for="dataSource of project.dataSources">
+      ${dataSource.name}
+    </li>
+  </ul>
 </template>

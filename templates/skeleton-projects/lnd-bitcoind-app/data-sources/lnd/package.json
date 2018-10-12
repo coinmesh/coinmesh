@@ -24,11 +24,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coinmesh/coinmesh.git"
+    "url": "https://github.com/coinmesh/coinmesh.git"
   },
   "keywords": [
     "coinmesh",
-    "lnd"
+    "lnd",
+    "bitcoind",
+    "bitcoin"
   ],
   "author": "Patrick Walters",
   "license": "MIT",

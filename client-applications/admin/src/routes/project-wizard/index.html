@@ -11,21 +11,21 @@
     <div class="col">
       <a
         click.delegate="back()"
-        class="btn btn-primary pull-right"
+        class="btn btn-outline-primary pull-right"
         href="#"
         if.bind="currentStep.number > 1">Back</a>
     </div>
     <div class="col">
       <a
         click.delegate="next()"
-        class="btn btn-primary"
+        class="btn btn-outline-primary"
         href="#"
         if.bind="showNext && currentStep.number < 6">Next</a>
     </div>
     <div class="col">
       <button
         click.delegate="createProject()"
-        class="btn btn-primary"
+        class="btn btn-outline-primary"
         if.bind="showCreateProject">Create</button>
     </div>
   </div>

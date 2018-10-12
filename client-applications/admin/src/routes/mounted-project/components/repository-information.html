@@ -1,12 +1,16 @@
 <template>
   <require from="components/card-item"></require>
   <require from="components/display-item"></require>
+
   <card-item is-open.bind="true">
     <span slot="header">Repository Information</span>
-    <div slot="body" if.bind="repository.url">
-      <a class="btn btn-center btn-primary"
-        href.bind="repository.url"
-        target="_blank">${repository.url}</a>
+    <div slot="body" if.bind="project.repository.url">
+      <display-item if.bind="project.description"
+        label="Description"
+        value.bind="project.description"></display-item>
+      <a class="btn btn-center btn-outline-primary"
+        href.bind="project.repository.url"
+        target="_blank">${project.repository.url}</a>
     </div>
   </card-item>
 </template>

@@ -16,5 +16,19 @@
     "nodemon": "^1.18.3",
     "supertest": "^3.1.0"
   },
-  "main": "index.js"
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coinmesh/coinmesh.git"
+  },
+  "keywords": [
+    "coinmesh",
+    "bitcoind"
+  ],
+  "author": "Patrick Walters",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coinmesh/coinmesh/issues"
+  },
+  "homepage": "http://coinmesh.com"
 }

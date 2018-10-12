@@ -1,33 +1,28 @@
 import {bindable} from 'aurelia-templating';
-import {Index} from '../index';
 import {SkeletonProjectsService} from 'services/skeleton-projects';
+import {ProjectStore} from 'services/project-store'
 
 export class StepTwo {
-  name = '';
-  description = '';
   @bindable wizardState;
-  @bindable skeletonProjects = [];
 
-  static inject = [Index, SkeletonProjectsService];
-  constructor(index, skeletonProjectsService) {
-    this.routeIndex = index;
+  static inject = [SkeletonProjectsService, ProjectStore];
+  constructor(skeletonProjectsService, projectStore) {
     this.skeletonProjectsService = skeletonProjectsService;
+    this.projectStore = projectStore;
   }
 
   activate(wizardState) {
-    this.routeIndex.showNext = false;
     this.wizardState = wizardState;
+    this.projectStore.statusMessage = 'Choose a Name and Stack for your project...';
+
+    if (this.wizardState.skeletonProjects.length > 0) {
+      return;
+    }
     return this.skeletonProjectsService.getSkeletonProjects().then(result => {
-      this.skeletonProjects = result;
+      this.wizardState.skeletonProjects = result;
     });
   }
   selectProject(skeletonProject) {
     this.wizardState.skeletonProject = skeletonProject;
-  }
-  reviewDetails() {
-    this.routeIndex.showNext = true;
-    this.routeIndex.next();
-    this.wizardState.skeletonProject.name = this.name;
-    this.wizardState.skeletonProject.description = this.description;
   }
 }

@@ -15,5 +15,17 @@
     "nodemon": "^1.18.3",
     "supertest": "^3.1.0"
   },
-  "main": "index.js"
+  "main": "index.js",
+  "keywords": [
+    "coinmesh",
+    "litecoind",
+    "admin"
+  ],
+  "homepage": "http://coinmesh.com",
+  "license": "CC0-1.0",
+  "author": "Patrick Walters <patrick.walters@blockfuse.io> (http://blockfuse.io/)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/coinmesh"
+  },
 }

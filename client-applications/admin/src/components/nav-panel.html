@@ -1,0 +1,109 @@
+<template>
+  <nav class="navbar navbar-expand-sm navbar-default">
+    <div class="navbar-header">
+      <button class="navbar-toggler" type="button" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand" href="./">
+        <img src="assets/images/coinmesh_logo.png" alt="Logo">
+      </a>
+      <a class="navbar-brand hidden" href="./">
+        <img src="assets/images/coinmesh_white.png" alt="Logo">
+      </a>
+    </div>
+
+    <div class="main-menu collapse navbar-collapse">
+
+      <template if.bind="!projectStore.currentProject">
+        <ul class="nav navbar-nav">
+          <h3 class="menu-title">${navMessage}</h3>
+          <li repeat.for="row of router.navigation"
+              class="${row.isActive ? 'active' : ''} nav-item dropdown">
+            <a href.bind="row.href">
+              <i class="menu-icon fa ${row.settings.icon}"></i> ${row.title}
+            </a>
+          </li>
+        </ul>
+      </template>
+
+      <template if.bind="projectStore.currentProject">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a class="dropdown" href="#/mounted-project/">
+              <i class="menu-icon fa fa-dashboard"></i>
+              Project Home
+            </a>
+          </li>
+
+          <li class="active" if.bind="isOpen">
+            <a class="btn btn-outline-danger" click.delegate="unmount()">
+              Unmount Project
+            </a>
+          </li>
+
+          <h3 class="menu-title">${projectStore.currentProject.name}</h3>
+          <li class="menu-item-has-children dropdown ${clientsOpen ? 'show' : ''}">
+            <a class="dropdown-toggle" href="#" click.delegate="toggle('clientsOpen')">
+              <i class="menu-icon fa fa-laptop"></i>
+              Clients
+            </a>
+            <ul class="sub-menu children dropdown-menu ${clientsOpen ? 'show' : ''}">
+              <li repeat.for="clientApplication of projectStore.currentProject.clientApplications">
+                <i class="fa fa-arrow-circle-up"></i>
+                <a href="#/mounted-project/client-applications/${clientApplication.name}">
+                  ${clientApplication.name}
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="menu-item-has-children dropdown ${logicServicesOpen ? 'show' : ''}">
+            <a href="#" click.delegate="toggle('logicServicesOpen')">
+              <i class="menu-icon fa fa-laptop"></i>
+              Logic Services
+            </a>
+            <ul class="sub-menu children dropdown-menu ${logicServicesOpen ? 'show' : ''}">
+              <li repeat.for="logicService of projectStore.currentProject.logicServices">
+                <i class="fa fa-arrow-circle-up"></i>
+                <a href="#/mounted-project/logic-services/${logicService.name}">
+                  ${logicService.name}
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="menu-item-has-children dropdown ${adaptersOpen ? 'show' : ''}">
+            <a href="#" click.delegate="toggle('adaptersOpen')">
+              <i class="menu-icon fa fa-laptop"></i>
+              Adapters
+            </a>
+            <ul class="sub-menu children dropdown-menu ${adaptersOpen ? 'show' : ''}">
+              <li repeat.for="adapter of projectStore.currentProject.adapters">
+                <i class="fa fa-arrow-circle-up"></i>
+                <a href="#/mounted-project/adapters/${adapter.name}">
+                  ${adapter.name}
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="menu-item-has-children dropdown ${dataSourcesOpen ? 'show' : ''}">
+            <a href="#" click.delegate="toggle('dataSourcesOpen')">
+              <i class="menu-icon fa fa-laptop"></i>
+              Data Sources
+            </a>
+            <ul class="sub-menu children dropdown-menu ${dataSourcesOpen ? 'show' : ''}">
+              <li repeat.for="dataSource of projectStore.currentProject.dataSources">
+                <i class="fa fa-arrow-circle-up"></i>
+                <a href="#/mounted-project/data-sources/${dataSource.name}">
+                  ${dataSource.name}
+                </a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </template>
+    </div>
+  </nav>
+</template>

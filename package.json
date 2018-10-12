@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coinmesh/coinmesh.git"
+    "url": "https://github.com/coinmesh/coinmesh.git"
   },
   "author": "Patrick Walters <patrick.walters@blockfuse.io> (http://blockfuse.io/)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/blockfuse/coinmesh/issues"
+    "url": "https://github.com/coinmesh/coinmesh/issues"
   },
-  "homepage": "https://github.com/blockfuse/coinmesh#readme",
+  "homepage": "https://github.com/coinmesh/coinmesh#readme",
   "dependencies": {
     "concurrently": "^3.5.1"
   }

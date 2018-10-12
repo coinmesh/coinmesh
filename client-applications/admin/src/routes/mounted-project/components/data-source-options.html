@@ -1,19 +1,44 @@
 <template>
-  <form>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="runAdapterHttp"
-        checked.bind="runHttp"/>
-      <label class="form-check-label" for="runAdapterHttp">
-        <h5>Run adapter with HTTP API?</h5>
-      </label>
-    </div>
-    <h5>Choose Network</h5>
-    <template repeat.for="network of networks">
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="network" id.bind="network"
-          value.bind="network" checked.bind="selectedNetwork" />
-        <label class="form-check-label" for.bind="network">${network}</label>
+  <require from="components/card-item"></require>
+  <card-item is-open.bind="true">
+    <span slot="header">Configuration</span>
+    <div slot="body">
+      <div class="row">
+        <div class="col">
+          <form>
+            <div class="row form-group">
+              <div class="col col-md-3"><label class=" form-control-label">Network</label></div>
+              <div class="col col-md-9">
+                <div class="form-check">
+
+                  <template repeat.for="network of networks">
+                    <div class="radio">
+                      <label for.bind="network" class="form-check-label">
+                        <input class="form-check-input" type="radio" name="network" id.bind="network"
+                          value.bind="network" checked.bind="selectedNetwork" />
+                          ${network}
+                      </label>
+                    </div>
+                  </template>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col col-md-3"><label class=" form-control-label">Run REST Services?</label></div>
+                <div class="col col-md-9">
+                  <div class="form-check-inline form-check">
+                    <label for="inline-checkbox1" class="form-check-label ">
+                      <input class="form-check-input" type="checkbox" value="" id="runAdapterHttp"
+                        name="runAdapterHttp" checked.bind="runHttp"/>
+                    </label>
+                  </div>
+                </div>
+              </div>
+          </form>
+        </div>
       </div>
-    </template>
-  </form>
+    </div>
+  </card-item>
 </template>

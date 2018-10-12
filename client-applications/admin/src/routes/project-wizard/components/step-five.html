@@ -17,7 +17,7 @@
           <input value.bind="project.description"
             class="form-control" id="description" placeholder="Project description">
         </div>
-        <button type="submit" class="btn btn-primary"
+        <button type="submit" class="btn btn-outline-primary"
           click.delegate="reviewDetails()"
           disabled.bind="!project.name || !project.description">Review details</button>
       </form>

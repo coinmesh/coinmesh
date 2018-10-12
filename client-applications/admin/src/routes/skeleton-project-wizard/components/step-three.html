@@ -1,13 +1,25 @@
 <template>
   <require from="./stack-details"></require>
+
   <div class="row">
     <div class="col">
-      <h3>Review project details...</h3>
+      <div class="alert alert-danger" role="alert" if.bind="!wizardState.targetPath">
+          No destination path selected.  Please go back to <a href="#" class="alert-link">step one</a>.
+      </div>
+      <div class="alert alert-danger" role="alert" if.bind="!wizardState.skeletonProject">
+          No skeleton project selected.  Please go back to <a href="#" class="alert-link">step two</a>.
+      </div>
+      <div class="alert alert-danger" role="alert" if.bind="!wizardState.name">
+          No name.  Please go back to <a href="#" class="alert-link">step two</a>.
+      </div>
+    </div>
     </div>
   </div>
   <div class="row">
-    <div class="col">
-      <stack-details project.bind="wizardState.skeletonProject"></stack-details>
+    <div class="col-4 offset-4">
+      <div class="card">
+        <stack-details project.bind="wizardState.skeletonProject"></stack-details>
+      </div>
     </div>
   </div>
 </template>

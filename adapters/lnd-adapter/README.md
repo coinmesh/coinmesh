@@ -1,6 +1,6 @@
 # LND Adapter
 
-LND Adapter uses `ln-service` under the covers.  This is a wrapper with tests and documentation for that project.
+LND Adapter uses `ln-service` under the covers.  This is a wrapper with tests and documentation for that project.  There are some additional subtle differences in what is exported and how the library is used.
 
 ## Tests
 

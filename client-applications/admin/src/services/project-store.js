@@ -1,5 +1,6 @@
 export class ProjectStore {
   currentProject;
+  statusMessage = '';
 
   setCurrentProject(project) {
     this.currentProject = project;

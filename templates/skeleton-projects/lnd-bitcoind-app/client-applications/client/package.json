@@ -1,13 +1,14 @@
 {
-  "name": "blockfuse-admin",
+  "name": "@coinmesh/coinmesh-ui",
   "version": "0.0.1",
-  "description": "An admin panel for managing a BlockFuse stack",
+  "description": "A UI for managing a CoinMesh project.",
   "keywords": [
     "blockfuse",
-    "aurelia",
-    "admin"
+    "bitcoind",
+    "lnd",
+    "bitcoin"
   ],
-  "homepage": "http://blockfuse.io",
+  "homepage": "https://coinmesh.com",
   "license": "CC0-1.0",
   "author": "Patrick Walters <patrick.walters@blockfuse.io> (http://blockfuse.io/)",
   "main": "dist/main.js",

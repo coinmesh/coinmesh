@@ -12,8 +12,4 @@ export class ProjectInfo {
     this.projectStore = projectStore;
     this.router = router;
   }
-  unmount() {
-    this.projectStore.unmountProject();
-    this.router.parent.navigateToRoute('home');
-  }
 }

@@ -6,17 +6,16 @@
 
   <project-info project.bind="dataSource"></project-info>
 
-  <conf-file-details project.bind="dataSource">
-  </conf-file-details>
-
-  <terminal-output
-    can-docker-run.bind="true"
-    can-docker-build.bind="true"
-    project-root.bind="dataSource.path">
-  </terminal-output>
-
-  <data-source-options data-source.bind="dataSource"
-    selected-network.bind="dataSource.network"
-    run-http.bind="dataSource.runHttp">
-  </data-source-options>
+  <div class="row">
+    <div class="col">
+      <data-source-options data-source.bind="dataSource"
+        selected-network.bind="dataSource.network"
+        run-http.bind="dataSource.runHttp">
+      </data-source-options>
+    </div>
+    <div class="col">
+      <conf-file-details project.bind="dataSource">
+      </conf-file-details>
+    </div>
+  </div>
 </template>

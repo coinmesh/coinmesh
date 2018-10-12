@@ -1,28 +1,38 @@
 <template>
-  <div class="row">
-    <div class="col">
-      <template if.bind="!confFileExists">
-        <strong>
-          conf file does not exist.
-        </strong>
-        <button click.delegate="createConf()">Create one</button>
-      </template>
+  <require from="components/card-item"></require>
+  <require from="components/display-item"></require>
 
-      <template if.bind="confFileExists">
-        <button click.delegate="viewConf()">View conf file</button>
-      </template>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <pre>
-      	<code>
-       	  <template repeat.for="prop of confFile.props">
-            <label>${prop.key}</label>
-            <strong>${prop.value}</strong>
+  <card-item is-open.bind="true">
+    <span slot="header">Config File Information</span>
+    <div slot="body">
+      <div class="row">
+        <div class="col">
+          <template if.bind="!confFileExists">
+            <strong>
+              conf file does not exist.
+            </strong>
+            <button click.delegate="createConf()">Create one</button>
           </template>
-        </code>
-      </pre>
+
+          <template if.bind="confFileExists && !confFile">
+            <button class="btn btn-outline-secondary" click.delegate="viewConf()">
+                View conf file
+            </button>
+          </template>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <pre>
+            <code>
+              <template repeat.for="prop of confFile.props">
+                <label>${prop.key}</label>
+                <strong>${prop.value}</strong>
+              </template>
+            </code>
+          </pre>
+        </div>
+      </div>
     </div>
-  </div>
+  </card-item>
 </template>

@@ -9,6 +9,7 @@ export class Index {
   currentStep;
   showNext = true;
   showCreateProject = false;
+  nextDisabled = false;
 
   static inject = [AdminService, Router, ProjectStore];
   constructor(adminService, router, projectStore) {
@@ -65,6 +66,7 @@ export class Index {
 class WizardState {
   skeletonProject;
   targetPath = '';
+  skeletonProjects = [];
 
   constructor(data) {
     Object.assign(this, data);

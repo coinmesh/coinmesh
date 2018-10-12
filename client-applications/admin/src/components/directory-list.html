@@ -1,6 +1,6 @@
 <template>
-  <button class="btn btn-primary" click.delegate="goUpOneDirectory()">Up directory</button>
-  <button class="btn btn-success"
+  <button class="btn btn-outline-primary" click.delegate="goUpOneDirectory()">Up directory</button>
+  <button class="btn btn-outline-success"
     click.delegate="selectItem()"
     disabled.bind="!selectedItem">${selectItemText}</button>
   <table class="table table-sm table-striped table-dark">
@@ -32,7 +32,7 @@
   <li if.bind="canCreateDirectory">
     <input value.bind="newDirectoryName" />
     <button
-      class="btn btn-primary"
+      class="btn btn-outline-primary"
       click.delegate="createDirectory()"
       disabled.bind="!newDirectoryName">
         Create new Directory

@@ -9,3 +9,8 @@ You must have regtest bitcoind node running to run the specs.  You can do this b
 ```
 $ docker-compose up bitcoind
 ```
+
+## Acknowledgements
+
+LND Adapter uses ln-service, a project maintained by @AlexBosworth, for most interactions.
+s

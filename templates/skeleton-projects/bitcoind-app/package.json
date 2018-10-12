@@ -1,5 +1,6 @@
 {
   "name": "sample-generated-project",
+  "version": "0.0.1",
   "description": "Sample generated project",
   "directories": {
     "doc": "docs"
@@ -28,5 +29,19 @@
   },
   "dependencies": {
     "concurrently": "^3.5.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coinmesh/coinmesh.git"
+  },
+  "keywords": [
+    "coinmesh",
+    "bitcoind"
+  ],
+  "author": "Patrick Walters",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/coinmesh/coinmesh/issues"
+  },
+  "homepage": "http://coinmesh.com"
 }

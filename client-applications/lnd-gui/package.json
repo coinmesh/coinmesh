@@ -1,5 +1,5 @@
 {
-  "name": "blockfuse-admin",
+  "name": "@coinmesh/coinmesh-ui",
   "version": "0.0.1",
   "description": "An admin panel for managing a BlockFuse stack",
   "keywords": [
