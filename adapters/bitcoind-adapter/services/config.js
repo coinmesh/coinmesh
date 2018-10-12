@@ -3,7 +3,7 @@ const config = {
   username: `${process.env.RPC_USERNAME}`,
   password: `${process.env.RPC_PASSWORD}`,
   host: `${(process.env.RPC_HOST || 'localhost')}` ,
-  port: `${(null || 18332)}`
+  port: `${(process.env.RPC_PORT || 18332)}`
 };
 
 module.exports = config;
