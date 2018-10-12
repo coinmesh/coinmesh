@@ -7,7 +7,7 @@
     "test": "nodemon --exec 'jasmine'"
   },
   "dependencies": {
-    "@coinmesh/lnd-adapter": "0.1.0",
+    "@coinmesh/lnd-adapter": "^0.1.2",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
