@@ -1,28 +1,46 @@
+import {Project} from 'models/project';
+
 export class ProjectStore {
   currentProject;
   statusMessage = '';
 
   setCurrentProject(project) {
+    if (!(project instanceof Project)) {
+      project = new Project(project);
+    }
     this.currentProject = project;
     this.saveProjectToLocalStorage();
   }
 
-  saveProjectToLocalStorage() {
+  setProjectToKey(key) {
     if (this.currentProject) {
       let json = JSON.stringify(this.currentProject);
-      localStorage.setItem('coinmesh:current-project', json);
+      localStorage.setItem(key, json);
+    }
+  }
+  saveProjectToLocalStorage() {
+    this.setProjectToKey('coinmesh:current-project');
+  }
+  saveLastProjectToLocalStorage() {
+    this.setProjectToKey('coinmesh:last-project');
+  }
+  getProjectFromKey(key) {
+    let projectString = localStorage.getItem(key);
+    if (projectString) {
+      return JSON.parse(projectString);
     }
   }
   getProjectFromLocalStorage() {
     if (!this.currentProject) {
-      let projectString = localStorage.getItem('coinmesh:current-project');
-      if (projectString) {
-        let project = JSON.parse(projectString);
-        this.setCurrentProject(project);
-      }
+      let project = this.getProjectFromKey('coinmesh:current-project');
+      this.setCurrentProject(project);
     }
   }
+  getLastProjectFromLocalStorage() {
+    return this.getProjectFromKey('coinmesh:last-project');
+  }
   unmountProject() {
+    this.saveLastProjectToLocalStorage();
     this.currentProject = null;
     this.clearLocalStorage();
   }

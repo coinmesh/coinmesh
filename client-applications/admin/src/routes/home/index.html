@@ -1,2 +1,32 @@
 <template>
+  <require from="components/card-item"></require>
+
+  <div class="row" if.bind="lastProject">
+    <div class="col-4">
+      <strong>Most recent project</strong>
+      <div class="row">
+        <div class="col text-center">
+          <card-item
+              is-open.bind="true"
+              can-toggle.bind="false">
+            <span slot="header">${lastProject.name}</span>
+            <div class="row">
+              <div class="col">
+                <label>
+                  <span>${lastProject.description}</span>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-outline-primary" click.delegate="selectProject(lastProject)">
+                  Mount
+                </button>
+              </div>
+            </div>
+          </card-item>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

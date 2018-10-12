@@ -12,6 +12,7 @@ export class TerminalOutput {
   @bindable canDockerRun = false;
   @bindable canDockerBuild = false;
   @bindable canDockerCompose = false;
+  @bindable canDockerComposeDown = false;
 
   @bindable projectRoot = '';
   @bindable processUuid;
@@ -101,6 +102,10 @@ export class TerminalOutput {
       this.processUuid = uuid;
       this.commandRunning = true;
     });
+  }
+  dockerComposeDown() {
+    let path = this.projectRoot;
+    return this.adminService.dockerComposeDown(path);
   }
   killProcess() {
     return this.adminService.killProcess(this.processUuid).then(result => {

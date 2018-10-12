@@ -2,6 +2,7 @@ import {Adapter} from './adapter';
 import {ClientApplication} from './client-application';
 import {LogicService} from './logic-service';
 import {DataSource} from './data-source';
+import {DockerContainer} from './docker-container';
 
 export class Project {
   id;
@@ -14,6 +15,8 @@ export class Project {
   logicServices = [];
   clientApplications = [];
 
+  dockerContainers = [];
+
   type = 'project';
 
   constructor(data = {}) {
@@ -22,6 +25,13 @@ export class Project {
     }
 
     Object.assign(this, data);
+  }
+  setupContainers() {
+    let nodeContainers = this.dataSources.map(dataSource => {
+      return new DockerContainer({ name: dataSource.name });
+    });
+    this.dockerContainers.push(...nodeContainers);
+    this.dockerContainers.push(new DockerContainer({ name: 'app' }));
   }
   convertPackageJsonProps(data) {
     let props = data.coinmesh;

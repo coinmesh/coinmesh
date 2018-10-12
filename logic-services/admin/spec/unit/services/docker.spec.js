@@ -52,6 +52,34 @@ describe('DockerService', () => {
     });
   });
 
+  describe('dockerComposeDown()', () => {
+    it('calls the commandsService to docker compose down with the given flags', (done) => {
+      const expectedFlags = ['down'];
+
+      spyOn(commandsService, 'issueStreamedCommand')
+        .and.returnValue(Promise.resolve(mockSpawn));
+
+      dockerService.dockerComposeDown(fakePath).then(result => {
+        expect(commandsService.issueStreamedCommand).toHaveBeenCalledWith('docker-compose', expectedFlags, fakePath);
+        done();
+      });
+    });
+  });
+
+  describe('dockerComposeStatus()', () => {
+    it('calls the commandsService to docker compose down with the given flags', (done) => {
+      const expectedFlags = ['ps'];
+
+      spyOn(commandsService, 'issueCommand')
+        .and.returnValue(Promise.resolve('testing'));
+
+      dockerService.dockerComposeStatus(fakePath).then(result => {
+        expect(commandsService.issueCommand).toHaveBeenCalledWith('docker-compose ps', fakePath);
+        done();
+      });
+    });
+  });
+
   describe('dockerBuild()', () => {
     it('calls the commandsService to docker build with the given flags', (done) => {
       spyOn(commandsService, 'issueStreamedCommand')

@@ -22,6 +22,8 @@ export class Index {
       result.path = projectJsonPath;
       this.projectStore.setCurrentProject(result);
       return this.router.navigateToRoute('mounted-project');
+    }).catch(error => {
+      console.log('caught an error');
     });
   }
 }

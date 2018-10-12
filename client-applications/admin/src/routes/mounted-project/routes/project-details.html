@@ -1,11 +1,60 @@
 <template>
   <require from="components/terminal-output"></require>
   <require from="../components/project-info"></require>
+  <require from="components/card-item"></require>
+  <require from="components/display-item"></require>
+
+  <div class="row">
+    <div class="col">
+      <card-item is-open.bind="true">
+        <span slot="header">Containers</span>
+        <div class="row">
+          <div class="col">
+            <p>Containers may need to be started in order.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" repeat.for="container of projectStore.currentProject.dockerContainers">
+            <card-item is-open.bind="true">
+              <span slot="header">
+                ${container.name} (${container.type})
+                <i css="color: ${container.status === 'up' ? 'green' : container.status === 'exit' ? 'red' : 'gray'}"
+                  class="fa fa-lg
+                    fa-${
+                      container.status === 'up' ? 'check-circle' :
+                        container.status === 'exit' ? 'times-circle' : 'question-circle'
+                    }
+                    pull-right">
+                </i>
+              </span>
+              <div slot="body">
+                <display-item
+                  label="status"
+                  value.bind="container.status"></display-item>
+                <template if.bind="container.status !== 'up'">
+                  <a class="btn btn-center btn-outline-success" href="#" click.delegate="start(container)">Start</a>
+                </template>
+                <template if.bind="container.status === 'up'">
+                  <a class="btn btn-center btn-outline-danger" href="#" click.delegate="stop(container)">Stop</a>
+                </template>
+              </div>
+            </card-item>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+          <div class="col">
+            <a class="btn btn-center btn-outline-success" href="#" click.delegate="up()">Start all Containers</a>
+            <a class="btn btn-center btn-outline-danger" href="#" click.delegate="down()">Stop all Containers</a>
+          </div>
+        </div>
+      </card-item>
+    </div>
+  </div>
 
   <project-info project.bind="projectStore.currentProject"></project-info>
 
   <terminal-output
-    can-docker-compose.bind="true"
     project-root.bind="projectStore.currentProject.path">
   </terminal-output>
 </template>

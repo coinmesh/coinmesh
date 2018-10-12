@@ -123,7 +123,6 @@ export class AdminService {
     return this.http.delete(url);
   }
   dockerRun(projectJsonPath, flags) {
-
     return this.dockerCommand('run', flags, projectJsonPath);
   }
   dockerBuild(projectJsonPath, flags) {
@@ -131,6 +130,12 @@ export class AdminService {
   }
   dockerCompose(projectJsonPath, flags) {
     return this.dockerCommand('compose', flags, projectJsonPath);
+  }
+  dockerComposeDown(projectJsonPath, flags) {
+    return this.dockerCommand('compose/down', flags, projectJsonPath);
+  }
+  dockerComposeStatus(projectJsonPath, flags) {
+    return this.dockerCommand('compose/status', flags, projectJsonPath);
   }
   dockerCommand(command, flags = [], projectJsonPath) {
     let path = this.fixRelativePath(projectJsonPath);

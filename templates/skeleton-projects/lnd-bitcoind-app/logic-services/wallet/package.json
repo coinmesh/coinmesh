@@ -2,8 +2,7 @@
   "name": "@coinmesh/lnd-wallet",
   "version": "0.1.0",
   "scripts": {
-    "start": "npm install && npm run rebuild-packages && nodemon ./bin/www",
-    "rebuild-packages": "cd ./node_modules/ln-service && npm rebuild && cd -",
+    "start": "npm install && npm rebuild && nodemon ./bin/www",
     "test": "nodemon --exec 'jasmine'"
   },
   "dependencies": {

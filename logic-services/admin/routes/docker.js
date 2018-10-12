@@ -16,9 +16,31 @@ router.post('/run', function(req, res, next) {
 
 router.post('/compose', function(req, res, next) {
   let packageJsonPath = req.body.path;
+  let flags = req.body.flags || ['up'];
+  dockerService.dockerCompose(packageJsonPath, flags)
+    .then(result => {
+      return res.json(result);
+    }).catch(error => {
+      return res.status(500).send({ error: error });
+    });
+});
+
+router.post('/compose/status', function(req, res, next) {
+  let packageJsonPath = req.body.path;
+  let flags = req.body.flags;
+  dockerService.dockerComposeStatus(packageJsonPath, flags)
+    .then(result => {
+      return res.json(result);
+    }).catch(error => {
+      return res.status(500).send({ error: error });
+    });
+});
+
+router.post('/compose/down', function(req, res, next) {
+  let packageJsonPath = req.body.path;
   let flags = req.body.flags;
 
-  dockerService.dockerCompose(packageJsonPath, flags)
+  dockerService.dockerComposeDown(packageJsonPath, flags)
     .then(result => {
       return res.json(result);
     }).catch(error => {
