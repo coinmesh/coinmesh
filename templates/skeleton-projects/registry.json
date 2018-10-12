@@ -4,7 +4,7 @@
       "id": "bitcoind-app",
       "endpoint": "local",
       "name": "Bitcoind App",
-      "description": "A skeleton CoinMesh project that runs bitcoin-core software.  Includes an adapter for Bitcoind with a RESTful API as well as a sample Wallet logic service for extending bitcoind-adapter functionality.",
+      "description": "A skeleton that runs bitcoin-core software.  Includes an adapter for Bitcoind with a RESTful API as well as a sample Wallet logic service for extending bitcoind-adapter functionality.",
       "path": "../../templates/skeleton-projects/bitcoind-app",
       "enabled": true,
       "adapters": {
@@ -23,7 +23,7 @@
       "id": "litecoind-app",
       "endpoint": "local",
       "name": "Litecoind App",
-      "description": "A skeleton CoinMesh project that runs litecoin-core software.  Includes an adapter for Bitcoind with a RESTful API as well as a sample Wallet logic service for extending litecoind-adapter functionality.",
+      "description": "A skeleton that runs litecoin-core software.  Includes an adapter for Bitcoind with a RESTful API as well as a sample Wallet logic service for extending litecoind-adapter functionality.",
       "path": "../../templates/skeleton-projects/litecoind-app",
       "enabled": true,
       "adapters": {
@@ -42,7 +42,7 @@
       "id": "lnd-bitcoind-app",
       "endpoint": "local",
       "name": "Bitcoind w/ Lightning Network App",
-      "description": "A skeleton CoinMesh project that runs lnd on top of bitcoin-core software.  Includes an adapter for Bitcoind with a RESTful API as well as a sample Wallet logic service for extending lnd-adapter functionality.",
+      "description": "A skeleton that runs lnd on top of bitcoin-core software.  Includes an adapter for Bitcoind with a RESTful API as well as a sample Wallet logic service for extending lnd-adapter functionality.",
       "path": "../../templates/skeleton-projects/lnd-bitcoind-app",
       "enabled": true,
       "adapters": {
