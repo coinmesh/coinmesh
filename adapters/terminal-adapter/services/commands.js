@@ -8,7 +8,7 @@ class CommandsService {
         cwd: path
       }, (error, stdout, stderr) => {
         if (error) {
-          return error;
+          return reject(error);
         }
         resolve(stdout);
       });
