@@ -17,12 +17,14 @@
           <div class="col" repeat.for="container of projectStore.currentProject.dockerContainers">
             <card-item is-open.bind="true">
               <span slot="header">
-                ${container.name} (${container.type})
+                ${container.name}
                 <i css="color: ${container.status === 'up' ? 'green' : container.status === 'exit' ? 'red' : 'gray'}"
                   class="fa fa-lg
                     fa-${
-                      container.status === 'up' ? 'check-circle' :
-                        container.status === 'exit' ? 'times-circle' : 'question-circle'
+                      container.locked === true ? 'lock' :
+                        container.status === 'up' ? 'check-circle' :
+                          container.status === 'exit' ? 'times-circle' :
+                            container.status === 'pending' ? 'circle-o-notch fa-spin' : 'question-circle'
                     }
                     pull-right">
                 </i>

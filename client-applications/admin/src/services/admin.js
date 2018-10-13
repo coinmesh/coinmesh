@@ -77,6 +77,17 @@ export class AdminService {
     }
     return this.http.patch(url, body);
   }
+  checkWalletLocked(projectJsonPath, network, containerName) {
+    let url = `http://localhost:3002/v0/docker/compose/check-locked`;
+    let path = this.fixRelativePath(projectJsonPath);
+
+    let body = {
+      path,
+      network,
+      container: containerName
+    }
+    return this.http.post(url, body);
+  }
   loadProject(path, className = Project) {
     let url = `http://localhost:3002/v0/project/load`;
     path = this.fixRelativePath(path);
