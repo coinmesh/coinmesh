@@ -26,9 +26,12 @@
   },
   "homepage": "https://coinmesh.com",
   "dependencies": {
+    "@coinmesh/file-system-adapter": "^0.1.0",
+    "@coinmesh/package-json-adapter": "^0.1.0",
     "cookie-parser": "^1.4.3",
     "dns-sync": "^0.1.3",
     "express-basic-auth": "^1.1.5",
+    "generate-password": "^1.4.0",
     "jasmine": "^3.2.0",
     "ln-service": "^19.0.0",
     "nodemon": "^1.18.4",
