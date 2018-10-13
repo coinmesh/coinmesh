@@ -6,6 +6,7 @@
       <div class="row">
         <div class="col">
           <form>
+            <p>Changing networks is currently disabled.</p>
             <div class="row form-group">
               <div class="col col-md-3"><label class=" form-control-label">Network</label></div>
               <div class="col col-md-9">
@@ -15,7 +16,7 @@
                     <div class="radio">
                       <label for.bind="network" class="form-check-label">
                         <input class="form-check-input" type="radio" name="network" id.bind="network"
-                          value.bind="network" checked.bind="selectedNetwork" />
+                          value.bind="network" checked.bind="selectedNetwork" disabled="disabled" />
                           ${network}
                       </label>
                     </div>
@@ -24,18 +25,6 @@
                 </div>
               </div>
             </div>
-
-            <div class="row form-group">
-              <div class="col col-md-3"><label class=" form-control-label">Run REST Services?</label></div>
-                <div class="col col-md-9">
-                  <div class="form-check-inline form-check">
-                    <label for="inline-checkbox1" class="form-check-label ">
-                      <input class="form-check-input" type="checkbox" value="" id="runAdapterHttp"
-                        name="runAdapterHttp" checked.bind="runHttp"/>
-                    </label>
-                  </div>
-                </div>
-              </div>
           </form>
         </div>
       </div>
