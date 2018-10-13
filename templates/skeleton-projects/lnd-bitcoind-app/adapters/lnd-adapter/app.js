@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const basicAuth = require('express-basic-auth');
+const generatePassword = require('generate-password').generate;
 
 const {addressesRouter} = require('ln-service/routers');
 const {authorizer} = require('ln-service/routers');
@@ -16,7 +17,6 @@ const {exchangeRouter} = require('ln-service/routers');
 const {getWalletInfo} = require('ln-service/lightning');
 const {historyRouter} = require('ln-service/routers');
 const {invoicesRouter} = require('ln-service/routers');
-const {isWalletLocked} = require('ln-service/service');
 const {lightningDaemon} = require('ln-service/lightning');
 const localLnd = require('./services/local-lnd');
 const {networkInfoRouter} = require('ln-service/routers');
@@ -25,9 +25,16 @@ const {peersRouter} = require('ln-service/routers');
 const {purchasedRouter} = require('ln-service/routers');
 const {rowTypes} = require('ln-service/lightning');
 const {transactionsRouter} = require('ln-service/routers');
-const {unlockWallet} = require('ln-service/lightning');
 const {walletInfoRouter} = require('ln-service/routers');
 const {walletPasswordPrompt} = require('ln-service/service');
+
+const unlockerLnd = localLnd({is_unlocker: true});
+const {createSeed} = require('ln-service/lightning');
+const {createWallet} = require('ln-service/lightning');
+const {isWalletLocked} = require('ln-service/service');
+const {unlockWallet} = require('ln-service/lightning');
+
+const secretsAdapter = require('./services/secrets-adapter');
 
 const log = console.log;
 const app = express();
@@ -46,39 +53,91 @@ app.use((req, res, next) => {
   next();
 });
 
-const lnd = localLnd({});
-app.lnd = lnd;
-app.use('/v0/addresses', addressesRouter({lnd, log}));
-app.use('/v0/balance', balanceRouter({lnd, log}));
-app.use('/v0/channels', channelsRouter({lnd, log}));
-app.use('/v0/connections', connectionsRouter({lnd, log}));
-app.use('/v0/crypto', cryptoRouter({lnd, log}));
-app.use('/v0/exchange', exchangeRouter({log}));
-app.use('/v0/history', historyRouter({lnd, log}));
-app.use('/v0/invoices', invoicesRouter({lnd, log}));
-app.use('/v0/network_info', networkInfoRouter({lnd, log}));
-app.use('/v0/payments', paymentsRouter({lnd, log}));
-app.use('/v0/peers', peersRouter({lnd, log}));
-app.use('/v0/purchased', purchasedRouter({lnd, log}));
-app.use('/v0/transactions', transactionsRouter({lnd, log}));
-app.use('/v0/wallet_info', walletInfoRouter({lnd, log}));
+function getApp() {
+  return new Promise((resolve, reject) => {
+    return new Promise((res, rej) => {
+      let lnd;
 
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+      // If there is no wallet yet, create one and save the info
+      try {
+        lnd = localLnd({});
+        // Check if the wallet is locked
+        isWalletLocked({}, (lockedError, result) => {
+          if (result) {
+            secretsAdapter.getPassword().then(walletPassword => {
+              // Unlock the wallet
+              unlockWallet({lnd: unlockerLnd, password: walletPassword}, err => {
+                if (err) {
+                  console.error(err);
+                  throw err;
+                }
+              });
+            });
+          }
+        });
 
-// error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+        return res(lnd);
+      } catch(error) {
+        // If there is no macaroon file, the wallet hasn't been created yet
+        if (error.message.indexOf('ExpectedMacaroonFile') > -1) {
 
-  // render the error page
-  res.status(err.status || 500);
-  res.json({ error: err });
-});
+          // Create a seed to use for backing up the wallet
+          createSeed({lnd: unlockerLnd}, (err, result) => {
+            const password = generatePassword({
+                length: 10,
+                numbers: true
+            });
 
-module.exports = app;
+            let seed = result.seed;
+
+            // TODO: Write the seed to the secret.json
+            secretsAdapter.saveSeed(seed);
+            secretsAdapter.savePassword(password);
+
+            // Create a wallet using the backup seed
+            createWallet({lnd: unlockerLnd, password, seed}, (error, result) => {
+              lnd = localLnd({});
+              return res(lnd);
+            });
+          });
+        }
+      }
+    }).then(lnd => {
+      app.use('/v0/addresses', addressesRouter({lnd, log}));
+      app.use('/v0/balance', balanceRouter({lnd, log}));
+      app.use('/v0/channels', channelsRouter({lnd, log}));
+      app.use('/v0/connections', connectionsRouter({lnd, log}));
+      app.use('/v0/crypto', cryptoRouter({lnd, log}));
+      app.use('/v0/exchange', exchangeRouter({log}));
+      app.use('/v0/history', historyRouter({lnd, log}));
+      app.use('/v0/invoices', invoicesRouter({lnd, log}));
+      app.use('/v0/network_info', networkInfoRouter({lnd, log}));
+      app.use('/v0/payments', paymentsRouter({lnd, log}));
+      app.use('/v0/peers', peersRouter({lnd, log}));
+      app.use('/v0/purchased', purchasedRouter({lnd, log}));
+      app.use('/v0/transactions', transactionsRouter({lnd, log}));
+      app.use('/v0/wallet_info', walletInfoRouter({lnd, log}));
+
+      // catch 404 and forward to error handler
+      app.use((req, res, next) => {
+        var err = new Error('Not Found');
+        err.status = 404;
+        next(err);
+      });
+
+      // error handler
+      app.use((err, req, res, next) => {
+        // set locals, only providing error in development
+        res.locals.message = err.message;
+        res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+        // render the error page
+        res.status(err.status || 500);
+        res.json({ error: err });
+      });
+      return resolve(app);
+    })
+  });
+}
+
+module.exports = getApp;
