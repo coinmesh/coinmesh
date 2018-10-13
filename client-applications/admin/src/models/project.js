@@ -27,6 +27,9 @@ export class Project {
     Object.assign(this, data);
   }
   setupContainers() {
+    if (this.dockerContainers.length > 0) {
+      return;
+    }
     let nodeContainers = this.dataSources.map(dataSource => {
       return new DockerContainer({ name: dataSource.name });
     });
