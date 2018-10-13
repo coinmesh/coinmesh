@@ -1,7 +1,7 @@
 const ReadService = require('../../../services/read');
 
 describe('ReadService', () => {
-  const path = 'spec/config-examples/';
+  const path = 'spec/config-examples/package.json';
   let readService;
 
   beforeEach(() => {
@@ -18,16 +18,7 @@ describe('ReadService', () => {
 
   describe('getConfiguration()', () => {
     it('reads whole configuration file given a path', (done) => {
-      const path = 'spec/config-examples/';
-
-      readService.getConfiguration(path).then(config => {
-        expect(typeof config === 'object').toBe(true);
-        done();
-      });
-    });
-
-    it('reads whole configuration file given a path missing trailing slash /', (done) => {
-      const path = 'spec/config-examples';
+      const path = 'spec/config-examples/package.json';
 
       readService.getConfiguration(path).then(config => {
         expect(typeof config === 'object').toBe(true);

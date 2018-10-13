@@ -1,7 +1,7 @@
 const ValidateService = require('../../../services/validate');
 
 describe('ValidateService', () => {
-  const path = 'spec/config-examples/';
+  const path = 'spec/config-examples/package.json';
   let validateService;
 
   beforeEach(() => {
