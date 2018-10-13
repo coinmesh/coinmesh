@@ -6,6 +6,9 @@ import {DockerContainer} from 'models/docker-container';
 export class ProjectDetails {
   projectStore;
   statusCheckerInterval;
+  numberOfBlocks = 1;
+  isGeneratingBlocks = false;
+  generatingInterval;
 
   static inject = [ProjectStore, AdminService];
   constructor(projectStore, adminService) {
@@ -22,6 +25,9 @@ export class ProjectDetails {
     this.statusCheckerInterval = this.startStatusCheck();
   }
   detached() {
+    if (this.generatingInterval) {
+      clearInterval(this.generatingInterval);
+    }
     return clearInterval(this.statusCheckerInterval);
   }
   start(container) {
@@ -81,5 +87,19 @@ export class ProjectDetails {
     return this.adminService.dockerComposeStatus(path, [container.name]).then(result => {
       container.status = result;
     });
+  }
+  generateBlocks() {
+    return this.adminService.generateBlocks(this.numberOfBlocks);
+  }
+  toggleContinuouslyGenerateBlocks() {
+    this.isGeneratingBlocks = !this.isGeneratingBlocks;
+
+    if (this.isGeneratingBlocks === true) {
+      this.generatingInterval = setInterval(() => {
+        this.generateBlocks(1);
+      }, 10000)
+    } else {
+      clearInterval(this.generatingInterval);
+    }
   }
 }

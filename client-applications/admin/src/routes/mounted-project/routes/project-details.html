@@ -30,6 +30,27 @@
                 </i>
               </span>
               <div slot="body">
+                <form if.bind="container.canGenerate">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <input value.bind="numberOfBlocks"
+                          class="form-control"
+                          placeholder="Number of blocks"/>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <button class="btn btn-outline-primary" click.delegate="generateBlocks()">
+                        Generate Blocks
+                      </button>
+                      <button
+                          class="btn btn-outline-${!isGeneratingBlocks ? 'success' : 'danger'}"
+                          click.delegate="toggleContinuouslyGenerateBlocks()">
+                        ${!isGeneratingBlocks ? 'Start' : 'Stop'} Generating Blocks
+                      </button>
+                    </div>
+                  </div>
+                </form>
                 <display-item
                   label="status"
                   value.bind="container.status"></display-item>

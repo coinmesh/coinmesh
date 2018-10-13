@@ -22,7 +22,7 @@ router.get('/height', function(req, res, next) {
 router.get('/generate/:num_of_blocks', function(req, res, next) {
   const numberOfBlocks = req.params.num_of_blocks;
 
-  blocksService.generate(numberOfBlocks).then(result => {
+  blocksService.generate(parseInt(numberOfBlocks)).then(result => {
     return res.json(result);
   });
 });
