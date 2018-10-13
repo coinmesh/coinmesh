@@ -25,10 +25,11 @@ router.post('/compose', function(req, res, next) {
     });
 });
 
-router.post('/compose/status', function(req, res, next) {
+router.post('/compose/down', function(req, res, next) {
   let packageJsonPath = req.body.path;
   let flags = req.body.flags;
-  dockerService.dockerComposeStatus(packageJsonPath, flags)
+
+  dockerService.dockerComposeDown(packageJsonPath, flags)
     .then(result => {
       return res.json(result);
     }).catch(error => {
@@ -36,11 +37,23 @@ router.post('/compose/status', function(req, res, next) {
     });
 });
 
-router.post('/compose/down', function(req, res, next) {
+router.post('/compose/check-locked', function(req, res, next) {
+  let packageJsonPath = req.body.path;
+  let network = req.body.network || 'regtest';
+  let containerName = req.body.container || 'lnd';
+
+  dockerService.dockerComposeCheckLocked(packageJsonPath, network, containerName)
+    .then(result => {
+      return res.json({locked: result});
+    }).catch(error => {
+      return res.status(500).send({ error: error });
+    });
+});
+
+router.post('/compose/status', function(req, res, next) {
   let packageJsonPath = req.body.path;
   let flags = req.body.flags;
-
-  dockerService.dockerComposeDown(packageJsonPath, flags)
+  dockerService.dockerComposeStatus(packageJsonPath, flags)
     .then(result => {
       return res.json(result);
     }).catch(error => {

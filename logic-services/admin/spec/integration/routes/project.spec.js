@@ -9,6 +9,7 @@ describe('Project', () => {
   let fakeName = 'test name';
   let fakeDescription = 'test desc';
   let fakePath = 'spec/tmp/test-project';
+  let path = `${fakePath}/package.json`;
 
   let project = new Project({
     name: fakeName,

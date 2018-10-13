@@ -10,6 +10,7 @@ describe('ProjectService', () => {
   const fakeName = 'FakeName';
   const fakeDescription = 'Fake description';
   const fakePath = 'spec/tmp';
+  let path;
 
   beforeAll(() => {
     let dirPath = 'spec/tmp';
@@ -23,6 +24,7 @@ describe('ProjectService', () => {
       description: fakeDescription,
       path: fakePath
     });
+    path = `${project.path}/package.json`;
   });
 
   describe('cloneProject()', () => {
@@ -30,7 +32,7 @@ describe('ProjectService', () => {
       project.sourcePath = 'spec/support/fake-project';
 
       projectService.cloneProject(project).then(result => {
-        pjReadService.getConfigItemByPath(project.path, 'name').then(result => {
+        pjReadService.getConfigItemByPath(path, 'name').then(result => {
           expect(result).toBe('FakeName');
           done();
         });
@@ -41,7 +43,7 @@ describe('ProjectService', () => {
       project.sourcePath = 'spec/support/fake-project';
 
       projectService.cloneProject(project).then(result => {
-        pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
+        pjReadService.getConfigItemByPath(path, 'coinmesh.type').then(result => {
           expect(result).toBe('project');
           done();
         });
@@ -52,7 +54,7 @@ describe('ProjectService', () => {
   describe('createProject()', () => {
     it('creates a project from scratch', (done) => {
       projectService.createProject(project).then(result => {
-        pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
+        pjReadService.getConfigItemByPath(path, 'coinmesh.type').then(result => {
           expect(result).toBe('project');
           done();
         });
@@ -66,7 +68,7 @@ describe('ProjectService', () => {
         ];
 
         projectService.createProject(project).then(result => {
-          pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
+          pjReadService.getConfigItemByPath(path, 'coinmesh.type').then(result => {
             expect(result).toBe('project');
             done();
           });
@@ -81,7 +83,7 @@ describe('ProjectService', () => {
         ];
 
         projectService.createProject(project).then(result => {
-          pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
+          pjReadService.getConfigItemByPath(path, 'coinmesh.type').then(result => {
             expect(result).toBe('project');
             done();
           });
@@ -96,7 +98,7 @@ describe('ProjectService', () => {
         ];
 
         projectService.createProject(project).then(result => {
-          pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
+          pjReadService.getConfigItemByPath(path, 'coinmesh.type').then(result => {
             expect(result).toBe('project');
             done();
           });
@@ -111,7 +113,7 @@ describe('ProjectService', () => {
         ];
 
         projectService.createProject(project).then(result => {
-          pjReadService.getConfigItemByPath(project.path, 'coinmesh.type').then(result => {
+          pjReadService.getConfigItemByPath(path, 'coinmesh.type').then(result => {
             expect(result).toBe('project');
             done();
           });
@@ -123,7 +125,7 @@ describe('ProjectService', () => {
   describe('createProjectJson()', () => {
     function createProjectAndReturnValue(project, property) {
       return projectService.createProjectJson(project).then(result => {
-        return pjReadService.getConfigItemByPath(project.path, property);
+        return pjReadService.getConfigItemByPath(path, property);
       });
     }
 

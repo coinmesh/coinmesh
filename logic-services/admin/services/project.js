@@ -29,8 +29,12 @@ class ProjectService {
     };
     return this.editProjectProperty(path, 'coinmesh', coinmeshStanza);
   }
+  getPackageJsonPath(path) {
+    return `${path}${path.indexOf('package.json') > -1 ? '' : '/package.json'}`;
+  }
   editProjectProperty(projectPath, prop, newValue) {
     let path = homedirUtils.getPathFromHomeDir(projectPath);
+    path = this.getPackageJsonPath(path);
 
     return pjReadService.getConfiguration(path).then(packageJson => {
       return this.setValue(packageJson, prop, newValue);
@@ -52,6 +56,7 @@ class ProjectService {
   }
   getProject(projectPath) {
     let path = homedirUtils.getPathFromHomeDir(projectPath);
+    path = this.getPackageJsonPath(path);
 
     return pjReadService.getConfiguration(path);
   }
@@ -60,6 +65,7 @@ class ProjectService {
   }
   checkConfFileExists(packageJsonPath) {
     let path = homedirUtils.getPathFromHomeDir(packageJsonPath);
+    path = this.getPackageJsonPath(path);
 
     return pjReadService.getConfigItemByPath(path, 'coinmesh.confFilePath').then(result => {
       let confFilePath = `${path}/${result}`;
@@ -69,6 +75,7 @@ class ProjectService {
   readConfFile(packageJsonPath) {
     let confFilePath = '';
     let path = homedirUtils.getPathFromHomeDir(packageJsonPath);
+    path = this.getPackageJsonPath(path);
 
     return pjReadService.getConfigItemByPath(path, 'coinmesh.confFilePath')
       .then(result => {
@@ -80,6 +87,7 @@ class ProjectService {
   createConfFile(packageJsonPath) {
     let confFilePath = '';
     let path = homedirUtils.getPathFromHomeDir(packageJsonPath);
+    path = this.getPackageJsonPath(path);
 
     return pjReadService.getConfigItemByPath(path, 'coinmesh.confFilePath')
       .then(result => {

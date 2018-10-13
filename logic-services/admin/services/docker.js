@@ -39,6 +39,22 @@ class DockerService {
       return uuid;
     });
   }
+  dockerComposeCheckLocked(path, network, containerName) {
+    let command = `docker-compose exec -T ${containerName} lncli -n=${network} getinfo`;
+
+    path = homedirUtils.getPathFromHomeDir(path);
+    path = homedirUtils.stripPackageJson(path);
+
+    return commandsService.issueCommand(command, path).then(() => {
+      return false;
+    }).catch(error => {
+      const isLocked = error.message.indexOf('lncli unlock' > -1);
+      if (isLocked) {
+        return true;
+      }
+      throw error;
+    });
+  }
   dockerComposeStatus(path, flags = []) {
     let allFlags = ['ps', ...flags];
     let command = `docker-compose ${allFlags.join(' ')}`;
