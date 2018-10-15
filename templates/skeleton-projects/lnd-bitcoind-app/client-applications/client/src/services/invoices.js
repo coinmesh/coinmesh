@@ -16,12 +16,12 @@ export class InvoicesService {
   }
   getInvoiceById(id) {
     return this.http.get(`/invoices/${id}`).then(result => {
-      return new Invoice(item);
+      return new Invoice(result);
     });
   }
   createInvoice(invoice) {
     return this.http.post('/invoices', invoice).then(result => {
-      return new Invoice(item);
+      return new Invoice(result);
     });
   }
 }
