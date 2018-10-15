@@ -33,7 +33,7 @@
     "express-basic-auth": "^1.1.5",
     "generate-password": "^1.4.0",
     "jasmine": "^3.2.0",
-    "ln-service": "^19.0.0",
+    "ln-service": "^20.0.0",
     "nodemon": "^1.18.4",
     "openport": "0.0.5",
     "rimraf": "^2.6.2",
