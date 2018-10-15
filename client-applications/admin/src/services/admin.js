@@ -93,6 +93,15 @@ export class AdminService {
     let url = `http://localhost:3009/v0/blocks/generate/${numberOfBlocks}`;
     return this.http.get(url);
   }
+  sendCoins(address, amount) {
+    // TODO: Port needs to be passed from the project details component that calls this
+    let url = `http://localhost:3009/v0/addresses/sendtoaddress`;
+    const body = {
+      address,
+      amount
+    };
+    return this.http.post(url, body);
+  }
   loadProject(path, className = Project) {
     let url = `http://localhost:3002/v0/project/load`;
     path = this.fixRelativePath(path);

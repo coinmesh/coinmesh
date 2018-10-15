@@ -48,6 +48,7 @@
       "jquery": "npm:jquery@^2.2.4",
       "json": "github:systemjs/plugin-json@^0.3.0",
       "text": "github:systemjs/plugin-text@^0.0.8",
+      "toastr": "github:CodeSeven/toastr@^2.1.4",
       "xterm": "npm:xterm@^3.3.0"
     },
     "devDependencies": {}

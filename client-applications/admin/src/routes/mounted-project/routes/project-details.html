@@ -4,76 +4,114 @@
   <require from="components/card-item"></require>
   <require from="components/display-item"></require>
 
-  <div class="row">
-    <div class="col">
-      <card-item is-open.bind="true">
-        <span slot="header">Containers</span>
-        <div class="row">
-          <div class="col">
-            <p>Containers may need to be started in order.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col" repeat.for="container of projectStore.currentProject.dockerContainers">
-            <card-item is-open.bind="true">
-              <span slot="header">
-                ${container.name}
-                <i css="color: ${container.status === 'up' ? 'green' : container.status === 'exit' ? 'red' : 'gray'}"
-                  class="fa fa-lg
-                    fa-${
-                      container.locked === true ? 'lock' :
-                        container.status === 'up' ? 'check-circle' :
-                          container.status === 'exit' ? 'times-circle' :
-                            container.status === 'pending' ? 'circle-o-notch fa-spin' : 'question-circle'
-                    }
-                    pull-right">
-                </i>
-              </span>
-              <div slot="body">
-                <form if.bind="container.canGenerate">
-                  <div class="row">
-                    <div class="col">
-                      <div class="form-group">
-                        <input value.bind="numberOfBlocks"
-                          class="form-control"
-                          placeholder="Number of blocks"/>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <button class="btn btn-outline-primary" click.delegate="generateBlocks()">
-                        Generate Blocks
-                      </button>
-                      <button
-                          class="btn btn-outline-${!isGeneratingBlocks ? 'success' : 'danger'}"
-                          click.delegate="toggleContinuouslyGenerateBlocks()">
-                        ${!isGeneratingBlocks ? 'Start' : 'Stop'} Generating Blocks
-                      </button>
-                    </div>
-                  </div>
-                </form>
-                <display-item
-                  label="status"
-                  value.bind="container.status"></display-item>
-                <template if.bind="container.status !== 'up'">
-                  <a class="btn btn-center btn-outline-success" href="#" click.delegate="start(container)">Start</a>
-                </template>
-                <template if.bind="container.status === 'up'">
-                  <a class="btn btn-center btn-outline-danger" href="#" click.delegate="stop(container)">Stop</a>
-                </template>
-              </div>
-            </card-item>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-          <div class="col">
-            <a class="btn btn-center btn-outline-success" href="#" click.delegate="up()">Start all Containers</a>
-            <a class="btn btn-center btn-outline-danger" href="#" click.delegate="down()">Stop all Containers</a>
-          </div>
-        </div>
-      </card-item>
+  <card-item is-open.bind="true">
+    <span slot="header">Containers</span>
+    <div class="row">
+      <div class="col">
+        <p>Containers may need to be started in order.</p>
+      </div>
     </div>
-  </div>
+    <div class="row">
+      <div class="col" repeat.for="container of projectStore.currentProject.dockerContainers">
+        <section class="card">
+          <div class="card-header user-header alt bg-dark">
+            <div class="media">
+              <a>
+                <img
+                  class="align-self-center rounded-circle mr-3"
+                  style="width:85px; height:85px; background-color: black;"
+                  alt=""
+                  src="assets/images/${container.name}-logo.png">
+              </a>
+              <div class="media-body">
+                <h2 class="text-light display-6">
+                  ${container.name}
+                  <i css="color: ${container.status === 'up' ? 'green' : container.status === 'exit' ? 'red' : 'gray'}"
+                    class="fa
+                      fa-${
+                        container.locked === true ? 'lock' :
+                          container.status === 'up' ? 'check-circle' :
+                            container.status === 'exit' ? 'times-circle' :
+                              container.status === 'pending' ? 'circle-o-notch fa-spin' : 'question-circle'
+                      }
+                      pull-right">
+                  </i>
+                </h2>
+                <p>${container.status}</p>
+              </div>
+            </div>
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <template if.bind="container.canGenerate">
+              <li class="list-group-item">
+                <template if.bind="container.generateBlocksOpen">
+                  <input value.bind="numberOfBlocks"
+                    class="form-control"
+                    placeholder="Number of blocks"
+                    if.bind="container.generateBlocksOpen"/>
+                  <a href="#" click.delegate="generateBlocks()">
+                    <i class="fa fa-arrow-circle-right"></i> Generate Blocks
+                  </a>
+                </template>
+                <a href="#"
+                    click.delegate="container.toggleOpen('generateBlocksOpen')"
+                    if.bind="!container.generateBlocksOpen">
+                  <i class="fa fa-arrow-circle-right"></i> Generate Blocks
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a href="#" click.delegate="toggleContinuouslyGenerateBlocks()">
+                  <i class="fa fa-${!isGeneratingBlocks ? 'pause-circle-o' : 'play-circle-o'}"></i>
+                  ${!isGeneratingBlocks ? 'Start' : 'Stop'} Generating Blocks
+                </a>
+              </li>
+            </template>
+
+            <template if.bind="container.canSend">
+              <li class="list-group-item">
+                <template if.bind="container.sendCoinsOpen">
+                  <input value.bind="sendToAddress"
+                    class="form-control"
+                    placeholder="Address to send to"/>
+                  <input value.bind="numberOfCoins"
+                    class="form-control"
+                    placeholder="Number of coins"/>
+                  <a href="#" click.delegate="sendCoins()">
+                    <i class="fa fa-send"></i> Send Coins to Address
+                  </a>
+                </template>
+                <a href="#"
+                    click.delegate="container.toggleOpen('sendCoinsOpen')"
+                    if.bind="!container.sendCoinsOpen">
+                  <i class="fa fa-send"></i> Send Coins to Address
+                </a>
+              </li>
+            </template>
+
+            <li class="list-group-item">
+              <template if.bind="container.status !== 'up'">
+                <i class="fa fa-play-circle"></i>
+                <a href="#" click.delegate="start(container)">Start</a>
+              </template>
+              <template if.bind="container.status === 'up'">
+                <i class="fa fa-stop-circle"></i>
+                <a href="#" click.delegate="stop(container)">Stop</a>
+              </template>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+      <div class="col">
+        <a class="btn btn-center btn-outline-success" href="#" click.delegate="up()">Start all Containers</a>
+        <a class="btn btn-center btn-outline-danger" href="#" click.delegate="down()">Stop all Containers</a>
+      </div>
+    </div>
+  </card-item>
 
   <project-info project.bind="projectStore.currentProject"></project-info>
 

@@ -2,18 +2,22 @@ import {ProjectStore} from 'services/project-store';
 import {AdminService} from 'services/admin';
 import {bindable} from 'aurelia-templating';
 import {DockerContainer} from 'models/docker-container';
+import {ToastMessagesService} from 'services/toast-messages';
 
 export class ProjectDetails {
   projectStore;
   statusCheckerInterval;
   numberOfBlocks = 1;
+  numberOfCoins = 10;
+  sendToAddress = '';
   isGeneratingBlocks = false;
   generatingInterval;
 
-  static inject = [ProjectStore, AdminService];
-  constructor(projectStore, adminService) {
+  static inject = [ProjectStore, AdminService, ToastMessagesService];
+  constructor(projectStore, adminService, toastMessagesService) {
     this.projectStore = projectStore;
     this.adminService = adminService;
+    this.toastMessagesService = toastMessagesService;
   }
   activate() {
     const path = this.projectStore.currentProject.path;
@@ -89,7 +93,12 @@ export class ProjectDetails {
     });
   }
   generateBlocks() {
-    return this.adminService.generateBlocks(this.numberOfBlocks);
+    return this.adminService.generateBlocks(this.numberOfBlocks).then(result => {
+      this.toastMessagesService.showMessage(`Generated ${this.numberOfBlocks} blocks.`);
+    });
+  }
+  sendCoins() {
+    return this.adminService.sendCoins(this.sendToAddress, this.numberOfCoins);
   }
   toggleContinuouslyGenerateBlocks() {
     this.isGeneratingBlocks = !this.isGeneratingBlocks;

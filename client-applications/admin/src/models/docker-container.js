@@ -4,6 +4,9 @@ export class DockerContainer {
   path = '';
   type = 'container';
 
+  sendCoinsOpen = false;
+  generateBlocksOpen = false;
+  canSend = false;
   canGenerate = false;
   status = 'unknown';
 
@@ -11,6 +14,10 @@ export class DockerContainer {
     Object.assign(this, data);
     if (this.name === 'bitcoind' || this.name === 'litecoind') {
       this.canGenerate = true;
+      this.canSend = true;
     }
+  }
+  toggleOpen(prop) {
+    this[prop] = !this[prop];
   }
 }

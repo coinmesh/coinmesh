@@ -19,8 +19,6 @@ module.exports = {
     const allowCreate = true;
 
     return this.saveProperty(propPath, password).then(result => {
-      console.log('='.repeat(100))
-      console.log(result)
       return result;
     });
   },
@@ -29,21 +27,14 @@ module.exports = {
     const allowCreate = true;
 
     return this.saveProperty(propPath, seed).then(result => {
-      console.log('='.repeat(100))
-      console.log(result)
       return result;
     });
   },
   saveProperty(prop, newValue) {
-    console.log('chekcing')
     return fileSystemService.checkFileExists(path).then(exists => {
-      console.log('='.repeat(100))
-      console.log(exists);
       if (exists) {
-        console.log('reading')
         return readService.getConfiguration(path);
       }
-      console.log('not reading')
       return Promise.resolve({});
     }).then(packageJson => {
       return writeService.setValue(packageJson, prop, newValue, true);
