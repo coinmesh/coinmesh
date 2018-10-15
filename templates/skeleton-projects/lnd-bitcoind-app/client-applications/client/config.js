@@ -6,6 +6,7 @@ System.config({
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
   },
+
   map: {
     "aurelia-animator-css": "npm:aurelia-animator-css@1.0.1",
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0",
@@ -28,6 +29,11 @@ System.config({
     "jquery": "npm:jquery@2.2.4",
     "json": "github:systemjs/plugin-json@0.3.0",
     "text": "github:systemjs/plugin-text@0.0.8",
+    "toastr": "github:CodeSeven/toastr@2.1.4",
+    "github:CodeSeven/toastr@2.1.4": {
+      "css": "github:systemjs/plugin-css@0.1.37",
+      "jquery": "npm:jquery@2.2.4"
+    },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
     },
@@ -188,7 +194,7 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:font-awesome@4.6.3": {
-      "css": "github:systemjs/plugin-css@0.1.31"
+      "css": "github:systemjs/plugin-css@0.1.37"
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"

@@ -9,7 +9,8 @@ export class TransactionsService {
   sendPayment(payment) {
     const body = {
       address: payment.to_address,
-      tokens: payment.amount
+      tokens: payment.amount,
+      fee_tokens_per_vbyte: payment.fee
     };
     return this.http.post('/transactions', body).then(result => {
       return result;

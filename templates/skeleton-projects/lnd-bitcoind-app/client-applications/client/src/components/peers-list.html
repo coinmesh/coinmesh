@@ -1,0 +1,39 @@
+<template>
+  <require from="components/card-item"></require>
+  <require from="components/display-item"></require>
+  <h2>Peers</h2>
+  <div class="card-deck">
+    <card-item repeat.for="peer of peers">
+      <span slot="header">${peer.alias} | ${peer.public_key}</span>
+      <div slot="body">
+        <display-item
+          label="bytes_sent"
+          value.bind="peer.bytes_sent"></display-item>
+        <display-item
+          label="is_inbound"
+          value.bind="peer.is_inbound"></display-item>
+        <display-item
+          label="network_address"
+          value.bind="peer.network_address"></display-item>
+        <display-item
+          label="ping_time"
+          value.bind="peer.ping_time"></display-item>
+        <display-item
+          label="tokens_received"
+          value.bind="peer.tokens_received"></display-item>
+        <display-item
+          label="tokens_sent"
+          value.bind="peer.tokens_sent"></display-item>
+        <display-item
+          label="type"
+          value.bind="peer.type"></display-item>
+      </div>
+      <button class="btn" click.delegate="openChannel(value)">
+        Open a Channel
+      </button>
+      <button class="btn btn-warning" click.delegate="disconnectPeer(value)">
+        Disconnect From Peer
+      </button>
+    </card-item>
+  </div>
+</template>
