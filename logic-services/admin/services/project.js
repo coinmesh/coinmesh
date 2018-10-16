@@ -104,7 +104,7 @@ class ProjectService {
     let newPath = homedirUtils.getPathFromHomeDir(project.path);
 
     return fileSystemService.copyAllFilesAndDirectoriesInDirectory(sourcePath, newPath).then(result => {
-      if (project.coinmesh) {
+      if (!project.coinmesh) {
         return this.addCoinMeshStanza(project);
       }
       return Promise.resolve();

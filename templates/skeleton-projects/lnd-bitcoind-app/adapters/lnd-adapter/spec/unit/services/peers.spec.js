@@ -10,7 +10,7 @@ describe('PeersService', () => {
     blocksService = new BlocksService();
   });
 
-  fdescribe('addPeer()', () => {
+  describe('addPeer()', () => {
     let data = {
       socket: 'localhost:1337',
       publicKey: '03cea4d1351308e8b16f8f41b30ab9c4f1072d23fc486e7919dabbe3a59bb65e5e',
@@ -18,7 +18,6 @@ describe('PeersService', () => {
 
     it('does not error when adding a peer', (done) => {
       peersService.addPeer(data.socket, data.publicKey).then(() => {
-        console.log(result)
         // No expectation, result is undefined
         done();
       });

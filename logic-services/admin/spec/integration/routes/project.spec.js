@@ -10,11 +10,14 @@ describe('Project', () => {
   let fakeDescription = 'test desc';
   let fakePath = 'spec/tmp/test-project';
   let path = `${fakePath}/package.json`;
+  let project;
 
-  let project = new Project({
-    name: fakeName,
-    description: fakeDescription,
-    path: fakePath
+  beforeEach(() => {
+    project = new Project({
+      name: fakeName,
+      description: fakeDescription,
+      path: fakePath
+    });
   });
 
   describe('POST /v0/project', () => {
@@ -24,7 +27,7 @@ describe('Project', () => {
           .send(project)
           .expect(200)
           .end(function(err, res) {
-            pjReadService.getConfigItemByPath(project.path, 'name').then(result => {
+            pjReadService.getConfigItemByPath(path, 'name').then(result => {
               expect(result).toBe(fakeName);
               done();
             });
@@ -44,7 +47,7 @@ describe('Project', () => {
           .send(project)
           .expect(200)
           .end(function(err, res) {
-            pjReadService.getConfigItemByPath(project.path, 'name').then(result => {
+            pjReadService.getConfigItemByPath(path, 'name').then(result => {
               expect(result).toBe(fakeName);
               done();
             });
@@ -58,12 +61,12 @@ describe('Project', () => {
     it('updates the indicated property in the package.json', (done) => {
       let url = `/v0/project/`;
 
-      let projectPath = 'spec/tmp/test-project';
+      let projectPath = 'spec/tmp/test-project/package.json';
       let propertyPath = 'name';
       let newValue = 'new name';
 
       let editRequestBody = {
-        projectPath: projectPath,
+        projectPath: path,
         propertyPath: propertyPath,
         value: newValue
       };
@@ -80,8 +83,7 @@ describe('Project', () => {
                 .expect(200)
                 .end(function(err, res) {
                   if (err) throw err;
-
-                  pjReadService.getConfigItemByPath(projectPath, 'name').then(result => {
+                  pjReadService.getConfigItemByPath(path, 'name').then(result => {
                     expect(result).toBe(newValue);
                     done();
                   });
