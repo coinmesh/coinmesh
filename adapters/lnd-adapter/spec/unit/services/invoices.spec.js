@@ -2,36 +2,42 @@ const InvoicesService = require('../../../services/invoices');
 const BlocksService = require('../../../../bitcoind-adapter/services/blocks');
 
 describe('InvoicesService', () => {
+  const fakeDescription = 'Fake description';
+  const expiresAt = new Date();
+  const tokens = 20001;
+
   let invoicesService;
   let blocksService;
   let invoice;
-  let data;
+  let invoiceRequestObject;
 
   beforeEach(() => {
     invoicesService = new InvoicesService();
     blocksService = new BlocksService();
 
-    data = {
-      description: 'Fake description',
-      expires_at: new Date(),
-      tokens: 20001
+    invoiceRequestObject = {
+      description: fakeDescription,
+      expiresAt: expiresAt,
+      tokens,
+      internalDescription: 'test',
+      secret: 'testing'
     };
 
-    return invoicesService.createInvoice(data.description, data.expires_at, data.tokens).then(result => {
+    return invoicesService.createInvoice(invoiceRequestObject).then(result => {
       invoice = result;
     });
   });
 
   describe('createInvoice()', () => {
     it('creates a new invoice', () => {
-      expect(invoice.description).toBe(data.description);
+      expect(invoice.description).toBe(invoiceRequestObject.description);
     });
   });
 
   describe('getInvoice()', () => {
     it('gets the network graph', (done) => {
       invoicesService.getInvoice(invoice.id).then(result => {
-        expect(result.description).toBe(data.description);
+        expect(result.description).toBe(invoiceRequestObject.description);
         done();
       });
     });
