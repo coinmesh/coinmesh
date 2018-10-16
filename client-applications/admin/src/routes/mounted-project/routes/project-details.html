@@ -43,6 +43,18 @@
           </div>
 
           <ul class="list-group list-group-flush">
+
+            <li class="list-group-item">
+              <template if.bind="container.status !== 'up'">
+                <i class="fa fa-play-circle"></i>
+                <a href="#" click.delegate="start(container)">Start</a>
+              </template>
+              <template if.bind="container.status === 'up'">
+                <i class="fa fa-stop-circle"></i>
+                <a href="#" click.delegate="stop(container)">Stop</a>
+              </template>
+            </li>
+
             <template if.bind="container.canGenerate">
               <li class="list-group-item">
                 <template if.bind="container.generateBlocksOpen">
@@ -89,16 +101,6 @@
               </li>
             </template>
 
-            <li class="list-group-item">
-              <template if.bind="container.status !== 'up'">
-                <i class="fa fa-play-circle"></i>
-                <a href="#" click.delegate="start(container)">Start</a>
-              </template>
-              <template if.bind="container.status === 'up'">
-                <i class="fa fa-stop-circle"></i>
-                <a href="#" click.delegate="stop(container)">Stop</a>
-              </template>
-            </li>
           </ul>
         </section>
       </div>
