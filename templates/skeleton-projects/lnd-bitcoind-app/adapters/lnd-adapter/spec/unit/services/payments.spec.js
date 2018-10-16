@@ -26,7 +26,15 @@ describe('PaymentsService', () => {
     let invoice;
 
     beforeEach(() => {
-      return invoicesService.createInvoice('fake desc', new Date(), 20001).then(result => {
+      const invoiceRequestObject = {
+        description: fakeDescription,
+        expiresAt: expiresAt,
+        tokens,
+        internalDescription: 'test',
+        secret: 'testing'
+      };
+
+      return invoicesService.createInvoice(invoiceRequestObject), 20001).then(result => {
         invoice = result;
       });
     });
