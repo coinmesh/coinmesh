@@ -8,6 +8,8 @@ services:
     command: litecoind  --datadir=/home/litecoin/.litecoin --printtoconsole -rpcallowip=0.0.0.0/0
     ports:
       - "19332:19332"
+      - "29332:29332"
+      - "29333:29333"
   bitcoind:
     build: ./data-sources/bitcoind
     volumes:
@@ -15,3 +17,5 @@ services:
     command: bitcoind  --datadir=/home/bitcoin/.bitcoin --printtoconsole -rpcallowip=0.0.0.0/0
     ports:
       - "18332:18332"
+      - "28332:28332"
+      - "28333:28333"

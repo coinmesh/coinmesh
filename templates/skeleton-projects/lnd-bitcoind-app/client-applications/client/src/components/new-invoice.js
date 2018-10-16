@@ -1,6 +1,6 @@
 import {bindable} from 'aurelia-templating';
 import {InvoicesService} from 'services/invoices';
-import {Invoice} from 'services/invoices';
+import {Invoice} from 'models/invoices';
 
 export class NewInvoice {
   @bindable invoice;
