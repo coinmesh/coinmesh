@@ -23,15 +23,15 @@
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
     "debug": "~2.6.9",
-    "express": "~4.15.5",
+    "express": "^4.16.4",
     "jasmine": "^3.1.0",
     "morgan": "~1.9.0",
-    "request": "^2.83.0",
+    "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "supertest": "^3.1.0"
   },
   "devDependencies": {
-    "nodemon": "^1.17.2"
+    "nodemon": "^1.18.4"
   },
   "main": "index.js"
 }
