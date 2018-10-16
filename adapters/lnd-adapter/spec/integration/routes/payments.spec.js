@@ -1,9 +1,18 @@
-const app = require('../../../app');
+const getApp = require('../../../app');
 const service = require('ln-service/service');
 const request = require('supertest');
 
 // TODO: Cannot send a payment via rest currently?
 xdescribe('Payments', () => {
+  let app;
+
+  beforeAll((done) => {
+    return getApp().then(returnedApp => {
+      app = returnedApp;
+      done();
+    });
+  });
+
   describe('/v0/payments/', () => {
     it('responds', (done) => {
       let url = `/v0/payments/`;

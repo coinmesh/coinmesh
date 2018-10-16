@@ -1,4 +1,4 @@
-const app = require('../../../app');
+const getApp = require('../../../app');
 const service = require('ln-service/service');
 const request = require('supertest');
 const signMessage = require('ln-service/signMessage');
@@ -6,6 +6,14 @@ const lnd = require('../../helpers/setup').lnd;
 
 describe('Crypto', () => {
   const fakeMessage = 'ltc';
+  let app;
+
+  beforeAll((done) => {
+    return getApp().then(returnedApp => {
+      app = returnedApp;
+      done();
+    });
+  });
 
   describe('/v0/crypto/sign', () => {
     it('responds', (done) => {

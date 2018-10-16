@@ -1,8 +1,17 @@
-const app = require('../../../app');
+const getApp = require('../../../app');
 const service = require('ln-service/service');
 const request = require('supertest');
 
 describe('Peers', () => {
+  let app;
+
+  beforeAll((done) => {
+    return getApp().then(returnedApp => {
+      app = returnedApp;
+      done();
+    });
+  });
+
   describe('/v0/peers/', () => {
     it('responds and lists peers', (done) => {
       let url = `/v0/peers/`;

@@ -1,8 +1,17 @@
-const app = require('../../../app');
+const getApp = require('../../../app');
 const service = require('ln-service/service');
 const request = require('supertest');
 
 describe('Transactions', () => {
+  let app;
+
+  beforeAll((done) => {
+    return getApp().then(returnedApp => {
+      app = returnedApp;
+      done();
+    });
+  });
+
   describe('/v0/transactions/', () => {
     it('responds and returns relevant transactions', (done) => {
       let url = `/v0/transactions/`;
