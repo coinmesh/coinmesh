@@ -31,8 +31,8 @@ describe('CommandsService', () => {
       commandsService.issueStreamedCommand(command, flags, 'spec/sample-dir').then(events => {
         let output = '';
 
-        events.on('data', data => {
-          output += data;
+        events.stdout.on('data', data => {
+          output += data.toString();
         });
 
         setTimeout(() => {
