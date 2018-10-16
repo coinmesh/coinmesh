@@ -1,10 +1,11 @@
 {
   "name": "@coinmesh/lnd-adapter",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "An adapter for LND using ln-service",
   "main": "services/index.js",
   "scripts": {
-    "start": "npm install && npm run rebuild-packages && nodemon ./bin/www",
+    "prestart": "npm install && npm run rebuild-packages",
+    "start": "nodemon ./bin/www",
     "rebuild-packages": "cd ./node_modules/ln-service && cd ../.. && npm rebuild && cd -",
     "test": "LNSERVICE_NETWORK='regtest' LNSERVICE_CHAIN=bitcoin nodemon --exec 'jasmine'"
   },

@@ -7,13 +7,14 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "npm install && concurrently \"npm run client\" \"npm run admin-logic-service\"",
+    "prestart": "npm install",
+    "start": "concurrently \"npm:client\" \"npm:admin-logic-service\"",
     "client": "cd ./client-applications/admin && npm start",
     "admin-logic-service": " cd ./logic-services/admin && npm start",
     "generate-docs": "cd ./docs/api-docs && bundle exec middleman build --clean",
     "docs": "cd ./docs/api-docs && bundle exec middleman server",
     "copy-docs": "cp -R docs/* ../coinmesh.com-site/docs/ && cp -R docs/api-docs/build/* ../coinmesh.com-site/docs/api-docs/",
-    "test": "concurrently \"npm run test-adapters\" \"npm run test-cm-adapters\"",
+    "test": "concurrently \"npm:test-adapters\" \"npm:test-cm-adapters\"",
     "test-adapters": "concurrently \"cd ./adapters/lnd-adapter && npm test\" \"cd ./adapters/bitcoind-adapter && npm test\" \"cd ./adapters/litecoind-adapter && npm test\"",
     "test-cm-adapters": "concurrently \"cd ./adapters/file-system-adapter && npm test\" \"cd ./adapters/package-json-adapter && npm test\" \"cd ./adapters/terminal-adapter && npm test\""
   },
