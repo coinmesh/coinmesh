@@ -24,11 +24,14 @@ export class DirectoryList {
     this.getDirectoryContents();
   }
   getDirectoryContents(childDir) {
+    const originalPath = this.currentPath;
     if (childDir) {
       this.currentPath = PathUtils.getPathToChildDir(this.currentPath, childDir);
     }
     return this.adminService.getDirectoryContents(this.currentPath).then(result => {
       this.currentDirectory = result;
+    }).catch(error => {
+      this.currentPath = originalPath;
     });
   }
   createDirectory() {

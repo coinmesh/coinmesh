@@ -63,9 +63,7 @@ class FileSystemService {
     return new Promise((resolve, reject) => {
       fs.readdir(directoryPath, (err, files) => {
         if (err) {
-          reject(err);
-        } else if (!files || !files.forEach) {
-          reject(`Selected file cannot be opened!`);
+          return reject(err.message);
         }
         let results = [];
         files.forEach(file => {

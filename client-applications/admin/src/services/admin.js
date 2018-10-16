@@ -3,12 +3,14 @@ import {Directory} from '../models/directory';
 import {Project} from '../models/project';
 import {ConfFile} from '../models/conf-file';
 import {ProjectStore} from 'services/project-store';
+import {ToastMessagesService} from 'services/toast-messages';
 
 export class AdminService {
-  static inject = [HttpWrapper, ProjectStore];
-  constructor(http, projectStore) {
+  static inject = [HttpWrapper, ProjectStore, ToastMessagesService];
+  constructor(http, projectStore, toastMessagesService) {
     this.http = http;
     this.projectStore = projectStore;
+    this.toastMessagesService = toastMessagesService;
   }
 
   getDirectoryContents(path) {
@@ -22,6 +24,10 @@ export class AdminService {
         items: result.content
       });
       return directory;
+    }).catch(error => {
+      let message = `Could not open ${path} as directory.`;
+      this.toastMessagesService.showMessage(message, 'warning');
+      return Promise.reject(message);
     });
   }
   createDirectory(path) {
