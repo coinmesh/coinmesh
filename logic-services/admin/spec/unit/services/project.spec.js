@@ -38,17 +38,6 @@ describe('ProjectService', () => {
         });
       });
     });
-
-    it('sets up the coinmesh properties', (done) => {
-      project.sourcePath = 'spec/support/fake-project';
-
-      projectService.cloneProject(project).then(result => {
-        pjReadService.getConfigItemByPath(path, 'coinmesh.type').then(result => {
-          expect(result).toBe('project');
-          done();
-        });
-      });
-    });
   });
 
   describe('createProject()', () => {
