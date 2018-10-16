@@ -16,7 +16,6 @@ router.post('/', function(req, res, next) {
 
 router.post('/clone', function(req, res, next) {
   let project = new Project(req.body);
-
   projectService.cloneProject(project)
     .then(result => {
       return res.json(result);

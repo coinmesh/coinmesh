@@ -4,5 +4,5 @@ export class StackDetails {
   @bindable project;
   @bindable showName = true;
   @bindable showDescription = true;
-  @bindable showPath = true;
+  @bindable showPath = false;
 }
