@@ -1,8 +1,17 @@
-const app = require('../../../app');
+const getApp = require('../../../app');
 const service = require('ln-service/service');
 const request = require('supertest');
 
 describe('Channels', () => {
+  let app;
+
+  beforeAll((done) => {
+    return getApp().then(returnedApp => {
+      app = returnedApp;
+      done();
+    });
+  });
+
   describe('/v0/channels/', () => {
     it('responds', (done) => {
       let url = `/v0/channels/`;
