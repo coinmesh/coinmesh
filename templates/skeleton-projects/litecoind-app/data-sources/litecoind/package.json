@@ -8,22 +8,23 @@
     "adapters": {
       "litecoind-adapter": "adapters/litecoind-adapter"
     },
-    "network": "testnet",
+    "network": "regtest",
     "runHttp": true,
     "conf": {
-      "litecoin": {
-        "regtest": "1",
-        "server": "1",
-        "rpcuser": "rpcuser",
-        "rpcpassword": "rpcpassword",
-        "txindex": "1",
-        "daemon": "1",
-        "zmqpubrawblock": "tcp://127.0.0.1:28332",
-        "zmqpubrawtx": "tcp://127.0.0.1:28332"
-      }
+      "regtest": "1",
+      "server": "1",
+      "rpcuser": "rpcuser",
+      "rpcpassword": "rpcpassword",
+      "txindex": "1",
+      "zmqpubrawblock": "tcp://127.0.0.1:28332",
+      "zmqpubrawtx": "tcp://127.0.0.1:28332"
+    },
+    "events": {
+      "loading": ["/litecoin.*version/i"],
+      "ready": ["/init.*message.*done.*loading/i"],
+      "failed": ["/shutdown.*done/i"]
     }
   },
-  "main": "index.js",
   "scripts": {
     "test": "test"
   },
@@ -36,7 +37,7 @@
     "litecoind"
   ],
   "author": "Patrick Walters",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/coinmesh/coinmesh/issues"
   },

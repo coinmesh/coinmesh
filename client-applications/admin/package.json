@@ -19,7 +19,8 @@
     "url": "http://github.com/coinmesh/coinmesh"
   },
   "scripts": {
-    "start": "npm install && gulp watch",
+    "prestart": "npm install",
+    "start": "gulp watch",
     "test": "gulp test",
     "e2e": "gulp serve webdriver-standalone e2e",
     "postinstall": "jspm install"

@@ -5,7 +5,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "npm install && concurrently \"npm run client\" \"npm run logic-services\" \"npm run adapters\"",
+    "prestart": "npm install",
+    "start": "concurrently \"npm:client\" \"npm:logic-services\" \"npm:adapters\"",
     "client": "cd ./client-applications/client && npm start",
     "logic-services": "concurrently \"cd ./logic-services/wallet && npm start\"",
     "adapters": "concurrently \"cd ./adapters/litecoind-adapter && npm start\"",
@@ -27,7 +28,7 @@
     }
   },
   "dependencies": {
-    "concurrently": "^3.5.1"
+    "concurrently": "^3.6.1"
   },
   "repository": {
     "type": "git",

@@ -5,7 +5,8 @@ export class ProjectStore {
   statusMessage = '';
 
   setCurrentProject(project) {
-    if (!(project instanceof Project)) {
+    console.log(project)
+    if (!!project && !(project instanceof Project)) {
       project = new Project(project);
     }
     this.currentProject = project;

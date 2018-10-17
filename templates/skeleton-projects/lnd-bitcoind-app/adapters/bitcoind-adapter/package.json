@@ -34,5 +34,14 @@
   "devDependencies": {
     "nodemon": "^1.18.4"
   },
-  "main": "index.js"
+  "main": "index.js",
+  "coinmesh": {
+    "type": "adapter",
+    "events": {
+      "loading": ["/bitcoind-adapter.*prestart/i"],
+      "waiting": [""],
+      "ready": ["/bitcoind-adapter.*nodemon.*starting/i"],
+      "failed": ["/bitcoind-adapter.*nodemon.*app.*crashed/i"]
+    }
+  }
 }

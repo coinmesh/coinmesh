@@ -4,22 +4,25 @@
   "description": "Bitcoind Data Source for CoinMesh.",
   "coinmesh": {
     "type": "data-source",
-    "confFilePath": "bitcoin.conf",
     "adapters": {
       "bitcoind-adapter": "adapters/bitcoind-adapter"
     },
     "network": "regtest",
     "runHttp": true,
+    "confFilePath": "bitcoin.conf",
     "conf": {
-      "bitcoin": {
-        "regtest": "1",
-        "server": "1",
-        "rpcuser": "rpcuser",
-        "rpcpassword": "rpcpassword",
-        "txindex": "1",
-        "zmqpubrawblock": "tcp://127.0.0.1:28332",
-        "zmqpubrawtx": "tcp://127.0.0.1:28332"
-      }
+      "regtest": "1",
+      "server": "1",
+      "rpcuser": "rpcuser",
+      "rpcpassword": "rpcpassword",
+      "txindex": "1",
+      "zmqpubrawblock": "tcp://127.0.0.1:28332",
+      "zmqpubrawtx": "tcp://127.0.0.1:28332"
+    },
+    "events": {
+      "loading": ["/bitcoin.*version/i"],
+      "ready": ["/init.*message.*done.*loading/i"],
+      "failed": ["/shutdown.*done/i"]
     }
   },
   "main": "index.js",
@@ -35,9 +38,9 @@
     "bitcoind"
   ],
   "author": "Patrick Walters",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/coinmesh/coinmesh/issues"
   },
-  "homepage": "http://coinmesh.com"
+  "homepage": "https://coinmesh.com"
 }

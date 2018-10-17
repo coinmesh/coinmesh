@@ -7,7 +7,7 @@
     "test": "test"
   },
   "author": "Patrick Walters <patrick.walters@blockfuse.io> (http://blockfuse.io/)",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "aurelia-bundler": "^0.7.0",
     "aurelia-protractor-plugin": "^1.0.6",

@@ -2,7 +2,8 @@
   "name": "@coinmesh/bitcoin-wallet",
   "version": "0.0.1",
   "scripts": {
-    "start": "npm install && nodemon ./bin/www",
+    "prestart": "npm install",
+    "start": "nodemon ./bin/www",
     "test": "nodemon --exec 'jasmine'"
   },
   "dependencies": {
@@ -25,7 +26,7 @@
     "bitcoind"
   ],
   "author": "Patrick Walters",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/coinmesh/coinmesh/issues"
   },
