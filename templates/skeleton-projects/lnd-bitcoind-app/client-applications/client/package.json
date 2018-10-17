@@ -56,5 +56,14 @@
   },
   "devDependencies": {
     "require-dir": "^1.0.0"
+  },
+  "coinmesh": {
+    "type": "client-application",
+    "events": {
+      "loading": ["/client.*prestart/i"],
+      "waiting": [""],
+      "ready": ["/client.*finished.*serve/i", "/client.*reloading.*browsers/i"],
+      "failed": ["/client.*error.*running.*ulp.*error/i"]
+    }
   }
 }
