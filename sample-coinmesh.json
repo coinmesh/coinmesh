@@ -1,0 +1,45 @@
+{
+  "coinmesh": {
+    "type": "project",
+    "adapters": {
+      "bitcoind-adapter": "./adapters/bitcoind-adapter",
+      "lnd-adapter": "./adapters/lnd-adapter"
+    },
+    "logicServices": {
+      "wallet": "./logic-services/wallet"
+    },
+    "dataSources": {
+      "bitcoind": "./data-sources/bitcoind",
+      "lnd": "./data-sources/lnd"
+    },
+    "clientApplications": {
+      "client": "./client-applications/client"
+    },
+    "dockerServices": [
+      {
+        "name": "lnd",
+        "build": "./data-sources/lnd",
+        "volumes": [
+          "shared:/home/lnd/.lnd/",
+          "./data-sources/lnd/lnd.conf:/home/lnd/.lnd/lnd.conf",
+          "./data-sources/bitcoind/bitcoin.conf:/home/lnd/.bitcoin/bitcoin.conf"
+        ],
+        "command": "lnd",
+        "ports": [
+          "9735:9735",
+          "10009:10009"
+        ],
+        "adapters": ["lnd-adapter", "bitcoind-adapter"],
+        "clientApplications": ["client"],
+        "logicServices": ["wallet"],
+        "dataSources": ["wallet"]
+      }
+    ],
+    "dockerVolumes": [
+      {
+        "name": "shared",
+        "driver": "local"
+      }
+    ]
+  }
+}
