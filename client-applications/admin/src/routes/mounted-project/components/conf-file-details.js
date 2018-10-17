@@ -5,7 +5,6 @@ export class ConfFileDetails {
   adminService;
   confFileExists = false;
   @bindable project;
-  @bindable confFile;
 
   static inject = [AdminService];
   constructor(adminService) {
@@ -32,8 +31,11 @@ export class ConfFileDetails {
   viewConf() {
     if (this.project) {
       return this.adminService.readConfFile(this.project.path).then(result => {
-        this.confFile = result;
+        this.project.confFile = result;
       });
     }
+  }
+  projectChanged(newProject) {
+    return this.checkConfFileExists();
   }
 }

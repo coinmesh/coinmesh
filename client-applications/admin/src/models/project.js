@@ -9,6 +9,7 @@ export class Project {
   name = '';
   description = '';
   path = '';
+  confFile;
 
   dataSources = [];
   adapters = [];
