@@ -24,8 +24,6 @@ export class ProjectDetails {
 
     this.projectStore.currentProject.setupContainers();
 
-    this.checkIfNeedUnlock();
-
     this.statusCheckerInterval = this.startStatusCheck();
   }
   detached() {
@@ -62,17 +60,6 @@ export class ProjectDetails {
       return this.projectStore.currentProject.dockerContainers.forEach(container => {
         container.status = 'pending';
       });
-    });
-  }
-  checkIfNeedUnlock() {
-    const path = this.projectStore.currentProject.path;
-
-    this.projectStore.currentProject.dockerContainers.forEach(container => {
-      if (container.name === 'lnd') {
-        return this.adminService.checkWalletLocked(path, 'regtest', container.name).then(result => {
-          container.locked = result;
-        });
-      }
     });
   }
   startStatusCheck() {
