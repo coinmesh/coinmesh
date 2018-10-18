@@ -18,9 +18,6 @@ services:
       - "9001:9000"
       - "3304:3304"
       - "3005:3005"
-      - "3302:3302"
-      - "3011:3011"
-      - "3010:3010"
     command: "npm start --unsafe-perm"
     environment:
       - RPC_PORT=19332

@@ -48,6 +48,9 @@
       "waiting": ["/waiting.*password/i"],
       "ready": ["/lnd.*started-thing/i"],
       "failed": ["/lnd.*crashed/i"]
+    },
+    "actions": {
+      "purgeLndChainData": "lnd"
     }
   }
 }

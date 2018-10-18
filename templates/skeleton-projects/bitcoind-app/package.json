@@ -26,7 +26,45 @@
     },
     "clientApplications": {
       "client": "./client-applications/client"
-    }
+    },
+    "dockerServices": [
+      {
+        "name": "bitcoind",
+        "build": "./data-sources/bitcoind",
+        "volumes": [
+          "./data-sources/bitcoind/bitcoin.conf:/home/bitcoin/.bitcoin/bitcoin.conf"
+        ],
+        "command": "bitcoind  --datadir=/home/bitcoin/.bitcoin --printtoconsole -rpcallowip=0.0.0.0/0",
+        "ports": [
+          "18332:18332"
+        ]
+      },
+      {
+        "name": "app",
+        "image": "node:8",
+        "working_dir": "/home/node/app",
+        "volumes": [
+          "/home/node/app/node_modules",
+          "./:/home/node/app"
+        ],
+        "ports": [
+          "9001:9000",
+          "3304:3304",
+          "3009:3009"
+        ],
+        "command": "npm start --unsafe-perm",
+        "environment": {
+          "RPC_PORT": "18332",
+          "RPC_HOST": "bitcoind",
+          "RPC_USERNAME": "rpcuser",
+          "RPC_PASSWORD": "rpcpassword"
+        },
+        "adapters": ["bitcoind-adapter"],
+        "clientApplications": ["client"],
+        "logicServices": ["wallet"],
+        "dataSources": ["bitcoind"]
+      }
+    ]
   },
   "dependencies": {
     "concurrently": "^3.6.1"

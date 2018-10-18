@@ -23,6 +23,9 @@
       "loading": ["/litecoin.*version/i"],
       "ready": ["/init.*message.*done.*loading/i"],
       "failed": ["/shutdown.*done/i"]
+    },
+    "actions": {
+      "purgeLitecoindChainData": "litecoind"
     }
   },
   "scripts": {

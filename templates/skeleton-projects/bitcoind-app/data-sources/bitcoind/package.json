@@ -23,6 +23,9 @@
       "loading": ["/bitcoin.*version/i"],
       "ready": ["/init.*message.*done.*loading/i"],
       "failed": ["/shutdown.*done/i"]
+    },
+    "actions": {
+      "purgeBitcoindChainData": "bitcoind"
     }
   },
   "main": "index.js",
