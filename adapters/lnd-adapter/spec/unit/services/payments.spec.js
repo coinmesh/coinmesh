@@ -26,7 +26,7 @@ describe('PaymentsService', () => {
     let invoice;
 
     beforeEach(() => {
-      let invoiceRequestObject = {
+      const invoiceRequestObject = {
         description: fakeDescription,
         expiresAt: expiresAt,
         tokens,

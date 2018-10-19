@@ -23,7 +23,7 @@ describe('Payments', () => {
         expires_at: new Date(),
         lnd,
         tokens: 10000
-      }
+      };
 
       createInvoice(passedInValue).then(result => {
         invoice = result.invoice;

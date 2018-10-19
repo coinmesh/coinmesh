@@ -11,7 +11,7 @@ describe('Invoices', () => {
         expires_at: new Date(),
         lnd,
         tokens: 10000
-      }
+      };
 
       createInvoice(passedInValue).then(result => {
         expect(result.description).toBe(passedInValue.description);
@@ -29,7 +29,7 @@ describe('Invoices', () => {
         expires_at: new Date(),
         lnd,
         tokens: 10000
-      }
+      };
 
       return createInvoice(invoiceData).then(result => {
         invoice = result;
@@ -40,7 +40,7 @@ describe('Invoices', () => {
       let invoiceRequest = {
         lnd,
         id: invoice.id
-      }
+      };
 
       getInvoice(invoiceRequest).then(result => {
         expect(result.description).toBe(invoice.description);
