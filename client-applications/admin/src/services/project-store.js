@@ -5,7 +5,6 @@ export class ProjectStore {
   statusMessage = '';
 
   setCurrentProject(project) {
-    console.log(project)
     if (!!project && !(project instanceof Project)) {
       project = new Project(project);
     }
@@ -28,13 +27,14 @@ export class ProjectStore {
   getProjectFromKey(key) {
     let projectString = localStorage.getItem(key);
     if (projectString) {
-      return JSON.parse(projectString);
+      return new Project(JSON.parse(projectString));
     }
   }
   getProjectFromLocalStorage() {
     if (!this.currentProject) {
       let project = this.getProjectFromKey('coinmesh:current-project');
       this.setCurrentProject(project);
+      return project;
     }
   }
   getLastProjectFromLocalStorage() {

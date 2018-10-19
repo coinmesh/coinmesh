@@ -42,9 +42,12 @@
           "28332:28332",
           "28333:28333"
         ],
-        "dataSources": ["lnd"]
-      }, {
-        "name":"lnd",
+        "dataSources": [
+          "lnd"
+        ]
+      },
+      {
+        "name": "lnd",
         "build": "./data-sources/lnd",
         "volumes": [
           "shared:/home/lnd/.lnd/",
@@ -56,8 +59,11 @@
           "9735:9735",
           "10009:10009"
         ],
-        "dataSources": ["lnd"]
-      }, {
+        "dataSources": [
+          "lnd"
+        ]
+      },
+      {
         "name": "app",
         "image": "node:8",
         "working_dir": "/home/node/app",
@@ -86,9 +92,16 @@
           "LND_HOST": "lnd",
           "LND_GRPC_PORT": "10009"
         },
-        "adapters": ["bitcoind-adapter", "lnd-adapter"],
-        "clientApplications": ["client"],
-        "logicServices": ["wallet"],
+        "adapters": [
+          "bitcoind-adapter",
+          "lnd-adapter"
+        ],
+        "clientApplications": [
+          "client"
+        ],
+        "logicServices": [
+          "wallet"
+        ],
         "dataSources": []
       }
     ]

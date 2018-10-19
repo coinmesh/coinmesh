@@ -1,7 +1,7 @@
 import {ProjectStore} from 'services/project-store';
 import {AdminService} from 'services/admin';
+import {DockerService} from 'services/docker';
 import {bindable} from 'aurelia-templating';
-import {DockerContainer} from 'models/docker-container';
 import {ToastMessagesService} from 'services/toast-messages';
 
 export class ProjectDetails {
@@ -13,16 +13,15 @@ export class ProjectDetails {
   isGeneratingBlocks = false;
   generatingInterval;
 
-  static inject = [ProjectStore, AdminService, ToastMessagesService];
-  constructor(projectStore, adminService, toastMessagesService) {
+  static inject = [ProjectStore, AdminService, DockerService, ToastMessagesService];
+  constructor(projectStore, adminService, dockerService, toastMessagesService) {
     this.projectStore = projectStore;
     this.adminService = adminService;
+    this.dockerService = dockerService;
     this.toastMessagesService = toastMessagesService;
   }
   activate() {
     const path = this.projectStore.currentProject.path;
-
-    this.projectStore.currentProject.setupContainers();
 
     this.statusCheckerInterval = this.startStatusCheck();
   }
@@ -34,21 +33,21 @@ export class ProjectDetails {
   }
   start(container) {
     const path = this.projectStore.currentProject.path;
-    return this.adminService.dockerCompose(path, ['up', container.name]).then(() => {
+    return this.dockerService.dockerCompose(path, ['up', container.name]).then(() => {
       container.status = 'pending';
     });
   }
   stop(container) {
     const path = this.projectStore.currentProject.path;
-    return this.adminService.dockerCompose(path, ['stop', container.name]).then(() => {
+    return this.dockerService.dockerCompose(path, ['stop', container.name]).then(() => {
       container.status = 'pending';
     });
   }
   up() {
     const path = this.projectStore.currentProject.path;
 
-    return this.adminService.dockerCompose(path, ['up']).then(() => {
-      return this.projectStore.currentProject.dockerContainers.forEach(container => {
+    return this.dockerService.dockerCompose(path, ['up']).then(() => {
+      return this.projectStore.currentProject.dockerServices.forEach(container => {
         container.status = 'pending';
       });
     });
@@ -56,8 +55,8 @@ export class ProjectDetails {
   down() {
     const path = this.projectStore.currentProject.path;
 
-    return this.adminService.dockerComposeDown(path).then(() => {
-      return this.projectStore.currentProject.dockerContainers.forEach(container => {
+    return this.dockerService.dockerComposeDown(path).then(() => {
+      return this.projectStore.currentProject.dockerServices.forEach(container => {
         container.status = 'pending';
       });
     });
@@ -69,13 +68,13 @@ export class ProjectDetails {
     }, 10000);
   }
   checkAllContainerStatuses() {
-    this.projectStore.currentProject.dockerContainers.forEach(container => {
+    this.projectStore.currentProject.dockerServices.forEach(container => {
       this.checkContainerStatus(container);
     });
   }
   checkContainerStatus(container) {
     const path = this.projectStore.currentProject.path;
-    return this.adminService.dockerComposeStatus(path, [container.name]).then(result => {
+    return this.dockerService.dockerComposeStatus(path, [container.name]).then(result => {
       container.status = result;
     });
   }

@@ -2,7 +2,8 @@ import {Adapter} from './adapter';
 import {ClientApplication} from './client-application';
 import {LogicService} from './logic-service';
 import {DataSource} from './data-source';
-import {DockerContainer} from './docker-container';
+import {DockerService} from './docker-service';
+import {ProjectEvent} from './project-event';
 
 export class Project {
   id;
@@ -16,26 +17,56 @@ export class Project {
   logicServices = [];
   clientApplications = [];
 
-  dockerContainers = [];
+  events = [];
+  actions = [];
+  subscriptionKeys = [];
+  dockerServices = [];
 
+  status = 'unknown';
   type = 'project';
 
   constructor(data = {}) {
     if (data.coinmesh) {
       this.convertPackageJsonProps(data);
+      this.setupDockerServices(data);
+      this.setupEventsAndActions(data);
+
+      delete data.coinmesh;
     }
 
     Object.assign(this, data);
   }
-  setupContainers() {
-    if (this.dockerContainers.length > 0) {
+  setupEventsAndActions(data) {
+    if (!data) {
       return;
     }
-    let nodeContainers = this.dataSources.map(dataSource => {
-      return new DockerContainer({ name: dataSource.name });
+    let events = data.coinmesh.events;
+    let actions = data.coinmesh.actions;
+    if (!!events && this.events.length === 0) {
+      this.events = Object.keys(events).map(key => {
+        return new ProjectEvent({
+          status: key,
+          regexes: events[key]
+        });
+      });
+    }
+    if (!!actions && (this.actions.length > 0 || actions.length > 0)) {
+      this.actions = actions.map(action => {
+        return new ProjectAction(action);
+      });
+    }
+  }
+  setupDockerServices(data) {
+    if (this.dockerServices.length > 0 || !data) {
+      return;
+    }
+    let dockerServices = data.coinmesh.dockerServices;
+    if (!dockerServices || dockerServices.length === 0) {
+      return;
+    }
+    this.dockerServices = dockerServices.map(service => {
+      return new DockerService(service);
     });
-    this.dockerContainers.push(...nodeContainers);
-    this.dockerContainers.push(new DockerContainer({ name: 'app' }));
   }
   convertPackageJsonProps(data) {
     let props = data.coinmesh;
@@ -67,7 +98,18 @@ export class Project {
         return new ClientApplication({ name: key, path: value });
       });
     }
+  }
+  updateTypeToFullProject(subProject, oldProject, pluralPropertyName) {
+    let typeArray = this[pluralPropertyName];
+    let match = typeArray.find(project => {
+      return project.name === oldProject.name;
+    });
+    let indexToRemove = typeArray.indexOf(match);
 
-    delete data.coinmesh;
+    typeArray.splice(indexToRemove, 1);
+    typeArray.push(subProject);
+  }
+  setStatus(newStatus) {
+    this.status = newStatus;
   }
 }

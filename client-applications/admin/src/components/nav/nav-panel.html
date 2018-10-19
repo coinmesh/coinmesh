@@ -1,4 +1,7 @@
 <template>
+  <require from="./nav-panel-group"></require>
+  <require from="../status-icon"></require>
+
   <nav class="navbar navbar-expand-sm navbar-default">
     <div class="navbar-header">
       <button class="navbar-toggler" type="button" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,14 +45,15 @@
           </li>
 
           <h3 class="menu-title">${projectStore.currentProject.name}</h3>
+
           <li class="menu-item-has-children dropdown ${clientsOpen ? 'show' : ''}">
-            <a class="dropdown-toggle" href="#" click.delegate="toggle('clientsOpen')">
+            <a href="#" click.delegate="toggle('clientsOpen')">
               <i class="menu-icon fa fa-laptop"></i>
               Clients
             </a>
             <ul class="sub-menu children dropdown-menu ${clientsOpen ? 'show' : ''}">
               <li repeat.for="clientApplication of projectStore.currentProject.clientApplications">
-                <i class="fa fa-arrow-circle-up"></i>
+                <status-icon status.bind="clientApplication.status"></status-icon>
                 <a href="#/mounted-project/client-applications/${clientApplication.name}">
                   ${clientApplication.name}
                 </a>
@@ -64,7 +68,7 @@
             </a>
             <ul class="sub-menu children dropdown-menu ${logicServicesOpen ? 'show' : ''}">
               <li repeat.for="logicService of projectStore.currentProject.logicServices">
-                <i class="fa fa-arrow-circle-up"></i>
+                <status-icon status.bind="logicService.status"></status-icon>
                 <a href="#/mounted-project/logic-services/${logicService.name}">
                   ${logicService.name}
                 </a>
@@ -79,7 +83,7 @@
             </a>
             <ul class="sub-menu children dropdown-menu ${adaptersOpen ? 'show' : ''}">
               <li repeat.for="adapter of projectStore.currentProject.adapters">
-                <i class="fa fa-arrow-circle-up"></i>
+                <status-icon status.bind="adapter.status"></status-icon>
                 <a href="#/mounted-project/adapters/${adapter.name}">
                   ${adapter.name}
                 </a>
@@ -94,7 +98,7 @@
             </a>
             <ul class="sub-menu children dropdown-menu ${dataSourcesOpen ? 'show' : ''}">
               <li repeat.for="dataSource of projectStore.currentProject.dataSources">
-                <i class="fa fa-arrow-circle-up"></i>
+                <status-icon status.bind="dataSource.status"></status-icon>
                 <a href="#/mounted-project/data-sources/${dataSource.name}">
                   ${dataSource.name}
                 </a>

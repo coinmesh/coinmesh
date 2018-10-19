@@ -3,16 +3,17 @@
   <require from="../components/project-info"></require>
   <require from="components/card-item"></require>
   <require from="components/display-item"></require>
+  <require from="components/status-icon"></require>
 
   <card-item is-open.bind="true">
-    <span slot="header">Containers</span>
+    <span slot="header">Containers / Services</span>
     <div class="row">
       <div class="col">
-        <p>Containers may need to be started in order.</p>
+        <p>Containers / Services may need to be started in order.</p>
       </div>
     </div>
     <div class="row">
-      <div class="col" repeat.for="container of projectStore.currentProject.dockerContainers">
+      <div class="col" repeat.for="service of projectStore.currentProject.dockerServices">
         <section class="card">
           <div class="card-header user-header alt bg-dark">
             <div class="media">
@@ -21,23 +22,14 @@
                   class="align-self-center rounded-circle mr-3"
                   style="width:85px; height:85px; background-color: black;"
                   alt=""
-                  src="assets/images/${container.name}-logo.png">
+                  src="assets/images/${service.name}-logo.png">
               </a>
               <div class="media-body">
                 <h2 class="text-light display-6">
-                  ${container.name}
-                  <i css="color: ${container.status === 'up' ? 'green' : container.status === 'exit' ? 'red' : 'gray'}"
-                    class="fa
-                      fa-${
-                        container.locked === true ? 'lock' :
-                          container.status === 'up' ? 'check-circle' :
-                            container.status === 'exit' ? 'times-circle' :
-                              container.status === 'pending' ? 'circle-o-notch fa-spin' : 'question-circle'
-                      }
-                      pull-right">
-                  </i>
+                  ${service.name}
+                  <status-icon status.bind="service.status"></status-icon>
                 </h2>
-                <p>${container.status}</p>
+                <p>${service.status}</p>
               </div>
             </div>
           </div>
@@ -45,30 +37,30 @@
           <ul class="list-group list-group-flush">
 
             <li class="list-group-item">
-              <template if.bind="container.status !== 'up'">
+              <template if.bind="service.status !== 'up'">
                 <i class="fa fa-play-circle"></i>
-                <a href="#" click.delegate="start(container)">Start</a>
+                <a href="#" click.delegate="start(service)">Start</a>
               </template>
-              <template if.bind="container.status === 'up'">
+              <template if.bind="service.status === 'up'">
                 <i class="fa fa-stop-circle"></i>
-                <a href="#" click.delegate="stop(container)">Stop</a>
+                <a href="#" click.delegate="stop(service)">Stop</a>
               </template>
             </li>
 
-            <template if.bind="container.canGenerate">
+            <template if.bind="service.canGenerate">
               <li class="list-group-item">
-                <template if.bind="container.generateBlocksOpen">
+                <template if.bind="service.generateBlocksOpen">
                   <input value.bind="numberOfBlocks"
                     class="form-control"
                     placeholder="Number of blocks"
-                    if.bind="container.generateBlocksOpen"/>
+                    if.bind="service.generateBlocksOpen"/>
                   <a href="#" click.delegate="generateBlocks()">
                     <i class="fa fa-arrow-circle-right"></i> Generate Blocks
                   </a>
                 </template>
                 <a href="#"
-                    click.delegate="container.toggleOpen('generateBlocksOpen')"
-                    if.bind="!container.generateBlocksOpen">
+                    click.delegate="service.toggleOpen('generateBlocksOpen')"
+                    if.bind="!service.generateBlocksOpen">
                   <i class="fa fa-arrow-circle-right"></i> Generate Blocks
                 </a>
               </li>
@@ -80,9 +72,9 @@
               </li>
             </template>
 
-            <template if.bind="container.canSend">
+            <template if.bind="service.canSend">
               <li class="list-group-item">
-                <template if.bind="container.sendCoinsOpen">
+                <template if.bind="service.sendCoinsOpen">
                   <input value.bind="sendToAddress"
                     class="form-control"
                     placeholder="Address to send to"/>
@@ -94,8 +86,8 @@
                   </a>
                 </template>
                 <a href="#"
-                    click.delegate="container.toggleOpen('sendCoinsOpen')"
-                    if.bind="!container.sendCoinsOpen">
+                    click.delegate="service.toggleOpen('sendCoinsOpen')"
+                    if.bind="!service.sendCoinsOpen">
                   <i class="fa fa-send"></i> Send Coins to Address
                 </a>
               </li>

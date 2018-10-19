@@ -1,5 +1,5 @@
 import {Project} from 'models/project';
-import {AdminService} from 'services/admin';
+import {ProjectsService} from 'services/projects';
 import {ProjectStore} from 'services/project-store';
 import {Router} from 'aurelia-router';
 
@@ -9,9 +9,9 @@ export class Index {
   showNext = true;
   showCreateProject = false;
 
-  static inject = [AdminService, Router, ProjectStore];
-  constructor(adminService, router, projectStore) {
-    this.adminService = adminService;
+  static inject = [ProjectsService, Router, ProjectStore];
+  constructor(projectsService, router, projectStore) {
+    this.projectsService = projectsService;
     this.router = router;
     this.projectStore = projectStore;
   }
@@ -58,9 +58,9 @@ export class Index {
     this.currentStep = this.steps[this.currentStep.number - 2];
   }
   createProject() {
-    return this.adminService.createNewProject(this.project).then(result => {
+    return this.projectsService.createNewProject(this.project).then(result => {
       this.showCreateProject = true;
-      return this.adminService.loadProject(this.project.path).then(result => {
+      return this.projectsService.loadProject(this.project.path).then(result => {
         this.showCreateProject = false;
         this.projectStore.setCurrentProject(result);
         return this.router.navigateToRoute('mounted-project');

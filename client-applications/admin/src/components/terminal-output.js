@@ -3,6 +3,8 @@ import {WebSocketService} from 'services/web-socket-service';
 import {Terminal} from 'xterm';
 import {Router} from 'aurelia-router';
 import {AdminService} from 'services/admin';
+import {NpmService} from 'services/npm';
+import {DockerService} from 'services/docker';
 
 export class TerminalOutput {
   @bindable canNpmInstall = false;
@@ -21,11 +23,13 @@ export class TerminalOutput {
   isInitialized = false;
   terminal;
 
-  static inject = [WebSocketService, Router, AdminService];
-  constructor(webSocketService, router, adminService) {
+  static inject = [WebSocketService, Router, AdminService, NpmService, DockerService];
+  constructor(webSocketService, router, adminService, npmService, dockerService) {
     this.webSocketService = webSocketService;
     this.router = router;
     this.adminService = adminService;
+    this.npmService = npmService;
+    this.dockerService = dockerService;
   }
 
   attached() {
@@ -56,56 +60,56 @@ export class TerminalOutput {
   }
   npmLinkLocal() {
     let path = this.projectRoot;
-    return this.adminService.npmLinkLocal(path).then(uuid => {
+    return this.npmService.npmLinkLocal(path).then(uuid => {
       this.processUuid = uuid;
       this.commandRunning = true;
     });
   }
   npmStart() {
     let path = this.projectRoot;
-    return this.adminService.npmStart(path).then(uuid => {
+    return this.npmService.npmStart(path).then(uuid => {
       this.processUuid = uuid;
       this.commandRunning = true;
     });
   }
   npmInstall() {
     let path = this.projectRoot;
-    return this.adminService.npmInstall(path).then(uuid => {
+    return this.npmService.npmInstall(path).then(uuid => {
       this.processUuid = uuid;
       this.commandRunning = true;
     });
   }
   npmTest() {
     let path = this.projectRoot;
-    return this.adminService.npmTest(path).then(uuid => {
+    return this.npmService.npmTest(path).then(uuid => {
       this.processUuid = uuid;
       this.commandRunning = true;
     });
   }
   dockerRun() {
     let path = this.projectRoot;
-    return this.adminService.dockerRun(path).then(uuid => {
+    return dockerServiceRun(path).then(uuid => {
       this.processUuid = uuid;
       this.commandRunning = true;
     });
   }
   dockerBuild() {
     let path = this.projectRoot;
-    return this.adminService.dockerBuild(path).then(uuid => {
+    return this.dockerService.dockerBuild(path).then(uuid => {
       this.processUuid = uuid;
       this.commandRunning = true;
     });
   }
   dockerCompose() {
     let path = this.projectRoot;
-    return this.adminService.dockerCompose(path).then(uuid => {
+    return this.dockerService.dockerCompose(path).then(uuid => {
       this.processUuid = uuid;
       this.commandRunning = true;
     });
   }
   dockerComposeDown() {
     let path = this.projectRoot;
-    return this.adminService.dockerComposeDown(path);
+    return this.dockerService.dockerComposeDown(path);
   }
   killProcess() {
     return this.adminService.killProcess(this.processUuid).then(result => {

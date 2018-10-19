@@ -1,22 +1,22 @@
 import {ProjectStore} from 'services/project-store';
-import {AdminService} from 'services/admin';
+import {ProjectsService} from 'services/projects';
 
 export class LogicServiceDetails {
   projectStore;
-  adminService;
+  projectsService;
   logicService;
 
-  static inject = [ProjectStore, AdminService];
-  constructor(projectStore, adminService) {
+  static inject = [ProjectStore, ProjectsService];
+  constructor(projectStore, projectsService) {
     this.projectStore = projectStore;
-    this.adminService = adminService;
+    this.projectsService = projectsService;
   }
 
   activate(params) {
     let logicServiceName = params.name;
 
     if (logicServiceName && this.projectStore.currentProject) {
-      return this.adminService.loadProjectByNameAndType(logicServiceName, 'logicServices').then(result => {
+      return this.projectsService.loadProjectByNameAndType(logicServiceName, 'logicServices').then(result => {
         this.logicService = result;
       });
     }

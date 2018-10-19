@@ -1,11 +1,13 @@
 import {ProjectStore} from 'services/project-store';
+import {ProjectsService} from 'services/projects';
 
 export class App {
   navIsOpen = true;
 
-  static inject = [ProjectStore];
-  constructor(projectStore) {
+  static inject = [ProjectStore, ProjectsService];
+  constructor(projectStore, projectsService) {
     this.projectStore = projectStore;
+    this.projectsService = projectsService;
   }
   configureRouter(config, router) {
     config.title = 'CoinMesh';
@@ -44,6 +46,10 @@ export class App {
   attached() {
     if (!this.projectStore.currentProject) {
       this.projectStore.getProjectFromLocalStorage();
+    }
+
+    if (this.projectStore.currentProject) {
+      return this.projectsService.loadProjectAndAllSubProjects(this.projectStore.currentProject.path);
     }
   }
 }

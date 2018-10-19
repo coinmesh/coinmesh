@@ -5,6 +5,10 @@
         <div class="page-title">
           <h1>
             ${projectStore.currentProject ? projectStore.currentProject.name : projectStore.statusMessage}
+            <br />
+            <small>
+              ${!!projectStore.currentProject ? '(' + projectStore.currentProject.path + ')' : ''}
+            </small>
           </h1>
         </div>
       </div>

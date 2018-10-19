@@ -1,22 +1,23 @@
 import {ProjectStore} from 'services/project-store';
-import {AdminService} from 'services/admin';
+import {ProjectsService} from 'services/projects';
 
 export class ClientApplicationDetails {
   projectStore;
-  adminService;
+  projectsService;
   clientApplication;
 
-  static inject = [ProjectStore, AdminService];
-  constructor(projectStore, adminService) {
+  static inject = [ProjectStore, ProjectsService];
+  constructor(projectStore, projectsService) {
     this.projectStore = projectStore;
-    this.adminService = adminService;
+    this.projectsService = projectsService;
   }
 
   activate(params) {
+    const currentProject = this.projectStore.currentProject;
     let clientApplicationName = params.name;
 
-    if (clientApplicationName && this.projectStore.currentProject) {
-      return this.adminService.loadProjectByNameAndType(clientApplicationName, 'clientApplications').then(result => {
+    if (clientApplicationName && currentProject) {
+      return this.projectsService.loadProjectByNameAndType(clientApplicationName, 'clientApplications').then(result => {
         this.clientApplication = result;
       });
     }

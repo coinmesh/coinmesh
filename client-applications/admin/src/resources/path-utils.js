@@ -5,4 +5,10 @@ export class PathUtils {
     }
     return `${path || ''}/${childDir}`;
   }
+  static fixRelativePath(path, rootPath = '') {
+    if (path.substring(0, 2) === './') {
+      path = `${rootPath}${path.substr(1)}`;
+    }
+    return path;
+  }
 }

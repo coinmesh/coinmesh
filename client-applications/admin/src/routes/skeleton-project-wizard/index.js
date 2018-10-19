@@ -1,5 +1,5 @@
 import {SkeletonProject} from 'models/skeleton-project';
-import {AdminService} from 'services/admin';
+import {ProjectsService} from 'services/projects';
 import {ProjectStore} from 'services/project-store';
 import {Router} from 'aurelia-router';
 
@@ -11,9 +11,9 @@ export class Index {
   showCreateProject = false;
   nextDisabled = false;
 
-  static inject = [AdminService, Router, ProjectStore];
-  constructor(adminService, router, projectStore) {
-    this.adminService = adminService;
+  static inject = [ProjectsService, Router, ProjectStore];
+  constructor(projectsService, router, projectStore) {
+    this.projectsService = projectsService;
     this.router = router;
     this.projectStore = projectStore;
   }
@@ -49,10 +49,10 @@ export class Index {
     project.sourcePath = project.path;
     project.path = this.wizardState.targetPath;
 
-    return this.adminService.cloneProject(project).then(result => {
+    return this.projectsService.cloneProject(project).then(result => {
       this.showCreateProject = true;
 
-      return this.adminService.loadProject(project.path).then(result => {
+      return this.projectsService.loadProject(project.path).then(result => {
         result.path = project.path;
         this.showCreateProject = false;
         this.projectStore.setCurrentProject(result);

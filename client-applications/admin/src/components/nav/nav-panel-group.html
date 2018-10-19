@@ -1,0 +1,11 @@
+<template>
+  <li class="menu-item-has-children dropdown ${isOpen ? 'show' : ''}">
+    <a class="dropdown-toggle" href="#" click.delegate="toggleOpen()">
+      <i class="menu-icon fa fa-laptop"></i>
+      ${title}
+    </a>
+    <ul class="sub-menu children dropdown-menu ${isOpen ? 'show' : ''}">
+      <slot></slot>
+    </ul>
+  </li>
+</template>

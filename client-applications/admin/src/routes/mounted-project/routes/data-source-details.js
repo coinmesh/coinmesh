@@ -1,25 +1,24 @@
 import {ProjectStore} from 'services/project-store';
-import {AdminService} from 'services/admin';
+import {ProjectsService} from 'services/projects';
 import {DataSource} from 'models/data-source';
 import {bindable} from 'aurelia-templating';
 
 export class DataSourceDetails {
   projectStore;
-  adminService;
+  projectsService;
   dataSource;
   @bindable processUuid;
 
-  static inject = [ProjectStore, AdminService];
-  constructor(projectStore, adminService) {
+  static inject = [ProjectStore, ProjectsService];
+  constructor(projectStore, projectsService) {
     this.projectStore = projectStore;
-    this.adminService = adminService;
+    this.projectsService = projectsService;
   }
 
   activate(params) {
     let dataSourceName = params.name;
-
     if (dataSourceName && this.projectStore.currentProject) {
-      return this.adminService.loadProjectByNameAndType(dataSourceName, 'dataSources').then(result => {
+      return this.projectsService.loadProjectByNameAndType(dataSourceName, 'dataSources').then(result => {
         this.dataSource = result;
       });
     }

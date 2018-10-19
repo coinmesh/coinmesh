@@ -8,7 +8,10 @@ class ReadService {
     return new Promise((resolve, reject) => {
       fs.readFile(cleanPath, encoding, (err, data) => {
         if (err) {
-          reject(err);
+          return reject(err);
+        }
+        if (!data) {
+          return reject(`No file / directory found.`);
         }
         resolve(JSON.parse(data));
       });
@@ -19,6 +22,8 @@ class ReadService {
       this.getConfiguration(projectPath).then(packageJson => {
         const result = readUtils.getValueAtPath(packageJson, configItemPath);
         resolve(result);
+      }).catch(error => {
+        reject(error);
       });
     });
   }

@@ -38,10 +38,18 @@
   "coinmesh": {
     "type": "adapter",
     "events": {
-      "loading": ["/bitcoind-adapter.*prestart/i"],
-      "waiting": [""],
-      "ready": ["/bitcoind-adapter.*nodemon.*starting/i"],
-      "failed": ["/bitcoind-adapter.*nodemon.*app.*crashed/i"]
+      "loading": [
+        "/bitcoind-adapter.*prestart/i"
+      ],
+      "waiting": [
+        ""
+      ],
+      "ready": [
+        "/bitcoind-adapter.*nodemon.*starting/i"
+      ],
+      "failed": [
+        "/bitcoind-adapter.*nodemon.*app.*crashed/i"
+      ]
     }
   }
 }

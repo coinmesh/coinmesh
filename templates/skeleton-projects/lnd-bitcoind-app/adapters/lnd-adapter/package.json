@@ -43,10 +43,18 @@
   "coinmesh": {
     "type": "adapter",
     "events": {
-      "loading": ["/lnd-adapter.*prestart/i"],
-      "waiting": [""],
-      "ready": ["/lnd-adapter.*nodemon.*starting/i"],
-      "failed": ["/lnd-adapter.*nodemon.*app.*crashed/i"]
+      "loading": [
+        "/lnd-adapter.*prestart/i"
+      ],
+      "waiting": [
+        ""
+      ],
+      "ready": [
+        "/lnd-adapter.*nodemon.*starting/i"
+      ],
+      "failed": [
+        "/lnd-adapter.*nodemon.*app.*crashed/i"
+      ]
     }
   }
 }

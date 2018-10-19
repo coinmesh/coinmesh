@@ -1,22 +1,22 @@
 import {ProjectStore} from 'services/project-store';
-import {AdminService} from 'services/admin';
+import {ProjectsService} from 'services/projects';
 
 export class AdapterDetails {
   projectStore;
-  adminService;
+  projectsService;
   adapter;
 
-  static inject = [ProjectStore, AdminService];
-  constructor(projectStore, adminService) {
+  static inject = [ProjectStore, ProjectsService];
+  constructor(projectStore, projectsService) {
     this.projectStore = projectStore;
-    this.adminService = adminService;
+    this.projectsService = projectsService;
   }
 
   activate(params) {
     let adapterName = params.name;
 
     if (adapterName && this.projectStore.currentProject) {
-      return this.adminService.loadProjectByNameAndType(adapterName, 'adapters').then(result => {
+      return this.projectsService.loadProjectByNameAndType(adapterName, 'adapters').then(result => {
         this.adapter = result;
       });
     }

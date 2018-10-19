@@ -1,13 +1,21 @@
-export class DockerContainer {
+export class DockerService {
   id;
   name = '';
   path = '';
-  type = 'container';
+
+  adapters = [];
+  clientApplications = [];
+  logicServices = [];
+  dataSources = [];
+
+  type = 'service';
 
   sendCoinsOpen = false;
   generateBlocksOpen = false;
+
   canSend = false;
   canGenerate = false;
+
   status = 'unknown';
 
   constructor(data = {}) {
