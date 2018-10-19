@@ -1,6 +1,6 @@
 {
   "name": "@coinmesh/lnd-adapter",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "An adapter for LND using ln-service",
   "main": "services/index.js",
   "scripts": {

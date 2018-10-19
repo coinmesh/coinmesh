@@ -1,6 +1,6 @@
 {
   "name": "@coinmesh/lnd-wallet",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "prestart": "npm install && npm rebuild",
     "start": "nodemon ./bin/www",
