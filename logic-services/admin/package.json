@@ -1,6 +1,6 @@
 {
   "name": "@coinmesh/admin-service",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "prestart": "npm install",
     "start": "nodemon ./bin/www",
@@ -8,9 +8,9 @@
     "link-local": "npm link @coinmesh/file-system-adapter; npm link @coinmesh/package-json-adapter; npm link @coinmesh/terminal-adapter"
   },
   "dependencies": {
-    "@coinmesh/file-system-adapter": "^0.1.2",
-    "@coinmesh/package-json-adapter": "^0.1.2",
-    "@coinmesh/terminal-adapter": "^0.1.3",
+    "@coinmesh/file-system-adapter": "^0.2.0",
+    "@coinmesh/package-json-adapter": "^0.2.0",
+    "@coinmesh/terminal-adapter": "^0.2.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
