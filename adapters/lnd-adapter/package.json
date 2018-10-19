@@ -1,6 +1,6 @@
 {
   "name": "@coinmesh/lnd-adapter",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "An adapter for LND using ln-service",
   "main": "services/index.js",
   "scripts": {
@@ -43,10 +43,18 @@
   "coinmesh": {
     "type": "adapter",
     "events": {
-      "loading": ["/lnd-adapter.*prestart/i"],
-      "waiting": [""],
-      "ready": ["/lnd-adapter.*nodemon.*starting/i"],
-      "failed": ["/lnd-adapter.*nodemon.*app.*crashed/i"]
+      "loading": [
+        "/lnd-adapter.*prestart/i"
+      ],
+      "waiting": [
+        ""
+      ],
+      "ready": [
+        "/lnd-adapter.*nodemon.*starting/i"
+      ],
+      "failed": [
+        "/lnd-adapter.*nodemon.*app.*crashed/i"
+      ]
     }
   }
 }
