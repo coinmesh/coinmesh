@@ -2,7 +2,7 @@
   "name": "@coinmesh/lnd-wallet",
   "version": "0.2.0",
   "scripts": {
-    "prestart": "npm install && npm rebuild",
+    "prestart": "npm install",
     "start": "nodemon ./bin/www",
     "test": "nodemon --exec 'jasmine'"
   },

@@ -21,7 +21,7 @@ export class StatusIcon {
       case 'loading':
       case 'waiting':
       case 'pending':
-        this.color = 'light-green';
+        this.color = 'lightgreen';
         this.icon = 'circle-o-notch fa-spin';
         break;
       default:

@@ -46,7 +46,7 @@
     "events": {
       "loading": ["/ltnd.*version/i"],
       "waiting": ["/waiting.*password/i"],
-      "ready": ["/lnd.*started-thing/i"],
+      "ready": ["/lnd.*rpc.*server.*listening/i"],
       "failed": ["/lnd.*crashed/i"]
     },
     "actions": {

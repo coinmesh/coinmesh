@@ -1,12 +1,14 @@
 import {WebSocketService} from 'services/web-socket-service';
+import {ToastMessagesService} from 'services/toast-messages';
 
 export class LogStatusService {
   logOutput = [];
   tests = [];
 
-  static inject = [WebSocketService];
-  constructor(webSocketService) {
+  static inject = [WebSocketService, ToastMessagesService];
+  constructor(webSocketService, toastMessagesService) {
     this.webSocketService = webSocketService;
+    this.toastMessagesService = toastMessagesService;
     this.connectToLogOutput();
   }
 
@@ -38,13 +40,40 @@ export class LogStatusService {
   checkLogEntry(logEntry) {
     this.tests.forEach(test => {
       test.regexes.forEach(regexString => {
-        let value = regexString.match(/\/(.*)\/(.*)/);
-        let isMatch = new RegExp(value[1], value[2]).test(logEntry.rawText);
+        const value = regexString.match(/\/(.*)\/(.*)/);
+        const isMatch = new RegExp(value[1], value[2]).test(logEntry.rawText);
+
         if (isMatch) {
+          const message = `[${test.name}] status changed to [${test.status}].`;
+          const type = this.getToastMessageType(test.status);
+          if (type === 'warning' || type === 'error') {
+            this.toastMessagesService.showMessage(message, type);
+          }
           return test.callback(test.status);
         }
       });
     });
+  }
+  getToastMessageType(status) {
+    switch(status) {
+      case 'up':
+      case 'ready':
+        return 'success';
+        break;
+      case 'exit':
+        return 'warning';
+      case 'failed':
+        return 'error';
+        break;
+      case 'loading':
+      case 'waiting':
+      case 'pending':
+        return 'info';
+        break;
+      default:
+        return 'info';
+        break;
+    }
   }
 }
 
