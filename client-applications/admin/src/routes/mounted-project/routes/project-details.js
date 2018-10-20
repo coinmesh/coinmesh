@@ -97,4 +97,7 @@ export class ProjectDetails {
       clearInterval(this.generatingInterval);
     }
   }
+  toggleOpen(prop) {
+    this[prop] = !this[prop];
+  }
 }
