@@ -59,10 +59,18 @@
           "RPC_USERNAME": "rpcuser",
           "RPC_PASSWORD": "rpcpassword"
         },
-        "adapters": ["bitcoind-adapter"],
-        "clientApplications": ["client"],
-        "logicServices": ["wallet"],
-        "dataSources": ["bitcoind"]
+        "adapters": [
+          "bitcoind-adapter"
+        ],
+        "clientApplications": [
+          "client"
+        ],
+        "logicServices": [
+          "wallet"
+        ],
+        "dataSources": [
+          "bitcoind"
+        ]
       }
     ]
   },
