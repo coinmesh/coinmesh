@@ -4,7 +4,7 @@
   "description": "An adapter for LND using ln-service",
   "main": "services/index.js",
   "scripts": {
-    "prestart": "npm install && npm run rebuild-packages",
+    "prestart": "npm install",
     "start": "nodemon ./bin/www",
     "rebuild-packages": "cd ./node_modules/ln-service && cd ../.. && npm rebuild && cd -",
     "test": "LNSERVICE_NETWORK='regtest' LNSERVICE_CHAIN=bitcoin nodemon --exec 'jasmine'"
