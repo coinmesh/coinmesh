@@ -30,5 +30,23 @@
   "bugs": {
     "url": "https://github.com/coinmesh/coinmesh/issues"
   },
-  "homepage": "http://coinmesh.com"
+  "homepage": "http://coinmesh.com",
+  "coinmesh": {
+    "type": "logic-service",
+    "events": {
+      "loading": [
+        "/lnd-wallet.*prestart/i"
+      ],
+      "waiting": [
+        ""
+      ],
+      "ready": [
+        "/lnd-wallet.*nodemon.*starting/i"
+      ],
+      "failed": [
+        "/lnd-wallet.*nodemon.*app.*crashed/i",
+        "/lnd-adapter.*expected.*unlock.*password/i"
+      ]
+    }
+  }
 }
