@@ -47,6 +47,13 @@
               </template>
             </li>
 
+            <template if.bind="service.hasBrowserPage && service.status === 'up'">
+              <li class="list-group-item">
+                <i class="fa fa-play-circle"></i>
+                <a href="//localhost:9001" target="_blank">Open UI</a>
+              </li>
+            </template>
+
             <template if.bind="service.canGenerate">
               <li class="list-group-item">
                 <template if.bind="service.generateBlocksOpen">

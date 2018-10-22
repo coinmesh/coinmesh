@@ -15,6 +15,7 @@ export class DockerService {
 
   canSend = false;
   canGenerate = false;
+  hasBrowserPage = false;
 
   status = 'unknown';
 
@@ -23,6 +24,8 @@ export class DockerService {
     if (this.name === 'bitcoind' || this.name === 'litecoind') {
       this.canGenerate = true;
       this.canSend = true;
+    } else if (this.name === 'app') {
+      this.hasBrowserPage = true;
     }
   }
   toggleOpen(prop) {

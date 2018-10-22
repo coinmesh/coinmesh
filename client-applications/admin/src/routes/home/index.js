@@ -21,9 +21,7 @@ export class Index {
   }
   selectProject(project) {
     this.projectStore.setCurrentProject(project);
-    console.log('loading everything')
     return this.projectsService.loadProjectAndAllSubProjects(project.path).then(mainProject => {
-      console.log('setting current project')
       this.projectStore.setCurrentProject(mainProject);
       return this.router.navigateToRoute('mounted-project');
     });

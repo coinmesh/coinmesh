@@ -40,7 +40,7 @@
             <button class="btn btn-outline-primary" type="submit" click.delegate="dockerComposeDown()" disabled.bind="commandRunning" if.bind="canDockerComposeDown">
               Stop Project
             </button>
-            <button class="btn btn-outline-primary" type="submit" click.delegate="killProcess()" disabled.bind="!commandRunning">
+            <button class="btn btn-outline-primary" type="submit" click.delegate="killProcess()" disabled.bind="!commandRunning" if.bind="canDockerCompose">
               end current process
             </button>
           </div>
