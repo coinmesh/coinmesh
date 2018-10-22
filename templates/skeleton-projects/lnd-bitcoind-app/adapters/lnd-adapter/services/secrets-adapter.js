@@ -10,8 +10,13 @@ const path = homedirUtils.getPathFromHomeDir('./secrets.json');
 
 module.exports = {
   getPassword() {
-    return readService.getConfigItemByPath(path, 'password').then(result => {
-      return result;
+    return fileSystemService.checkFileExists(path).then(exists => {
+      if (exists) {
+        return readService.getConfigItemByPath(path, 'password').then(result => {
+          return result;
+        });
+      }
+      return Promise.resolve(null);
     });
   },
   savePassword(password) {

@@ -65,13 +65,17 @@ function getApp() {
         isWalletLocked({}, (lockedError, result) => {
           if (result) {
             secretsAdapter.getPassword().then(walletPassword => {
-              // Unlock the wallet
-              unlockWallet({lnd: unlockerLnd, password: walletPassword}, err => {
-                if (err) {
-                  console.error(err);
-                  throw err;
-                }
-              });
+              if (walletPassword) {
+                // Unlock the wallet
+                unlockWallet({lnd: unlockerLnd, password: walletPassword}, err => {
+                  if (err) {
+                    console.error(err);
+                    throw err;
+                  }
+                });
+              } else {
+                throw new Error('Password file does not exist!');
+              }
             });
           }
         });
