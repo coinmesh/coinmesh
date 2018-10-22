@@ -112,4 +112,18 @@ export class Project {
   setStatus(newStatus) {
     this.status = newStatus;
   }
+  setStatusAllSubProjects(status) {
+    let subProjects = this.getSubProjects();
+    subProjects.forEach(project => {
+      project.setStatus(status);
+    });
+  }
+  getSubProjects() {
+    return [
+      ...this.dataSources,
+      ...this.adapters,
+      ...this.logicServices,
+      ...this.clientApplications
+    ];
+  }
 }

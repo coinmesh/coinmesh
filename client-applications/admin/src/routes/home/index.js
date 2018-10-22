@@ -1,13 +1,15 @@
 import {ProjectStore} from 'services/project-store';
+import {ProjectsService} from 'services/projects';
 import {Router} from 'aurelia-router';
 
 export class Index {
   lastProject;
 
-  static inject = [ProjectStore, Router];
-  constructor(projectStore, router) {
+  static inject = [ProjectStore, Router, ProjectsService];
+  constructor(projectStore, router, projectsService) {
     this.projectStore = projectStore;
     this.router = router;
+    this.projectsService = projectsService;
   }
 
   attached() {
@@ -19,6 +21,11 @@ export class Index {
   }
   selectProject(project) {
     this.projectStore.setCurrentProject(project);
-    return this.router.navigateToRoute('mounted-project');
+    console.log('loading everything')
+    return this.projectsService.loadProjectAndAllSubProjects(project.path).then(mainProject => {
+      console.log('setting current project')
+      this.projectStore.setCurrentProject(mainProject);
+      return this.router.navigateToRoute('mounted-project');
+    });
   }
 }

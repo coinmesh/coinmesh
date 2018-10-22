@@ -29,4 +29,33 @@
       </div>
     </div>
   </div>
+
+  <div class="row" if.bind="lastProject">
+    <div class="col-4">
+      <strong>Testbed Projects (quick start)</strong>
+      <div class="row">
+        <div class="col text-center" repeat.for="skeletonProject of skeletonProjects">
+          <card-item
+              is-open.bind="true"
+              can-toggle.bind="false">
+            <span slot="header">${skeletonProject.name}</span>
+            <div class="row">
+              <div class="col">
+                <label>
+                  <span>${skeletonProject.description}</span>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-outline-primary" click.delegate="selectProject(skeletonProject)">
+                  Mount
+                </button>
+              </div>
+            </div>
+          </card-item>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

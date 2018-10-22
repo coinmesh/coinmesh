@@ -29,13 +29,9 @@ export class ProjectsService {
 
       this.projectStore.setCurrentProject(mainProject);
 
-      let subProjects = [
-        ...mainProject.dataSources,
-        ...mainProject.adapters,
-        ...mainProject.logicServices,
-        ...mainProject.clientApplications
-      ];
+      let subProjects = mainProject.getSubProjects();
 
+      let subscriberCount = 0;
       let promises = subProjects.map(oldProject => {
         let pluralPropertyName = `${ProjectTypes[oldProject.type]}s`;
 
@@ -52,11 +48,14 @@ export class ProjectsService {
               event.status
             );
             subProject.subscriptionKeys.push(key);
+            subscriberCount += 1;
           });
+
         });
       });
 
       return Promise.all(promises).then(() => {
+        this.toastMessagesService.showMessage(`Subscribed to ${subscriberCount} events.`)
         return mainProject;
       });
     });

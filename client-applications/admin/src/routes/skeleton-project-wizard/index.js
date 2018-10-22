@@ -52,11 +52,11 @@ export class Index {
     return this.projectsService.cloneProject(project).then(result => {
       this.showCreateProject = true;
 
-      return this.projectsService.loadProject(project.path).then(result => {
-        result.path = project.path;
+      return this.projectsService.loadProjectAndAllSubProjects(project.path).then(mainProject => {
+        mainProject.path = project.path;
         this.showCreateProject = false;
-        this.projectStore.setCurrentProject(result);
 
+        this.projectStore.setCurrentProject(mainProject);
         return this.router.navigateToRoute('mounted-project');
       });
     });

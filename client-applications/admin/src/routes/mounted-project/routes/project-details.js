@@ -56,7 +56,9 @@ export class ProjectDetails {
     const path = this.projectStore.currentProject.path;
 
     return this.dockerService.dockerComposeDown(path).then(() => {
-      return this.projectStore.currentProject.dockerServices.forEach(container => {
+      this.projectStore.currentProject.setStatusAllSubProjects('exit');
+
+      this.projectStore.currentProject.dockerServices.forEach(container => {
         container.status = 'pending';
       });
     });
