@@ -26,9 +26,10 @@ RUN mkdir -p /home/lnd/.bitcoin
 RUN chown -R lnd /home/lnd/.lnd
 RUN chown -R lnd /home/lnd/.bitcoin
 
+# Copy the entrypoint script.
+COPY "start-lnd.sh" .
+RUN chmod +x start-lnd.sh
+
 VOLUME ["/home/lnd/.lnd", "/home/lnd/.bitcoin"]
 
 USER "lnd"
-
-CMD ["lnd"]
-

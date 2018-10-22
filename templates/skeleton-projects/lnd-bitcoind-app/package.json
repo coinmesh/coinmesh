@@ -6,7 +6,7 @@
   },
   "scripts": {
     "prestart": "npm install",
-    "start": "concurrently \"npm:client\" \"npm:logic-services\" \"npm:adapters\"",
+    "start": "concurrently \"npm:client\" \"npm:adapters\" \"npm:logic-services\"",
     "client": "cd ./client-applications/client && npm start",
     "logic-services": "cd ./logic-services/wallet && npm start",
     "adapters": "concurrently \"npm:bitcoind-adapter\" \"npm:lnd-adapter\"",

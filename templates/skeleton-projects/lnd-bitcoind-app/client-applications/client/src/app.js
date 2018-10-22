@@ -1,6 +1,6 @@
 export class App {
   configureRouter(config, router) {
-    config.title = 'Litecoin Wallet Components';
+    config.title = 'Bitcoin Wallet Components';
     config.map([
       { route: ['', 'home'], name: 'home', moduleId: 'routes/home/index', nav: true, title: 'Home' },
       { route: 'send', name: 'send', moduleId: 'routes/pay', nav: true, title: 'Send' },

@@ -91,13 +91,14 @@ function getApp() {
             let seed = result.seed;
 
             // TODO: Write the seed to the secret.json
-            secretsAdapter.saveSeed(seed);
-            secretsAdapter.savePassword(password);
-
-            // Create a wallet using the backup seed
-            createWallet({lnd: unlockerLnd, password, seed}, (error, result) => {
-              lnd = localLnd({});
-              return res(lnd);
+            secretsAdapter.saveSeed(seed).then(() => {
+              return secretsAdapter.savePassword(password);
+            }).then(() => {
+              // Create a wallet using the backup seed
+              createWallet({lnd: unlockerLnd, password, seed}, (error, result) => {
+                lnd = localLnd({});
+                return res(lnd);
+              });
             });
           });
         }

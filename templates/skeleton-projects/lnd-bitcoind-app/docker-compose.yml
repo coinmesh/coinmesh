@@ -7,7 +7,7 @@ services:
       - shared:/home/lnd/.lnd/
       - ./data-sources/lnd/lnd.conf:/home/lnd/.lnd/lnd.conf
       - ./data-sources/bitcoind/bitcoin.conf:/home/lnd/.bitcoin/bitcoin.conf
-    command: lnd
+    entrypoint: ["./start-lnd.sh"]
     ports:
       - "9735:9735"
       - "10009:10009"
