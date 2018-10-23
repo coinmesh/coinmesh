@@ -13,6 +13,7 @@ You must have Node, NPM, and Docker installed in the environment you are working
 - [node @ or > 8.11.4](https://nodejs.org/en/)
 - [npm @ or > 5.5.1](https://nodejs.org/en/)
 - [Docker](https://www.docker.com/products/docker-desktop)
+- [Docker-Compose](https://docs.docker.com/compose/install/)
 
 ## NPM Dependencies
 
@@ -36,63 +37,29 @@ Next, you can run the app locally with `npm start` in the root directory.  This 
 
 Once the process has finished, open up localhost:9000 on a browser to see the following UI.
 
-<img width="1183" alt="screen shot 2018-08-14 at 9 04 16 am" src="https://user-images.githubusercontent.com/32662508/44132086-e11752e2-a00b-11e8-9b60-bc641fa3256b.png">
+<img width="1015" alt="create new project" src="https://user-images.githubusercontent.com/32662508/47314477-a0212d00-d5f6-11e8-9b8a-dfb0fdaf0e9c.png">
 
 ## Create a New Project
 
 CoinMesh will now guide you through the process of setting up the environment for your Litecoin or Bitcoin application.
 ```
-1. Select "Create a new project".
+1. Select "New Project" on the left sidebar.
 2. Create a new directory by scrolling to the bottom. It should appear at the bottom of the list.
 3. Select the circle to the left of the directory you just created then scroll up and click "Select Directory."
-4. Select the data source for your project.
-5. Select the logic service for your project.  Currently, only HTTP is available.
-6. Next, choose the client application for the end user.  Currently, only an empty Aurelia skeleton is available.
-7. Give your project a name and description.
-8. Finally, review the options you selected.
-9. Click create.
+4. Give your project a name and description.
+5. Select a data source and pre-packaged wallet skeleton for your project. In the future, you will be able to customize your own stack between various data sources, logic services, and client application.  But for now, we've packaged the data sources with logic services via http and a web-based aurelia skeleton.
+6. Finally, review the options you selected.
+7. Click create.
 ```
-The browser will refresh and you will see your project successfully mounted on CoinMesh.
+The browser will refresh and you will see your project successfully mounted on CoinMesh.  This is what it will look like if you chose bitcoind and lnd wallet skeleton.
 
-<img width="988" alt="screen shot 2018-08-14 at 10 04 11 pm" src="https://user-images.githubusercontent.com/32662508/44132365-0cfaaf42-a00e-11e8-916f-9e5d8d83114d.png">
+<img width="1012" alt="coinmesh ui" src="https://user-images.githubusercontent.com/32662508/47314687-3a817080-d5f7-11e8-81c6-258939285086.png">
 
-From here, you can use text editor or sublime to start building out your project!
+From here, you can use your favorite text editor (ex. VSCode, Sublime, etc.) to start building out your project!
+
+You can also click on `Start all Containers` and run the wallet skeleton for your app. You should see the status of the containers updating in the UI as well as the status of each 'project' on the left hand side. Once the client-application shows a status of green with a check it's time to open up the wallet in the browser or by clicking the Open UI button on the App container.
 
 ## Mount a Project
 
-One of the great things about CoinMesh is that developers can easily share apps with one another to use by mounting it on CoinMesh.  Most of the libraries BlockFuse will provide will use docker.
+One of the great things about CoinMesh is that developers can easily share apps with one another to use by mounting it on CoinMesh.  Most of the libraries BlockFuse will provide will use docker.  Simply download the shared project, click on "Mount a Project", and select the directory of your project.
 
-Let's use our "sample-generated-project" as an example of how to mount an app with CoinMesh.  It is a wallet skeleton for both Litecoin and Bitcoin.  Make sure Docker is running before you continue.
-
-```
-$ git clone https://github.com/coinmesh/coinmesh
-$ git clone https://github.com/coinmesh/sample-generated-project
-$ cd coinmesh
-$ npm start
-```
-
-Open localhost:9000 on a browser to see the following UI.
-
-<img width="1183" alt="screen shot 2018-08-14 at 9 04 16 am" src="https://user-images.githubusercontent.com/32662508/44132086-e11752e2-a00b-11e8-9b60-bc641fa3256b.png">
-
-Next, click on “Mount an existing Project.”
-
-In the following screen, scroll down to "sample-generated-projects" and click on the name of the directory.
-
-<img width="1219" alt="coinmesh directory" src="https://user-images.githubusercontent.com/32662508/44315311-c4cf0d80-a3d7-11e8-9d37-2fd1c0f48fd9.png">
-
-From here you can select either the "litcoin-app" or "bitcoin-app" wallet skeleton by clicking on the circle on the left. Then scroll up to the top of the page and choose "Select File."
-
-<img width="1112" alt="screen shot 2018-08-19 at 9 44 05 pm" src="https://user-images.githubusercontent.com/32662508/44320866-77fc2e80-a3f9-11e8-89f5-ea85aecfaf80.png">
-
-The browser will refresh and you should see the project successfully mounted on CoinMesh.  Now scroll down and click on `Docker Compose` to compile and run the app.  This will take a few minutes.  You will be able to see activity in the "Output" section of CoinMesh's UI.
-
-In the future you can close the wallet by choosing `end current process.` You can also start it back up again by simply selecting `docker compose` again.
-
-<img width="1018" alt="screen shot 2018-08-14 at 10 17 55 pm" src="https://user-images.githubusercontent.com/32662508/44132693-157542de-a010-11e8-8195-e0d03db3831e.png">
-
-Open up localhost:9001 on your browser and the Bitcoin or Litecoin wallet UI will appear.
-
-<img width="997" alt="screenshot of wallet app running" src="https://user-images.githubusercontent.com/4238393/44287103-25701600-a231-11e8-91c5-6544a7bf45c5.png">
-
-From here, you can use text editor or sublime to see how the skeleton of the wallet was built with CoinMesh and even fill out the rest of the wallet yourself!
