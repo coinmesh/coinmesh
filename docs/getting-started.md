@@ -4,6 +4,7 @@
 1. [NPM Dependencies](#npm-dependencies)
 1. [Download and Run CoinMesh](#download-and-run-coinmesh)
 1. [Create a New Project](#create-a-new-project)
+1. [Mount a Project](#mount-a-project)
 
 ## Pre-requisites
 
@@ -12,6 +13,7 @@ You must have Node, NPM, and Docker installed in the environment you are working
 - [node @ or > 8.11.4](https://nodejs.org/en/)
 - [npm @ or > 5.5.1](https://nodejs.org/en/)
 - [Docker](https://www.docker.com/products/docker-desktop)
+- [Docker-Compose](https://docs.docker.com/compose/install/)
 
 ## NPM Dependencies
 
@@ -53,6 +55,11 @@ The browser will refresh and you will see your project successfully mounted on C
 
 <img width="1012" alt="coinmesh ui" src="https://user-images.githubusercontent.com/32662508/47314687-3a817080-d5f7-11e8-81c6-258939285086.png">
 
-From here, you can use text editor or sublime to start building out your project!  You can also click on `Start all Containers` and run the wallet skeleton for your app.  You can find this hosted on a separate tab at localhost:9001.
+From here, you can use your favorite text editor (ex. VSCode, Sublime, etc.) to start building out your project!
 
+You can also click on `Start all Containers` and run the wallet skeleton for your app. You should see the status of the containers updating in the UI as well as the status of each 'project' on the left hand side. Once the client-application shows a status of green with a check it's time to open up the wallet in the browser or by clicking the Open UI button on the App container.
+
+## Mount a Project
+
+One of the great things about CoinMesh is that developers can easily share apps with one another to use by mounting it on CoinMesh.  Most of the libraries BlockFuse will provide will use docker.  Simply download the shared project, click on "Mount a Project", and select the directory of your project.
 
