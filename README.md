@@ -12,9 +12,25 @@ Visit our [documentation site](https://coinmesh.com/docs/#/getting-started) for 
 
 ## Running all tests
 
-Currently to run all of the tests you need to have docker-compose running bitcoind and litecoind, and run lnd locally on your machine using the bitcoind from docker (or your own version of bitcoind running)
+Currently to run all of the tests you need to have docker-compose running bitcoind and litecoind.
 
-Once this is in place you can run all of the tests including the integration tests
+You can run them from the root of the project -
+
+```
+$ docker-compose up
+```
+
+Additionally for lnd you need to run lnd locally on your machine using the bitcoind from docker (or your own version of bitcoind running)
+
+Once this is in place you can run all of the tests including the integration tests.
+
+```
+$ npm test
+```
+
+If any of the sub-packages have not had all of their dependencies installed you may see an error `"jasmine" exec not found`.
+
+You will need to install npm dependencies in that directory to be able to run the tests.
 
 ## Contributing
 

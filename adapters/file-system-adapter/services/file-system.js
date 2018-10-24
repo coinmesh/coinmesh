@@ -57,7 +57,11 @@ class FileSystemService {
     });
   }
   copyAllFilesAndDirectoriesInDirectory(directoryPath, newPath) {
-    return fs.copy(directoryPath, newPath);
+    return fs.copy(directoryPath, newPath, {
+      filter: path => {
+        return !(path.indexOf('node_modules') > -1)
+      }
+    });
   }
   readAllFilesAndDirectoriesInDirectory(directoryPath) {
     return new Promise((resolve, reject) => {
