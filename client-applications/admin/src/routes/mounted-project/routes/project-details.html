@@ -54,7 +54,7 @@
               </li>
             </template>
 
-            <template if.bind="service.canGenerate">
+            <template if.bind="service.canGenerate && service.status === 'up'">
               <li class="list-group-item">
                 <template if.bind="service.generateBlocksOpen">
                   <input value.bind="numberOfBlocks"
@@ -79,7 +79,7 @@
               </li>
             </template>
 
-            <template if.bind="service.canSend">
+            <template if.bind="service.canSend && service.status === 'up'">
               <li class="list-group-item">
                 <template if.bind="service.sendCoinsOpen">
                   <input value.bind="sendToAddress"
