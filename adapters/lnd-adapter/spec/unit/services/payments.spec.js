@@ -34,7 +34,7 @@ describe('PaymentsService', () => {
         secret: 'testing'
       };
 
-      return invoicesService.createInvoice(invoiceRequestObject), 20001).then(result => {
+      return invoicesService.createInvoice(invoiceRequestObject, 20001).then(result => {
         invoice = result;
       });
     });

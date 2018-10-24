@@ -36,16 +36,23 @@
 
           <ul class="list-group list-group-flush">
 
-            <li class="list-group-item">
-              <template if.bind="service.status !== 'up'">
+            <template if.bind="service.status !== 'up'">
+              <li class="list-group-item">
+                <i class="fa fa-play-circle"></i>
+                <a href="#" click.delegate="rebuild(service)">Rebuild</a>
+              </li>
+              <li class="list-group-item">
                 <i class="fa fa-play-circle"></i>
                 <a href="#" click.delegate="start(service)">Start</a>
-              </template>
-              <template if.bind="service.status === 'up'">
+              </li>
+            </template>
+
+            <template if.bind="service.status === 'up'">
+              <li class="list-group-item">
                 <i class="fa fa-stop-circle"></i>
                 <a href="#" click.delegate="stop(service)">Stop</a>
-              </template>
-            </li>
+              </li>
+            </template>
 
             <template if.bind="service.hasBrowserPage && service.status === 'up'">
               <li class="list-group-item">
@@ -108,6 +115,7 @@
     <div class="row">
       <div class="col">
       <div class="col">
+        <a class="btn btn-center btn-outline-primary" href="#" click.delegate="rebuildAll()">Rebuild all Containers</a>
         <a class="btn btn-center btn-outline-success" href="#" click.delegate="up()">Start all Containers</a>
         <a class="btn btn-center btn-outline-danger" href="#" click.delegate="down()">Stop all Containers</a>
       </div>

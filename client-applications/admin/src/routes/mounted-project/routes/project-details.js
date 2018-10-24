@@ -31,16 +31,29 @@ export class ProjectDetails {
     }
     return clearInterval(this.statusCheckerInterval);
   }
+  rebuild(service) {
+    const path = this.projectStore.currentProject.path;
+    const serviceName = service ? service.name : '';
+
+    return this.dockerService.dockerCompose(path, ['build', serviceName]).then(() => {
+      service.status = 'pending';
+    });
+  }
+  rebuildAll() {
+    this.projectStore.currentProject.dockerServices.forEach(service => {
+      this.rebuild(service);
+    });
+  }
   start(container) {
     const path = this.projectStore.currentProject.path;
     return this.dockerService.dockerCompose(path, ['up', container.name]).then(() => {
-      container.status = 'pending';
+      container.status = 'loading';
     });
   }
   stop(container) {
     const path = this.projectStore.currentProject.path;
     return this.dockerService.dockerCompose(path, ['stop', container.name]).then(() => {
-      container.status = 'pending';
+      container.status = 'exit';
     });
   }
   up() {
@@ -48,7 +61,7 @@ export class ProjectDetails {
 
     return this.dockerService.dockerCompose(path, ['up']).then(() => {
       return this.projectStore.currentProject.dockerServices.forEach(container => {
-        container.status = 'pending';
+        container.status = 'loading';
       });
     });
   }
@@ -77,6 +90,9 @@ export class ProjectDetails {
   checkContainerStatus(container) {
     const path = this.projectStore.currentProject.path;
     return this.dockerService.dockerComposeStatus(path, [container.name]).then(result => {
+      if (container.status === 'loading' && result === 'unknown') {
+        return;
+      }
       container.status = result;
     });
   }
