@@ -1,9 +1,7 @@
-FROM debian:stable-slim
+# based on https://github.com/ruimarinho/docker-bitcoin-core
+# Copyright (c) 2015 Rui Marinho
 
-LABEL maintainer.0="João Fonseca (@joaopaulofonseca)" \
-  maintainer.1="Pedro Branco (@pedrobranco)" \
-  maintainer.2="Rui Marinho (@ruimarinho)" \
-  maintainer.3="Patrick Walters (@pwkad)"
+FROM debian:stable-slim
 
 RUN useradd -r bitcoin \
   && apt-get update -y \
@@ -13,7 +11,6 @@ RUN useradd -r bitcoin \
   && set -ex \
   && for key in \
     B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-    FE3348877809386C \
   ; do \
     gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
     gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
@@ -31,10 +28,13 @@ RUN curl -o /usr/local/bin/gosu -fSL https://github.com/tianon/gosu/releases/dow
 
 ENV BITCOIN_VERSION=0.17.0
 
-RUN curl -O https://bitcoincore.org/bin/bitcoin-core-${BITCOIN_VERSION}/bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz \
-  # && curl https://bitcoincore.org/bin/bitcoin-core-${BITCOIN_VERSION}/SHA256SUMS.asc | gpg --verify - \
-  && tar --strip=2 -xzf *.tar.gz -C /usr/local/bin \
-  && rm *.tar.gz
+RUN curl -SL https://bitcoin.org/laanwj-releases.asc | gpg --import \
+  && curl -SLO https://bitcoin.org/bin/bitcoin-core-${BITCOIN_VERSION}/SHA256SUMS.asc \
+  && curl -SLO https://bitcoin.org/bin/bitcoin-core-${BITCOIN_VERSION}/bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz \
+  && gpg --verify SHA256SUMS.asc \
+  && grep " bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz \$" SHA256SUMS.asc | sha256sum -c - \
+  && tar -xzf *.tar.gz -C /opt \
+  && rm *.tar.gz *.asc
 
 RUN mkdir -p /home/bitcoin/.bitcoin
 
