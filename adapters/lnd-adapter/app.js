@@ -65,13 +65,17 @@ function getApp() {
         isWalletLocked({}, (lockedError, result) => {
           if (result) {
             secretsAdapter.getPassword().then(walletPassword => {
-              // Unlock the wallet
-              unlockWallet({lnd: unlockerLnd, password: walletPassword}, err => {
-                if (err) {
-                  console.error(err);
-                  throw err;
-                }
-              });
+              if (walletPassword) {
+                // Unlock the wallet
+                unlockWallet({lnd: unlockerLnd, password: walletPassword}, err => {
+                  if (err) {
+                    console.error(err);
+                    throw err;
+                  }
+                });
+              } else {
+                throw new Error('Password file does not exist!');
+              }
             });
           }
         });
@@ -91,13 +95,14 @@ function getApp() {
             let seed = result.seed;
 
             // TODO: Write the seed to the secret.json
-            secretsAdapter.saveSeed(seed);
-            secretsAdapter.savePassword(password);
-
-            // Create a wallet using the backup seed
-            createWallet({lnd: unlockerLnd, password, seed}, (error, result) => {
-              lnd = localLnd({});
-              return res(lnd);
+            secretsAdapter.saveSeed(seed).then(() => {
+              return secretsAdapter.savePassword(password);
+            }).then(() => {
+              // Create a wallet using the backup seed
+              createWallet({lnd: unlockerLnd, password, seed}, (error, result) => {
+                lnd = localLnd({});
+                return res(lnd);
+              });
             });
           });
         }
