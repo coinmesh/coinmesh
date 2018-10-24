@@ -39,11 +39,11 @@
             <template if.bind="service.status !== 'up'">
               <li class="list-group-item">
                 <i class="fa fa-play-circle"></i>
-                <a href="#" click.delegate="rebuild(service)">Rebuild</a>
+                <a href="#" click.delegate="start(service)">Start</a>
               </li>
               <li class="list-group-item">
-                <i class="fa fa-play-circle"></i>
-                <a href="#" click.delegate="start(service)">Start</a>
+                <i class="fa fa-repeat"></i>
+                <a href="#" click.delegate="rebuild(service)">Rebuild</a>
               </li>
             </template>
 

@@ -30,9 +30,16 @@ export class LogStatusService {
         let logEntry = new LogEntry(entry);
 
         this.checkLogEntry(logEntry);
-        this.logOutput.push(logEntry);
+
+        this.pushLogEntry(logEntry);
       });
     });
+  }
+  pushLogEntry(logEntry) {
+    this.logOutput.push(logEntry);
+    if (this.logOutput.length > 500) {
+      this.logOutput.shift();
+    }
   }
   breakUpLogEntries(data) {
     return data.split('\n');

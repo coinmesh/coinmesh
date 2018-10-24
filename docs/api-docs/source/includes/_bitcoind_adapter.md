@@ -510,7 +510,7 @@ networkInfoService.getNetworkInfo().then(result => {
 {
   "result": {
     "version": 150100,
-    "subversion": "/BitcoinCore:0.15.1/",
+    "subversion": "/BitcoinCore:0.17.0/",
     "protocolversion": 70015,
     "localservices": "000000000000000d",
     "localrelay": true,
