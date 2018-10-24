@@ -69,7 +69,7 @@
         "/client.*reloading.*browsers/i"
       ],
       "failed": [
-        "/client.*error.*running.*ulp.*error/i"
+        "/client.*error.*running.*ulp.*error/i",
         "/client.*github.*rate.*limit.*reached/i"
       ]
     }
