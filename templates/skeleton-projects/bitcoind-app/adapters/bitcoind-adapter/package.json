@@ -16,7 +16,7 @@
   "scripts": {
     "prestart": "npm install",
     "start": "nodemon ./bin/www",
-    "test": "RPC_PORT=18332 nodemon --exec 'jasmine'"
+    "test": "RPC_PORT=18443 nodemon --exec 'jasmine'"
   },
   "dependencies": {
     "axios": "^0.18.0",

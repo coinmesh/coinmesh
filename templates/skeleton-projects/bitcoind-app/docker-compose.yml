@@ -7,7 +7,7 @@ services:
       - ./data-sources/bitcoind/bitcoin.conf:/home/bitcoin/.bitcoin/bitcoin.conf
     command: bitcoind  --datadir=/home/bitcoin/.bitcoin --printtoconsole -rpcallowip=0.0.0.0/0
     ports:
-      - "18332:18332"
+      - "18443:18443"
   app:
     image: node:8
     working_dir: /home/node/app
@@ -20,7 +20,7 @@ services:
       - "3009:3009"
     command: "npm start --unsafe-perm"
     environment:
-      - RPC_PORT=18332
+      - RPC_PORT=18443
       - RPC_HOST=bitcoind
       - RPC_USERNAME=rpcuser
       - RPC_PASSWORD=rpcpassword

@@ -37,7 +37,7 @@
         ],
         "command": "litecoind  --datadir=/home/litecoin/.litecoin --printtoconsole -rpcallowip=0.0.0.0/0",
         "ports": [
-          "19332:19332"
+          "19443:19443"
         ],
         "dataSources": ["litecoind"]
       },

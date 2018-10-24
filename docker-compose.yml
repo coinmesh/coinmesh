@@ -7,7 +7,7 @@ services:
       - ./data-sources/litecoind/litecoin.conf:/home/litecoin/.litecoin/litecoin.conf
     command: litecoind  --datadir=/home/litecoin/.litecoin --printtoconsole -rpcallowip=0.0.0.0/0
     ports:
-      - "19332:19332"
+      - "19443:19443"
       - "29332:29332"
       - "29333:29333"
   bitcoind:
@@ -16,6 +16,6 @@ services:
       - ./data-sources/bitcoind/bitcoin.conf:/home/bitcoin/.bitcoin/bitcoin.conf
     command: bitcoind  --datadir=/home/bitcoin/.bitcoin --printtoconsole -rpcallowip=0.0.0.0/0
     ports:
-      - "18332:18332"
+      - "18443:18443"
       - "28332:28332"
       - "28333:28333"

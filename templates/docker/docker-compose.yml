@@ -7,7 +7,7 @@ services:
       - ./data-sources/litecoind/litecoin.conf:/home/litecoin/.litecoin/litecoin.conf
     command: litecoind  --datadir=/home/litecoin/.litecoin --printtoconsole -rpcallowip=172.20.0.0/16
     ports:
-      - "19332:19332"
+      - "19443:19443"
   app:
     image: node:8
     working_dir: /home/node/app
@@ -20,7 +20,7 @@ services:
       - "3005:3005"
     command: "npm start --unsafe-perm"
     environment:
-      - RPC_PORT=19332
+      - RPC_PORT=19443
       - RPC_HOST=litecoind
       - RPC_USERNAME=rpcuser
       - RPC_PASSWORD=rpcpassword
