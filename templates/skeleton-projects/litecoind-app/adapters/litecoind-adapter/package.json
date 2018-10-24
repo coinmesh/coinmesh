@@ -38,10 +38,18 @@
   "coinmesh": {
     "type": "adapter",
     "events": {
-      "loading": ["/litecoind-adapter.*prestart/i"],
-      "waiting": [""],
-      "ready": ["/litecoind-adapter.*nodemon.*starting/i"],
-      "failed": ["/litecoind-adapter.*nodemon.*app.*crashed/i"]
+      "loading": [
+        "/litecoind-adapter.*prestart/i"
+      ],
+      "waiting": [
+        ""
+      ],
+      "ready": [
+        "/litecoind-adapter.*nodemon.*starting/i"
+      ],
+      "failed": [
+        "/litecoind-adapter.*nodemon.*app.*crashed/i"
+      ]
     }
   }
 }
