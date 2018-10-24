@@ -28,7 +28,7 @@
     "url": "https://github.com/coinmesh/coinmesh/issues"
   },
   "homepage": "https://coinmesh.com",
-  "dependencies": {
-    "concurrently": "^3.6.1"
+  "devDependencies": {
+    "concurrently": "^4.0.1"
   }
 }

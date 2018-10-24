@@ -1,6 +1,6 @@
 {
   "name": "@coinmesh/client-build-tools",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Build tooling for CoinMesh client-side Aurelia applications",
   "main": "index.js",
   "scripts": {

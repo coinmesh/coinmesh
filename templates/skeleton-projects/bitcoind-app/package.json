@@ -74,8 +74,8 @@
       }
     ]
   },
-  "dependencies": {
-    "concurrently": "^3.6.1"
+  "devDependencies": {
+    "concurrently": "^4.0.1"
   },
   "repository": {
     "type": "git",
