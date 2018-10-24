@@ -59,7 +59,10 @@ class FileSystemService {
   copyAllFilesAndDirectoriesInDirectory(directoryPath, newPath) {
     return fs.copy(directoryPath, newPath, {
       filter: path => {
-        return !(path.indexOf('node_modules') > -1)
+        const isNodeModules = (path.indexOf('node_modules') > -1);
+        const isJspmPackages = (path.indexOf('jspm_packages') > -1);
+
+        return !isNodeModules && !isJspmPackages;
       }
     });
   }
