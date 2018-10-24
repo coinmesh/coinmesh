@@ -29,4 +29,21 @@
     "type": "git",
     "url": "http://github.com/coinmesh"
   },
+  "coinmesh": {
+    "type": "logic-service",
+    "events": {
+      "loading": [
+        "/litecoin-wallet.*prestart/i"
+      ],
+      "waiting": [
+        ""
+      ],
+      "ready": [
+        "/litecoin-wallet.*nodemon.*starting/i"
+      ],
+      "failed": [
+        "/litecoin-wallet.*nodemon.*app.*crashed/i"
+      ]
+    }
+  }
 }

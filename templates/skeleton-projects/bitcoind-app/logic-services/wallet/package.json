@@ -30,5 +30,22 @@
   "bugs": {
     "url": "https://github.com/coinmesh/coinmesh/issues"
   },
-  "homepage": "http://coinmesh.com"
+  "homepage": "http://coinmesh.com",
+  "coinmesh": {
+    "type": "logic-service",
+    "events": {
+      "loading": [
+        "/bitcoin-wallet.*prestart/i"
+      ],
+      "waiting": [
+        ""
+      ],
+      "ready": [
+        "/bitcoin-wallet.*nodemon.*starting/i"
+      ],
+      "failed": [
+        "/bitcoin-wallet.*nodemon.*app.*crashed/i"
+      ]
+    }
+  }
 }

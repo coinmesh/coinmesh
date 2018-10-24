@@ -8,8 +8,10 @@
     "prestart": "npm install",
     "start": "concurrently \"npm:client\" \"npm:logic-services\" \"npm:adapters\"",
     "client": "cd ./client-applications/client && npm start",
-    "logic-services": "concurrently \"cd ./logic-services/wallet && npm start\"",
-    "adapters": "concurrently \"cd ./adapters/litecoind-adapter && npm start\"",
+    "logic-services": "concurrently \"npm:litecoin-wallet\"",
+    "litecoin-wallet": "cd ./logic-services/wallet && npm start",
+    "adapters": "concurrently \"npm:litecoind-adapter\"",
+    "litecoind-adapter": "cd ./adapters/litecoind-adapter && npm start",
     "test": "concurrently \"cd ./logic-services/wallet && npm test\""
   },
   "coinmesh": {

@@ -70,6 +70,7 @@
       ],
       "failed": [
         "/client.*error.*running.*ulp.*error/i"
+        "/client.*github.*rate.*limit.*reached/i"
       ]
     }
   }
