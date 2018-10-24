@@ -28,13 +28,9 @@ RUN curl -o /usr/local/bin/gosu -fSL https://github.com/tianon/gosu/releases/dow
 
 ENV BITCOIN_VERSION=0.17.0
 
-RUN curl -SL https://bitcoin.org/laanwj-releases.asc | gpg --import \
-  && curl -SLO https://bitcoin.org/bin/bitcoin-core-${BITCOIN_VERSION}/SHA256SUMS.asc \
-  && curl -SLO https://bitcoin.org/bin/bitcoin-core-${BITCOIN_VERSION}/bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz \
-  && gpg --verify SHA256SUMS.asc \
-  && grep " bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz \$" SHA256SUMS.asc | sha256sum -c - \
-  && tar -xzf *.tar.gz -C /opt \
-  && rm *.tar.gz *.asc
+RUN curl -O https://bitcoincore.org/bin/bitcoin-core-${BITCOIN_VERSION}/bitcoin-${BITCOIN_VERSION}-x86_64-linux-gnu.tar.gz \
+  && tar --strip=2 -xzf *.tar.gz -C /usr/local/bin \
+  && rm *.tar.gz
 
 RUN mkdir -p /home/bitcoin/.bitcoin
 
