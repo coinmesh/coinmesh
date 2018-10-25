@@ -20,7 +20,7 @@
       "zmqpubrawtx": "tcp://127.0.0.1:28332"
     },
     "events": {
-      "loading": ["/bitcoin.*version/i"],
+      "loading": ["/bitcoin.*validating.*signatures.*for.*all.*blocks/i"],
       "ready": ["/init.*message.*done.*loading/i"],
       "failed": ["/shutdown.*done/i"]
     },

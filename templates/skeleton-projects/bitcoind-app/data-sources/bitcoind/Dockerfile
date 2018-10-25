@@ -1,9 +1,7 @@
-FROM debian:stable-slim
+# based on https://github.com/ruimarinho/docker-bitcoin-core
+# Copyright (c) 2015 Rui Marinho
 
-LABEL maintainer.0="João Fonseca (@joaopaulofonseca)" \
-  maintainer.1="Pedro Branco (@pedrobranco)" \
-  maintainer.2="Rui Marinho (@ruimarinho)" \
-  maintainer.3="Patrick Walters (@pwkad)"
+FROM debian:stable-slim
 
 RUN useradd -r bitcoin \
   && apt-get update -y \
@@ -13,7 +11,6 @@ RUN useradd -r bitcoin \
   && set -ex \
   && for key in \
     B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-    FE3348877809386C \
   ; do \
     gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
     gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \

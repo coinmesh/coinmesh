@@ -48,4 +48,3 @@ USER "litecoin"
 EXPOSE 9332 9333 19332 19333 19444 19443
 
 CMD ["litecoind"]
-
