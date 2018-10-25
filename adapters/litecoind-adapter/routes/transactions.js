@@ -5,6 +5,8 @@ const transactionsService = require('../index').transactionsService;
 router.get('/', (req, res, next) => {
   transactionsService.getTransactions().then(result => {
     res.json(result);
+  }).catch(error => {
+    return res.status(error.status || 500).send(error);
   });
 });
 
@@ -14,6 +16,8 @@ router.post('/', (req, res, next) => {
 
   transactionsService.sendToAddress(targetAddress, tokens).then(result => {
     res.json(result);
+  }).catch(error => {
+    return res.status(error.status || 500).send(error);
   });
 });
 

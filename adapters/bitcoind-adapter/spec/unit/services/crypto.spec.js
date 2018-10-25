@@ -11,7 +11,7 @@ describe('CryptoService', () => {
 
   beforeAll(() => {
     addressesService = new AddressesService();
-    return addressesService.getNewAddress().then(result => {
+    return addressesService.getNewAddress('legacy').then(result => {
       newAddress = result.result;
     });
   });

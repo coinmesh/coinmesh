@@ -96,13 +96,16 @@ export class ProjectDetails {
       container.status = result;
     });
   }
-  generateBlocks() {
-    return this.adminService.generateBlocks(this.numberOfBlocks).then(result => {
-      this.toastMessagesService.showMessage(`Generated ${this.numberOfBlocks} blocks.`);
+  generateBlocks(blockCount = this.numberOfBlocks) {
+    return this.adminService.generateBlocks(blockCount).then(result => {
+      this.toastMessagesService.showMessage(`Generated ${blockCount} blocks.`);
     });
   }
   sendCoins() {
-    return this.adminService.sendCoins(this.sendToAddress, this.numberOfCoins);
+    return this.adminService.sendCoins(this.sendToAddress, this.numberOfCoins).then(() => {
+      const msg = `Successfully sent ${this.numberOfCoins} coins to ${this.sendToAddress}.`;
+      this.toastMessagesService.showMessage(msg);
+    });
   }
   toggleContinuouslyGenerateBlocks() {
     this.isGeneratingBlocks = !this.isGeneratingBlocks;

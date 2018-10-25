@@ -65,14 +65,14 @@ export class AdminService {
       return response.content;
     });
   }
-  generateBlocks(numberOfBlocks) {
+  generateBlocks(numberOfBlocks, port = 3009) {
     // TODO: Port needs to be passed from the project details component that calls this
-    let url = `http://localhost:3009/v0/blocks/generate/${numberOfBlocks}`;
+    let url = `http://localhost:${port}/v0/blocks/generate/${numberOfBlocks}`;
     return this.http.get(url);
   }
-  sendCoins(address, amount) {
+  sendCoins(address, amount, port = 3009) {
     // TODO: Port needs to be passed from the project details component that calls this
-    let url = `http://localhost:3009/v0/addresses/sendtoaddress`;
+    let url = `http://localhost:${port}/v0/addresses/sendtoaddress`;
     const body = {
       address,
       amount
