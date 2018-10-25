@@ -13,10 +13,10 @@ class AddressesService {
     return jsonRpcClient.post(request);
   }
 
-  getNewAddress(accountName = '') {
+  getNewAddress(addressType = "bech32") {
     let request = {
       method: 'getnewaddress',
-      params: [accountName],
+      params: [null, addressType],
       id: 'getnewaddress'
     };
 

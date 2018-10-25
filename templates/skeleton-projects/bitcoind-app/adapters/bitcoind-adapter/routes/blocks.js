@@ -8,6 +8,8 @@ router.get('/:hash/info', function(req, res, next) {
 
   blocksService.getBlock(hash).then(result => {
     return res.json(result);
+  }).catch(error => {
+    return res.status(error.status || 500).send(error);
   });
 });
 
@@ -15,6 +17,8 @@ router.get('/:hash/info', function(req, res, next) {
 router.get('/height', function(req, res, next) {
   blocksService.getChainHeight().then(result => {
     return res.json(result);
+  }).catch(error => {
+    return res.status(error.status || 500).send(error);
   });
 });
 
@@ -24,6 +28,8 @@ router.get('/generate/:num_of_blocks', function(req, res, next) {
 
   blocksService.generate(parseInt(numberOfBlocks)).then(result => {
     return res.json(result);
+  }).catch(error => {
+    return res.status(error.status || 500).send(error);
   });
 });
 

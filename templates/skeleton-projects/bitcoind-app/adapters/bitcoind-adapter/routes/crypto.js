@@ -8,6 +8,8 @@ router.post('/sign', function(req, res, next) {
 
   cryptoService.signMessage(address, message).then(result => {
     res.json(result);
+  }).catch(error => {
+    return res.status(error.status || 500).send(error);
   });
 });
 
@@ -18,6 +20,8 @@ router.post('/verify', function(req, res, next) {
 
   cryptoService.verifyMessage(address, signature, message).then(result => {
     res.json(result);
+  }).catch(error => {
+    return res.status(error.status || 500).send(error);
   });
 });
 

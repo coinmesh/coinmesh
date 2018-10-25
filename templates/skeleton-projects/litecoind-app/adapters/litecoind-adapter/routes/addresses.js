@@ -13,6 +13,8 @@ router.post('/listaddresses', (req, res, next) => {
       includeWatchOnly)
   .then(result => {
     return res.json(result);
+  }).catch(error => {
+    return res.status(error.status || 500).send(error);
   });
 });
 
@@ -21,6 +23,8 @@ router.get('/getnewaddress/:account_name?', (req, res, next) => {
 
   addressesService.getNewAddress(accountName).then(result => {
     return res.json(result);
+  }).catch(error => {
+    return res.status(error.status || 500).send(error);
   });
 });
 
@@ -29,7 +33,9 @@ router.post('/getreceivedbyaddress', (req, res, next) => {
   const minConfirmations = req.body.minConfirmations;
 
   addressesService.getReceivedByAddress(address, minConfirmations)
-    .then(result => res.json(result));
+    .then(result => res.json(result)).catch(error => {
+      return res.status(error.status || 500).send(error);
+    });
 });
 
 router.post('/sendtoaddress', (req, res, next) => {
@@ -38,6 +44,8 @@ router.post('/sendtoaddress', (req, res, next) => {
 
   addressesService.sendToAddress(targetAddress, amount).then(result => {
     return res.json(result);
+  }).catch(error => {
+    return res.status(error.status || 500).send(error);
   });
 });
 
