@@ -1,11 +1,12 @@
 import {WebSocketService} from 'services/web-socket-service';
 import {ToastMessagesService} from 'services/toast-messages';
+import {NewInstance} from 'aurelia-dependency-injection';
 
 export class LogStatusService {
   logOutput = [];
   tests = [];
 
-  static inject = [WebSocketService, ToastMessagesService];
+  static inject = [NewInstance.of(WebSocketService), ToastMessagesService];
   constructor(webSocketService, toastMessagesService) {
     this.webSocketService = webSocketService;
     this.toastMessagesService = toastMessagesService;

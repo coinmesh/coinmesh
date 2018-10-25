@@ -5,6 +5,7 @@ import {Router} from 'aurelia-router';
 import {AdminService} from 'services/admin';
 import {NpmService} from 'services/npm';
 import {DockerService} from 'services/docker';
+import {NewInstance} from 'aurelia-dependency-injection';
 
 export class TerminalOutput {
   @bindable canNpmInstall = false;
@@ -23,7 +24,7 @@ export class TerminalOutput {
   isInitialized = false;
   terminal;
 
-  static inject = [WebSocketService, Router, AdminService, NpmService, DockerService];
+  static inject = [NewInstance.of(WebSocketService), Router, AdminService, NpmService, DockerService];
   constructor(webSocketService, router, adminService, npmService, dockerService) {
     this.webSocketService = webSocketService;
     this.router = router;

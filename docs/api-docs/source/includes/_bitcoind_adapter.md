@@ -66,7 +66,9 @@ curl "http://localhost:3009/v0/addresses/getnewaddress/?:account_name"
 ```javascript
 const addressesService = require('@coinmesh/bitcoindd-adapter').addressesService;
 
-addressesService.getNewAddress().then(result => {
+const addressType = 'bech32';
+
+addressesService.getNewAddress(addressType).then(result => {
   console.log(result);
 });
 ```
@@ -89,9 +91,9 @@ This endpoint retrieves a new address that the wallet can receive coins on.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-account_name | Optional account name to use
+Parameter | Default | Description
+--------- | ----------- | -----------
+account_name | bech32 | Optional account name to use
 
 
 ## Get Received By Address

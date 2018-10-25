@@ -66,7 +66,9 @@ curl "http://localhost:3009/v0/addresses/getnewaddress/?:account_name"
 ```javascript
 const addressesService = require('@coinmesh/litecoind-adapter').addressesService;
 
-addressesService.getNewAddress().then(result => {
+const addressType = 'bech32';
+
+addressesService.getNewAddress(addressType).then(result => {
   console.log(result);
 });
 ```
@@ -85,13 +87,13 @@ This endpoint retrieves a new address that the wallet can receive coins on.
 
 ### HTTP Request
 
-`http://localhost:3009/v0/addresses/getnewaddress/?:account_name`
+`http://localhost:3009/v0/addresses/getnewaddress/?:address_type`
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-account_name | Optional account name to use
+Parameter | Default | Description
+--------- | ----------- | -----------
+address_type | bech32 | Type of address to generate.
 
 
 ## Get Received By Address
