@@ -42,15 +42,15 @@ Once the process has finished, open up localhost:9000 on a browser to see the fo
 ## Create a New Project
 
 CoinMesh will now guide you through the process of setting up the environment for your Litecoin or Bitcoin application.
-```
+
 1. Select "New Project" on the left sidebar.
-2. Create a new directory by scrolling to the bottom. It should appear at the bottom of the list.
-3. Select the circle to the left of the directory you just created then scroll up and click "Select Directory."
-4. Give your project a name and description.
-5. Select a data source and pre-packaged wallet skeleton for your project. In the future, you will be able to customize your own stack between various data sources, logic services, and client application.  But for now, we've packaged the data sources with logic services via http and a web-based aurelia skeleton.
-6. Finally, review the options you selected.
-7. Click create.
-```
+1. Create a new directory by scrolling to the bottom. It should appear at the bottom of the list.
+1. Select the circle to the left of the directory you just created then scroll up and click "Select Directory."
+1. Give your project a name and description.
+1. Select a data source and pre-packaged wallet skeleton for your project. In the future, you will be able to customize your own stack between various data sources, logic services, and client application.  But for now, we've packaged the data sources with logic services via http and a web-based aurelia skeleton.
+1. Finally, review the options you selected.
+1. Click create.
+
 The browser will refresh and you will see your project successfully mounted on CoinMesh.  This is what it will look like if you chose bitcoind and lnd wallet skeleton.
 
 <img width="1012" alt="coinmesh ui" src="https://user-images.githubusercontent.com/32662508/47314687-3a817080-d5f7-11e8-81c6-258939285086.png">
