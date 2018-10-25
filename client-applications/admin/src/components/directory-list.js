@@ -35,7 +35,8 @@ export class DirectoryList {
     });
   }
   createDirectory() {
-    let name = this.newDirectoryName;
+    let name = this.newDirectoryName || '';
+    name = name.split(' ').join('_');
     let path = `${this.currentPath || ''}/${name}`;
 
     return this.adminService.createDirectory(path).then(result => {

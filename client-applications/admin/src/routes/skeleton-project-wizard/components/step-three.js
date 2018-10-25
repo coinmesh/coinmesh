@@ -19,7 +19,8 @@ export class StepThree {
     this.projectStore.statusMessage = 'Review project details...';
 
     if (!!this.wizardState.skeletonProject && !!this.wizardState.name) {
-      this.wizardState.skeletonProject.name = this.wizardState.name;
+      const name = this.wizardState.name.split(' ').join('_');
+      this.wizardState.skeletonProject.name = name;
       this.wizardState.skeletonProject.description = this.wizardState.description;
     }
   }
