@@ -13,11 +13,10 @@ class MongoDbClient {
   constructor() {
     this.client = new MongoClient(url);
 
-    this.client.connect(function(err) {
-      assert.equal(null, err);
+    this.client.connect((err) => {
       console.log("MongoDbService: Connected successfully to server");
 
-      this.db = client.db(dbName);
+      this.db = this.client.db(dbName);
       console.log("MongoDbService: Got db successfully");
     });
   }

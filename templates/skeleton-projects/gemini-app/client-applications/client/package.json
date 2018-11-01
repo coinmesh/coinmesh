@@ -1,11 +1,10 @@
 {
-  "name": "@coinmesh/coinmesh-ui",
+  "name": "@coinmesh/trading-app-client",
   "version": "0.0.1",
-  "description": "An admin panel for managing a BlockFuse stack",
+  "description": "A trading app skeleton's client application.",
   "keywords": [
-    "blockfuse",
-    "aurelia",
-    "admin"
+    "coinmesh",
+    "client"
   ],
   "homepage": "http://blockfuse.io",
   "license": "CC0-1.0",
@@ -62,7 +61,8 @@
       ],
       "waiting": [],
       "ready": [
-        "/client.*finished.*serve/i", "/client.*reloading.*browsers/i"
+        "/client.*finished.*serve/i",
+        "/client.*reloading.*browsers/i"
       ],
       "failed": [
         "/client.*error.*running.*ulp.*error/i",

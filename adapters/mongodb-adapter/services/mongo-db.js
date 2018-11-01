@@ -15,7 +15,6 @@ class MongoDbClient {
     this.client = new MongoClient(url);
 
     this.client.connect(function(err) {
-      assert.equal(null, err);
       console.log("MongoDbService: Connected successfully to server");
 
       this.db = client.db(dbName);

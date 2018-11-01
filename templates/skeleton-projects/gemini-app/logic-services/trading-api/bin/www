@@ -13,8 +13,6 @@ const http = require('http');
  */
 
 const port = normalizePort(process.env.PORT || '3987');
-console.log('-'.repeat(100))
-console.log('mongo port ', port);
 
 app.set('port', port);
 

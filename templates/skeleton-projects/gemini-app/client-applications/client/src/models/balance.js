@@ -1,9 +1,10 @@
 export class Balance {
-  chain_balance = 0;
-  channel_balance = 0;
-  pending_chain_balance = 0;
-  pending_channel_balance = 0;
-  type = 'balance';
+  amount = '';
+  available = '';
+  availableForWithdrawal = '';
+  currency = '';
+
+  type = '';
 
   constructor(data) {
     Object.assign(this, data);

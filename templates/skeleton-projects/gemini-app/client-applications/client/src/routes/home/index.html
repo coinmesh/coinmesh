@@ -1,6 +1,6 @@
 <template>
-  <require from="components/wallet-info"></require>
-  <section>
-    <wallet-info></wallet-info>
+  <require from="components/balance-info"></require>
+  <section repeat.for="balance of balances">
+    <balance-info balance.bind="balance"></balance-info>
   </section>
 </template>

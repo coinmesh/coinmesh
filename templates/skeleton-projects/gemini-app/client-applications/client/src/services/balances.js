@@ -8,8 +8,10 @@ export class BalancesService {
   }
 
   getBalance() {
-    return this.http.get('/balance').then(result => {
-      return new Balance(result);
+    return this.http.get('/balances').then(result => {
+      return result.map(balance => {
+        return new Balance(balance);
+      });
     });
   }
 }

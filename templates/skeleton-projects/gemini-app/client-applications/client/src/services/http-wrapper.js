@@ -1,18 +1,12 @@
 import {HttpClient} from 'aurelia-http-client';
-import Config from '../../config.json!';
 
 export class HttpWrapper {
   http;
-  walletHttp;
 
   constructor() {
-    let {username, password} = Config;
-    let token = btoa(`${username}:${password}`);
-
     this.http = new HttpClient()
       .configure(x => {
-        x.withBaseUrl(`http://localhost:3005/v0/`);
-        x.withHeader('Authorization', `Basic ${token}`);
+        x.withBaseUrl(`http://localhost:3987/v1/`);
       });
   }
 

@@ -1,5 +1,5 @@
-const exchangeRatesService = require('./services/exchange-rates');
+const balancesService = require('./services/balances');
 
 module.exports = {
-  exchangeRatesService
+  balancesService
 };

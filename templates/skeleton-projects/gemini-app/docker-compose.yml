@@ -20,7 +20,7 @@ services:
     build: ./data-sources/mongodb
     volumes:
       - ./data-sources/mongodb/mongod.conf:/etc/mongod.conf
-    command: mongod
+    command: mongod -f /etc/mongod.conf
     ports:
       - "27017:27017"
       - "28017:28017"
