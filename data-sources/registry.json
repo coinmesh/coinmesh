@@ -14,6 +14,20 @@
       "description": "The golden standard of cryptocurrency. It has 10 minute blocktimes, uses SHA-256 as it's mining algorithm, and a supply limit of 21 million. When accepting payments, allow for at least 1 confirmation.",
       "adapter": "bitcoind-adapter",
       "path": "../../data-sources/bitcoind"
+    }, {
+      "id": "lnd",
+      "endpoint": "local",
+      "name": "Lnd",
+      "description": "Lightning network daemon",
+      "adapter": "lnd-adapter",
+      "path": "../../data-sources/lnd"
+    }, {
+      "id": "mongodb",
+      "endpoint": "local",
+      "name": "MongoDB",
+      "description": "MongoDB data source.",
+      "adapter": "mongodb-adapter",
+      "path": "../../data-sources/mongodb"
     }
   ]
 }

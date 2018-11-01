@@ -13,23 +13,23 @@
       "description": "Bitcoin Core adapter.",
       "path": "../../adapters/bitcoind-adapter"
     }, {
-      "id": "ln-service",
+      "id": "lnd-adapter",
       "endpoint": "local",
-      "name": "LND Service",
-      "description": "Lightning Network Daemon service.",
+      "name": "LND Adapter",
+      "description": "LND adapter.",
       "path": "../../adapters/lnd-adapter"
     }, {
-      "id": "ltcd-adapter",
+      "id": "mongodb-adapter",
       "endpoint": "local",
-      "name": "LTCD Adapter",
-      "description": "LTCD adapter.",
-      "path": "../../adapters/ltcd-adapter"
+      "name": "MongoDb Adapter",
+      "description": "MongoDb Adapter.",
+      "path": "../../adapters/mongodb-adapter"
     }, {
-      "id": "btcd-adapter",
+      "id": "gemini-adapter",
       "endpoint": "local",
-      "name": "BTCD Adapter",
-      "description": "BTCD adapter.",
-      "path": "../../adapters/btcd-adapter"
+      "name": "Gemini Adapter",
+      "description": "Gemini adapter.",
+      "path": "../../adapters/gemini-adapter"
     }
   ]
 }
