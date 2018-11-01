@@ -19,3 +19,11 @@ services:
       - "18443:18443"
       - "28332:28332"
       - "28333:28333"
+  mongodb:
+    build: ./data-sources/mongodb
+    volumes:
+      - ./data-sources/mongodb/mongod.conf:/etc/mongod.conf
+    command: mongodb
+    ports:
+      - "27017:27017"
+      - "28017:28017"
