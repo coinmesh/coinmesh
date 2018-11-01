@@ -1,6 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
 
-// const url = 'mongodb://localhost:27017';
 const url = process.env.MONGODB_URL;
 const dbName = process.env.MONGODB_DB_NAME;
 
@@ -14,10 +13,10 @@ class MongoDbClient {
   constructor() {
     this.client = new MongoClient(url);
 
-    this.client.connect(function(err) {
+    this.client.connect((err) => {
       console.log("MongoDbService: Connected successfully to server");
 
-      this.db = client.db(dbName);
+      this.db = this.client.db(dbName);
       console.log("MongoDbService: Got db successfully");
     });
   }
