@@ -1,0 +1,82 @@
+{
+  "name": "sample-generated-project",
+  "description": "Sample generated project",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "concurrently \"npm:client\" \"npm:logic-services\" \"npm:adapters\"",
+    "client": "cd ./client-applications/client && npm start",
+    "logic-services": "concurrently \"npm:trading-api\"",
+    "trading-api": "cd ./logic-services/trading-api && npm start",
+    "test": "concurrently \"cd ./logic-services/trading-api && npm test\""
+  },
+  "coinmesh": {
+    "type": "project",
+    "adapters": {
+      "gemini-adapter": "./adapters/gemini-adapter",
+      "mongodb-adapter": "./adapters/mongodb-adapter"
+    },
+    "logicServices": {
+      "trading-api": "./logic-services/trading-api"
+    },
+    "dataSources": {
+      "mongodb": "./data-sources/mongodb"
+    },
+    "clientApplications": {
+      "client": "./client-applications/client"
+    },
+    "dockerServices": [
+      {
+        "name": "app",
+        "image": "node:8",
+        "working_dir": "/home/node/app",
+        "volumes": [
+          "/home/node/app/node_modules",
+          "./:/home/node/app"
+        ],
+        "ports": [
+          "9001:9000"
+        ],
+        "command": "npm start --unsafe-perm",
+        "environment": {
+          "GEMINI_API_SECRET": "{{put your secret here}}",
+          "GEMINI_API_KEY": "{{put your api key here}}"
+        },
+        "adapters": ["gemini-adapter", "mongodb-adapter"],
+        "clientApplications": ["client"],
+        "logicServices": ["trading-api"]
+      }, {
+        "name": "mongodb",
+        "build": "./data-sources/mongodb",
+        "command": "mongod",
+        "volumes": [
+          "./data-sources/mongodb/mongod.conf:/etc/mongod.conf"
+        ],
+        "ports": [
+          "27017:27017",
+          "28017:28017"
+        ],
+        "dataSources": ["mongodb"]
+      }
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coinmesh/coinmesh.git"
+  },
+  "keywords": [
+    "coinmesh",
+    "bitcoind"
+  ],
+  "author": "Patrick Walters",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/coinmesh/coinmesh/issues"
+  },
+  "homepage": "http://coinmesh.com"
+}

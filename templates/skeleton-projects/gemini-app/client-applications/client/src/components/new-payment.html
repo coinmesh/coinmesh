@@ -1,0 +1,26 @@
+<template>
+  <form>
+    <strong>DETAILS</strong>
+    <div class="form-group">
+      <label for="to">To</label>
+      <input id="to" value.bind="payment.to_address"
+        class="form-control"
+        placeholder="Enter address...">
+    </div>
+    <div class="form-group">
+      <label for="label">Label</label>
+      <input id="label" value.bind="payment.label"
+        class="form-control"
+        placeholder="Enter label (optional)">
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input id="amount" value.bind="payment.amount"
+        class="form-control"
+        placeholder="Enter amount">
+    </div>
+    <button class="btn btn-primary" click.delegate="pay()">
+      Pay
+    </button>
+  </form>
+</template>

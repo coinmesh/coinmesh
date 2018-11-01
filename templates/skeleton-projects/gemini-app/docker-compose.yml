@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  app:
+    image: node:8
+    working_dir: /home/node/app
+    volumes:
+      - /home/node/app/node_modules
+      - ./:/home/node/app
+    ports:
+      - "9001:9000"
+      - "3987:3987"
+    command: "npm start --unsafe-perm"
+    environment:
+      - GEMINI_API_KEY={{put your apij key here}}
+      - GEMINI_API_SECRET={{put your api secret here}}
+      - MONGODB_URL=mongodb://mongodb:27017
+      - MONGODB_DB_NAME={{put your db name here}}
+  mongodb:
+    build: ./data-sources/mongodb
+    volumes:
+      - ./data-sources/mongodb/mongod.conf:/etc/mongod.conf
+    command: mongod
+    ports:
+      - "27017:27017"
+      - "28017:28017"

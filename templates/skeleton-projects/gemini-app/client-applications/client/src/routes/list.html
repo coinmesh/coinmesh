@@ -1,0 +1,7 @@
+<template>
+  <div class="row" repeat.for="row of router.navigation">
+    <div class="col">
+      <a class="btn btn-secondary" href.bind="row.href">${row.title}</a>
+    </div>
+  </div>
+</template>

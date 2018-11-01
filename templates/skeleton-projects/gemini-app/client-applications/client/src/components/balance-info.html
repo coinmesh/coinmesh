@@ -1,0 +1,36 @@
+<template>
+  <require from="components/display-item"></require>
+  <div class="row">
+    <div class="col-4">
+      <strong>Wallet</strong>
+    </div>
+    <div class="col-4">
+      <strong>Ł ${balance.balance}</strong>
+    </div>
+    <div class="col-4">
+      <label>$(${balance.balance_dollars})</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <label>Pending</label>
+    </div>
+    <div class="col-4">
+      <label>Ł ${balance.unconfirmed_balance}</label>
+    </div>
+    <div class="col-4">
+      <label>$(${balance.unconfirmed_balance_dollars})</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <strong>Total</strong>
+    </div>
+    <div class="col-4">
+      <strong>Ł ${balance.balance}</strong>
+    </div>
+    <div class="col-4">
+      <label>$(${balance.balance_dollars})</label>
+    </div>
+  </div>
+</template>
