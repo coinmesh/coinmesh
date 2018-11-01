@@ -5,3 +5,5 @@ cp -R ./data-sources/bitcoind/* ./templates/skeleton-projects/bitcoind-app/data-
 
 cp -R ./data-sources/litecoind/* ./templates/skeleton-projects/litecoind-app/data-sources/litecoind/
 
+cp -R ./data-sources/mongodb/* ./templates/skeleton-projects/gemini-app/data-sources/mongodb/
+
