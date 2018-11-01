@@ -17,8 +17,6 @@ class Balance {
 
 router.get('/', (req, res, next) => {
   balancesService.getBalances().then(geminiBalances => {
-    console.log('='.repeat(100))
-    console.log(geminiBalances)
 
     const balances = geminiBalances.map(geminiBalance => {
       return new Balance(geminiBalance);
@@ -26,10 +24,8 @@ router.get('/', (req, res, next) => {
 
     findService.find('balances').then(mongoBalances => {
       if (!mongoBalances) {
-        console.log('INSERTING balances')
         insertService.insertMany('balances', balances);
       } else {
-        console.log('UPDATING balances')
         mongoBalances.forEach(mongoBalance => {
           const newBalance = balances.find(balance => balance.currency = mongoBalance.currency);
 

@@ -6,7 +6,7 @@
   },
   "scripts": {
     "prestart": "npm install",
-    "start": "concurrently \"npm:client\" \"npm:logic-services\" \"npm:adapters\"",
+    "start": "concurrently \"npm:client\" \"npm:logic-services\"",
     "client": "cd ./client-applications/client && npm start",
     "logic-services": "concurrently \"npm:trading-api\"",
     "trading-api": "cd ./logic-services/trading-api && npm start",
@@ -44,10 +44,18 @@
           "GEMINI_API_SECRET": "{{put your secret here}}",
           "GEMINI_API_KEY": "{{put your api key here}}"
         },
-        "adapters": ["gemini-adapter", "mongodb-adapter"],
-        "clientApplications": ["client"],
-        "logicServices": ["trading-api"]
-      }, {
+        "adapters": [
+          "gemini-adapter",
+          "mongodb-adapter"
+        ],
+        "clientApplications": [
+          "client"
+        ],
+        "logicServices": [
+          "trading-api"
+        ]
+      },
+      {
         "name": "mongodb",
         "build": "./data-sources/mongodb",
         "command": "mongod",
@@ -58,7 +66,9 @@
           "27017:27017",
           "28017:28017"
         ],
-        "dataSources": ["mongodb"]
+        "dataSources": [
+          "mongodb"
+        ]
       }
     ]
   },
