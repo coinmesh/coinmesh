@@ -29,4 +29,4 @@ USER "mongodb"
 
 EXPOSE 27017 28017
 
-CMD ["mongod"]
+CMD ["mongod -f /etc/mongod.conf"]
