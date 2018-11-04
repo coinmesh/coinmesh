@@ -59,6 +59,26 @@
       "clientApplications": {
         "client": true
       }
+    }, {
+      "id": "gemini-app",
+      "endpoint": "local",
+      "name": "Gemini / MongoDB Trading App",
+      "description": "A skeleton that runs a trading api for you to customize.",
+      "path": "../../templates/skeleton-projects/gemini-app",
+      "enabled": true,
+      "adapters": {
+        "gemini-adapter": true,
+        "mongodb-adapter": true
+      },
+      "logicServices": {
+        "trading-api": true
+      },
+      "dataSources": {
+        "mongodb": true
+      },
+      "clientApplications": {
+        "client": true
+      }
     }
   ]
 }

@@ -48,7 +48,7 @@
     },
     "devDependencies": {}
   },
-  "devDependencies": {
+  "dependencies": {
     "@coinmesh/client-build-tools": "^0.2.1",
     "gulp": "^3.9.1",
     "jspm": "^0.16.53",
