@@ -25,7 +25,7 @@ class ChannelsService {
   openChannel(targetNodePublicKey, localTokens, giveTokens = 0, fee = 1e3) {
     const params = {
       chain_fee_tokens_per_vbyte: fee,
-      give_tokens: giftTokens,
+      give_tokens: giveTokens,
       local_tokens: localTokens,
       partner_public_key: targetNodePublicKey,
       lnd
