@@ -51,8 +51,7 @@
       "text": "github:systemjs/plugin-text@^0.0.8",
       "toastr": "github:CodeSeven/toastr@^2.1.4",
       "xterm": "npm:xterm@^3.3.0"
-    },
-    "devDependencies": {}
+    }
   },
   "dependencies": {
     "@coinmesh/client-build-tools": "0.2.1",
