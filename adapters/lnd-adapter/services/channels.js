@@ -30,7 +30,7 @@ class ChannelsService {
       partner_public_key: targetNodePublicKey,
       lnd
     };
-    return openChannel({params});
+    return openChannel(params);
   }
 }
 
