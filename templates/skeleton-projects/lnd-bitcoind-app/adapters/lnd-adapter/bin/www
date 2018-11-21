@@ -14,14 +14,21 @@ var http = require('http');
 
 var port = normalizePort('3098');
 
-getApp().then(app => {
+const createWebSocketServer = true;
+
+let server;
+
+function getServer(app) {
+  server = http.createServer(app);
+  return server;
+};
+
+getApp(getServer).then(app => {
   app.set('port', port);
 
   /**
    * Create HTTP server.
    */
-
-  var server = http.createServer(app);
 
   /**
    * Listen on provided port, on all network interfaces.

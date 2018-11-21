@@ -28,6 +28,11 @@ const {transactionsRouter} = require('ln-service/routers');
 const {walletInfoRouter} = require('ln-service/routers');
 const {walletPasswordPrompt} = require('ln-service/service');
 
+const {verifyClient} = require('ln-service/push');
+const {subscribeToGraph} = require('ln-service/push');
+const {subscribeToInvoices} = require('ln-service/push');
+const {subscribeToTransactions} = require('ln-service/push');
+
 const unlockerLnd = localLnd({is_unlocker: true});
 const {createSeed} = require('ln-service/lightning');
 const {createWallet} = require('ln-service/lightning');
@@ -35,6 +40,8 @@ const {isWalletLocked} = require('ln-service/service');
 const {unlockWallet} = require('ln-service/lightning');
 
 const secretsAdapter = require('./services/secrets-adapter');
+
+const WebSocketServer = require('ws').Server;
 
 const log = console.log;
 const app = express();
@@ -53,7 +60,7 @@ app.use((req, res, next) => {
   next();
 });
 
-function getApp() {
+function getApp(getServer = null) {
   return new Promise((resolve, reject) => {
     return new Promise((res, rej) => {
       let lnd;
@@ -94,7 +101,6 @@ function getApp() {
 
             let seed = result.seed;
 
-            // TODO: Write the seed to the secret.json
             secretsAdapter.saveSeed(seed).then(() => {
               return secretsAdapter.savePassword(password);
             }).then(() => {
@@ -108,6 +114,16 @@ function getApp() {
         }
       }
     }).then(lnd => {
+      let wss;
+
+      if (getServer) {
+        const server = getServer(app);
+
+        wss = [
+          new WebSocketServer({ server, verifyClient })
+        ];
+      }
+
       app.use('/v0/addresses', addressesRouter({lnd, log}));
       app.use('/v0/balance', balanceRouter({lnd, log}));
       app.use('/v0/channels', channelsRouter({lnd, log}));
@@ -115,13 +131,19 @@ function getApp() {
       app.use('/v0/crypto', cryptoRouter({lnd, log}));
       app.use('/v0/exchange', exchangeRouter({log}));
       app.use('/v0/history', historyRouter({lnd, log}));
-      app.use('/v0/invoices', invoicesRouter({lnd, log}));
+      app.use('/v0/invoices', invoicesRouter({lnd, log, wss}));
       app.use('/v0/network_info', networkInfoRouter({lnd, log}));
-      app.use('/v0/payments', paymentsRouter({lnd, log}));
+      app.use('/v0/payments', paymentsRouter({lnd, log, wss}));
       app.use('/v0/peers', peersRouter({lnd, log}));
       app.use('/v0/purchased', purchasedRouter({lnd, log}));
-      app.use('/v0/transactions', transactionsRouter({lnd, log}));
+      app.use('/v0/transactions', transactionsRouter({lnd, log, wss}));
       app.use('/v0/wallet_info', walletInfoRouter({lnd, log}));
+
+      if (wss) {
+        subscribeToGraph({lnd, log, wss});
+        subscribeToInvoices({lnd, log, wss});
+        subscribeToTransactions({lnd, log, wss});
+      }
 
       // catch 404 and forward to error handler
       app.use((req, res, next) => {
@@ -140,6 +162,7 @@ function getApp() {
         res.status(err.status || 500);
         res.json({ error: err });
       });
+
       return resolve(app);
     })
   });
