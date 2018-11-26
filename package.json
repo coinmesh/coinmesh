@@ -30,5 +30,6 @@
   "homepage": "https://coinmesh.com",
   "devDependencies": {
     "concurrently": "^4.0.1"
-  }
+  },
+  "dependencies": {}
 }

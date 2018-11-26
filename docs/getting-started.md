@@ -10,8 +10,8 @@
 
 You must have Node, NPM, and Docker installed in the environment you are working on
 
-- [node @ or > 8.11.4](https://nodejs.org/en/)
-- [npm @ or > 5.5.1](https://nodejs.org/en/)
+- [lts node @ 10.13.x](https://nodejs.org/en/)
+- [npm @ or > 6.4.x](https://nodejs.org/en/)
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Docker-Compose](https://docs.docker.com/compose/install/)
 
