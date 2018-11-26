@@ -16,10 +16,6 @@ const bundles = require('../bundles.js');
 const del = require('del');
 const vinylPaths = require('vinyl-paths');
 
-const webdriverUpdate = require('gulp-protractor').webdriver_update;
-const webdriverStandalone = require('gulp-protractor').webdriver_standalone;
-const protractor = require('gulp-protractor').protractor;
-
 const Karma = require('karma').Server;
 const eslint = require('gulp-eslint');
 
@@ -86,40 +82,6 @@ gulp.task('unbundle', function() {
 gulp.task('clean', gulp.series('unbundle', function() {
   return gulp.src([paths.output])
     .pipe(vinylPaths(del));
-}));
-
-// for full documentation of gulp-protractor,
-// please check https://github.com/mllrsohn/gulp-protractor
-gulp.task('webdriver-update', webdriverUpdate);
-gulp.task('webdriver-standalone', gulp.series('webdriver-update', webdriverStandalone));
-
-gulp.task('clean-e2e', function() {
-  return del(paths.e2eSpecsDist + '*');
-});
-
-// transpiles files in
-// /test/e2e/src/ from es6 to es5
-// then copies them to test/e2e/dist/
-gulp.task('build-e2e', gulp.series('clean-e2e', function() {
-  return gulp.src(paths.e2eSpecsSrc)
-      .pipe(plumber())
-      .pipe(sourcemaps.init({loadMaps: true}))
-      .pipe(to5(assign({}, compilerOptions('commonjs'))))
-      .pipe(sourcemaps.write('.', {includeContent: false, sourceRoot: '/src'}))
-      .pipe(gulp.dest(paths.e2eSpecsDist));
-}));
-
-// runs build-e2e task
-// then runs end to end tasks
-// using Protractor: http://angular.github.io/protractor/
-gulp.task('e2e', gulp.series('build-e2e', function(cb) {
-  return gulp.src(paths.e2eSpecsDist + '**/*.js')
-    .pipe(protractor({
-      configFile: 'protractor.conf.js',
-      args: ['--baseUrl', 'http://127.0.0.1:9000']
-    }))
-    .on('end', function() { process.exit(); })
-    .on('error', function(e) { throw e; });
 }));
 
 // runs eslint on all .js files

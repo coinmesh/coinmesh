@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "aurelia-bundler": "^0.7.0",
-    "aurelia-protractor-plugin": "^1.0.6",
     "aurelia-tools": "^2.0.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
@@ -31,7 +30,6 @@
     "gulp-htmlmin": "^4.0.0",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.0",
-    "gulp-protractor": "^4.1.0",
     "gulp-sourcemaps": "^2.6.4",
     "jasmine-core": "^3.1.0",
     "jspm": "^0.16.53",
@@ -43,7 +41,6 @@
     "karma-jspm": "^2.2.3",
     "object.assign": "^4.1.0",
     "path": "^0.12.7",
-    "protractor": "^5.4.0",
     "require-dir": "^1.0.0",
     "run-sequence": "^2.2.1",
     "vinyl-paths": "^2.1.0",
