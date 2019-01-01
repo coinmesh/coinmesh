@@ -1,0 +1,60 @@
+{
+  "name": "@coinmesh/lnd-adapter",
+  "version": "0.2.4",
+  "description": "An adapter for LND using ln-service",
+  "main": "services/index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "nodemon ./bin/www",
+    "rebuild-packages": "cd ./node_modules/ln-service && cd ../.. && npm rebuild && cd -",
+    "test": "RPC_PORT=19443 LNSERVICE_NETWORK=regtest LNSERVICE_CHAIN=bitcoin nodemon --exec 'jasmine'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coinmesh/coinmesh.git"
+  },
+  "keywords": [
+    "coinmesh",
+    "lnd",
+    "ln-service",
+    "litecoin",
+    "bitcoin"
+  ],
+  "author": "Patrick Walters <patrick.walters@blockfuse.io> (http://blockfuse.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coinmesh/coinmesh/issues"
+  },
+  "homepage": "https://coinmesh.com",
+  "dependencies": {
+    "@coinmesh/file-system-adapter": "^0.2.1",
+    "@coinmesh/package-json-adapter": "^0.2.1",
+    "cookie-parser": "^1.4.3",
+    "dns-sync": "^0.1.3",
+    "express-basic-auth": "^1.1.5",
+    "generate-password": "^1.4.0",
+    "jasmine": "^3.2.0",
+    "ln-service": "^27.0.0",
+    "nodemon": "^1.18.4",
+    "openport": "0.0.5",
+    "rimraf": "^2.6.2",
+    "supertest": "^3.1.0"
+  },
+  "coinmesh": {
+    "type": "adapter",
+    "events": {
+      "loading": [
+        "/lnd-adapter.*prestart/i"
+      ],
+      "waiting": [
+        ""
+      ],
+      "ready": [
+        "/lnd-adapter.*nodemon.*starting/i"
+      ],
+      "failed": [
+        "/lnd-adapter.*nodemon.*app.*crashed/i"
+      ]
+    }
+  }
+}

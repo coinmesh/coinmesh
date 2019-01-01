@@ -1,0 +1,56 @@
+{
+  "name": "@coinmesh/lnd",
+  "version": "1.0.0",
+  "description": "A data-source for LND for CoinMesh",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coinmesh/coinmesh.git"
+  },
+  "keywords": [
+    "coinmesh",
+    "lnd"
+  ],
+  "author": "Patrick Walters",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coinmesh/coinmesh/issues"
+  },
+  "homepage": "https://coinmesh.com",
+  "coinmesh": {
+    "type": "data-source",
+    "confFilePath": "lnd.conf",
+    "adapters": {
+      "lnd-adapter": "adapters/lnd-adapter"
+    },
+    "network": "regtest",
+    "runHttp": true,
+    "conf": {
+      "debuglevel": "debug",
+      "bitcoin.node": "bitcoind",
+      "bitcoin.active": "1",
+      "bitcoin.regtest": "1",
+      "bitcoind.rpchost": "bitcoind",
+      "bitcoind.rpcuser": "rpcuser",
+      "bitcoind.rpcpass": "rpcpassword",
+      "bitcoind.zmqpubrawblock": "tcp://bitcoind:28332",
+      "bitcoind.zmqpubrawtx": "tcp://bitcoind:28333",
+      "externalip": "lnd",
+      "tlsextraip": "lnd",
+      "rpclisten": "localhost:10009",
+      "rpclisten": "lnd:10009"
+    },
+    "events": {
+      "loading": ["/ltnd.*version/i"],
+      "waiting": ["/waiting.*password/i"],
+      "ready": ["/lnd.*rpc.*server.*listening/i"],
+      "failed": ["/lnd.*crashed/i"]
+    },
+    "actions": {
+      "purgeLndChainData": "lnd"
+    }
+  }
+}

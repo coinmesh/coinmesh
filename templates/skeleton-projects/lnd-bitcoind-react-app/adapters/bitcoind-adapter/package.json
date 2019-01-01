@@ -1,0 +1,55 @@
+{
+  "name": "@coinmesh/bitcoind-adapter",
+  "version": "0.2.1",
+  "keywords": [
+    "coinmesh",
+    "bitcoind",
+    "admin"
+  ],
+  "homepage": "http://coinmesh.com",
+  "license": "CC0-1.0",
+  "author": "Patrick Walters <patrick.walters@blockfuse.io> (http://blockfuse.io/)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/coinmesh"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "nodemon ./bin/www",
+    "test": "RPC_PORT=18443 nodemon --exec 'jasmine'"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "express": "^4.16.4",
+    "jasmine": "^3.1.0",
+    "morgan": "~1.9.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "supertest": "^3.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  },
+  "main": "index.js",
+  "coinmesh": {
+    "type": "adapter",
+    "events": {
+      "loading": [
+        "/bitcoind-adapter.*prestart/i"
+      ],
+      "waiting": [
+        ""
+      ],
+      "ready": [
+        "/bitcoind-adapter.*nodemon.*starting/i"
+      ],
+      "failed": [
+        "/bitcoind-adapter.*nodemon.*app.*crashed/i"
+      ]
+    }
+  }
+}
