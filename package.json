@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prestart": "npm install",
-    "start": "concurrently \"npm:client\" \"npm:admin-logic-service\"",
+    "start": "concurrently \"npm:admin-logic-service\"",
     "client": "cd ./client-applications/admin && npm start",
     "admin-logic-service": "cd ./logic-services/admin && npm start",
     "generate-docs": "cd ./docs/api-docs && bundle exec middleman build --clean",
