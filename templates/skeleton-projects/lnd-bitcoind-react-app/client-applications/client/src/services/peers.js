@@ -1,5 +1,5 @@
 import {HttpWrapper} from './http-wrapper';
-import {Peer} from 'models/peer';
+import {Peer} from '../models/peer';
 
 export class PeersService {
   static inject = [HttpWrapper];

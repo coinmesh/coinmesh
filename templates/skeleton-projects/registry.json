@@ -60,6 +60,27 @@
         "client": true
       }
     }, {
+      "id": "lnd-bitcoind-react-app",
+      "endpoint": "local",
+      "name": "Bitcoind w/ Lightning Network React App",
+      "description": "A skeleton that runs lnd on top of bitcoin-core software.  Includes an adapter for Bitcoind with a RESTful API as well as a sample Wallet logic service for extending lnd-adapter functionality.",
+      "path": "../../templates/skeleton-projects/lnd-bitcoind-react-app",
+      "enabled": true,
+      "adapters": {
+        "bitcoind-adapter": true,
+        "lnd-adapter": true
+      },
+      "logicServices": {
+        "wallet": true
+      },
+      "dataSources": {
+        "bitcoind": true,
+        "lnd": true
+      },
+      "clientApplications": {
+        "client": true
+      }
+    }, {
       "id": "gemini-app",
       "endpoint": "local",
       "name": "Gemini / MongoDB Trading App",

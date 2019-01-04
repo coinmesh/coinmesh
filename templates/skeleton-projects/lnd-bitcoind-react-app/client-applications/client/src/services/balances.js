@@ -1,5 +1,5 @@
 import {HttpWrapper} from './http-wrapper';
-import {Balance} from 'models/balance';
+import {Balance} from '../models/balance';
 
 export class BalancesService {
   static inject = [HttpWrapper];

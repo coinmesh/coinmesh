@@ -1,5 +1,5 @@
 import {HttpWrapper} from './http-wrapper';
-import {ForwardingEvent} from 'models/forwarding-event';
+import {ForwardingEvent} from '../models/forwarding-event';
 
 export class HistoriesService {
   static inject = [HttpWrapper];

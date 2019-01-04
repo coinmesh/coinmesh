@@ -1,5 +1,5 @@
 import {HttpWrapper} from './http-wrapper';
-import {Channel} from 'models/channel';
+import {Channel} from '../models/channel';
 
 export class ChannelsService {
   static inject = [HttpWrapper];
@@ -16,9 +16,10 @@ export class ChannelsService {
   }
   connectChannel(channel) {
     let body = {
-      partner_public_key: 'test'
+      partner_public_key: channel.publicKey,
+      local_amt: channel.fundingAmount
     };
-    return this.http.post('/channels', channel).then(result => {
+    return this.http.post('/channels', body).then(result => {
       return new Channel(result);
     });
   }

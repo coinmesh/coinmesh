@@ -1,5 +1,5 @@
 import {HttpWrapper} from './http-wrapper';
-import {ExchangeRate} from 'models/exchange-rate';
+import {ExchangeRate} from '../models/exchange-rate';
 
 export class ExchangeRatesService {
   static inject = [HttpWrapper];

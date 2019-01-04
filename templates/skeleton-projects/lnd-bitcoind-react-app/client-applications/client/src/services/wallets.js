@@ -1,5 +1,5 @@
 import {WalletHttpWrapper} from './wallet-http-wrapper';
-import {WalletInfo} from 'models/wallet-info';
+import {WalletInfo} from '../models/wallet-info';
 
 export class WalletsService {
   static inject = [WalletHttpWrapper];

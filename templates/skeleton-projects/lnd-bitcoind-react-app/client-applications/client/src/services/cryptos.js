@@ -1,5 +1,5 @@
 import {HttpWrapper} from './http-wrapper';
-import {Message} from 'models/message';
+import {Message} from '../models/message';
 
 export class CryptosService {
   static inject = [HttpWrapper];

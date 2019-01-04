@@ -1,5 +1,5 @@
 import {HttpWrapper} from './http-wrapper';
-import {Payment} from 'models/payment';
+import {Payment} from '../models/payment';
 
 export class PaymentsService {
   static inject = [HttpWrapper];

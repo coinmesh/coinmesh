@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import { addressesService } from './services/index';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Home from './routes/Home';
@@ -9,6 +8,21 @@ import Receive from './routes/Receive';
 import Channels from './routes/Channels';
 import Invoices from './routes/Invoices';
 import Peers from './routes/Peers';
+
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    Container,
+    Row,
+    Col,
+    Jumbotron,
+    Button
+} from 'reactstrap';
 
 const routes = [
   {
@@ -55,42 +69,41 @@ class App extends Component {
       errors: []
     };
   }
-  componentWillMount() {
-    addressesService.createAddress().then(result => {
-      this.setState({ address: result.address });
-    });
-  }
   render() {
     return (
       <Router>
-        <div style={{ display: "flex" }}>
-          <div
-            style={{
-              padding: "10px",
-              width: "40%",
-              background: "#f0f0f0"
-            }}>
-
-            <h1>{this.state.address}</h1>
-            <ul style={{ listStyleType: "none", padding: 0 }}>
-              {
-                routes.map((route, index) => (
-                  <li key={index}>
-                    <Link to={route.path}>{route.name}</Link>
-                  </li>
-                ))
-              }
-            </ul>
-
-            {routes.map((route, index) => (
-              <Route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                component={route.component}
-              />
-            ))}
-          </div>
+        <div>
+          <Navbar color="inverse" light expand="md">
+            <NavbarBrand href="/">React LND Bitcoind</NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav className="ml-auto" navbar>
+                {
+                  routes.map((route, index) => (
+                    <NavItem key={index}>
+                      <NavLink tag={Link} to={route.path}>{route.name}</NavLink>
+                    </NavItem>
+                  ))
+                }
+              </Nav>
+            </Collapse>
+          </Navbar>
+          <Jumbotron>
+            <Container>
+              <Row>
+                <Col>
+                  {routes.map((route, index) => (
+                    <Route
+                      key={index}
+                      path={route.path}
+                      exact={route.exact}
+                      component={route.component}
+                    />
+                  ))}
+                </Col>
+              </Row>
+            </Container>
+          </Jumbotron>
         </div>
       </Router>
     );
