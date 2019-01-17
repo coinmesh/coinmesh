@@ -36,8 +36,6 @@ class AddressesService {
   }
 
   async getReceivedByAddress(address, minConfirmations = 0) {
-    await this.importAddress(address);
-
     let request = {
       method: 'getreceivedbyaddress',
       params: [
