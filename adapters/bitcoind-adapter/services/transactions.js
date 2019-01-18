@@ -1,6 +1,16 @@
 const { JsonRpcRequest, jsonRpcClient } = require('../services/json-rpc');
 
 class TransactionsService {
+  getUnspentByAddress(address, minConfs = 1) {
+    let request = {
+      method: 'listunspent',
+      params: [minConfs, null, address],
+      id: 'listunspent'
+    };
+
+    return jsonRpcClient.post(request);
+  }
+
   getTransactions() {
     let request = {
       method: 'listtransactions',
