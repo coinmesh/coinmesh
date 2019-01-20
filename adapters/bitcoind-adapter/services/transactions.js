@@ -40,9 +40,9 @@ class TransactionsService {
 
   signRawTransaction(transactionHexString) {
     let request = {
-      method: 'signrawtransaction',
+      method: 'signrawtransactionwithwallet',
       params: [transactionHexString],
-      id: 'signrawtransaction'
+      id: 'signrawtransactionwithwallet'
     };
 
     return jsonRpcClient.post(request);
