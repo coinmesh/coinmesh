@@ -1,4 +1,5 @@
 const lnd = require('./lnd');
+
 const createChainAddress = require('ln-service/createChainAddress');
 const sendToChainAddress = require('ln-service/sendToChainAddress');
 

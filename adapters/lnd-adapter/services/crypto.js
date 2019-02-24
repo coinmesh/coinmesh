@@ -2,7 +2,7 @@ const lnd = require('./lnd');
 const signMessage = require('ln-service/signMessage');
 const verifyMessage = require('ln-service/verifyMessage');
 
-class BalancesService {
+class CryptoService {
   signMessage(message) {
     return signMessage({lnd, message});
   }
@@ -11,4 +11,5 @@ class BalancesService {
   }
 }
 
-module.exports = BalancesService;
+module.exports = CryptoService;
+

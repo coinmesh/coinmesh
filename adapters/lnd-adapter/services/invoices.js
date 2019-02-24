@@ -2,8 +2,13 @@ const lnd = require('./lnd');
 const createInvoice = require('ln-service/createInvoice');
 const getInvoice = require('ln-service/getInvoice');
 const getInvoices = require('ln-service/getInvoices');
+const {subscribeToInvoices} = require('ln-service/lightning');
+const log = console.log;
 
 class InvoicesService {
+  subscribe() {
+    return subscribeToInvoices({lnd});
+  }
   createInvoice(invoiceRequest) {
     const {
       description,
