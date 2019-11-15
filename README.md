@@ -1,3 +1,5 @@
+> **NOTICE**: This repo is not actively maintained due to lack of interest.  It may not be in a running state.
+
 # CoinMesh
 
 The Startup Kit for Litecoin and Bitcoin App Development
