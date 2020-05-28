@@ -30,7 +30,7 @@
     "@coinmesh/file-system-adapter": "^0.2.1",
     "@coinmesh/package-json-adapter": "^0.2.1",
     "cookie-parser": "^1.4.3",
-    "dns-sync": "^0.1.3",
+    "dns-sync": "^0.2.0",
     "express": "^4.16.4",
     "express-basic-auth": "^1.1.5",
     "generate-password": "^1.4.0",
